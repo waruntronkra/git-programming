@@ -5,7 +5,7 @@ const MyFirstComponent = () => {
     const [text, setText] = useState('');
 
     const handleInputChange = (e) => {
-        setText(e.target.vslue);
+        alert(e.target.value);
     };
     const handleButtonClick = () => {
         alert('Cliked!');
