@@ -52,16 +52,16 @@ class _TableFBNYIELDState extends State<TableFBNYIELD> {
     return widget.dataTable.map((data) {
       return TableRow(
         children: data.asMap().entries.map((entry) {
-          final columnIndex = entry.key;
+          // final columnIndex = entry.key;
           final cell = entry.value;
           return Center(
             child: Container(
               padding: const EdgeInsets.only(left: 5, right: 5),
               child: Text(
-                columnIndex == 3 && cell == 0 ? '' : '$cell',
-                style: TextStyle(
+                '$cell',
+                style: const TextStyle(
                   fontSize: 11,
-                  color: columnIndex == 3 ? Colors.red : Colors.black,
+                  color: Colors.black,
                 ),
                 textAlign: TextAlign.center,
               )

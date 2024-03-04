@@ -1,4 +1,3 @@
-// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
@@ -7,10 +6,10 @@ import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter_sliding_up_panel/flutter_sliding_up_panel.dart';
 import 'package:cool_alert/cool_alert.dart';
-// import 'package:yma_app/Chart/mixChartYIELD.dart';
 import 'package:yma_app/MainWindow/Window-FBN-ACACIA-YIELD/Page-Summary/utility/show_more_filter.dart';
 import 'package:yma_app/MainWindow/Window-FBN-ACACIA-YIELD/Page-Summary/utility/multiLineChart.dart';
 import 'package:yma_app/MainWindow/Window-FBN-ACACIA-YIELD/Page-Summary/utility/table.dart';
+import 'package:yma_app/MainWindow/Window-FBN-ACACIA-YIELD/Page-Summary/utility/barchart.dart';
 
 class WindowFBNYIELD extends StatefulWidget {
   const WindowFBNYIELD({super.key});
@@ -87,6 +86,9 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
   Map<String, dynamic> dataLineChart = {};
   List<String> xAxis = [];
   Map<String, dynamic> dataQtyLineChart = {};
+
+  List<dynamic> groupDataToBarChart = [];
+  List<List<dynamic>> groupDataToTable = [];
 
   DateTime selectedDate = DateTime.now();
   Future<void> _selectDateFrom(BuildContext context) async {
@@ -244,11 +246,10 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                 title: Text(
                   "$levelSelected : $modelSelected",
                   style: const TextStyle(
-                    fontSize: 15,
+                    fontSize: 13,
                     fontWeight: FontWeight.bold
                   ),
                 ),
-                
                 bottom: const TabBar(
                   labelColor: Color.fromARGB(255, 3, 141, 93),
                   indicatorColor: Color.fromARGB(255, 3, 141, 93),
@@ -316,11 +317,12 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
             ),
             body: RefreshIndicator(
               key: _refreshIndicatorKey,
-              displacement: 60,
+              displacement: 50,
               color: Colors.white,
               backgroundColor: const Color.fromARGB(255, 3, 141, 93),
               onRefresh: () async {
-                await queryDataForMixChart('Yield');
+                await queryDataForYieldChart('Yield');
+                await queryDataForParetoChart('Pareto');
               },
               child: Container(
                 color: const Color.fromARGB(172, 239, 245, 250),
@@ -333,7 +335,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                       child: TabBarView(
                         children: <Widget>[
                           _pageAverall(),
-                          const Text('PARETO'),
+                          _pagePareto(),
                         ]
                       )
                     )
@@ -918,6 +920,60 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
     );
   } 
 
+  // *************** [Page Pareto] ***************
+  Widget _pagePareto() {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 5),
+            width: MediaQuery.of(context).size.width * 0.93,
+            height: MediaQuery.of(context).size.height * 0.5,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color.fromARGB(255, 219, 219, 219),
+                  offset: Offset(1, 1),
+                  blurRadius: 5
+                )
+              ]
+            ),
+            child: BarChart(
+              paretoTitle: 'Top (%) Fail Defect',
+              dataBarChart: groupDataToBarChart
+            )
+          ),
+          Visibility(
+            visible: mixChartVisible,
+            child: Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.only(top: 10),
+              width: MediaQuery.of(context).size.width * 0.95,
+              height: MediaQuery.of(context).size.height * 0.25,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TableFBNYIELD(
+                        dataTable: groupDataToTable,
+                        columnName: const ['Defect', 'Fail', '% Fail'],
+                      )
+                    ]
+                  )
+                )
+              )
+            )
+          ),
+          const SizedBox(height: 50)  
+        ],
+      )
+    );
+  }
+
   Widget filterBox() {
     return WidgetsMoreFilter(
       levelSelected: levelSelected,
@@ -938,7 +994,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
     });
   }
 
-  Future<void> queryDataForMixChart(String drillOn) async {
+  Future<void> queryDataForYieldChart(String drillOn) async {
     if (stringFilterSelectedCode.isNotEmpty) {
       stringEncryptedArray = await encryptData([
         levelSelected,
@@ -1065,7 +1121,6 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
           }
         } 
 
-
         setState(() {
           dataLineChart = dataToLineChart;
           dataQtyLineChart = dataQtyToLineChart;
@@ -1083,8 +1138,60 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
     }
   }
 
-  // ****************************************** Tab [PARETO] ******************************************
-  // ************************************************************************************
+  Future<void> queryDataForParetoChart(String drillOn) async {
+    if (stringFilterSelectedCode.isNotEmpty) {
+      stringEncryptedArray = await encryptData([
+        levelSelected,
+        modelSelected,
+        startDate.toString(),
+        endDate.toString(),
+        stringFilterSelectedCode.split(' ')[1],
+        stringFilterSelectedCode,
+        defaultGroupBy,
+        drillOn,
+        '71'
+      ]);
+      var dataQueried = await getDataPOST(
+        'https://localhost:44342/api/YMA/FbnYieldQueryDetail',
+        {
+          'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+          'Model': stringEncryptedArray['data'][1],
+          'From': stringEncryptedArray['data'][2],
+          'To': stringEncryptedArray['data'][3],
+          'FilterSelected': stringEncryptedArray['data'][4],
+          'FilterCode': stringEncryptedArray['data'][5],
+          'Groupby': stringEncryptedArray['data'][6],
+          'Drillon': stringEncryptedArray['data'][7],
+          'Version': stringEncryptedArray['data'][8]
+        },
+      );
+    
+      if (dataQueried[1] == 200) {
+        String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+
+        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+
+        groupDataToBarChart = [];
+        for (var data in decodedData) {
+          groupDataToBarChart.add([data['defect'], double.parse(((data['fail'] / data['count']) * 100).toStringAsFixed(2))]);
+        } 
+
+        groupDataToTable = [];
+        for (var data in decodedData) {
+          groupDataToTable.add([data['defect'], data['fail'], ((data['fail'] / data['count']) * 100).toStringAsFixed(2)]);
+        }
+        
+        setState(() {
+          groupDataToBarChart = groupDataToBarChart;
+          groupDataToTable = groupDataToTable;
+        });
+      }
+    }
+  }
 
   // ========================================= Query [LEVEL] =========================================
   Future<void> fetchDataLevel() async {
