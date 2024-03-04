@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:yma_app/Chart/barChartBox.dart';
 import 'dart:convert';
-import 'package:shimmer/shimmer.dart';
 import 'package:yma_app/Chart/barChartHistogram.dart';
 import '../../../Table/table_histogram.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
