@@ -1,0 +1,1 @@
+dotnet add package System.Data.SqlClient

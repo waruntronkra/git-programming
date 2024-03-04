@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <!-- <link rel="icon" type="image/x-icon" href="/images/main.ico"> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<h1>Yield Monitor [ACACIA]</h1>
+
+<body>
+    <p id="line"> </p>
+    <!-- Loader Widget -->
+    <div id="loader" aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster" style="display: none;">
+        <div class="wheel"></div>
+        <div class="hamster">
+            <div class="hamster__body">
+                <div class="hamster__head">
+                    <div class="hamster__ear"></div>
+                    <div class="hamster__eye"></div>
+                    <div class="hamster__nose"></div>
+                </div>
+                <div class="hamster__limb hamster__limb--fr"></div>
+                <div class="hamster__limb hamster__limb--fl"></div>
+                <div class="hamster__limb hamster__limb--br"></div>
+                <div class="hamster__limb hamster__limb--bl"></div>
+                <div class="hamster__tail"></div>
+            </div>
+        </div>
+        <div class="spoke"></div>
+    </div>
+    <!-- Day Selector -->
+    <p id="label_day_selected"></p>
+    <div class="day_selector">
+        <button>Days</button>
+        <div class="day_mode_menu">
+            <button onclick="day_selected('1', 'DATE')">2 days</button>
+            <button onclick="day_selected('2', 'DATE')">3 days</button>
+            <button onclick="day_selected('3', 'DATE')">4 days</button>
+            <button onclick="day_selected('4', 'DATE')">5 days</button>
+            <button onclick="day_selected('5', 'DATE')">6 days</button>
+            <button onclick="day_selected('6', 'DATE')">7 days</button>
+            <button onclick="day_selected('9', 'DATE')">10 days</button>
+            <button onclick="day_selected('14', 'DATE')">15 days</button>
+            <button onclick="day_selected('19', 'DATE')">20 days</button>
+            <button onclick="day_selected('29', 'DATE')">30 days</button>
+        </div>
+    </div>
+    <div class="week_selector">
+        <button>Weeks</button>
+        <div class="week_mode_menu">
+            <button onclick="day_selected('0', 'WEEK')">1 Week</button>
+            <button onclick="day_selected('1', 'WEEK')">2 Weeks</button>
+            <button onclick="day_selected('2', 'WEEK')">3 Weeks</button>
+            <button onclick="day_selected('3', 'WEEK')">4 Weeks</button>
+            <button onclick="day_selected('5', 'WEEK')">6 Weeks</button>
+            <button onclick="day_selected('7', 'WEEK')">8 Weeks</button>
+            <button onclick="day_selected('11', 'WEEK')">12 Weeks</button>
+            <button onclick="day_selected('12', 'WEEK')">13 Weeks</button>
+            <button onclick="day_selected('14', 'WEEK')">15 Weeks</button>
+            <button onclick="day_selected('19', 'WEEK')">20 Weeks</button>
+        </div>
+    </div>
+    <div class="month_selector">
+        <button>Months</button>
+        <div class="month_mode_menu">
+            <button onclick="day_selected('0', 'MONTH')">1 Month</button>
+            <button onclick="day_selected('1', 'MONTH')">2 Months</button>
+            <button onclick="day_selected('2', 'MONTH')">3 Months</button>
+            <button onclick="day_selected('3', 'MONTH')">4 Months</button>
+            <button onclick="day_selected('5', 'MONTH')">6 Months</button>
+            <button onclick="day_selected('7', 'MONTH')">8 Months</button>
+            <button onclick="day_selected('9', 'MONTH')">10 Months</button>
+            <button onclick="day_selected('11', 'MONTH')">12 Months</button>
+            <button onclick="day_selected('17', 'MONTH')">18 Months</button>
+        </div>
+    </div>
+    <div class="quarter_selector">
+        <button>Quarter</button>
+        <div class="quarter_mode_menu">
+            <button onclick="day_selected('0', 'QUARTER')">1 Quarter</button>
+            <button onclick="day_selected('1', 'QUARTER')">2 Quarters</button>
+            <button onclick="day_selected('2', 'QUARTER')">3 Quarters</button>
+            <button onclick="day_selected('3', 'QUARTER')">4 Quarters</button>
+            <button onclick="day_selected('5', 'QUARTER')">6 Quarters</button>
+            <button onclick="day_selected('7', 'QUARTER')">8 Quarters</button>
+        </div>
+    </div>
+
+    <p id="productName_label" class="product-label">Product : </p>
+    <!-- Line Chart -->
+    <div style="position: absolute; top: 170px; left: 240px; width: 1600px; height: 250px;">
+        <canvas class="chatJS" id="myLineChart" style="display: none;"></canvas>
+        <canvas class="chatJS" id="myMixChart" style="display: none; position: absolute; top: 10px; left: 20px; width: 1600px; height: 250px;"></canvas>
+        <canvas class="chatJS" id="myParetoChart" style="display: none; position: absolute; top: 10px; left: 20px; width: 1600px; height: 250px;"></canvas>
+        <canvas class="chatJS" id="myParetoFailChart" style="display: none; position: absolute; top: 10px; left: 20px; width: 1600px; height: 250px;"></canvas>
+        <canvas class="chatJS" id="myMixChartSecond" style="display: none; position: absolute; top: 10px; left: 20px; width: 1600px; height: 250px;"></canvas>
+    </div>
+
+    <!-- Create Tab Page -->
+    <div class="tabTable">
+        <button id="button_1" class="tabLinks"><i class="fa fa-table"></i> SUMMARY</button>
+        <button id="button_2" class="tabLinks"><i class="fa fa-bars"></i> PARETO</button>
+        <button id="button_3" class="tabLinks"><i class="fa fa-info-circle"></i> RAW DATA</button>
+        <button id="button_4" class="tabLinks"><i class="fa fa-history"></i> TRANSACTION</button>
+    </div>
+    <!-- Create Table (summary) Page -->
+    <table border="1" id="matrix_table" class="tableData"></table>
+    <!-- Create Table (raw data) Page -->
+    <table border="1" id="raw_data_table" class="tableData"></table>
+    <!-- Create Table (history data) Page -->
+    <table border="1" id="history_data_table" class="tableData"></table>
+    <!-- Create Table (pareto data) Page -->
+    <table border="1" id="pareto_data_table" class="tableData"></table>
+
+    <!-- ============================= tab AC1200 ============================= -->
+    <div id="ac1200-tab" class="tab">
+        <button class="learn-more" onclick="toggleTab_AC1200('ac1200', 'MODULE - AC1200')">
+            <p class="empty_page" id="empty_page_ac1200"></p>
+            <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">MODULE - AC1200</span>
+        </button>
+        <div id="ac1200-content" class="tab-content" style="display: none;">
+            <div id="MODULE - AC1200:AC1200NG:a" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    AC1200NG
+                        <span>AC1200NG</span>
+                  </div>
+                </div>
+            </div>
+            <div id="a-submenu" class="sub-menu-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OIT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - AC1200:AC1200NG-LBAND:b" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    AC1200NG-LBAND
+                        <span>AC1200NG-LBAND</span>
+                  </div>
+                </div>
+            </div>
+            <div id="b-submenu" class="sub-menu-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OIT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - AC1200:Cisco:c" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    Cisco
+                        <span>Cisco</span>
+                  </div>
+                </div>
+            </div>
+            <div id="c-submenu" class="sub-menu-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OIT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - AC1200:Cisco - ODC:d" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    Cisco - ODC
+                        <span>Cisco - ODC</span>
+                  </div>
+                </div>
+            </div>
+            <div id="d-submenu" class="sub-menu-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OIT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - AC1200:L Band:e" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    L Band
+                        <span>L Band</span>
+                  </div>
+                </div>
+            </div>
+            <div id="e-submenu" class="sub-menu-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OIT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - AC1200:M400:f" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    M400
+                        <span>M400</span>
+                  </div>
+                </div>
+            </div>
+            <div id="f-submenu" class="sub-menu-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OIT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - AC1200:Non Cisco:g" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    Non Cisco
+                        <span>Non Cisco</span>
+                  </div>
+                </div>
+            </div>
+            <div id="g-submenu" class="sub-menu-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OIT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - AC1200:ODC:h" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    ODC
+                        <span>ODC</span>
+                  </div>
+                </div>
+            </div>
+            <div id="h-submenu" class="sub-menu-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OIT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - AC1200:Single Channel:i" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    Single Channel
+                        <span>Single Channel</span>
+                  </div>
+                </div>
+            </div>
+            <div id="i-submenu" class="sub-menu-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OIT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - AC1200:Tigris:j" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    Tigris
+                        <span>Tigris</span>
+                  </div>
+                </div>
+            </div>
+            <div id="j-submenu" class="sub-menu-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OIT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================= tab JANNU ============================= -->
+    <div id="jannu-tab" class="tab">
+        <button class="learn-more" onclick="toggleTab_JANNU('jannu', 'MODULE - CIM8')">
+            <p class="empty_page" id="empty_page_jannu"></p>
+            <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">MODULE - CIM8</span>
+        </button>
+        <div id="jannu-content" class="tab-content" style="display: none;">
+            <div id="MODULE - CIM8:CIM-8:k" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    CIM-8
+                        <span>CIM-8</span>
+                  </div>
+                </div>
+            </div>
+            <div id="k-submenu" class="sub-menu-jannu">
+                <button class="BT_process" id="this_k-subA-PCAL"><i class="fa fa-folder-open"></i> PCAL</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> CAL</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - CIM8:E-MODULE:kk" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    E-MODULE
+                        <span>E-MODULE</span>
+                  </div>
+                </div>
+            </div>
+            <div id="kk-submenu" class="sub-menu-jannu">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> PCAL</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> CAL</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================= tab Non AC1200 ============================= -->
+    <div id="non-ac1200-tab" class="tab">
+        <button class="learn-more" onclick="toggleTab_NON_AC1200('non-ac1200', '')">
+            <p class="empty_page" id="empty_page_non_ac1200"></p>
+            <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">Module - Non AC1200</span>
+        </button>
+        <div id="non-ac1200-content" class="tab-content" style="display: none;">
+            <div id="MODULE - Non AC1200:AC400:l" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    AC400
+                        <span>AC400</span>
+                  </div>
+                </div>
+            </div>
+            <div id="l-submenu" class="sub-menu-non-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OBS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FST</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - Non AC1200:CFP-GLACIER:m" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    CFP-GLACIER
+                        <span>CFP-GLACIER</span>
+                  </div>
+                </div>
+            </div>
+            <div id="m-submenu" class="sub-menu-non-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OBS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FST</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - Non AC1200:CFP-MERU:n" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    CFP-MERU
+                        <span>CFP-MERU</span>
+                  </div>
+                </div>
+            </div>
+            <div id="n-submenu" class="sub-menu-non-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OBS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FST</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - Non AC1200:CFP2-ACO:o" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    CFP2-ACO
+                        <span>CFP2-ACO</span>
+                  </div>
+                </div>
+            </div>
+            <div id="o-submenu" class="sub-menu-non-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OBS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FST</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <div id="MODULE - Non AC1200:CFP2-DCO:p" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    CFP2-DCO
+                        <span>CFP2-DCO</span>
+                  </div>
+                </div>
+            </div>
+            <div id="p-submenu" class="sub-menu-non-ac1200">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OBS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FVT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EPT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> ESS</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FST</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXP</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ============================= tab ZEPHYR ============================= -->
+    <div id="zephyr-tab" class="tab">
+        <button class="learn-more" onclick="toggleTab_ZEPHYR('zephyr', 'MODULE - Zephyr')">
+            <p class="empty_page" id="empty_page_zephyr"></p>
+            <span class="circle" aria-hidden="true">
+                <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">MODULE - ZEPHYR</span>
+        </button>
+        <div id="zephyr-content" class="tab-content" style="display: none;">
+            <div id="MODULE - Zephyr:Zephyr-Bright:q" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    Zephyr-Bright
+                        <span>Zephyr-Bright</span>
+                  </div>
+                </div>
+            </div>
+            <div id="q-submenu" class="sub-menu-zephyr">
+                <button class="BT_process" id="this_q-subA-FCAL"><i class="fa fa-folder-open"></i> FCAL</button>
+                <div id="q-subA-FCAL" class="sub-menu-process">
+                    <button class="BT_sub_menu_process" id="Dash"><i class="fa fa-filter"></i> Dash</button>
+                    <div id="div_Dash"></div>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_q-subB-OPM"><i class="fa fa-folder-open"></i> OPM</button>
+                <div id="q-subB-OPM" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_q-subC-OPMT"><i class="fa fa-folder-open"></i> OPMT</button>
+                <div id="q-subC-OPMT" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_q-subD-EXS"><i class="fa fa-folder-open"></i> EXS</button>
+                <div id="q-subD-EXS" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_q-subE-LCT1"><i class="fa fa-folder-open"></i> LCT1</button>
+                <div id="q-subE-LCT1" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_q-subF-LCT2"><i class="fa fa-folder-open"></i> LCT2</button>
+                <div id="q-subF-LCT2" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_q-subG-LCTT"><i class="fa fa-folder-open"></i> LCTT</button>
+                <div id="q-subG-LCTT" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+            </div>
+            <!-- *********************************************************** -->
+            <div id="MODULE - Zephyr:Zephyr-Bryce-X:r" class="btn btn--huge">
+                <div class="btn--huge__text">
+                  <div>
+                    Zephyr-Bryce X
+                        <span>Zephyr-Bryce X</span>
+                  </div>
+                </div>
+            </div>
+            <div id="r-submenu" class="sub-menu-zephyr">
+                <button class="BT_process" id="this_r-subA-FCAL"><i class="fa fa-folder-open"></i> FCAL</button>
+                <div id="r-subA-FCAL" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_r-subB-OPM"><i class="fa fa-folder-open"></i> OPM</button>
+                <div id="r-subB-OPM" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_r-subC-OPMT"><i class="fa fa-folder-open"></i> OPMT</button>
+                <div id="r-subC-OPMT" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_r-subD-EXS"><i class="fa fa-folder-open"></i> EXS</button>
+                <div id="r-subD-EXS" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_r-subE-LCT1"><i class="fa fa-folder-open"></i> LCT1</button>
+                <div id="r-subE-LCT1" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_r-subF-LCT2"><i class="fa fa-folder-open"></i> LCT2</button>
+                <div id="r-subF-LCT2" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <!-- ====================================================================== -->
+                <button class="BT_process" id="this_r-subG-LCTT"><i class="fa fa-folder-open"></i> LCTT</button>
+                <div id="r-subG-LCTT" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+            </div>
+            <!-- *********************************************************** -->
+            <div id="MODULE - Zephyr:Zephyr-CFP2:s" class="btn btn--huge">
+                <div class="btn--huge__text">
+                    <div>
+                    Zephyr-CFP2
+                        <span>Zephyr-CFP2</span>
+                    </div>
+                </div>
+            </div>
+            <div id="s-submenu" class="sub-menu-zephyr">
+                <button class="BT_process" id="this_s-subA-FCAL"><i class="fa fa-folder-open"></i> FCAL</button>
+                <div id="s-subA-FCAL" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <button class="BT_process" id="this_s-subB-OPM"><i class="fa fa-folder-open"></i> OPM</button>
+                <div id="s-subB-OPM" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <button class="BT_process" id="this_s-subC-OPMT"><i class="fa fa-folder-open"></i> OPMT</button>
+                <div id="s-subC-OPMT" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+                <button class="BT_process" id="this_s-subD-EXS"><i class="fa fa-folder-open"></i> EXS</button>
+                <div id="s-subD-EXS" class="sub-menu-process">
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Dash</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Fixture ID</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> HW Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Machine</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Mode</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> PrdCode Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Product Code</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Slot</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> Station : Slot : Sled</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> SW Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Name</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Part No</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> TPS Rev</button>
+                    <button class="BT_sub_menu_process"><i class="fa fa-filter"></i> UUT Status</button>
+                </div>
+            </div>
+            <!-- *********************************************************** -->
+            <div id="MODULE - Zephyr:Zephyr-Krypton:t" class="btn btn--huge">
+                <div class="btn--huge__text">
+                    <div>
+                    Zephyr-Krypton
+                        <span>Zephyr-Krypton</span>
+                    </div>
+                </div>
+            </div>
+            <div id="t-submenu" class="sub-menu-zephyr">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FCAL</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OPM</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OPMT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <!-- *********************************************************** -->
+            <div id="MODULE - Zephyr:Zephyr-Krypton K2:u" class="btn btn--huge">
+                <div class="btn--huge__text">
+                    <div>
+                    Zephyr-Krypton K2
+                        <span>Zephyr-Krypton K2</span>
+                    </div>
+                </div>
+            </div>
+            <div id="u-submenu" class="sub-menu-zephyr">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FCAL</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OPM</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OPMT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <!-- *********************************************************** -->
+            <div id="MODULE - Zephyr:Zephyr-OSFP:v" class="btn btn--huge">
+                <div class="btn--huge__text">
+                    <div>
+                    Zephyr-OSFP
+                        <span>Zephyr-OSFP</span>
+                    </div>
+                </div>
+            </div>
+            <div id="v-submenu" class="sub-menu-zephyr">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FCAL</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OPM</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OPMT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+            <!-- *********************************************************** -->
+            <div id="MODULE - Zephyr:Zephyr-QSFP:w" class="btn btn--huge">
+                <div class="btn--huge__text">
+                    <div>
+                    Zephyr-QSFP
+                        <span>Zephyr-QSFP</span>
+                    </div>
+                </div>
+            </div>
+            <div id="w-submenu" class="sub-menu-zephyr">
+                <button class="BT_process"><i class="fa fa-folder-open"></i> FCAL</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OPM</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> OPMT</button>
+                <button class="BT_process"><i class="fa fa-folder-open"></i> EXS</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

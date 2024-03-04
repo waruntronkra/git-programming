@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Auto FITs\\wwwroot\\background-1.png",
+      "PackagePath": "staticwebassets\\background-1.png"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Auto FITs\\wwwroot\\images\\Logo.png",
+      "PackagePath": "staticwebassets\\images\\Logo.png"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Auto FITs\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Auto FITs\\wwwroot\\script.js",
+      "PackagePath": "staticwebassets\\script.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Auto FITs\\wwwroot\\style.css",
+      "PackagePath": "staticwebassets\\style.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.YMA.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.YMA.props",
+      "PackagePath": "build\\YMA.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.YMA.props",
+      "PackagePath": "buildMultiTargeting\\YMA.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.YMA.props",
+      "PackagePath": "buildTransitive\\YMA.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

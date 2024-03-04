@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- For use jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- For use icon in package font anesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- For use add iconon web title -->
+    <link rel="icon" href="https://cdn.icon-icons.com/icons2/1447/PNG/512/32382hamburger_98925.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.0/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script> <!-- use [defer] in case interface with another framwork (e.g. jquery) -->
+
+    <title>Linecard Usage</title>
+</head>
+
+<body>
+    <table id="table-page">
+        <tr>
+            <td> 
+                <button id="bt">QUERY</button>
+                <div id="container-input-detail">
+                    <label for="sn-input">Input Linecard SN</label>
+                    <textarea type="text" id="sn-input"></textarea>
+                </div>
+            </td>
+            <td>
+                <div id="container-table">
+                    <!-- <img id="background-1" src="background-1.png" alt="Image description"> -->
+                    <table id="table-data"></table>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

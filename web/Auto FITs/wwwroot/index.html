@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <title>Auto FITs</title>
+    <link rel="icon" href="https://cdn.icon-icons.com/icons2/1447/PNG/512/32382hamburger_98925.png" type="image/x-icon">
+
+    <!-- !!!!!!!!!!!!!!!!!!!!!!!! Disable this comment below for run on WEB !!!!!!!!!!!!!!!!!!!!!!!! -->
+    <!-- <link rel="stylesheet" href="autofits/css/style.css">
+    <script src="autofits/js/script.js" defer></script>
+
+
+    <script src="autofits/js/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="/autofits/fontawesome-free-6.5.1-web/css/all.min.css">
+    
+    <title>Auto FITs</title>
+    <link rel="icon" href="autofits/images/burger.png" type="image/x-icon"> -->
+
+</head>
+
+<body>
+    <div id="keyfram-picture">
+        <!-- ================================ [Gear Spining] ================================ -->
+        <!-- <div class="gears" id="two-gears">
+            <div class="gears-container">
+                <div class="gear-rotate"></div>
+                <div class="gear-rotate-left"></div>
+            </div>
+        </div> -->
+
+        <!-- ================================ [Key Frame] ================================ -->
+        <!-- <div id="key_frame_1"></div>
+        <div id="key_frame_2"></div>
+        <div id="key_frame_3"></div>
+        <img id="background-1" src="background-1.png" alt="Image description"> -->
+    </div>
+
+    <!-- ================================ [Logo] ================================ -->
+    <img src="images/Logo.png" alt="Image description" width="320px" height="90px"
+        style="position: absolute; top: 30px; left: 40px;">
+
+    <!-- ================================ [Body Widget] ================================ -->
+    <div id="body-widget">
+        <div id="sub-body-widget">
+            <!-- ================================ [process] ================================ -->
+            <div class="main-process">
+                <div class="card-process">FCAL</div>
+                <div class="card-process">OPM</div>
+                <div class="card-process">OPMP</div>
+                <div class="card-process">OPMT</div>
+                <div class="card-process">EXP</div>
+                <div class="card-process">EXS</div>
+                <div class="card-process">DEV01</div>
+                <div class="card-process">...</div>
+
+                <p id="text-process"></p>
+            </div>
+            <!-- <button id="test" onclick="WebService()">test</button> -->
+
+            <!-- ================================ [container-input-sn] ================================ -->
+            <div id="container-input-sn">
+                <label id="label-sn">SERIAL NUMBER :</label>
+                <input placeholder="serial number" id="input-sn" type="text" maxlength="9"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+
+                <!-- ================================ [container-revise-button] ================================ -->
+                <div id="container-revise-button">
+                    <button id="revise-button">
+                        <svg height="1em" viewBox="0 0 512 512">
+                            <path
+                                d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z">
+                            </path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- ================================ [container-delete-sn-indicator] ================================ -->
+                <div id="container-delete-sn-indicator">
+                    <button id="delete-sn-indicator">
+                        <svg class="bin-top" viewBox="0 0 39 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <line y1="5" x2="39" y2="5" stroke="white" stroke-width="4"></line>
+                            <line x1="12" y1="1.5" x2="26.0357" y2="1.5" stroke="white" stroke-width="3"></line>
+                        </svg>
+                        <svg class="bin-bottom" viewBox="0 0 33 39" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <mask id="path-1-inside-1_8_19" fill="white">
+                                <path d="M0 0H33V35C33 37.2091 31.2091 39 29 39H4C1.79086 39 0 37.2091 0 35V0Z"></path>
+                            </mask>
+                            <path
+                                d="M0 0H33H0ZM37 35C37 39.4183 33.4183 43 29 43H4C-0.418278 43 -4 39.4183 -4 35H4H29H37ZM4 43C-0.418278 43 -4 39.4183 -4 35V0H4V35V43ZM37 0V35C37 39.4183 33.4183 43 29 43V35V0H37Z"
+                                fill="white" mask="url(#path-1-inside-1_8_19)"></path>
+                            <path d="M12 6L12 29" stroke="white" stroke-width="4"></path>
+                            <path d="M21 6V29" stroke="white" stroke-width="4"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ================================ [container-initial-button] ================================ -->
+            <div id="container-initial-button">
+                <button id="initial-button">
+                    <span id="initial-button__text">Initial-Check</span>
+                    <span id="initial-button__icon"><svg class="svg" height="48" viewBox="0 0 48 48" width="48"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M35.3 12.7c-2.89-2.9-6.88-4.7-11.3-4.7-8.84 0-15.98 7.16-15.98 16s7.14 16 15.98 16c7.45 0 13.69-5.1 15.46-12h-4.16c-1.65 4.66-6.07 8-11.3 8-6.63 0-12-5.37-12-12s5.37-12 12-12c3.31 0 6.28 1.38 8.45 3.55l-6.45 6.45h14v-14l-4.7 4.7z">
+                            </path>
+                            <path d="M0 0h48v48h-48z" fill="none"></path>
+                        </svg></span>
+                </button>
+            </div>
+
+            <!-- ================================ [container-tag-fail] ================================ -->
+            <div id="container-tag-fail">
+                <div id="tag-fail-duplicate">
+                    <button></button>
+                    <p style="color: black;">Duplicate Data</p>
+                </div>
+                <div id="tag-fail-badword">
+                    <button></button>
+                    <p style="color: black;">String lenght is not equal 9</p>
+                </div>
+            </div>
+
+            <!-- ================================ [container-sn-indicator] ================================ -->
+            <div id="container-sn-indicator"></div>
+
+            <!-- ================================ [button-save] ================================ -->
+            <div id="button-save">
+                <div class="icon">
+                    <svg height="24px" width="24px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 511.999 511.999" xml:space="preserve">
+                        <path style="fill:#4ACFD9;" d="M407.783,134.546c-6.845,0-13.631,0.664-20.287,1.98c0.34-3.677,0.512-7.373,0.512-11.065
+                  c0-65.717-53.465-119.182-119.182-119.182c-65.099,0-118.176,52.462-119.168,117.33c-11.8-4.096-24.16-6.165-36.891-6.165
+                  C50.588,117.444,0,168.032,0,230.212c0,28.114,10.407,55.046,29.304,75.833c18.105,19.916,42.533,32.635,69.055,36.023
+                  c1.112,0.584,2.377,0.913,3.72,0.913h303.566c0.169,0,0.336-0.005,0.502-0.016c0.544,0.01,1.089,0.016,1.635,0.016
+                  c57.466,0,104.217-46.751,104.217-104.217S465.249,134.546,407.783,134.546z" />
+                        <path style="fill:#0295AA;" d="M149.659,123.61c-11.8-4.096-24.16-6.165-36.891-6.165C50.588,117.444,0,168.032,0,230.212
+                  c0,28.114,10.407,55.046,29.304,75.833c18.105,19.916,42.533,32.635,69.055,36.023c1.112,0.584,2.377,0.913,3.72,0.913h153.921
+                  V6.972C196.894,13.325,150.586,63.06,149.659,123.61z" />
+                        <g>
+                            <path style="fill:#FFFFFF;" d="M347.925,133.478c-4.427,0-8.017-3.589-8.017-8.017c0-39.195-31.887-71.081-71.081-71.081
+                      c-4.427,0-8.017-3.589-8.017-8.017s3.589-8.017,8.017-8.017c48.035,0,87.115,39.08,87.115,87.115
+                      C355.942,129.888,352.352,133.478,347.925,133.478z" />
+                            <path style="fill:#FFFFFF;" d="M471.917,246.78c-4.427,0-8.017-3.589-8.017-8.017c0-30.943-25.174-56.117-56.117-56.117
+                      c-4.427,0-8.017-3.589-8.017-8.017s3.589-8.017,8.017-8.017c39.784,0,72.15,32.366,72.15,72.15
+                      C479.933,243.191,476.344,246.78,471.917,246.78z" />
+                        </g>
+                        <path style="fill:#FF8C29;"
+                            d="M414.946,256.3L260.491,132.041c-2.938-2.363-7.126-2.36-10.06,0.009L96.51,256.308
+                  c-2.644,2.135-3.656,5.704-2.524,8.908c1.132,3.203,4.161,5.347,7.559,5.347h73.219v167.282c0,4.427,3.589,8.017,8.017,8.017h145.37
+                  c4.427,0,8.017-3.589,8.017-8.017V270.563h73.754c3.4,0,6.432-2.145,7.561-5.353C418.612,262.002,417.595,258.431,414.946,256.3z" />
+                        <path style="fill:#FD6A33;" d="M250.431,132.049L96.51,256.308c-2.644,2.135-3.656,5.704-2.524,8.908
+                  c1.132,3.203,4.161,5.347,7.559,5.347h73.219v167.282c0,4.427,3.589,8.017,8.017,8.017h73.219V130.316
+                  C254.042,130.184,252.046,130.745,250.431,132.049z" />
+                        <g>
+                            <path style="fill:#F0353D;" d="M328.15,475.791h-145.37c-4.427,0-8.017-3.589-8.017-8.017c0-4.427,3.589-8.017,8.017-8.017h145.37
+                      c4.427,0,8.017,3.589,8.017,8.017C336.167,472.201,332.579,475.791,328.15,475.791z" />
+                            <path style="fill:#F0353D;" d="M328.15,505.72h-145.37c-4.427,0-8.017-3.589-8.017-8.017c0-4.427,3.589-8.017,8.017-8.017h145.37
+                      c4.427,0,8.017,3.589,8.017,8.017C336.167,502.13,332.579,505.72,328.15,505.72z" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="cube">
+                    <span class="side front">SAVE</span>
+                    <span class="side top">SAVE In FITs</span>
+                </div>
+            </div>
+        </div>
+        <!-- ================================ [user-container] ================================ -->
+        <div class="user-container">
+            <div class="circle1"></div>
+            <div class="circle2"></div>
+            <div class="log-card">
+                <p id="heading">Information</p>
+
+                <p class="text">EN</p>
+                <input class="input" id="input-dev-en">
+                <p class="text">DEV/ECO Number</p>
+                <input class="input" id="input-dev-number">
+                <p class="text">DEV/ECO Description</p>
+                <input class="input" id="input-dev-description">
+
+                <p class="text">Effective Date</p>
+                <output class="input" id="input-dev-effective-date"></output>
+                <button id="effective-date_bt"><i class="fa-regular fa-calendar-days"></i></button>
+
+                <p class="text">End Date</p>
+                <output class="input" id="input-dev-end-date"></output>
+                <button id="end-date_bt"><i class="fa-regular fa-calendar-days"></i></button>
+
+                <p class="text">Model</p>
+                <output class="input" id="input-dev-model"></output>
+                <button id="model_bt"><i class="fa-solid fa-caret-down"></i></button>
+                <div id="dropdown-model"></div>
+
+                <p class="text">Part Number</p>
+                <output class="input" id="input-dev-pn"></output>
+                <button id="pn_bt"><i class="fa-solid fa-caret-down"></i></button>
+                <div id="dropdown-pn"></div>
+
+                <p class="text">GOLF ID</p>
+                <input class="input" id="input-dev-golf-id">
+                <p class="text">Attach File</p>
+                <input class="input" id="input-dev-file">
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ================================ [Loader Widget] ================================ -->
+    <div id="loader" aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster"
+        style="display: none;">
+        <div class="wheel"></div>
+        <div class="hamster">
+            <div class="hamster__body">
+                <div class="hamster__head">
+                    <div class="hamster__ear"></div>
+                    <div class="hamster__eye"></div>
+                    <div class="hamster__nose"></div>
+                </div>
+                <div class="hamster__limb hamster__limb--fr"></div>
+                <div class="hamster__limb hamster__limb--fl"></div>
+                <div class="hamster__limb hamster__limb--br"></div>
+                <div class="hamster__limb hamster__limb--bl"></div>
+                <div class="hamster__tail"></div>
+            </div>
+        </div>
+        <div class="spoke"></div>
+    </div>
+
+    <!-- ================================ [Table] ================================ -->
+    <div id="table-data">
+        <table border="1" id="history_data_table"></table>
+    </div>
+
+    <div id="table-result-data">
+        <table border="1" id="result_data_table"></table>
+    </div>
+
+    <div id="container-table-parameter-fits">
+        <table border="1" id="table-parameter-fits"></table>
+    </div>
+
+    <!-- ================================ [Menu Setting] ================================ -->
+    <div class="card-menu-setting">
+        <div class="menu-1">
+            <div id="tooltip-link1">FITs Parameter</div>
+            <svg height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                <path style="fill:#0052B4;" d="M268.361,201.452h-22.971H76.935H53.963H30.993v76.571c0,24.597,15.662,47.653,42.972,63.259
+          c23.662,13.522,54.629,20.968,87.197,20.968s63.535-7.447,87.197-20.968c27.308-15.605,42.972-38.663,42.972-63.259v-76.571H268.361
+          z" />
+                <path style="fill:#003778;" d="M268.361,201.452h-22.971h-84.228V362.25c32.568,0,63.535-7.447,87.197-20.968
+          c27.308-15.605,42.972-38.663,42.972-63.259v-76.571H268.361z" />
+                <path style="fill:#006DF0;"
+                    d="M268.361,124.882h-22.971H76.935H53.963H30.993v76.571c0,24.597,15.662,47.653,42.972,63.26
+          c23.662,13.52,54.629,20.968,87.197,20.968s63.535-7.447,87.197-20.968c27.308-15.607,42.972-38.663,42.972-63.26v-76.571H268.361z" />
+                <path style="fill:#0052B4;" d="M268.361,124.882h-22.971h-84.228v160.798c32.568,0,63.535-7.447,87.197-20.968
+          c27.308-15.605,42.972-38.662,42.972-63.259v-76.571H268.361z" />
+                <path style="fill:#93C7EF;" d="M248.36,61.623c-23.662-13.522-54.629-20.968-87.197-20.968s-63.535,7.447-87.197,20.968
+          c-27.31,15.605-42.972,38.663-42.972,63.259s15.662,47.653,42.972,63.259c23.662,13.522,54.629,20.968,87.197,20.968
+          s63.535-7.447,87.197-20.968c27.308-15.604,42.972-38.662,42.972-63.259S275.668,77.228,248.36,61.623z" />
+                <path style="fill:#78B9EB;"
+                    d="M248.36,61.623c-23.662-13.522-54.629-20.968-87.197-20.968V209.11
+          c32.568,0,63.535-7.447,87.197-20.968c27.308-15.605,42.972-38.663,42.972-63.26S275.668,77.228,248.36,61.623z" />
+                <g>
+                    <path style="fill:#FF5023;" d="M421.501,151.499H384.31c0-30.761-25.027-55.787-55.787-55.787V58.521
+              C379.79,58.521,421.501,100.231,421.501,151.499z" />
+                    <path style="fill:#FF5023;" d="M92.978,455.228C41.71,455.228,0,413.517,0,362.25h37.191c0,30.761,25.026,55.787,55.787,55.787
+              V455.228z" />
+                </g>
+                <path style="fill:#AED5F3;"
+                    d="M512,387.769c0-35.984-24.052-68.756-58.491-79.696l-12.321-3.914l-0.622-12.914
+          c-2.838-58.897-51.286-105.033-110.297-105.033c-52.634,0-98.204,37.467-108.353,89.086l-2.499,12.71l-12.788,2.062
+          c-43.762,7.053-76.763,45.77-76.763,90.057c0,50.297,40.922,91.219,91.219,91.219h207.34C474.509,471.344,512,433.852,512,387.769z" />
+                <path style="fill:#93C7EF;" d="M453.509,308.072l-12.321-3.914l-0.622-12.914c-2.838-58.897-51.286-105.033-110.297-105.033
+          c-3.511,0-6.986,0.179-10.423,0.505v284.629h108.58c46.084,0,83.575-37.493,83.575-83.576
+          C512,351.784,487.948,319.013,453.509,308.072z" />
+            </svg>
+        </div>
+
+        <div class="menu-2">
+            <div id="tooltip-link2">Setting</div>
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 503.563 503.563" xml:space="preserve">
+                <path style="fill:#FF7058;" d="M406.641,490.541c7.314,7.314,18.808,7.314,26.122,0l57.469-57.469
+          c7.314-7.314,7.314-18.808,0-26.122l-34.482-34.482l-83.592,83.592L406.641,490.541z" />
+                <polygon style="fill:#D8AB53;" points="90.037,57.953 90.037,56.908 90.037,56.908 " />
+                <path style="fill:#FFD05C;" d="M32.567,116.467L17.939,48.549L8.535,8.843l39.706,8.359l67.918,15.673l0,0
+          c-1.045,6.269-3.135,11.494-8.359,16.718c-5.224,5.224-11.494,7.314-17.763,8.359c1.045,8.359-1.045,17.763-8.359,25.078
+          c-3.135,3.135-7.314,5.224-11.494,6.269c-4.18,1.045-8.359,2.09-12.539,1.045c0,6.269-3.135,12.539-8.359,17.763
+          C44.061,113.333,38.837,115.422,32.567,116.467z" />
+                <path style="fill:#84DBFF;" d="M415,382.916L90.037,57.953l0,0c6.269,0,12.539-3.135,17.763-8.359
+          c4.18-4.18,7.314-10.449,8.359-16.718l0,0l323.918,323.918L415,382.916L415,382.916z" />
+                <path style="fill:#54C0EB;" d="M57.645,90.345c8.359,1.045,17.763-1.045,25.078-8.359c5.224-5.224,7.314-12.539,7.314-19.853
+          c0-1.045,0-3.135,0-4.18L415,382.916l-32.392,32.392L57.645,90.345z" />
+                <path style="fill:#84DBFF;" d="M356.486,440.386L32.567,116.467l0,0c6.269-1.045,11.494-3.135,16.718-8.359
+          c5.224-5.224,7.314-11.494,8.359-17.763l0,0l324.963,324.963L356.486,440.386z" />
+                <polygon style="fill:#334A5E;" points="17.939,48.549 8.535,8.843 48.241,17.202 " />
+                <rect x="346.789" y="395.399" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 979.7654 405.8641)"
+                    style="fill:#FFD15C;" width="118.072" height="20.898" />
+                <path style="fill:#55BFE9;" d="M440.077,356.794l15.673,15.673L440.077,356.794z" />
+                <polygon style="fill:#FFD15C;" points="429.628,397.545 429.628,397.545 455.751,372.467 " />
+                <polygon style="fill:#55BFE9;"
+                    points="397.237,429.937 397.237,429.937 429.628,397.545 429.628,397.545 " />
+                <g>
+                    <path style="fill:#40596B;" d="M476.649,157.218c-19.853,19.853-44.931,28.212-71.053,26.122l-58.514,58.514l-4.18,4.18
+              l-6.269,6.269l-84.637-84.637l11.494-11.494l58.514-58.514c-2.09-25.078,7.314-51.2,26.122-71.053
+              c22.988-22.988,55.38-31.347,85.682-24.033l-55.38,56.424l10.449,56.424l56.424,10.449l55.38-55.38
+              C506.951,100.794,499.637,133.186,476.649,157.218z" />
+                    <path style="fill:#40596B;" d="M98.396,321.267c-25.078-2.09-51.2,7.314-71.053,26.122C4.355,370.378-4.004,403.814,3.31,433.071
+              l55.38-54.335l56.424,10.449l10.449,56.424l-55.38,55.38c30.302,7.314,62.694-1.045,85.682-24.033
+              c19.853-19.853,28.212-44.931,26.122-71.053l48.065-48.065l9.404-9.404l-84.637-84.637L98.396,321.267z" />
+                </g>
+                <rect x="196.426" y="240.026" transform="matrix(-0.7074 0.7068 -0.7068 -0.7074 560.5087 367.1391)"
+                    style="fill:#334A5E;" width="15.673" height="119.117" />
+            </svg>
+        </div>
+    </div>
+
+    <!-- ================================ [Calender] ================================ -->
+    <div id="contianer-calendar">
+        <div class="calendar">
+            <div class="calendar-header">
+                <span class="month-picker" id="month-picker"> May </span>
+                <div class="year-picker" id="year-picker">
+                    <span class="year-change" id="pre-year">
+                        <pre><</pre>
+                    </span>
+                    <span id="year">2020 </span>
+                    <span class="year-change" id="next-year">
+                        <pre>></pre>
+                    </span>
+                </div>
+            </div>
+
+            <div class="calendar-body">
+                <div class="calendar-week-days">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                <div class="calendar-days">
+                </div>
+            </div>
+            <div class="calendar-footer">
+            </div>
+            <div class="date-time-formate">
+                <div class="day-text-formate">TODAY</div>
+                <div class="date-time-value">
+                    <div class="time-formate">01:41:20</div>
+                    <div class="date-formate">03 - march - 2022</div>
+                </div>
+            </div>
+            <div class="month-list"></div>
+        </div>
+    </div>
+
+    <div id="tooltip-new"></div>
+    <div id="error-pop-up"></div>
+
+</body>
+
+</html>

@@ -1,1 +1,6 @@
 [Build APK] : flutter build apk --release
+
+[In case move folder] 
+1. flutter clean
+2. flutter pub get
+3. flutter run

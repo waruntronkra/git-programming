@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "St+oPGVkTo0NmsWbOPWKUfc5CMP5ZAjjybLlDY3CRIg=",
+  "Source": "YMA",
+  "BasePath": "_content/YMA",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "YMA\\wwwroot",
+      "Source": "YMA",
+      "ContentRoot": "D:\\YMA\\wwwroot\\",
+      "BasePath": "_content/YMA",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\YMA\\wwwroot\\index.html",
+      "SourceId": "YMA",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\YMA\\wwwroot\\",
+      "BasePath": "_content/YMA",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "D:\\YMA\\wwwroot\\script.js",
+      "SourceId": "YMA",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\YMA\\wwwroot\\",
+      "BasePath": "_content/YMA",
+      "RelativePath": "script.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\script.js"
+    },
+    {
+      "Identity": "D:\\YMA\\wwwroot\\style.css",
+      "SourceId": "YMA",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\YMA\\wwwroot\\",
+      "BasePath": "_content/YMA",
+      "RelativePath": "style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\style.css"
+    }
+  ]
+}

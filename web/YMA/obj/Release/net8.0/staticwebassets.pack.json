@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\YMA\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\YMA\\wwwroot\\script.js",
+      "PackagePath": "staticwebassets\\script.js"
+    },
+    {
+      "Id": "D:\\YMA\\wwwroot\\style.css",
+      "PackagePath": "staticwebassets\\style.css"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.YMA.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.YMA.props",
+      "PackagePath": "build\\YMA.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.YMA.props",
+      "PackagePath": "buildMultiTargeting\\YMA.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.YMA.props",
+      "PackagePath": "buildTransitive\\YMA.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

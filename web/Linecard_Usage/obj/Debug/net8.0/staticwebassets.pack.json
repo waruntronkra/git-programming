@@ -1,0 +1,173 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.bootstrap.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.bootstrap.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.bootstrap.min.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.bootstrap4.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.bootstrap4.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.bootstrap4.min.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.bootstrap5.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.bootstrap5.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.bootstrap5.min.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.bootstrap5.min.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.bulma.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.bulma.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.bulma.min.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.bulma.min.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.dataTables.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.dataTables.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.dataTables.min.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.dataTables.min.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.foundation.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.foundation.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.foundation.min.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.foundation.min.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.jqueryui.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.jqueryui.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.jqueryui.min.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.jqueryui.min.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.semanticui.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.semanticui.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\css\\dataTables.semanticui.min.css",
+      "PackagePath": "staticwebassets\\DataTables\\css\\dataTables.semanticui.min.css"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.bootstrap.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.bootstrap.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.bootstrap.min.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.bootstrap4.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.bootstrap4.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.bootstrap4.min.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.bootstrap5.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.bootstrap5.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.bootstrap5.min.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.bulma.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.bulma.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.bulma.min.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.bulma.min.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.dataTables.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.dataTables.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.dataTables.min.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.dataTables.min.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.foundation.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.foundation.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.foundation.min.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.foundation.min.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.jqueryui.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.jqueryui.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.jqueryui.min.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.jqueryui.min.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.min.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.min.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.semanticui.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.semanticui.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\DataTables\\js\\dataTables.semanticui.min.js",
+      "PackagePath": "staticwebassets\\DataTables\\js\\dataTables.semanticui.min.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\background-1.png",
+      "PackagePath": "staticwebassets\\background-1.png"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\script.js",
+      "PackagePath": "staticwebassets\\script.js"
+    },
+    {
+      "Id": "D:\\Folder Data\\Project WebApp\\Linecard_Usage\\wwwroot\\style.css",
+      "PackagePath": "staticwebassets\\style.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Linecard_Usage.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Linecard_Usage.props",
+      "PackagePath": "build\\Linecard_Usage.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Linecard_Usage.props",
+      "PackagePath": "buildMultiTargeting\\Linecard_Usage.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Linecard_Usage.props",
+      "PackagePath": "buildTransitive\\Linecard_Usage.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
