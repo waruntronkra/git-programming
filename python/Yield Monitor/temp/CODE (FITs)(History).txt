@@ -1,0 +1,18 @@
+SELECT VW.serial_no,
+       VW.operation,
+       (SELECT TOP 1 description FROM [dbAcacia_VW].[dbo].[vw_operation_map] WHERE operation = VW.operation) as description,
+       (SELECT TOP 1 model_type FROM [dbAcacia_VW].[dbo].[vw_operation_map] WHERE operation = VW.operation) as model_type, 
+       VW.disp_code,   
+       VW.emp_no,
+       convert(varchar, VW.date_time, 22) as Check_In,
+       convert(varchar, VW.date_time_checkout, 22) as Check_Out,
+       VW.shift,
+       VW.buildtype,
+       VW.runtype,
+       VW.part_no,
+       VW.workorder,
+       VW.model
+
+FROM [dbAcacia_VW].[dbo].[vw_event] VW WITH(NOLOCK)
+
+WHERE VW.serial_no in ('

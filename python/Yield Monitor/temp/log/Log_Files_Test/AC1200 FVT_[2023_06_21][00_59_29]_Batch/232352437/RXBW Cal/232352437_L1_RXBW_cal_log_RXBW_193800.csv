@@ -1,0 +1,43 @@
+RXBW cal v 2.4
+Calibrating RXBW 192.168.1.1:34112 L1 Weeprom True
+"folder C:\Users\fb1\AppData\Local\Temp\TCPIP0__192.168.1.1__34112__SOCKET_1, filename RXBW_193800"
+Connected to SN 232352437
+Calibrating RXBW Lane 1
+Kit verification
+EGET QEF_AMP_BW 0 0
+EGET QEF_AMP_BW 0 1
+ESET QEF_AMP_BW 0 1 0x1234
+EGET QEF_AMP_BW 0 0
+ESET QEF_AMP_BW 0 1 -1
+"Kit verification: AmpBW0_curr: 0xFFFFFFFF, AmbBW0_afterBW1ESET: 0xFFFFFFFF, NewKit: True"
+Starting RXBW QEF Calibration
+Initialization: SET DEFAULT RFPD and load eeprom
+GET PICP_SW_CNTL_RFPD_BIAS 1
+SET PICP_SW_CNTL_RFPD_BIAS 1 1 1 500
+ESET PICX_RFPD_TEMP_OFFSET 1 0.00833 -0.7333 0.0
+GET PIC_CAL_DATA_LOAD 1
+SET PICP_SW_CNTL_RFPD_BIAS 1 1 0 2550
+...Success cnt 1
+Get spectrum before cal
+Saving RX ADCsamples:C:\Users\fb1\AppData\Local\Temp\TCPIP0__192.168.1.1__34112__SOCKET_1\232352437_L1_ADC_before_cal_RXBW_193800_PICtemp_51.83203125_X1_0.59_X2_0.59_Y1_0.59_Y2_0.57.csv
+...Success cnt 2
+Processing spectrum. Resol: 10.0GHz
+Calc_Relative_Pow_28.0GHz-DC: 2.00dB
+QEF_correction: -2dB
+"QEF_FIR_new: [-0.25, 1.25, -0.25]"
+Saving RX Spectrum:C:\Users\fb1\AppData\Local\Temp\TCPIP0__192.168.1.1__34112__SOCKET_1\232352437_L1_RXBWCal_Spectrum_measurement_RXBW_193800_PICtemp_51.83_X1_0.59_X2_0.59_Y1_0.59_Y2_0.57.csv
+...Success cnt 3
+Saving Calibration in EEPROM
+ESET QEF_FIR_BAUD 1 7064 -0.25 1.25 -0.25
+ESET QEF_FIR_BAUD 1 6564 -999999 -999999 -999999
+ESET QEF_FIR_BAUD 1 6364 -999999 -999999 -999999
+ESET QEF_FIR_BAUD 1 70 -999999 -999999 -999999
+ESET QEF_FIR_BAUD 1 65 -999999 -999999 -999999
+ESET QEF_REF_LVL 1 -999999 -999999 -999999 -999999 -999999 -999999 100
+ESET QEF_EEPROM_HDR 1 0xCAFEBABE
+...Success cnt 4
+Generating plots
+Saving plot 1 232352437_1_RX_Spectrum_RXBW_193800.png
+...Success cnt 5
+script took 15.4 s
+Calibration PASS 6 Target 6

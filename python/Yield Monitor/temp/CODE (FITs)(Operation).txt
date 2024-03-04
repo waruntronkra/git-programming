@@ -1,0 +1,13 @@
+SELECT [serial_no]
+      ,[trans_seq]
+      ,[sn_attr_code]
+      ,[attribute_code]
+      ,[description]
+      ,[attribute_value]
+      ,[operation]
+      ,convert(varchar, date_time, 22) as Check_In
+      ,convert(varchar, date_time_checkout, 22) as Check_Out
+
+FROM [dbAcacia_VW].[dbo].[vw_attribute]
+
+where serial_no in ('

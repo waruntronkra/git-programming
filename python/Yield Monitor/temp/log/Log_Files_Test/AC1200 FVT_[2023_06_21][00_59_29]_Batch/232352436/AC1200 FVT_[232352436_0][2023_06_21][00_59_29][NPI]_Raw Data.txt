@@ -1,0 +1,1013 @@
+
+***********************************************************************************
+232352436
+SKU, AC1200, DUAL CARRIER, ENC-EN PICO B1, GLACIER-CS HB-SFF-HERM A0, HAM A1, PRI OPTICS, EDFA, TOF, WEST, 600G, DC OPTICS, REVD PCBA, REVC ODC
+AC1200-00X-XX
+XX
+500-0091-12D
+14
+NPI
+FVT
+***********************************************************************************
+
+Cal - Tx Power Verify Vmax
+VOA Voltage	Power
+30.000000	-20.313000
+29.900000	-18.134000
+29.800000	-16.074000
+29.700000	-14.106000
+29.600000	-12.164000
+29.500000	-10.295000
+29.400000	-8.476000
+29.300000	-6.699000
+29.200000	-4.999000
+29.100000	-3.408000
+29.000000	-1.907000
+28.900000	-0.535000
+28.800000	0.720000
+28.700000	1.838000
+28.600000	2.828000
+28.500000	3.685000
+28.400000	4.428000
+28.300000	5.037000
+28.200000	5.528000
+28.100000	5.904000
+28.000000	6.169000
+27.900000	6.320000
+27.800000	6.371000
+27.700000	6.320000
+27.600000	6.182000
+27.500000	5.947000
+27.400000	5.628000
+27.300000	5.232000
+27.200000	4.746000
+27.100000	4.193000
+27.000000	3.566000
+26.900000	2.874000
+26.800000	2.127000
+26.700000	1.320000
+26.600000	0.461000
+26.500000	-0.458000
+26.400000	-1.420000
+26.300000	-2.443000
+26.200000	-3.505000
+26.100000	-4.617000
+26.000000	-5.778000
+25.900000	-6.990000
+25.800000	-8.239000
+25.700000	-9.540000
+25.600000	-10.885000
+25.500000	-12.264000
+25.400000	-13.672000
+25.300000	-15.111000
+25.200000	-16.565000
+25.100000	-18.053000
+25.000000	-19.555000
+
+Cal - Tx Power Verify Vmax
+VOA Voltage	Power
+30.000000	-20.410000
+29.900000	-18.214000
+29.800000	-16.147000
+29.700000	-14.179000
+29.600000	-12.269000
+29.500000	-10.387000
+29.400000	-8.565000
+29.300000	-6.785000
+29.200000	-5.086000
+29.100000	-3.485000
+29.000000	-1.975000
+28.900000	-0.585000
+28.800000	0.672000
+28.700000	1.794000
+28.600000	2.795000
+28.500000	3.665000
+28.400000	4.411000
+28.300000	5.031000
+28.200000	5.530000
+28.100000	5.909000
+28.000000	6.178000
+27.900000	6.337000
+27.800000	6.388000
+27.700000	6.351000
+27.600000	6.208000
+27.500000	5.978000
+27.400000	5.664000
+27.300000	5.263000
+27.200000	4.790000
+27.100000	4.241000
+27.000000	3.621000
+26.900000	2.932000
+26.800000	2.187000
+26.700000	1.384000
+26.600000	0.525000
+26.500000	-0.390000
+26.400000	-1.353000
+26.300000	-2.371000
+26.200000	-3.439000
+26.100000	-4.549000
+26.000000	-5.709000
+25.900000	-6.919000
+25.800000	-8.168000
+25.700000	-9.470000
+25.600000	-10.808000
+25.500000	-12.186000
+25.400000	-13.593000
+25.300000	-15.031000
+25.200000	-16.500000
+25.100000	-17.977000
+25.000000	-19.480000
+
+Cal - Tx Tap Monitor
+Power	Tx Tap ADC
+45801.800000	5.161000
+42011.200000	1.200333
+38202.600000	-2.751667
+34403.200000	-6.718667
+30616.000000	-10.672333
+26804.600000	-14.643333
+23003.200000	-18.605667
+19198.400000	-22.586000
+15395.000000	-26.558667
+
+Tx Pump Power Calibration - Scan( Lane 0 / DP-16QAM / 193.20 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+DAC_PUMP_PWR_ADJ_ADC	Power
+75.000000	3.103667
+90.000000	5.788333
+105.000000	7.520000
+
+Tx Pump Power Calibration - Coarse( Lane 0 / DP-16QAM / 193.20 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+DAC_PUMP_PWR_ADJ_ADC	Power
+78.750000	3.921333
+105.000000	7.519000
+131.250000	9.512000
+
+Tx Pump Power Calibration - Fine( Lane 0 / DP-16QAM / 193.20 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+DAC_PUMP_PWR_ADJ_ADC	Power
+97.256715	6.696667
+102.244239	7.244000
+
+Tx Pump Power Calibration - Fine( Lane 0 / DP-16QAM / 193.20 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+DAC_PUMP_PWR_ADJ_ADC	Power
+97.444437	6.722000
+102.441588	7.262000
+
+RF Tx-Rx Spectrum 25
+RF B2B test for AC1200 v 2.3
+Testing 192.168.1.1:34111 L0 
+folder C:\Users\fb1\AppData\Local\Temp\TCPIP0__192.168.1.1__34111__SOCKET_0, filename t
+Connected to 192.168.1.1:34111
+Creating path C:\Users\fb1\AppData\Local\Temp\TCPIP0__192.168.1.1__34111__SOCKET_0\232352436_20230621_081231
+Testing Lane 0
+Starting RF test L0
+232352436_L0_ALL_t_t_20230621_081231.csv
+Running ESD test on 232352436_L0_ALL_t_t_20230621_081231.csv
+ESD test PASS
+Disabling Control Loops
+Ch XI
+Ch XQ
+Ch YI
+Ch YQ
+End of data capture
+232352436_L0_ALL_t_t_20230621_081231
+ALL
+232352436_L0_XI_t_t_20230621_081231
+XI
+232352436_L0_XQ_t_t_20230621_081231
+XQ
+232352436_L0_YI_t_t_20230621_081231
+YI
+232352436_L0_YQ_t_t_20230621_081231
+YQ
+plotting Rx spectra
+HI
+HQ
+VI
+VQ
+saving Rx spectrum file
+232352436_L0_RX_Spectrum_t_20230621_081231.png
+plotting Tx spectra
+Could not load matplotlib icon: can't use "pyimage10" as iconphoto: not a photo image
+XI length 512
+XQ length 512
+YI length 512
+YQ length 512
+saving Tx spectrum file
+232352436_L0_TX_Spectrum_t_20230621_081231.png
+Summary DC drop
+TxRx     Ch       pave_offset     pcenter    DC_drop   
+Rx       HI       58.60           59.12      -0.52     
+Rx       HQ       58.54           59.06      -0.52     
+Rx       VI       58.87           59.21      -0.33     
+Rx       VQ       58.39           58.68      -0.29     
+Tx       XI       66.32           66.77      -0.45     
+Tx       XQ       65.17           65.59      -0.42     
+Tx       YI       64.82           65.21      -0.39     
+Tx       YQ       65.95           66.43      -0.48     
+No failed channels threshold > 2
+RF Test PASS
+Successful disconnect from module
+script took 111.1 s
+FINAL TEST PASS
+
+
+
+Cal - PIC Hamilton Calibration 
+Timestamp 'Start class instantiations': 2023-06-21 08:15:25.747000. Time since last stamp: First timestamp
+#trying to connect to AC1200...
+#ip address is set as 192.168.1.1:34111
+#Lane Number is 0
+#connected to the AC1200...
+Original verbose mode is 0
+num_format is 0
+Set verbose mode and num_resp_format to 0 and hex
+C:\Users\fb1\AppData\Local\Temp\TCPIP0__192.168.1.1__34111__SOCKET_0\
+Timestamp 'Start cal marker': 2023-06-21 08:15:26.681000. Time since last stamp: 0:00:00.934000
+Starting HAMILTON DRIVER CAL using v20_20230621-081526
+Parameters: Vdrop = 0.4, VE2 = 1.3, VOUT_TARGET = 3.4, N014_target = 25, DRV_VCC = 5.8
+Parameters: I_VCCRF_target_A0 = 485.0, I_VCCRF_target_A1 = 520.0
+#ESET PIC_CAL_GENERIC_ID2 0 INIT_CAL
+Timestamp 'Get PIC temp': 2023-06-21 08:15:26.953000. Time since last stamp: 0:00:00.272000
+PIC TEMP:51.9958 C
+Timestamp 'Get FW kit revision, mod and PIC SNs, CTU status': 2023-06-21 08:15:26.975000. Time since last stamp: 0:00:00.022000
+MFG_SERIAL_NUMBER is  232352436, PIC_SERIAL_NUMBER is 222359517, FW_kit is 53.111.6
+Driver power consumption is 5260.38364273 mW (captures VPIC, V3P3, and VCCRF)
+Driver VCCX is 5.69847 V, VCCY is 5.70865 V
+Driver VCCX is 296.313 mA, VCCY is 294.663 mA
+VCCRF = 3.41156 V, 513.108 mA
+V3P3 = 3.25956 V, 42.7132 mA
+TXPDX: 61.987 mA, TXPDY: 58.292 mA
+CTU status is 1
+###################################################
+Step1: power supply
+###################################################
+Timestamp 'Check driver type, chipid': 2023-06-21 08:15:27.259000. Time since last stamp: 0:00:00.284000
+ChipID = 0x000035A0, PIC_DRIVER_TYPE = 0x6
+0x000035A0
+CHIP ID and Driver type are correct
+PIC_DRIVER_TYPE EEPROM indicates this chip revision is = A1
+Timestamp 'Disable SW CNTL loops': 2023-06-21 08:15:27.303000. Time since last stamp: 0:00:00.044000
+Timestamp 'Set pic power supplies': 2023-06-21 08:15:27.404000. Time since last stamp: 0:00:00.101000
+Timestamp 'Disable TX and background processes': 2023-06-21 08:15:27.688000. Time since last stamp: 0:00:00.284000
+TX Enable State is 0 (0=TX disabled, 1=TX enabled)
+EA_NTWK_FW_BKGND_PROC_CNTL_LN_0 state before cal is 0x00000000. Setting to zero now
+Timestamp 'Run PIC_CAL_DATA_LOAD, iteration 1': 2023-06-21 08:15:27.689000. Time since last stamp: 0:00:00.001000
+Timestamp 'Run PICP_DRIVER_INIT': 2023-06-21 08:15:29.338000. Time since last stamp: 0:00:01.649000
+###################################################
+Step1: Reset Hamilton
+###################################################
+Timestamp 'Disable TMS, re-disable loops, reset Hamilton': 2023-06-21 08:15:39.410000. Time since last stamp: 0:00:10.072000
+GET TMS_GAIN SETTINGS
+Original TMS GAIN SETTINGS: 1.0 1.0 1.0 1.0
+Set All TMS Gain to 0
+Reset the chip
+Chip reports ChipID 0x35a0
+Chip returned chipid = 0x35a0
+Timestamp 'Get initial power supply data': 2023-06-21 08:15:45.818000. Time since last stamp: 0:00:06.408000
+Capture supply data again just after reset
+Driver power consumption is 5264.82797879 mW (captures VPIC, V3P3, and VCCRF)
+Driver VCCX is 5.70108 V, VCCY is 5.71072 V
+Driver VCCX is 285.963 mA, VCCY is 284.938 mA
+VCCRF = 3.40488 V, 544.192 mA
+V3P3 = 3.25719 V, 47.4091 mA
+TXPDX: 0.000 mA, TXPDY: 1.653 mA
+######################
+Global bias calibration
+######################
+Timestamp 'Global bias (IT_GLOBAL) calibration': 2023-06-21 08:15:46.037000. Time since last stamp: 0:00:00.219000
+Using Hamilton A1 I_VCCRF target = 520.0 mA
+Starting point ChipMaskRev=A1, IT_GLOBAL=13, I_VCCRF=544.1 mA, I_VCCRF_target=520.0 mA
+Global bias calibration passed inside tol window. Final IT_GLOBAL=10, I_VCCRF=524.1 mA.
+Global bias calibration state at completion: PASS
+
+Timestamp 'Bias voltage 'safety check'': 2023-06-21 08:15:46.318000. Time since last stamp: 0:00:00.281000
+N000: 0x101L 0x101L 0x101L 0x101L
+N002: 0x166L 0x166L 0x166L 0x166L
+N004: 0x88L 0x88L 0x88L 0x88L
+N00E: 0xb5fL 0xb5fL 0xb5fL 0xb5fL
+N010: 0xcb93L 0xcb93L 0xcb93L 0xcb93L
+Checking safety range
+Checking safety range
+VE1 of channel 0 passes
+VE2 of channel 0 passes
+VC1 of channel 0 fails
+VC2 of channel 0 passes
+VE1 of channel 1 passes
+VE2 of channel 1 passes
+VC1 of channel 1 fails
+VC2 of channel 1 passes
+VE1 of channel 2 passes
+VE2 of channel 2 passes
+VC1 of channel 2 fails
+VC2 of channel 2 passes
+VE1 of channel 3 passes
+VE2 of channel 3 passes
+VC1 of channel 3 fails
+VC2 of channel 3 passes
+###################################################
+Step2: Linearity calibration
+###################################################
+Timestamp 'Linearity cal routine: start IT1 cal': 2023-06-21 08:15:48.207000. Time since last stamp: 0:00:01.889000
+Initial value for channel 0:
+VC1 = 2.849, VE1 = 1.5025, VC2 = 2.722, VE2 = 1.146, VCE1 = 1.3465, VCB1 = 0.555, VCE2 = 1.576, VCB2 = 0.724, Vdrop = 0.0941
+IT1 = 0xbf, IT2 = 0xc0
+Timestamp 'Linearity cal routine: start IT2 cal': 2023-06-21 08:15:50.436000. Time since last stamp: 0:00:02.229000
+Final value for channel 0:
+VC1 = 2.849, VE1 = 1.5025, VC2 = 2.725, VE2 = 1.284, VCE1 = 1.3465, VCB1 = 0.555, VCE2 = 1.576, VCB2 = 0.724, IT1 = 0x60, IT2 = 0x1bf, Vdrop = 0.08165
+Initial value for channel 1:
+VC1 = 2.859, VE1 = 1.472, VC2 = 2.707, VE2 = 1.1685, VCE1 = 1.387, VCB1 = 0.604, VCE2 = 1.5385, VCB2 = 0.6915, Vdrop = 0.16895
+IT1 = 0xbf, IT2 = 0xc0
+Timestamp 'Linearity cal routine: start IT2 cal': 2023-06-21 08:15:58.076000. Time since last stamp: 0:00:07.640000
+Final value for channel 1:
+VC1 = 2.859, VE1 = 1.472, VC2 = 2.71, VE2 = 1.2805, VCE1 = 1.387, VCB1 = 0.604, VCE2 = 1.5385, VCB2 = 0.6915, IT1 = 0x65, IT2 = 0x1bf, Vdrop = 0.1502
+Initial value for channel 2:
+VC1 = 2.798, VE1 = 1.483, VC2 = 2.705, VE2 = 1.106, VCE1 = 1.315, VCB1 = 0.525, VCE2 = 1.599, VCB2 = 0.752, Vdrop = 0.1867
+IT1 = 0xbf, IT2 = 0xc0
+Timestamp 'Linearity cal routine: start IT2 cal': 2023-06-21 08:16:05.771000. Time since last stamp: 0:00:07.695000
+Final value for channel 2:
+VC1 = 2.798, VE1 = 1.483, VC2 = 2.707, VE2 = 1.2795, VCE1 = 1.315, VCB1 = 0.525, VCE2 = 1.599, VCB2 = 0.752, IT1 = 0x56, IT2 = 0x1bf, Vdrop = 0.16895
+Initial value for channel 3:
+VC1 = 2.851, VE1 = 1.479, VC2 = 2.712, VE2 = 1.1485, VCE1 = 1.372, VCB1 = 0.5855, VCE2 = 1.5635, VCB2 = 0.7115, Vdrop = 0.1734
+IT1 = 0xbf, IT2 = 0xc0
+Timestamp 'Linearity cal routine: start IT2 cal': 2023-06-21 08:16:13.157000. Time since last stamp: 0:00:07.386000
+Final value for channel 3:
+VC1 = 2.851, VE1 = 1.479, VC2 = 2.715, VE2 = 1.2815, VCE1 = 1.372, VCB1 = 0.5855, VCE2 = 1.5635, VCB2 = 0.7115, IT1 = 0x60, IT2 = 0x1bf, Vdrop = 0.15465
+###################################################
+Step3: Final OFFSET and VOUTCM Cal
+###################################################
+Timestamp 'Offset cal routine start': 2023-06-21 08:16:18.342000. Time since last stamp: 0:00:05.185000
+###################################################
+Offset Cal
+###################################################
+Channel 0
+Initial voff_meas = 0.01
+Offset Calibration is finished. Final offset = 0.0, Reg 0x0000=0x0701
+###################################################
+Offset Cal
+###################################################
+Channel 1
+Initial voff_meas = -0.017
+Offset Calibration is finished. Final offset = 0.0, Reg 0x1000=0x010c
+###################################################
+Offset Cal
+###################################################
+Channel 2
+Initial voff_meas = -0.017
+Offset Calibration is finished. Final offset = 0.0, Reg 0x2000=0x010a
+###################################################
+Offset Cal
+###################################################
+Channel 3
+Initial voff_meas = -0.031
+Offset Calibration is finished. Final offset = 0.0, Reg 0x3000=0x0114
+Offset = -0.002
+Offset = 0.0
+Offset = -0.003
+Offset = 0.0
+Timestamp 'VoutCM cal routine start': 2023-06-21 08:16:35.483000. Time since last stamp: 0:00:17.141000
+operating on channel 0
+
+Done calibrating ['sVoutCM_div']
+VOCM = 3.408203125
+operating on channel 1
+
+Done calibrating ['sVoutCM_div']
+VOCM = 3.408203125
+operating on channel 2
+
+Done calibrating ['sVoutCM_div']
+VOCM = 3.408203125
+operating on channel 3
+
+Done calibrating ['sVoutCM_div']
+VOCM = 3.41796875
+###################################################
+Step4: SENNA_G update (mod dependent)
+###################################################
+Timestamp 'Start write final EEPROM values (restore AGC mode)': 2023-06-21 08:17:34.426000. Time since last stamp: 0:00:58.943000
+###################################################
+Step5: Update N000/N0002/N004/N00E/N010 registers
+###################################################
+Timestamp 'Start reading all hamilton channel regs to get values to EEPROM': 2023-06-21 08:17:34.779000. Time since last stamp: 0:00:00.353000
+Update EEPROM
+Timestamp 'Start writing eeprom fields PICX_DRIVER_REG_xx': 2023-06-21 08:17:35.313000. Time since last stamp: 0:00:00.534000
+Timestamp 'Start writing eeprom field PICX_DRIVER_IT_GLOBAL': 2023-06-21 08:17:35.590000. Time since last stamp: 0:00:00.277000
+ESET PICX_DRIVER_IT_GLOBAL 0 0x000A 0x0000 0x0000 0x0000
+Timestamp 'Start writing eeprom field PIC_EEPROM_HDR': 2023-06-21 08:17:35.636000. Time since last stamp: 0:00:00.046000
+Timestamp 'Rerun PIC_CAL_DATA_LOAD (Force-apply EEPROM values to driver again and verify we wrote what we intended.)': 2023-06-21 08:17:35.880000. Time since last stamp: 0:00:00.244000
+checking eeprom save values
+Timestamp 'Verify EEPROM values after PIC_CAL_DATA_LOAD': 2023-06-21 08:17:36.530000. Time since last stamp: 0:00:00.650000
+pass checking eeprom saved values
+Calibration routine passed. Executing final cleanup
+Start printing out all #ESET commands
+#ESET PIC_CAL_GENERIC_ID2 0 INIT_CAL
+#ESET PIC_EEPROM_HDR 0 0xcafebabe
+#ESET PIC_POWER_SUPPLIES 0 3.3 3.5 5.8
+#ESET PIC_EEPROM_HDR 0 0xcafebabe
+#ESET PICX_DRIVER_REG_01 0 1793 268 266 276
+#ESET PICX_DRIVER_REG_02 0 358 358 358 358
+#ESET PICX_DRIVER_REG_03 0 136 136 136 136
+#ESET PICX_DRIVER_REG_08 0 2920 2923 2921 2920
+#ESET PICX_DRIVER_REG_09 0 48992 48997 48982 48992
+#ESET PICX_DRIVER_REG_11 0 25 25 25 25
+#ESET PIC_EEPROM_HDR 0 0xcafebabe
+#ESET PIC_CAL_GENERIC_ID2 0 P_v20_230621-081526
+#ESET PIC_EEPROM_HDR 0 0xcafebabe
+Finish printing out all #ESET commands
+Timestamp 'Restore TMS, TX Enable, EA_NTWK_FW_PROC_CNTL': 2023-06-21 08:17:37.599000. Time since last stamp: 0:00:01.069000
+Restoring TX Enable State to 0 (0=TX disabled, 1=TX enabled)
+Restoring EA_NTWK_FW_BKGND_PROC_CNTL_LN_0 state to pre-cal value 0x00000000.
+Original TMS GAIN SETTINGS: 1.0 1.0 1.0 1.0
+Change All TMS Gain back to original
+###################################################
+Step6: Report Cal Status
+###################################################
+Timestamp 'Start reporting post-calibration chip data': 2023-06-21 08:17:37.738000. Time since last stamp: 0:00:00.139000
+VOCM = 3.408203125, OFF = -0.003, OA = 25, PKDi = 5.5, PKDo = 18.0, AGC Vgain = 1.912
+VOCM = 3.408203125, OFF = -0.01, OA = 25, PKDi = 8.0, PKDo = 18.0, AGC Vgain = 1.729
+VOCM = 3.408203125, OFF = -0.007, OA = 25, PKDi = 6.0, PKDo = 17.5, AGC Vgain = 1.494
+VOCM = 3.41796875, OFF = -0.01, OA = 25, PKDi = 7.5, PKDo = 17.5, AGC Vgain = 1.482
+N000  = ['0x701', '0x10c', '0x10a', '0x114']
+N002  = ['0x166', '0x166', '0x166', '0x166']
+N004  = ['0x88', '0x88', '0x88', '0x88']
+N00E  = ['0xb68', '0xb6b', '0xb69', '0xb68']
+N010  = ['0xbf60', '0xbf65', '0xbf56', '0xbf60']
+N014  = ['0x19', '0x19', '0x19', '0x19']
+VCCRF = [3.23, 3.25, 3.25, 3.25]
+Global Bias Reg = 0xa
+VC1 = 2.992, VE1 = 1.511, VC2 = 2.723, VE2 = 1.292, VCE1 = 1.481, VCB1 = 0.703, VCE2 = 1.431, VCB2 = 0.581
+VC1 = 2.981, VE1 = 1.461, VC2 = 2.717, VE2 = 1.287, VCE1 = 1.52, VCB1 = 0.736, VCE2 = 1.43, VCB2 = 0.583
+VC1 = 2.978, VE1 = 1.472, VC2 = 2.715, VE2 = 1.282, VCE1 = 1.506, VCB1 = 0.7185, VCE2 = 1.433, VCB2 = 0.586
+VC1 = 2.986, VE1 = 1.458, VC2 = 2.722, VE2 = 1.282, VCE1 = 1.528, VCB1 = 0.7375, VCE2 = 1.44, VCB2 = 0.588
+After cal...
+Driver power consumption is 5262.93862857 mW (captures VPIC, V3P3, and VCCRF)
+Driver VCCX is 5.69874 V, VCCY is 5.70883 V
+Driver VCCX is 297.03 mA, VCCY is 294.754 mA
+VCCRF = 3.41206 V, 512.283 mA
+V3P3 = 3.25975 V, 42.8257 mA
+TXPDX: 74.663 mA, TXPDY: 73.035 mA
+CTU status is 0
+###################################################
+Report telemetry data in OPS ATS friendly format
+###################################################
+pic_driver_type: 0x6; N004_0: 0x88; N004_1: 0x88; N004_2: 0x88; N004_3: 0x88; N002_0: 0x166; N002_1: 0x166; N002_2: 0x166; N002_3: 0x166; N000_0: 0x701; N000_1: 0x10c; N000_2: 0x10a; N000_3: 0x114; AGC_Vgain_0: 1.931; AGC_Vgain_1: 1.731; AGC_Vgain_2: 1.494; AGC_Vgain_3: 1.484; pass_status: P_v20_230621-081526; VE2_0: 1.292; VE2_1: 1.287; VE2_2: 1.282; VE2_3: 1.282; script_version: 20; VE1_0: 1.511; VE1_1: 1.461; VE1_2: 1.472; VE1_3: 1.458; VC2_0: 2.723; VC2_1: 2.717; VC2_2: 2.715; VC2_3: 2.722; VC1_0: 2.992; VC1_1: 2.981; VC1_2: 2.978; VC1_3: 2.986; PKDi_0: 6.5; PKDi_1: 7.0; PKDi_2: 6.5; PKDi_3: 7.5; PKDo_0: 18.5; PKDo_1: 18.5; PKDo_2: 17.5; PKDo_3: 18.0; VCB2_0: 0.581; VCB2_1: 0.583; VCB2_2: 0.586; VCB2_3: 0.588; VCB1_0: 0.703; VCB1_1: 0.736; VCB1_2: 0.7185; VCB1_3: 0.7375; drv_vccx_i: 297.03; drv_vccrf_i: 512.283; drv_v3p3_i: 42.8257; OFF_0: 0.003; OFF_1: -0.003; OFF_2: -0.003; OFF_3: -0.012; pic_temp: 51.9958; N010_0: 0xbf60; N010_1: 0xbf65; N010_2: 0xbf56; N010_3: 0xbf60; N014_0: 0x19; N014_1: 0x19; N014_2: 0x19; N014_3: 0x19; drv_vccy_v: 5.70883; drv_vccy_i: 294.754; drv_pwr: 5262.93862857; drv_vccx_v: 5.69874; drv_v3p3_v: 3.25975; drv_vccrf_v: 3.41206; start_timestamp: 2023-06-21 08:15:25.747000; runtime: 143; VCE2_0: 1.431; VCE2_1: 1.43; VCE2_2: 1.433; VCE2_3: 1.44; VOCM_0: 3.408203125; VOCM_1: 3.408203125; VOCM_2: 3.408203125; VOCM_3: 3.41796875; VCE1_0: 1.481; VCE1_1: 1.52; VCE1_2: 1.506; VCE1_3: 1.528; chipid: 0x000035A0; txpdy: 73.0347; txpdx: 74.663; OA_0: 25; OA_1: 25; OA_2: 25; OA_3: 25; glbl_bias_reg: 0xa; VCCRF_0: 3.23; VCCRF_1: 3.25; VCCRF_2: 3.25; VCCRF_3: 3.25; N00E_0: 0xb68; N00E_1: 0xb6b; N00E_2: 0xb69; N00E_3: 0xb68; 
+Timestamp 'Final timestamp (exiting)': 2023-06-21 08:17:58.586000. Time since last stamp: 0:00:20.848000
+#######
+Timestamps summary
+#######
+'Start class instantiations': 2023-06-21 08:15:25.747000. Time since last stamp: 0
+'Start cal marker': 2023-06-21 08:15:26.681000. Time since last stamp: First timestamp
+'Get PIC temp': 2023-06-21 08:15:26.953000. Time since last stamp: 0:00:00.934000
+'Get FW kit revision, mod and PIC SNs, CTU status': 2023-06-21 08:15:26.975000. Time since last stamp: 0:00:00.272000
+'Check driver type, chipid': 2023-06-21 08:15:27.259000. Time since last stamp: 0:00:00.022000
+'Disable SW CNTL loops': 2023-06-21 08:15:27.303000. Time since last stamp: 0:00:00.284000
+'Set pic power supplies': 2023-06-21 08:15:27.404000. Time since last stamp: 0:00:00.044000
+'Disable TX and background processes': 2023-06-21 08:15:27.688000. Time since last stamp: 0:00:00.101000
+'Run PIC_CAL_DATA_LOAD, iteration 1': 2023-06-21 08:15:27.689000. Time since last stamp: 0:00:00.284000
+'Run PICP_DRIVER_INIT': 2023-06-21 08:15:29.338000. Time since last stamp: 0:00:00.001000
+'Disable TMS, re-disable loops, reset Hamilton': 2023-06-21 08:15:39.410000. Time since last stamp: 0:00:01.649000
+'Get initial power supply data': 2023-06-21 08:15:45.818000. Time since last stamp: 0:00:10.072000
+'Global bias (IT_GLOBAL) calibration': 2023-06-21 08:15:46.037000. Time since last stamp: 0:00:06.408000
+'Bias voltage 'safety check'': 2023-06-21 08:15:46.318000. Time since last stamp: 0:00:00.219000
+'Linearity cal routine: start IT1 cal': 2023-06-21 08:15:48.207000. Time since last stamp: 0:00:00.281000
+'Linearity cal routine: start IT2 cal': 2023-06-21 08:15:50.436000. Time since last stamp: 0:00:01.889000
+'Linearity cal routine: start IT2 cal': 2023-06-21 08:15:58.076000. Time since last stamp: 0:00:02.229000
+'Linearity cal routine: start IT2 cal': 2023-06-21 08:16:05.771000. Time since last stamp: 0:00:07.640000
+'Linearity cal routine: start IT2 cal': 2023-06-21 08:16:13.157000. Time since last stamp: 0:00:07.695000
+'Offset cal routine start': 2023-06-21 08:16:18.342000. Time since last stamp: 0:00:07.386000
+'VoutCM cal routine start': 2023-06-21 08:16:35.483000. Time since last stamp: 0:00:05.185000
+'Start write final EEPROM values (restore AGC mode)': 2023-06-21 08:17:34.426000. Time since last stamp: 0:00:17.141000
+'Start reading all hamilton channel regs to get values to EEPROM': 2023-06-21 08:17:34.779000. Time since last stamp: 0:00:58.943000
+'Start writing eeprom fields PICX_DRIVER_REG_xx': 2023-06-21 08:17:35.313000. Time since last stamp: 0:00:00.353000
+'Start writing eeprom field PICX_DRIVER_IT_GLOBAL': 2023-06-21 08:17:35.590000. Time since last stamp: 0:00:00.534000
+'Start writing eeprom field PIC_EEPROM_HDR': 2023-06-21 08:17:35.636000. Time since last stamp: 0:00:00.277000
+'Rerun PIC_CAL_DATA_LOAD (Force-apply EEPROM values to driver again and verify we wrote what we intended.)': 2023-06-21 08:17:35.880000. Time since last stamp: 0:00:00.046000
+'Verify EEPROM values after PIC_CAL_DATA_LOAD': 2023-06-21 08:17:36.530000. Time since last stamp: 0:00:00.244000
+'Restore TMS, TX Enable, EA_NTWK_FW_PROC_CNTL': 2023-06-21 08:17:37.599000. Time since last stamp: 0:00:00.650000
+'Start reporting post-calibration chip data': 2023-06-21 08:17:37.738000. Time since last stamp: 0:00:01.069000
+'Final timestamp (exiting)': 2023-06-21 08:17:58.586000. Time since last stamp: 0:00:00.139000
+#######
+It takes 151.861999989 s to run the cal
+close log file and disconnect EVB
+Calibration complete!
+Hamilton Cal Pass
+
+
+
+Cal - IQ Balance DP-16QAM
+IQ cal v 2.6
+Calibrating IQ 192.168.1.1:34111 L0 Weeprom True GCrefs 22 MLtarget -17.5
+folder C:\Users\fb1\AppData\Local\Temp\TCPIP0__192.168.1.1__34111__SOCKET_0, filename IQ_cal
+Connected to 192.168.1.1:34111
+Calibrating IQ imbalance Lane 0
+Run Imbalance VOA
+IQx, IQy
+4.14, 5.36
+4.87, 2.47
+4.63, 0.0999999999999
+3.74, 2.61
+2.9, 0.15
+3.0, 0.2
+1.23, 1.13
+Imbalance VOA success True
+SET PICP_SW_CNTL_IQ_OFF 0 0 0 550
+Run MDL driver gain
+Initial: Mod Loss error: [1.531608   0.91672264]
+Iter:1, OA: [21. 21. 21. 21.], ML_error: [1.33295131 0.64940314]
+Iter:2, OA: [20. 20. 20. 20.], ML_error: [1.08798837 0.4177778 ]
+Iter:3, OA: [19. 19. 19. 19.], ML_error: [0.86990898 0.12271475]
+Iter:4, OA: [18. 18. 18. 18.], ML_error: [ 0.5877724 -0.1290971]
+Iter:5, OA: [17. 17. 19. 19.], ML_error: [0.35935289 0.12454866]
+Iter:6, OA: [16. 16. 18. 18.], ML_error: [ 0.06043955 -0.13418341]
+MDL driver gain success True
+Run IQ imbalance OA gain
+Initial: TEFdifH: -0.9, TEFdifV: -1.5
+Iter:1, IQ: [-1. -1.], TEFdif: [0.10000000000000009, -0.19999999999999996]
+Iter:2, IQ: [-1. -1.], TEFdif: [0.10000000000000009, -0.19999999999999996]
+IQ imbalance OA gain True
+SET PICP_SW_CNTL_IQ_OFF 0 0 0 550
+Setting final: diffH, diffV, OA_GCref
+-1.0 -1.0 [15, 16, 18, 19]
+SET PICP_SW_CNTL_IQ_OFF 0 1 0 550
+SET PICP_SW_CNTL_MDL_OPT 0 0 0 1050
+Success code 7
+issuing diag commands
+ESET PICX_TXVOA_12_34_OFFSET 0 903 0 0 1107
+ESET PICX_DRIVER_REG_11 0 15 16 18 19
+ESET PICX_DRIVER_OA_TGT_BPSK 0 15 16 18 19
+ESET PICX_DRIVER_OA_TGT_QPSK 0 15 16 18 19
+ESET PICX_DRIVER_OA_TGT_8QAM 0 15 16 18 19
+ESET PICX_DRIVER_OA_TGT_16QAM 0 15 16 18 19
+ESET PICX_DRIVER_OA_TGT_32QAM 0 15 16 18 19
+ESET PICX_DRIVER_OA_TGT_64QAM 0 15 16 18 19
+Successful disconnect from module
+script took 12.6 s
+Calibration PASS 7
+
+
+IQ cal v 2.6								
+Calibrating IQ 192.168.1.1:34111 L0 Weeprom True GCrefs 22 MLtarget -17.5								
+"folder C:\Users\fb1\AppData\Local\Temp\TCPIP0__192.168.1.1__34111__SOCKET_0	 filename IQ_cal"							
+Starting IQ imbalance L0								
+DC IQ imbalance L0								
+cal_iq_imbalance_voa								
+IQx	IQy							
+4.139999999999873	5.360000000000127							
+4.869999999999891	2.4700000000002547							
+4.630000000000109	0.09999999999990905							
+3.7400000000002365	2.6099999999996726							
+2.900000000000091	0.15000000000009095							
+3.0	0.20000000000027285							
+1.2300000000000182	1.1300000000001091							
+Success	True							
+""								
+0	0	550						
+VOA off vector L0								
+"[903	 0	 0	 1107]"					
+AC  Mod Loss cal L0								
+Run MDL driver gain								
+Initial settings								
+MLH	MLV							
+1.5316080020359912	0.9167226401140169							
+""								
+Iter	OAXI	OAXQ	OAYI	OAYQ	MLX_error	MLY_error	tol_init	tol_temp
+1	21.0	21.0	21.0	21.0	1.3329513059229896	0.6494031367228246	0.15	0.15
+2	20.0	20.0	20.0	20.0	1.0879883681321374	0.4177778007095476	0.15	0.15
+3	19.0	19.0	19.0	19.0	0.8699089828028406	0.12271474566612284	0.15	0.15
+4	18.0	18.0	18.0	18.0	0.587772396939485	-0.12909709768343802	0.15	0.15
+5	17.0	17.0	19.0	19.0	0.3593528874255192	0.12454866286645228	0.15	0.15
+6	16.0	16.0	18.0	18.0	0.060439546573924474	-0.13418340588138022	0.15	0.15
+""								
+Success	True							
+"[16.0	 16.0	 19.0	 19.0]"					
+AC IQ imbalance L0								
+Run IQ imbalance OA gain								
+Initial settings								
+TEFdifH	TEFdifV							
+-0.9000000000000001	-1.5							
+""								
+Iter	IQH	IQV	TEFdifH	TEFdifV				
+1	-1.0	-1.0	0.10000000000000009	-0.19999999999999996				
+2	-1.0	-1.0	0.10000000000000009	-0.19999999999999996				
+""								
+Success	True							
+"Setting final: diffH	 diffV	 OA_GCref"						
+-1.0	-1.0	"[15	 16	 18	 19]"			
+""								
+Driver gain vector L0								
+"[15	 16	 18	 19]"					
+ESET PICX_TXVOA_12_34_OFFSET 0 903 0 0 1107								
+ESET PICX_DRIVER_REG_11 0 15 16 18 19								
+ESET PICX_DRIVER_OA_TGT_BPSK 0 15 16 18 19								
+ESET PICX_DRIVER_OA_TGT_QPSK 0 15 16 18 19								
+ESET PICX_DRIVER_OA_TGT_8QAM 0 15 16 18 19								
+ESET PICX_DRIVER_OA_TGT_16QAM 0 15 16 18 19								
+ESET PICX_DRIVER_OA_TGT_32QAM 0 15 16 18 19								
+ESET PICX_DRIVER_OA_TGT_64QAM 0 15 16 18 19								
+script took 12.6 s								
+Calibration PASS 7								
+
+
+Cal - TMS Spectrum ( Lane 0 / DP-16QAM / 193.20 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+TMS cal v 2.9
+Calibrating TMS 192.168.1.1:34111 L0 Weeprom True
+folder C:\Users\fb1\AppData\Local\Temp\TCPIP0__192.168.1.1__34111__SOCKET_0, filename Iteration0_TC_25C_TPIC_52C_2023062182323
+osa file C:\ReportsInProcess\AC1200 FVT\AC1200 FVT_[2023_06_21][00_59_29]_Batch\232352436\TMS_Logs\232352436_L0_OSA_Spectrum__Iteration0_TC_25C_TPIC_52C_2023062182323.csv, osa TS 0
+Connected to 192.168.1.1:34111
+Connected to SN 232352436
+Calibrating TMS Lane 0
+Reading and processing spectrum
+...Success cnt 1
+reading freq 193200.0GHz
+removing 193200.0005 GHz
+dfreq 0.301000000007
+center at -1.52949999998 GHz 0.0 dBm idmax=255
+...Success cnt 2
+Processing the target 48.0GHz max rof0.1
+Baudrate read 69.4351043701
+Window N 22.0
+Window Type gauss
+...Success cnt 3
+Freq saturation 25.5 GHz
+...Success cnt 4
+Getting current PICtemp
+PICtemp 52.57C
+Getting current TMS from module
+...Success cnt 5
+Processing TMS
+...Success cnt 6
+Calculate new TMS
+New offset 1.22
+read eq amp ratio 1.00
+...Success cnt 7
+Setting new TMS
+...Success cnt 8
+Saving Calibration PICtemp in EEPROM
+Saving new TMS in EEPROM
+Number diags issued 517/517
+...Success cnt 9
+Generating plots
+Saving plots 1 232352436_L0_TMS_spectrum_Iteration0_TC_25C_TPIC_52C_2023062182323.png
+Saving plot 2 232352436_0_TMS_B_A_Iteration0_TC_25C_TPIC_52C_2023062182323.png
+...Success cnt 10
+Saving TMS
+232352436_L0_before_cal_Iteration0_TC_25C_TPIC_52C_2023062182323
+...Success cnt 11
+232352436_L0_after_cal_Iteration0_TC_25C_TPIC_52C_2023062182323
+...Success cnt 12
+Successful disconnect from module
+Successful disconnected from 192.168.1.1:34111
+script took 7.8 s
+Calibration PASS 12 Target 12
+
+
+
+Tx Pump Power Calibration - Scan( Lane 0 / DP-16QAM / 193.20 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+DAC_PUMP_PWR_ADJ_ADC	Power
+75.000000	2.775000
+90.000000	5.638000
+105.000000	7.398667
+
+Tx Pump Power Calibration - Coarse( Lane 0 / DP-16QAM / 193.20 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+DAC_PUMP_PWR_ADJ_ADC	Power
+78.750000	3.661333
+105.000000	7.413333
+131.250000	9.458000
+
+Tx Pump Power Calibration - Fine( Lane 0 / DP-16QAM / 193.20 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+DAC_PUMP_PWR_ADJ_ADC	Power
+98.358519	6.710000
+103.402546	7.261000
+
+Tx Pump Power Calibration - Fine( Lane 0 / DP-16QAM / 193.20 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+DAC_PUMP_PWR_ADJ_ADC	Power
+98.410100	6.715000
+103.456772	7.259667
+
+Cal - Rx Power
+Rx Power	Region  	VOA Setpoint	RXPD_ADC	GC_Mon_ADC	TIA_1X  	TIA_2X  	TIA_1Y  	TIA_2Y  	Avg_QEF 	Rx Calibrated Power	Rx Calibrated Ch Power	Tx Setpoint
+4.985000	2.000000	2.740000	52424.500000	106.875000	108.625000	101.625000	105.375000	113.750000	-31.375000	4.996000	4.985000	0.000000
+3.986000	2.000000	3.760000	51476.500000	106.500000	107.500000	100.750000	104.625000	114.250000	-29.187500	3.997100	3.986000	0.000000
+2.977667	2.000000	4.770000	50517.125000	106.125000	107.375000	100.750000	104.625000	113.750000	-25.906250	2.988867	2.977667	0.000000
+1.992667	2.000000	5.770000	49582.750000	106.500000	107.625000	101.250000	104.500000	114.250000	-22.343750	2.003867	1.992667	0.000000
+0.994667	2.000000	6.770000	48628.750000	106.250000	107.250000	100.000000	105.125000	114.250000	-17.875000	1.005967	0.994667	0.000000
+-0.013667	2.000000	7.770000	47671.625000	106.250000	107.750000	100.375000	104.625000	113.500000	-13.312500	-0.002267	-0.013667	0.000000
+-1.000667	2.000000	8.770000	46718.125000	107.000000	108.500000	103.000000	104.500000	113.750000	-7.656250	-0.989167	-1.000667	0.000000
+-2.011667	2.000000	9.790000	45764.625000	1585.125000	115.875000	6005.250000	105.375000	115.250000	-2.250000	-2.000167	-2.011667	0.000000
+-2.996667	2.000000	10.780000	44817.875000	6303.125000	6341.500000	7454.875000	5639.750000	5777.875000	0.156250	-2.985067	-2.996667	0.000000
+-4.005333	1.000000	11.790000	43855.250000	7668.375000	7729.125000	8319.875000	7321.875000	7304.375000	0.531250	-3.993633	-4.005333	0.000000
+-5.003667	1.000000	12.790000	42892.000000	8510.375000	8603.750000	8934.250000	8329.625000	8175.250000	0.343750	-4.991767	-5.003667	0.000000
+-6.003333	1.000000	13.810000	41920.375000	9143.500000	9193.625000	9447.500000	9040.625000	8893.750000	0.281250	-5.991433	-6.003333	0.000000
+-7.000667	1.000000	14.820000	40961.375000	9642.125000	9720.875000	9920.500000	9518.875000	9409.750000	0.156250	-6.988567	-7.000667	0.000000
+-7.984667	1.000000	15.810000	40012.625000	10109.875000	10195.500000	10400.000000	9979.500000	9866.625000	0.062500	-7.972467	-7.984667	0.000000
+-8.978000	1.000000	16.800000	39049.875000	10578.500000	10649.375000	10895.625000	10443.250000	10327.250000	0.000000	-8.965700	-8.978000	0.000000
+-11.033667	1.000000	18.830000	37060.125000	11768.750000	11874.000000	12358.250000	11469.000000	11376.000000	-0.312500	-11.021267	-11.033667	0.000000
+-12.987667	1.000000	10.890000	35165.375000	13292.375000	13389.000000	14035.875000	12898.500000	12847.000000	-0.093750	-12.974967	-12.987667	10.000000
+-15.002667	1.000000	12.890000	33220.625000	15352.625000	15548.875000	16424.000000	14717.750000	14721.625000	-0.375000	-14.989867	-15.002667	10.000000
+-16.991333	1.000000	14.890000	31314.250000	17568.250000	17732.375000	18593.875000	16905.875000	17042.375000	-0.500000	-16.978533	-16.991333	10.000000
+-18.997333	1.000000	16.880000	29397.000000	19546.250000	19827.625000	20607.750000	18791.375000	18960.125000	-0.218750	-18.984433	-18.997333	10.000000
+-20.998667	1.000000	8.870000	27485.375000	21492.625000	21775.250000	22492.750000	20729.125000	20974.750000	-0.375000	-20.985467	-20.998667	20.000000
+-23.006333	1.000000	10.890000	25582.125000	23394.500000	23777.875000	24167.000000	22721.250000	22913.625000	-0.031250	-22.993033	-23.006333	20.000000
+-24.999667	0.000000	12.880000	23680.250000	24725.625000	25059.250000	25405.375000	24180.125000	24258.625000	-0.250000	-24.986267	-24.999667	20.000000
+-26.997000	0.000000	14.890000	21779.250000	26305.625000	26651.750000	27669.750000	25422.375000	25479.750000	-0.656250	-26.983400	-26.997000	20.000000
+-28.989667	0.000000	16.870000	19870.875000	28803.750000	29185.250000	30735.250000	27537.125000	27759.500000	-0.281250	-28.975867	-28.989667	20.000000
+-30.991333	0.000000	18.840000	17971.750000	31188.250000	31314.500000	32577.750000	30368.500000	30494.375000	3.437500	-30.977433	-30.991333	20.000000
+-33.017667	0.000000	20.840000	16012.750000	32260.500000	32399.250000	33867.500000	31590.875000	31185.000000	12.531250	-33.003567	-33.017667	20.000000
+
+Cal - Rx Channel Power Table
+ESET PICP_RX_CH_PWR_CAL 0 0 -3.00 6303
+ESET PICP_RX_CH_PWR_CAL 0 1 -4.01 7668
+ESET PICP_RX_CH_PWR_CAL 0 2 -5.00 8510
+ESET PICP_RX_CH_PWR_CAL 0 3 -6.00 9144
+ESET PICP_RX_CH_PWR_CAL 0 4 -7.00 9642
+ESET PICP_RX_CH_PWR_CAL 0 5 -7.98 10110
+ESET PICP_RX_CH_PWR_CAL 0 6 -8.98 10578
+ESET PICP_RX_CH_PWR_CAL 0 7 -11.03 11769
+ESET PICP_RX_CH_PWR_CAL 0 8 -12.99 13292
+ESET PICP_RX_CH_PWR_CAL 0 9 -15.00 15353
+ESET PICP_RX_CH_PWR_CAL 0 10 -16.99 17568
+ESET PICP_RX_CH_PWR_CAL 0 11 -19.00 19546
+ESET PICP_RX_CH_PWR_CAL 0 12 -21.00 21493
+ESET PICP_RX_CH_PWR_CAL 0 13 -23.01 23394
+ESET PICP_RX_CH_PWR_CAL 0 14 -25.00 24726
+ESET PICP_RX_CH_PWR_CAL 0 15 -27.00 26306
+ESET PICP_RX_CH_PWR_CAL 0 16 -28.99 28804
+
+
+Tx PDL CalibrationTx PDL dQ Calibration
+TXPOWXY DAC	BERx    	BERy    	Qx      	Qy      
+3.567760	0.028708	0.010927	7.207645	5.575667
+3.667760	0.008696	0.039585	4.888152	7.525386
+
+Tx PDL CalibrationTx PDL dQ Calibration
+TXPOWXY DAC	BERx    	BERy    	Qx      	Qy      
+3.585987	0.022580	0.013556	6.887467	6.034293
+3.625987	0.013892	0.022714	6.023528	6.849708
+
+Tx PDL CalibrationTx PDL dQ Calibration  ( Lane 0 / DP-QPSK / 193.20 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+TXPOWXY DAC	BERx    	BERy    	Qx      	Qy      
+3.606308	0.017533	0.017556	6.473583	6.475699
+
+Rx LOS( Lane 0 / DP-16QAM / 191.40 THz / 25 °C / Rx LOS )     (Chan 1/3)
+RX_POWER	RX_POWER_MON	LOS
+-18.244000	-18.159220	0.000000
+-18.488000	-18.411705	0.000000
+-18.744000	-18.641270	0.000000
+-18.993000	-18.877132	0.000000
+-19.229000	-19.141062	0.000000
+-19.472000	-19.394554	0.000000
+-19.726000	-19.626295	0.000000
+-19.983000	-19.865192	0.000000
+-20.242000	-20.139511	0.000000
+-20.472000	-20.370165	0.000000
+-20.714000	-20.614338	0.000000
+-20.973000	-20.848091	0.000000
+-21.219000	-21.116177	0.000000
+-21.469000	-21.368580	0.000000
+-21.721000	-21.597187	0.000000
+-21.973000	-21.835112	0.000000
+-22.192000	-22.061642	0.000000
+-22.447000	-22.329695	0.000000
+-22.692000	-22.574892	0.000000
+-22.963000	-22.829454	0.000000
+-23.195000	-23.061113	0.000000
+-23.467000	-23.300076	0.000000
+-23.689000	-23.571278	0.000000
+-23.970000	-23.816477	1.000000
+-24.205000	-24.026352	1.000000
+-24.439000	-24.275686	1.000000
+-24.690000	-24.515705	1.000000
+-24.941000	-24.801435	1.000000
+-25.205000	-25.026861	1.000000
+-25.422000	-25.284491	1.000000
+-25.678000	-25.530743	1.000000
+-25.936000	-25.783262	1.000000
+-26.187000	-26.013899	1.000000
+-26.435000	-26.264290	1.000000
+-26.709000	-26.518839	1.000000
+-26.918000	-26.756729	1.000000
+-27.185000	-26.996716	1.000000
+-27.418000	-27.267885	1.000000
+-27.698000	-27.522448	1.000000
+-27.931000	-27.717794	1.000000
+-28.167000	-28.002438	1.000000
+-28.422000	-28.247667	1.000000
+-28.670000	-28.478334	1.000000
+-28.951000	-28.746372	1.000000
+-29.184000	-28.965612	1.000000
+-29.438000	-29.232576	1.000000
+-29.691000	-29.459074	1.000000
+-29.980000	-29.689743	1.000000
+-30.187000	-29.984858	1.000000
+
+Rx LOS( Lane 0 / DP-16QAM / 191.40 THz / 25 °C / Rx LOS )     (Chan 1/3)
+RX_POWER	RX_POWER_MON	LOS
+-29.736000	-29.555859	1.000000
+-29.496000	-29.252531	1.000000
+-29.233000	-28.999090	1.000000
+-29.000000	-28.767448	1.000000
+-28.734000	-28.513958	1.000000
+-28.466000	-28.277088	1.000000
+-28.227000	-28.020529	1.000000
+-27.985000	-27.784716	1.000000
+-27.739000	-27.506390	1.000000
+-27.480000	-27.297554	1.000000
+-27.233000	-27.034729	1.000000
+-26.994000	-26.788528	1.000000
+-26.741000	-26.539207	1.000000
+-26.484000	-26.276417	1.000000
+-26.249000	-26.042646	1.000000
+-25.984000	-25.835938	1.000000
+-25.709000	-25.560614	1.000000
+-25.472000	-25.324816	1.000000
+-25.253000	-25.066196	1.000000
+-24.973000	-24.824200	1.000000
+-24.731000	-24.583158	1.000000
+-24.485000	-24.321390	1.000000
+-24.242000	-24.087669	1.000000
+-23.980000	-23.825867	1.000000
+-23.744000	-23.595282	1.000000
+-23.487000	-23.348022	1.000000
+-23.233000	-23.134043	1.000000
+-22.995000	-22.863945	0.000000
+-22.737000	-22.600080	0.000000
+-22.507000	-22.351833	0.000000
+-22.269000	-22.131586	0.000000
+-22.012000	-21.883307	0.000000
+-21.762000	-21.696339	0.000000
+-21.506000	-21.432508	0.000000
+-21.272000	-21.165510	0.000000
+-21.023000	-20.888157	0.000000
+-20.788000	-20.661676	0.000000
+-20.533000	-20.435196	0.000000
+-20.281000	-20.175489	0.000000
+-20.035000	-19.922081	0.000000
+-19.780000	-19.670668	0.000000
+-19.529000	-19.425470	0.000000
+-19.296000	-19.206280	0.000000
+-19.046000	-18.930971	0.000000
+-18.796000	-18.681667	0.000000
+-18.574000	-18.466648	0.000000
+-18.296000	-18.215235	0.000000
+-18.049000	-17.985655	0.000000
+-17.820000	-17.715591	0.000000
+
+DP-16QAM FEC Threshold Smart Search( Lane 0 / DP-16QAM / 191.40 THz / 25 °C / OSNR Sensitivity )     (Chan 1/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+22.967028	7.000000	0.013912	0.013401	0.013657	0.000000	0.000000
+21.718904	6.000000	0.021922	0.021479	0.021701	0.000000	0.000000
+
+DP-16QAM FEC Threshold( Lane 0 / DP-16QAM / 191.40 THz / 25 °C / OSNR Sensitivity )     (Chan 1/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+19.895603	1.000000	0.040151	0.039919	0.040035	1.786197E-6	959257.000000
+19.995563	1.000000	0.039214	0.038489	0.038852	6.742249E-10	362.000000
+20.088230	7.000000	0.038020	0.037423	0.037722	0.000000	0.000000
+*****	Execution_Time	156.9650545678	*****
+
+DP-32QAM FEC Threshold Smart Search( Lane 0 / DP-32QAM / 191.40 THz / 25 °C / OSNR Sensitivity )     (Chan 1/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+27.789158	7.000000	0.017396	0.016242	0.016819	0.000000	0.000000
+26.535394	7.000000	0.023143	0.021514	0.022329	0.000000	0.000000
+
+DP-32QAM FEC Threshold( Lane 0 / DP-32QAM / 191.40 THz / 25 °C / OSNR Sensitivity )     (Chan 1/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+23.870830	1.000000	0.035777	0.034807	0.035292	4.069010E-6	2731520.000000
+23.987724	2.000000	0.037336	0.036186	0.036761	4.069010E-6	2730880.000000
+24.079500	2.000000	0.039472	0.038190	0.038831	4.069010E-6	5463040.000000
+24.156333	1.000000	0.039960	0.038543	0.039251	2.425976E-6	1628554.000000
+24.259202	2.000000	0.039113	0.037790	0.038452	2.298829E-8	15432.000000
+24.358197	2.000000	0.038240	0.036958	0.037599	2.159993E-11	29.000000
+24.447749	5.000000	0.037503	0.036177	0.036840	4.965890E-13	1.000000
+24.536702	7.000000	0.036609	0.035410	0.036009	0.000000	0.000000
+*****	Execution_Time	185.7191463023	*****
+
+Tx OSNR In-Band ( Lane 0 / DP-600G_BICHM33 / 191.40 THz / 25 °C )     (Chan 1/3)
+X	Y
+191.6500,191.6490,191.6480,191.6470,191.6460,191.6450,191.6440,191.6430,191.6420,191.6410,191.6400,191.6390,191.6380,191.6370,191.6360,191.6350,191.6340,191.6330,191.6320,191.6310,191.6299,191.6289,191.6279,191.6269,191.6259,191.6249,191.6239,191.6229,191.6219,191.6209,191.6199,191.6189,191.6179,191.6169,191.6159,191.6149,191.6139,191.6129,191.6119,191.6109,191.6099,191.6089,191.6079,191.6069,191.6059,191.6049,191.6039,191.6029,191.6019,191.6009,191.5999,191.5989,191.5979,191.5969,191.5959,191.5949,191.5939,191.5929,191.5919,191.5909,191.5899,191.5889,191.5879,191.5869,191.5859,191.5849,191.5838,191.5828,191.5818,191.5808,191.5798,191.5788,191.5778,191.5768,191.5758,191.5748,191.5738,191.5728,191.5718,191.5708,191.5698,191.5688,191.5678,191.5668,191.5658,191.5648,191.5638,191.5628,191.5618,191.5608,191.5598,191.5588,191.5578,191.5568,191.5558,191.5548,191.5538,191.5528,191.5518,191.5508,191.5498,191.5488,191.5478,191.5468,191.5458,191.5448,191.5438,191.5428,191.5418,191.5408,191.5398,191.5388,191.5378,191.5368,191.5358,191.5348,191.5338,191.5328,191.5318,191.5308,191.5298,191.5288,191.5278,191.5268,191.5258,191.5248,191.5238,191.5228,191.5218,191.5208,191.5197,191.5187,191.5177,191.5167,191.5157,191.5147,191.5137,191.5127,191.5117,191.5107,191.5097,191.5087,191.5077,191.5067,191.5057,191.5047,191.5037,191.5027,191.5017,191.5007,191.4997,191.4987,191.4977,191.4967,191.4957,191.4947,191.4937,191.4927,191.4917,191.4907,191.4897,191.4887,191.4877,191.4867,191.4857,191.4847,191.4837,191.4827,191.4817,191.4807,191.4797,191.4787,191.4777,191.4767,191.4757,191.4747,191.4737,191.4727,191.4717,191.4707,191.4697,191.4687,191.4677,191.4667,191.4657,191.4647,191.4637,191.4627,191.4617,191.4607,191.4597,191.4587,191.4577,191.4567,191.4557,191.4547,191.4537,191.4527,191.4517,191.4507,191.4497,191.4487,191.4477,191.4467,191.4457,191.4447,191.4437,191.4427,191.4417,191.4407,191.4397,191.4387,191.4377,191.4367,191.4357,191.4347,191.4337,191.4327,191.4317,191.4307,191.4297,191.4287,191.4277,191.4267,191.4257,191.4247,191.4237,191.4227,191.4217,191.4207,191.4197,191.4187,191.4177,191.4167,191.4157,191.4147,191.4137,191.4127,191.4117,191.4107,191.4097,191.4087,191.4077,191.4067,191.4057,191.4047,191.4037,191.4027,191.4017,191.4007,191.3997,191.3987,191.3977,191.3967,191.3957,191.3947,191.3937,191.3927,191.3917,191.3907,191.3897,191.3887,191.3877,191.3867,191.3857,191.3847,191.3837,191.3827,191.3817,191.3807,191.3797,191.3787,191.3777,191.3767,191.3757,191.3747,191.3737,191.3727,191.3717,191.3707,191.3697,191.3687,191.3677,191.3667,191.3657,191.3647,191.3637,191.3627,191.3617,191.3607,191.3597,191.3587,191.3577,191.3567,191.3557,191.3547,191.3537,191.3527,191.3517,191.3507,191.3497,191.3487,191.3477,191.3467,191.3457,191.3447,191.3437,191.3427,191.3417,191.3407,191.3397,191.3387,191.3377,191.3367,191.3357,191.3347,191.3337,191.3327,191.3317,191.3307,191.3297,191.3287,191.3277,191.3267,191.3257,191.3247,191.3237,191.3227,191.3217,191.3207,191.3197,191.3187,191.3177,191.3167,191.3157,191.3147,191.3137,191.3127,191.3117,191.3107,191.3097,191.3087,191.3077,191.3067,191.3057,191.3047,191.3037,191.3027,191.3017,191.3007,191.2997,191.2987,191.2977,191.2967,191.2957,191.2947,191.2937,191.2927,191.2917,191.2907,191.2897,191.2887,191.2877,191.2867,191.2857,191.2847,191.2837,191.2827,191.2817,191.2807,191.2797,191.2787,191.2778,191.2768,191.2758,191.2748,191.2738,191.2728,191.2718,191.2708,191.2698,191.2688,191.2678,191.2668,191.2658,191.2648,191.2638,191.2628,191.2618,191.2608,191.2598,191.2588,191.2578,191.2568,191.2558,191.2548,191.2538,191.2528,191.2518,191.2508,191.2498,191.2488,191.2478,191.2468,191.2458,191.2448,191.2438,191.2428,191.2418,191.2408,191.2398,191.2388,191.2378,191.2368,191.2358,191.2348,191.2338,191.2328,191.2318,191.2308,191.2298,191.2288,191.2278,191.2268,191.2258,191.2248,191.2238,191.2228,191.2218,191.2208,191.2198,191.2188,191.2178,191.2168,191.2159,191.2149,191.2139,191.2129,191.2119,191.2109,191.2099,191.2089,191.2079,191.2069,191.2059,191.2049,191.2039,191.2029,191.2019,191.2009,191.1999,191.1989,191.1979,191.1969,191.1959,191.1949,191.1939,191.1929,191.1919,191.1909,191.1899,191.1889,191.1879,191.1869,191.1859,191.1849,191.1839,191.1829,191.1819,191.1809,191.1799,191.1789,191.1779,191.1769,191.1759,191.1749,191.1739,191.1729,191.1719,191.1709,191.1700,191.1690,191.1680,191.1670,191.1660,191.1650,191.1640,191.1630,191.1620,191.1610,191.1600,191.1590,191.1580,191.1570,191.1560,191.1550,191.1540,191.1530,191.1520,191.1510,191.1500
+-84.2199,-83.8263,-83.5873,-83.4763,-83.3347,-83.1363,-82.9526,-82.7907,-82.6517,-82.5081,-82.3434,-82.1731,-82.0152,-81.8442,-81.6781,-81.5035,-81.3189,-81.1453,-80.9479,-80.7166,-80.4805,-80.2576,-80.0154,-79.7745,-79.5331,-79.2708,-79.0223,-78.7696,-78.5143,-78.2663,-78.0306,-77.7939,-77.5474,-77.3052,-77.0608,-76.8218,-76.5960,-76.3836,-76.2000,-76.0408,-75.8820,-75.7082,-75.5401,-75.3814,-75.2245,-75.0756,-74.9290,-74.7857,-74.6402,-74.4885,-74.3357,-74.1819,-74.0301,-73.8803,-73.7341,-73.5902,-73.4430,-73.2884,-73.1235,-72.9534,-72.7854,-72.6239,-72.4665,-72.3109,-72.1601,-72.0076,-71.8531,-71.6991,-71.5476,-71.3983,-71.2479,-71.1022,-70.9592,-70.8212,-70.6887,-70.5504,-70.4106,-70.2752,-70.1413,-70.0039,-69.8615,-69.7196,-69.5787,-69.4409,-69.3045,-69.1676,-69.0316,-68.8967,-68.7627,-68.6290,-68.4960,-68.3637,-68.2303,-68.0934,-67.9550,-67.8229,-67.6899,-67.5539,-67.4189,-67.2833,-67.1524,-67.0290,-66.9070,-66.7816,-66.6563,-66.5345,-66.4139,-66.2915,-66.1674,-66.0460,-65.9275,-65.8081,-65.6932,-65.5799,-65.4619,-65.3397,-65.2187,-65.0994,-64.9832,-64.8747,-64.7643,-64.6459,-64.5276,-64.4097,-64.2910,-64.1744,-64.0621,-63.9515,-63.8391,-63.7246,-63.6096,-63.4964,-63.3820,-63.2698,-63.1623,-63.0570,-62.9536,-62.8528,-62.7536,-62.6502,-62.5459,-62.4470,-62.3489,-62.2521,-62.1559,-62.0598,-61.9637,-61.8683,-61.7744,-61.6807,-61.5889,-61.5004,-61.4126,-61.3222,-61.2315,-61.1429,-61.0545,-60.9647,-60.8754,-60.7883,-60.7023,-60.6152,-60.5285,-60.4427,-60.3589,-60.2768,-60.1952,-60.1133,-60.0317,-59.9503,-59.8684,-59.7858,-59.7049,-59.6262,-59.5480,-59.4692,-59.3906,-59.3115,-59.2293,-59.1458,-59.0610,-58.9744,-58.8842,-58.7883,-58.6870,-58.5801,-58.4676,-58.3500,-58.2260,-58.0932,-57.9475,-57.7821,-57.5807,-57.3127,-56.9311,-56.3724,-55.5762,-54.4900,-52.8989,-50.6550,-47.8140,-44.7327,-41.8344,-39.2646,-37.1132,-35.3642,-33.8891,-32.5885,-31.4197,-30.3824,-29.4803,-28.6998,-28.0154,-27.3968,-26.8251,-26.2972,-25.8151,-25.3765,-24.9738,-24.6002,-24.2532,-23.9349,-23.6489,-23.3978,-23.1785,-22.9835,-22.8104,-22.6606,-22.5350,-22.4301,-22.3385,-22.2550,-22.1782,-22.1102,-22.0528,-22.0043,-21.9605,-21.9177,-21.8768,-21.8404,-21.8095,-21.7835,-21.7607,-21.7400,-21.7217,-21.7080,-21.7002,-21.6964,-21.6952,-21.6966,-21.7007,-21.7077,-21.7173,-21.7294,-21.7437,-21.7609,-21.7823,-21.8093,-21.8408,-21.8750,-21.9113,-21.9512,-21.9959,-22.0460,-22.1010,-22.1572,-22.2139,-22.2754,-22.3455,-22.4247,-22.5121,-22.6064,-22.7092,-22.8265,-22.9654,-23.1286,-23.3137,-23.5212,-23.7552,-24.0197,-24.3169,-24.6447,-25.0006,-25.3831,-25.7946,-26.2436,-26.7372,-27.2768,-27.8619,-28.5000,-29.2088,-30.0172,-30.9532,-32.0276,-33.2322,-34.5700,-36.1048,-37.9215,-40.0827,-42.6465,-45.5963,-48.8195,-51.8555,-54.0226,-55.3675,-56.2058,-56.8636,-57.3138,-57.6353,-57.8795,-58.0825,-58.2641,-58.4325,-58.5908,-58.7400,-58.8795,-59.0121,-59.1391,-59.2587,-59.3723,-59.4822,-59.5883,-59.6902,-59.7891,-59.8857,-59.9804,-60.0722,-60.1615,-60.2510,-60.3408,-60.4282,-60.5160,-60.6052,-60.6928,-60.7783,-60.8646,-60.9514,-61.0379,-61.1265,-61.2161,-61.3060,-61.3968,-61.4873,-61.5786,-61.6711,-61.7635,-61.8556,-61.9498,-62.0440,-62.1367,-62.2314,-62.3257,-62.4202,-62.5189,-62.6192,-62.7182,-62.8164,-62.9166,-63.0155,-63.1148,-63.2153,-63.3163,-63.4199,-63.5122,-63.6184,-63.7262,-63.8324,-63.9398,-64.0496,-64.1587,-64.2657,-64.3741,-64.4848,-64.5979,-64.7128,-64.8296,-64.9457,-65.0611,-65.1753,-65.2877,-65.4047,-65.5206,-65.6356,-65.7530,-65.8686,-65.9845,-66.1002,-66.2164,-66.3350,-66.4555,-66.5741,-66.6874,-66.8014,-66.9168,-67.0317,-67.1474,-67.2673,-67.3836,-67.4974,-67.6206,-67.7476,-67.8791,-68.0141,-68.1449,-68.2726,-68.3968,-68.5186,-68.6374,-68.7596,-68.8865,-69.0150,-69.1519,-69.2906,-69.4281,-69.5609,-69.6887,-69.8225,-69.9634,-70.1042,-70.2353,-70.3610,-70.4860,-70.6059,-70.7232,-70.8431,-70.9693,-71.0990,-71.2361,-71.3709,-71.5056,-71.6495,-71.7853,-71.9139,-72.0421,-72.1814,-72.3291,-72.4607,-72.5843,-72.7129,-72.8420,-72.9746,-73.1119,-73.2572,-73.4060,-73.5541,-73.7032,-73.8541,-74.0093,-74.1726,-74.3281,-74.4738,-74.6243,-74.7756,-74.9255,-75.0673,-75.2071,-75.3498,-75.4882,-75.6185,-75.7491,-75.8902,-76.0439,-76.2062,-76.3703,-76.5552,-76.7309,-76.8868,-77.0430,-77.1612,-77.2570,-77.3766,-77.5093,-77.6503,-77.8075,-77.9780,-78.1681,-78.3674,-78.5736,-78.7928,-79.0109,-79.2109,-79.3922,-79.5535,-79.7170,-79.8660,-80.0148,-80.2047,-80.3878,-80.6278,-80.9170,-81.1619,-81.4063,-81.6618,-81.8837,-82.1236,-82.3448,-82.5435,-82.7605,-82.9195,-83.0653,-83.2811
+
+DP-600G_BICHM33 FEC Threshold Coarse Search( Lane 0 / DP-600G_BICHM33 / 191.40 THz / 25 °C / OSNR Sensitivity )     (Chan 1/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+31.682224	4.000000	0.015577	0.014111	0.014844	0.000000	0.000000
+31.110599	5.000000	0.016762	0.015263	0.016013	0.000000	0.000000
+30.501670	4.000000	0.018150	0.016620	0.017385	0.000000	0.000000
+29.904974	4.000000	0.019692	0.018141	0.018916	0.000000	0.000000
+29.271999	4.000000	0.021739	0.020194	0.020966	0.000000	0.000000
+28.589420	2.000000	0.024249	0.022668	0.023459	4.056238E-9	5934.000000
+
+DP-600G_BICHM33 FEC Threshold( Lane 0 / DP-600G_BICHM33 / 191.40 THz / 25 °C / OSNR Sensitivity )     (Chan 1/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+28.457791	1.000000	0.024791	0.023471	0.024131	8.167496E-7	597357.000000
+28.530731	1.000000	0.024470	0.023082	0.023776	6.252263E-8	45728.000000
+28.624800	1.000000	0.024064	0.022756	0.023410	2.425541E-9	1774.000000
+28.707971	2.000000	0.023662	0.022417	0.023040	4.647675E-11	34.000000
+28.799521	2.000000	0.023290	0.022026	0.022658	6.835588E-13	1.000000
+28.899804	6.000000	0.022966	0.021733	0.022350	0.000000	0.000000
+*****	Execution_Time	231.8799982592	*****
+
+DP-16QAM FEC Threshold Smart Search( Lane 0 / DP-16QAM / 193.60 THz / 25 °C / OSNR Sensitivity )     (Chan 2/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+23.004581	7.000000	0.013575	0.014195	0.013885	0.000000	0.000000
+21.730484	6.000000	0.021487	0.022370	0.021928	0.000000	0.000000
+
+DP-16QAM FEC Threshold( Lane 0 / DP-16QAM / 193.60 THz / 25 °C / OSNR Sensitivity )     (Chan 2/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+19.914130	2.000000	0.039364	0.041011	0.040188	3.631567E-6	3900584.000000
+19.983873	1.000000	0.038322	0.040192	0.039257	1.283148E-8	6891.000000
+20.099265	6.000000	0.037089	0.038976	0.038032	0.000000	0.000000
+*****	Execution_Time	165.591004897	*****
+
+DP-32QAM FEC Threshold Smart Search( Lane 0 / DP-32QAM / 193.60 THz / 25 °C / OSNR Sensitivity )     (Chan 2/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+27.766038	6.000000	0.017303	0.016999	0.017151	0.000000	0.000000
+26.536213	6.000000	0.022701	0.022768	0.022735	0.000000	0.000000
+
+DP-32QAM FEC Threshold( Lane 0 / DP-32QAM / 193.60 THz / 25 °C / OSNR Sensitivity )     (Chan 2/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+24.066077	1.000000	0.037247	0.037844	0.037545	4.069010E-6	2731520.000000
+24.154302	1.000000	0.038897	0.039732	0.039315	4.069010E-6	2731520.000000
+24.250543	1.000000	0.038627	0.039434	0.039031	5.923479E-7	397549.000000
+24.362468	2.000000	0.037726	0.038651	0.038188	3.429921E-9	4605.000000
+24.471153	5.000000	0.036848	0.037468	0.037158	4.965502E-13	1.000000
+24.559560	7.000000	0.036082	0.036594	0.036338	0.000000	0.000000
+*****	Execution_Time	177.4861410094	*****
+
+Tx OSNR In-Band ( Lane 0 / DP-600G_BICHM33 / 193.60 THz / 25 °C )     (Chan 2/3)
+X	Y
+193.8500,193.8490,193.8480,193.8470,193.8460,193.8450,193.8440,193.8430,193.8420,193.8410,193.8400,193.8390,193.8380,193.8370,193.8360,193.8350,193.8340,193.8330,193.8320,193.8310,193.8300,193.8289,193.8279,193.8269,193.8259,193.8249,193.8239,193.8229,193.8219,193.8209,193.8199,193.8189,193.8179,193.8169,193.8159,193.8149,193.8139,193.8129,193.8119,193.8109,193.8099,193.8089,193.8079,193.8069,193.8059,193.8049,193.8039,193.8029,193.8019,193.8009,193.7999,193.7989,193.7979,193.7969,193.7959,193.7949,193.7939,193.7929,193.7919,193.7909,193.7899,193.7889,193.7879,193.7869,193.7859,193.7849,193.7839,193.7829,193.7818,193.7808,193.7798,193.7788,193.7778,193.7768,193.7758,193.7748,193.7738,193.7728,193.7718,193.7708,193.7698,193.7688,193.7678,193.7668,193.7658,193.7648,193.7638,193.7628,193.7618,193.7608,193.7598,193.7588,193.7578,193.7568,193.7558,193.7548,193.7538,193.7528,193.7518,193.7508,193.7498,193.7488,193.7478,193.7468,193.7458,193.7448,193.7438,193.7428,193.7418,193.7408,193.7398,193.7388,193.7378,193.7368,193.7358,193.7348,193.7338,193.7328,193.7318,193.7308,193.7298,193.7288,193.7278,193.7268,193.7258,193.7248,193.7238,193.7228,193.7218,193.7208,193.7198,193.7187,193.7177,193.7167,193.7157,193.7147,193.7137,193.7127,193.7117,193.7107,193.7097,193.7087,193.7077,193.7067,193.7057,193.7047,193.7037,193.7027,193.7017,193.7007,193.6997,193.6987,193.6977,193.6967,193.6957,193.6947,193.6937,193.6927,193.6917,193.6907,193.6897,193.6887,193.6877,193.6867,193.6857,193.6847,193.6837,193.6827,193.6817,193.6807,193.6797,193.6787,193.6777,193.6767,193.6757,193.6747,193.6737,193.6727,193.6717,193.6707,193.6697,193.6687,193.6677,193.6667,193.6657,193.6647,193.6637,193.6627,193.6617,193.6607,193.6597,193.6587,193.6577,193.6567,193.6557,193.6547,193.6537,193.6527,193.6517,193.6507,193.6497,193.6487,193.6477,193.6467,193.6457,193.6447,193.6437,193.6427,193.6417,193.6407,193.6397,193.6387,193.6377,193.6367,193.6357,193.6347,193.6337,193.6327,193.6317,193.6307,193.6297,193.6287,193.6277,193.6267,193.6257,193.6247,193.6237,193.6227,193.6217,193.6207,193.6197,193.6187,193.6177,193.6167,193.6157,193.6147,193.6137,193.6127,193.6117,193.6107,193.6097,193.6087,193.6077,193.6067,193.6057,193.6047,193.6037,193.6027,193.6017,193.6007,193.5997,193.5987,193.5977,193.5967,193.5957,193.5947,193.5937,193.5927,193.5917,193.5907,193.5897,193.5887,193.5877,193.5867,193.5857,193.5847,193.5837,193.5827,193.5817,193.5807,193.5797,193.5787,193.5777,193.5767,193.5757,193.5747,193.5737,193.5727,193.5717,193.5707,193.5697,193.5687,193.5677,193.5667,193.5657,193.5647,193.5637,193.5627,193.5617,193.5607,193.5597,193.5587,193.5577,193.5567,193.5557,193.5547,193.5537,193.5527,193.5517,193.5507,193.5497,193.5487,193.5477,193.5467,193.5457,193.5447,193.5437,193.5427,193.5417,193.5407,193.5397,193.5387,193.5377,193.5367,193.5357,193.5347,193.5337,193.5327,193.5317,193.5307,193.5297,193.5287,193.5277,193.5267,193.5257,193.5247,193.5237,193.5227,193.5217,193.5207,193.5197,193.5187,193.5177,193.5167,193.5157,193.5147,193.5137,193.5127,193.5117,193.5107,193.5097,193.5087,193.5077,193.5067,193.5057,193.5047,193.5037,193.5027,193.5017,193.5007,193.4997,193.4987,193.4977,193.4967,193.4957,193.4947,193.4937,193.4927,193.4917,193.4907,193.4897,193.4887,193.4877,193.4867,193.4857,193.4847,193.4837,193.4827,193.4817,193.4808,193.4798,193.4788,193.4778,193.4768,193.4758,193.4748,193.4738,193.4728,193.4718,193.4708,193.4698,193.4688,193.4678,193.4668,193.4658,193.4648,193.4638,193.4628,193.4618,193.4608,193.4598,193.4588,193.4578,193.4568,193.4558,193.4548,193.4538,193.4528,193.4518,193.4508,193.4498,193.4488,193.4478,193.4468,193.4458,193.4448,193.4438,193.4428,193.4418,193.4408,193.4398,193.4388,193.4378,193.4368,193.4358,193.4348,193.4338,193.4328,193.4318,193.4308,193.4298,193.4288,193.4278,193.4268,193.4258,193.4248,193.4238,193.4228,193.4218,193.4208,193.4198,193.4188,193.4178,193.4168,193.4159,193.4149,193.4139,193.4129,193.4119,193.4109,193.4099,193.4089,193.4079,193.4069,193.4059,193.4049,193.4039,193.4029,193.4019,193.4009,193.3999,193.3989,193.3979,193.3969,193.3959,193.3949,193.3939,193.3929,193.3919,193.3909,193.3899,193.3889,193.3879,193.3869,193.3859,193.3849,193.3839,193.3829,193.3819,193.3809,193.3799,193.3789,193.3779,193.3769,193.3759,193.3749,193.3739,193.3729,193.3719,193.3709,193.3700,193.3690,193.3680,193.3670,193.3660,193.3650,193.3640,193.3630,193.3620,193.3610,193.3600,193.3590,193.3580,193.3570,193.3560,193.3550,193.3540,193.3530,193.3520,193.3510,193.3500
+-83.2984,-83.2486,-83.1342,-82.9537,-82.7742,-82.6021,-82.4111,-82.2192,-82.0407,-81.8782,-81.7254,-81.5739,-81.4360,-81.2988,-81.1460,-80.9849,-80.8250,-80.6684,-80.4846,-80.2745,-80.0800,-79.9024,-79.7349,-79.5817,-79.4203,-79.2580,-79.1079,-78.9613,-78.8033,-78.6361,-78.4682,-78.3019,-78.1306,-77.9591,-77.7925,-77.6285,-77.4599,-77.2885,-77.1375,-77.0048,-76.8652,-76.7247,-76.5821,-76.4387,-76.2976,-76.1519,-76.0064,-75.8589,-75.7033,-75.5395,-75.3638,-75.1835,-75.0070,-74.8333,-74.6642,-74.4997,-74.3349,-74.1728,-74.0106,-73.8486,-73.6868,-73.5246,-73.3648,-73.2092,-73.0538,-72.9004,-72.7457,-72.5910,-72.4383,-72.2898,-72.1483,-72.0078,-71.8666,-71.7272,-71.5869,-71.4470,-71.3090,-71.1722,-71.0340,-70.8928,-70.7492,-70.6059,-70.4622,-70.3172,-70.1743,-70.0315,-69.8879,-69.7470,-69.6086,-69.4695,-69.3289,-69.1902,-69.0511,-68.9162,-68.7802,-68.6392,-68.5012,-68.3640,-68.2243,-68.0839,-67.9477,-67.8172,-67.6916,-67.5663,-67.4373,-67.3062,-67.1751,-67.0461,-66.9211,-66.8003,-66.6769,-66.5516,-66.4289,-66.3027,-66.1783,-66.0549,-65.9298,-65.8067,-65.6873,-65.5677,-65.4454,-65.3218,-65.1994,-65.0801,-64.9610,-64.8429,-64.7267,-64.6091,-64.4888,-64.3690,-64.2531,-64.1402,-64.0291,-63.9177,-63.8051,-63.6965,-63.5920,-63.4880,-63.3838,-63.2802,-63.1756,-63.0717,-62.9677,-62.8629,-62.7612,-62.6604,-62.5593,-62.4589,-62.3607,-62.2648,-62.1689,-62.0726,-61.9751,-61.8784,-61.7843,-61.6909,-61.5963,-61.5013,-61.4064,-61.3127,-61.2218,-61.1319,-61.0420,-60.9533,-60.8655,-60.7782,-60.6921,-60.6070,-60.5218,-60.4365,-60.3519,-60.2669,-60.1826,-60.1000,-60.0176,-59.9347,-59.8514,-59.7667,-59.6803,-59.5924,-59.5023,-59.4102,-59.3156,-59.2164,-59.1115,-59.0021,-58.8879,-58.7681,-58.6413,-58.5019,-58.3415,-58.1431,-57.8699,-57.4791,-56.9432,-56.2438,-55.3397,-54.0943,-52.1887,-49.5553,-46.5591,-43.7525,-41.2944,-39.0929,-37.1526,-35.5065,-34.0976,-32.8466,-31.7238,-30.7369,-29.8780,-29.1256,-28.4572,-27.8492,-27.2880,-26.7708,-26.2985,-25.8684,-25.4734,-25.1069,-24.7682,-24.4585,-24.1788,-23.9312,-23.7151,-23.5244,-23.3553,-23.2087,-23.0852,-22.9794,-22.8856,-22.8006,-22.7233,-22.6550,-22.5966,-22.5464,-22.5004,-22.4557,-22.4131,-22.3757,-22.3439,-22.3165,-22.2922,-22.2700,-22.2500,-22.2338,-22.2229,-22.2162,-22.2122,-22.2103,-22.2108,-22.2141,-22.2202,-22.2290,-22.2402,-22.2541,-22.2718,-22.2943,-22.3207,-22.3498,-22.3815,-22.4168,-22.4567,-22.5018,-22.5511,-22.6023,-22.6553,-22.7141,-22.7821,-22.8588,-22.9428,-23.0343,-23.1370,-23.2567,-23.3984,-23.5628,-23.7476,-23.9539,-24.1873,-24.4530,-24.7513,-25.0795,-25.4358,-25.8195,-26.2341,-26.6878,-27.1862,-27.7286,-28.3161,-28.9597,-29.6808,-30.5041,-31.4437,-32.5007,-33.6716,-34.9775,-36.4949,-38.3213,-40.5124,-43.0299,-45.7835,-48.7262,-51.5519,-53.8570,-55.3806,-56.2478,-56.9323,-57.3875,-57.7118,-57.9590,-58.1595,-58.3298,-58.4831,-58.6239,-58.7542,-58.8779,-58.9974,-59.1115,-59.2197,-59.3231,-59.4212,-59.5143,-59.6055,-59.6956,-59.7827,-59.8664,-59.9477,-60.0265,-60.1051,-60.1850,-60.2650,-60.3435,-60.4214,-60.4989,-60.5769,-60.6551,-60.7328,-60.8120,-60.8907,-60.9697,-61.0509,-61.1320,-61.2129,-61.2938,-61.3751,-61.4585,-61.5422,-61.6270,-61.7135,-61.7986,-61.8829,-61.9710,-62.0605,-62.1492,-62.2385,-62.3293,-62.4213,-62.5147,-62.6097,-62.7023,-62.7911,-62.8826,-62.9768,-63.0682,-63.1604,-63.2548,-63.3505,-63.4487,-63.5454,-63.6420,-63.7427,-63.8433,-63.9454,-64.0494,-64.1532,-64.2571,-64.3613,-64.4632,-64.5648,-64.6705,-64.7796,-64.8857,-64.9868,-65.0927,-65.2046,-65.3148,-65.4219,-65.5292,-65.6389,-65.7508,-65.8618,-65.9708,-66.0758,-66.1826,-66.2924,-66.4023,-66.5142,-66.6257,-66.7384,-66.8526,-66.9678,-67.0850,-67.2017,-67.3163,-67.4272,-67.5416,-67.6639,-67.7877,-67.9113,-68.0338,-68.1548,-68.2755,-68.3959,-68.5140,-68.6296,-68.7459,-68.8630,-68.9804,-69.0959,-69.2097,-69.3181,-69.4285,-69.5572,-69.6961,-69.8354,-69.9708,-70.0995,-70.2217,-70.3399,-70.4581,-70.5751,-70.6937,-70.8276,-70.9585,-71.0868,-71.2142,-71.3439,-71.4784,-71.6135,-71.7492,-71.8856,-72.0243,-72.1644,-72.3035,-72.4407,-72.5725,-72.6989,-72.8279,-72.9617,-73.0935,-73.2387,-73.3819,-73.5027,-73.6303,-73.7637,-73.8960,-74.0249,-74.1515,-74.2846,-74.4285,-74.5751,-74.7205,-74.8757,-75.0422,-75.2091,-75.3746,-75.5485,-75.7193,-75.8783,-76.0356,-76.1785,-76.3130,-76.4517,-76.6209,-76.8051,-76.9765,-77.1596,-77.3511,-77.5295,-77.6762,-77.8189,-77.9775,-78.1192,-78.2561,-78.3972,-78.5393,-78.7007,-78.8617,-79.0384,-79.2362,-79.5841,-80.0579,-80.3707,-80.5319,-80.6207,-80.7100,-80.8496,-81.0725,-81.3272,-81.4756,-81.4791
+
+DP-600G_BICHM33 FEC Threshold Coarse Search( Lane 0 / DP-600G_BICHM33 / 193.60 THz / 25 °C / OSNR Sensitivity )     (Chan 2/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+31.679926	4.000000	0.015408	0.014564	0.014986	0.000000	0.000000
+31.118161	5.000000	0.016469	0.015663	0.016066	0.000000	0.000000
+30.519136	5.000000	0.017859	0.017065	0.017462	0.000000	0.000000
+29.902428	4.000000	0.019520	0.018760	0.019140	0.000000	0.000000
+29.286478	4.000000	0.021534	0.020725	0.021130	0.000000	0.000000
+28.624706	1.000000	0.024002	0.023158	0.023580	1.215094E-8	8889.000000
+
+DP-600G_BICHM33 FEC Threshold( Lane 0 / DP-600G_BICHM33 / 193.60 THz / 25 °C / OSNR Sensitivity )     (Chan 2/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+28.512683	1.000000	0.024375	0.023859	0.024117	7.602475E-7	556158.000000
+28.601477	2.000000	0.024047	0.023523	0.023785	6.888674E-8	50394.000000
+28.680427	2.000000	0.023693	0.023187	0.023440	3.438596E-9	5031.000000
+28.761987	2.000000	0.023305	0.022748	0.023027	3.007319E-11	22.000000
+28.892456	2.000000	0.023014	0.022518	0.022766	2.733926E-12	2.000000
+28.945508	7.000000	0.022565	0.022032	0.022299	0.000000	0.000000
+*****	Execution_Time	223.1040702874	*****
+
+DP-16QAM FEC Threshold Smart Search( Lane 0 / DP-16QAM / 195.80 THz / 25 °C / OSNR Sensitivity )     (Chan 3/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+23.019888	7.000000	0.013799	0.012605	0.013202	0.000000	0.000000
+21.752693	6.000000	0.021726	0.020402	0.021064	0.000000	0.000000
+
+DP-16QAM FEC Threshold( Lane 0 / DP-16QAM / 195.80 THz / 25 °C / OSNR Sensitivity )     (Chan 3/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+19.856355	2.000000	0.040970	0.038955	0.039963	1.254205E-6	1346955.000000
+19.932523	2.000000	0.039734	0.037836	0.038785	3.007232E-10	323.000000
+20.037235	7.000000	0.038440	0.036634	0.037537	0.000000	0.000000
+*****	Execution_Time	146.3602470002	*****
+
+DP-32QAM FEC Threshold Smart Search( Lane 0 / DP-32QAM / 195.80 THz / 25 °C / OSNR Sensitivity )     (Chan 3/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+27.753760	6.000000	0.017900	0.015934	0.016917	0.000000	0.000000
+26.567270	6.000000	0.023149	0.021016	0.022082	0.000000	0.000000
+
+DP-32QAM FEC Threshold( Lane 0 / DP-32QAM / 195.80 THz / 25 °C / OSNR Sensitivity )     (Chan 3/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+23.964174	1.000000	0.038820	0.036542	0.037681	4.069010E-6	2731520.000000
+24.043414	2.000000	0.040534	0.038004	0.039269	4.069010E-6	5463040.000000
+24.138058	2.000000	0.040454	0.037833	0.039143	1.241863E-6	1667321.000000
+24.228032	2.000000	0.039552	0.037033	0.038292	8.298099E-9	11141.000000
+24.346695	1.000000	0.038754	0.036157	0.037455	1.043000E-11	7.000000
+24.444087	6.000000	0.037707	0.035321	0.036514	0.000000	0.000000
+*****	Execution_Time	170.1337802336	*****
+
+Tx OSNR In-Band ( Lane 0 / DP-600G_BICHM33 / 195.80 THz / 25 °C )     (Chan 3/3)
+X	Y
+196.0500,196.0490,196.0480,196.0470,196.0460,196.0450,196.0440,196.0430,196.0420,196.0410,196.0400,196.0390,196.0380,196.0370,196.0360,196.0350,196.0340,196.0330,196.0320,196.0310,196.0300,196.0289,196.0279,196.0269,196.0259,196.0249,196.0239,196.0229,196.0219,196.0209,196.0199,196.0189,196.0179,196.0169,196.0159,196.0149,196.0139,196.0129,196.0119,196.0109,196.0099,196.0089,196.0079,196.0069,196.0059,196.0049,196.0039,196.0029,196.0019,196.0009,195.9999,195.9989,195.9979,195.9969,195.9959,195.9949,195.9939,195.9929,195.9919,195.9909,195.9899,195.9889,195.9879,195.9869,195.9859,195.9849,195.9839,195.9829,195.9819,195.9808,195.9798,195.9788,195.9778,195.9768,195.9758,195.9748,195.9738,195.9728,195.9718,195.9708,195.9698,195.9688,195.9678,195.9668,195.9658,195.9648,195.9638,195.9628,195.9618,195.9608,195.9598,195.9588,195.9578,195.9568,195.9558,195.9548,195.9538,195.9528,195.9518,195.9508,195.9498,195.9488,195.9478,195.9468,195.9458,195.9448,195.9438,195.9428,195.9418,195.9408,195.9398,195.9388,195.9378,195.9368,195.9358,195.9348,195.9338,195.9328,195.9318,195.9308,195.9298,195.9288,195.9278,195.9268,195.9258,195.9248,195.9238,195.9228,195.9218,195.9208,195.9198,195.9188,195.9178,195.9168,195.9157,195.9147,195.9137,195.9127,195.9117,195.9107,195.9097,195.9087,195.9077,195.9067,195.9057,195.9047,195.9037,195.9027,195.9017,195.9007,195.8997,195.8987,195.8977,195.8967,195.8957,195.8947,195.8937,195.8927,195.8917,195.8907,195.8897,195.8887,195.8877,195.8867,195.8857,195.8847,195.8837,195.8827,195.8817,195.8807,195.8797,195.8787,195.8777,195.8767,195.8757,195.8747,195.8737,195.8727,195.8717,195.8707,195.8697,195.8687,195.8677,195.8667,195.8657,195.8647,195.8637,195.8627,195.8617,195.8607,195.8597,195.8587,195.8577,195.8567,195.8557,195.8547,195.8537,195.8527,195.8517,195.8507,195.8497,195.8487,195.8477,195.8467,195.8457,195.8447,195.8437,195.8427,195.8417,195.8407,195.8397,195.8387,195.8377,195.8367,195.8357,195.8347,195.8337,195.8327,195.8317,195.8307,195.8297,195.8287,195.8277,195.8267,195.8257,195.8247,195.8237,195.8227,195.8217,195.8207,195.8197,195.8187,195.8177,195.8167,195.8157,195.8147,195.8137,195.8127,195.8117,195.8107,195.8097,195.8087,195.8077,195.8067,195.8057,195.8047,195.8037,195.8027,195.8017,195.8007,195.7997,195.7987,195.7977,195.7967,195.7957,195.7947,195.7937,195.7927,195.7917,195.7907,195.7897,195.7887,195.7877,195.7867,195.7857,195.7847,195.7837,195.7827,195.7817,195.7807,195.7797,195.7787,195.7777,195.7767,195.7757,195.7747,195.7737,195.7727,195.7717,195.7707,195.7697,195.7687,195.7677,195.7667,195.7657,195.7647,195.7637,195.7627,195.7617,195.7607,195.7597,195.7587,195.7577,195.7567,195.7557,195.7547,195.7537,195.7527,195.7517,195.7507,195.7497,195.7487,195.7477,195.7467,195.7457,195.7447,195.7437,195.7427,195.7417,195.7407,195.7397,195.7387,195.7377,195.7367,195.7357,195.7347,195.7337,195.7327,195.7317,195.7307,195.7297,195.7287,195.7277,195.7267,195.7257,195.7247,195.7237,195.7227,195.7217,195.7207,195.7197,195.7187,195.7177,195.7167,195.7157,195.7147,195.7137,195.7127,195.7117,195.7107,195.7097,195.7087,195.7077,195.7067,195.7057,195.7047,195.7037,195.7027,195.7017,195.7007,195.6997,195.6987,195.6977,195.6967,195.6957,195.6947,195.6937,195.6927,195.6917,195.6907,195.6897,195.6887,195.6877,195.6867,195.6857,195.6847,195.6838,195.6828,195.6818,195.6808,195.6798,195.6788,195.6778,195.6768,195.6758,195.6748,195.6738,195.6728,195.6718,195.6708,195.6698,195.6688,195.6678,195.6668,195.6658,195.6648,195.6638,195.6628,195.6618,195.6608,195.6598,195.6588,195.6578,195.6568,195.6558,195.6548,195.6538,195.6528,195.6518,195.6508,195.6498,195.6488,195.6478,195.6468,195.6458,195.6448,195.6438,195.6428,195.6418,195.6408,195.6398,195.6388,195.6378,195.6368,195.6358,195.6348,195.6338,195.6328,195.6318,195.6308,195.6298,195.6288,195.6278,195.6268,195.6258,195.6248,195.6238,195.6228,195.6218,195.6208,195.6198,195.6188,195.6179,195.6169,195.6159,195.6149,195.6139,195.6129,195.6119,195.6109,195.6099,195.6089,195.6079,195.6069,195.6059,195.6049,195.6039,195.6029,195.6019,195.6009,195.5999,195.5989,195.5979,195.5969,195.5959,195.5949,195.5939,195.5929,195.5919,195.5909,195.5899,195.5889,195.5879,195.5869,195.5859,195.5849,195.5839,195.5829,195.5819,195.5809,195.5799,195.5789,195.5779,195.5769,195.5759,195.5749,195.5739,195.5729,195.5719,195.5709,195.5700,195.5690,195.5680,195.5670,195.5660,195.5650,195.5640,195.5630,195.5620,195.5610,195.5600,195.5590,195.5580,195.5570,195.5560,195.5550,195.5540,195.5530,195.5520,195.5510,195.5500
+-85.3744,-85.2409,-85.0739,-84.8231,-84.5524,-84.3192,-84.0815,-83.8232,-83.5672,-83.3347,-81.9576,-81.8469,-81.6817,-81.5362,-81.4181,-81.3332,-81.2160,-81.0921,-80.9869,-80.8659,-80.7247,-80.5889,-80.4582,-80.3121,-80.1508,-80.0268,-79.9152,-79.7465,-79.5557,-79.3467,-79.1307,-78.9447,-78.7736,-78.6215,-78.4681,-78.2927,-78.1137,-77.9415,-77.7677,-77.5842,-77.3982,-77.2183,-77.0511,-76.8975,-76.7499,-76.5967,-76.4424,-76.2849,-76.1266,-75.9676,-75.8051,-75.6338,-75.4583,-75.2998,-75.1468,-74.9715,-74.7964,-74.6221,-74.4527,-74.2958,-74.1409,-73.9890,-73.8334,-73.6668,-73.4958,-73.3278,-73.1640,-73.0029,-72.8560,-72.7067,-72.5478,-72.4000,-72.2530,-72.0913,-71.9307,-71.7841,-71.6387,-71.4944,-71.3519,-71.2101,-71.0690,-70.9252,-70.7832,-70.6433,-70.5044,-70.3659,-70.2291,-70.0901,-69.9407,-69.7966,-69.6555,-69.5049,-69.3566,-69.2120,-69.0680,-68.9264,-68.7872,-68.6491,-68.5098,-68.3697,-68.2264,-68.0830,-67.9479,-67.8118,-67.6701,-67.5283,-67.3868,-67.2478,-67.1134,-66.9792,-66.8445,-66.7120,-66.5806,-66.4485,-66.3183,-66.1949,-66.0687,-65.9388,-65.8120,-65.6854,-65.5616,-65.4363,-65.3061,-65.1789,-65.0563,-64.9339,-64.8105,-64.6904,-64.5695,-64.4478,-64.3272,-64.2066,-64.0883,-63.9735,-63.8596,-63.7415,-63.6242,-63.5090,-63.3933,-63.2787,-63.1652,-63.0538,-62.9430,-62.8318,-62.7215,-62.6125,-62.5055,-62.3992,-62.2949,-62.1913,-62.0886,-61.9877,-61.8852,-61.7821,-61.6801,-61.5793,-61.4797,-61.3814,-61.2831,-61.1858,-61.0903,-60.9953,-60.9013,-60.8091,-60.7169,-60.6248,-60.5336,-60.4425,-60.3529,-60.2647,-60.1759,-60.0872,-60.0003,-59.9143,-59.8275,-59.7410,-59.6548,-59.5662,-59.4765,-59.3859,-59.2924,-59.1964,-59.0965,-58.9916,-58.8830,-58.7694,-58.6504,-58.5259,-58.3878,-58.2230,-58.0123,-57.7347,-57.3623,-56.8597,-56.2028,-55.3533,-54.2247,-52.6484,-50.5541,-48.0745,-45.5110,-43.0578,-40.7475,-38.6383,-36.8134,-35.2769,-33.9590,-32.7919,-31.7347,-30.7791,-29.9244,-29.1653,-28.4926,-27.8874,-27.3308,-26.8126,-26.3337,-25.8963,-25.4973,-25.1300,-24.7903,-24.4787,-24.1971,-23.9472,-23.7268,-23.5309,-23.3556,-23.2003,-23.0652,-22.9490,-22.8476,-22.7569,-22.6738,-22.5980,-22.5312,-22.4737,-22.4217,-22.3709,-22.3217,-22.2765,-22.2363,-22.2009,-22.1695,-22.1413,-22.1157,-22.0939,-22.0774,-22.0656,-22.0576,-22.0524,-22.0501,-22.0507,-22.0542,-22.0604,-22.0693,-22.0815,-22.0989,-22.1221,-22.1487,-22.1781,-22.2110,-22.2476,-22.2890,-22.3357,-22.3862,-22.4378,-22.4910,-22.5499,-22.6176,-22.6942,-22.7791,-22.8736,-22.9818,-23.1065,-23.2495,-23.4148,-23.6032,-23.8157,-24.0558,-24.3264,-24.6280,-24.9587,-25.3176,-25.7055,-26.1267,-26.5886,-27.0951,-27.6464,-28.2454,-28.9033,-29.6401,-30.4720,-31.4055,-32.4574,-33.6547,-35.0038,-36.5296,-38.2963,-40.3626,-42.7164,-45.2855,-48.0826,-50.8819,-53.1627,-54.6495,-55.5609,-56.2037,-56.7494,-57.1438,-57.4339,-57.6490,-57.8171,-57.9615,-58.0930,-58.2157,-58.3323,-58.4433,-58.5488,-58.6504,-58.7465,-58.8370,-58.9244,-59.0091,-59.0916,-59.1714,-59.2486,-59.3241,-59.3987,-59.4728,-59.5466,-59.6201,-59.6950,-59.7706,-59.8454,-59.9189,-59.9931,-60.0675,-60.1404,-60.2134,-60.2872,-60.3618,-60.4369,-60.5134,-60.5906,-60.6694,-60.7488,-60.8287,-60.9094,-60.9902,-61.0712,-61.1538,-61.2355,-61.3163,-61.3992,-61.4856,-61.5718,-61.6574,-61.7446,-61.8319,-61.9187,-62.0070,-62.0975,-62.1880,-62.2779,-62.3667,-62.4552,-62.5452,-62.6368,-62.7298,-62.8244,-62.9168,-63.0093,-63.1054,-63.2004,-63.2934,-63.3877,-63.4874,-63.5880,-63.6869,-63.7888,-63.8910,-63.9917,-64.0942,-64.1972,-64.3025,-64.4089,-64.5163,-64.6246,-64.7300,-64.8343,-64.9410,-65.0522,-65.1641,-65.2769,-65.3923,-65.5050,-65.6119,-65.7212,-65.8375,-65.9511,-66.0616,-66.1711,-66.2806,-66.3939,-66.5089,-66.6241,-66.7377,-66.8513,-66.9689,-67.0878,-67.2093,-67.3260,-67.4376,-67.5536,-67.6725,-67.7969,-67.9241,-68.0469,-68.1660,-68.2870,-68.4140,-68.5450,-68.6752,-68.8036,-68.9293,-69.0545,-69.1833,-69.3116,-69.4438,-69.5760,-69.7024,-69.8320,-69.9634,-70.0917,-70.2200,-70.3409,-70.4631,-70.5962,-70.7324,-70.8695,-71.0083,-71.1505,-71.2927,-71.4308,-71.5664,-71.6977,-71.8282,-71.9615,-72.0988,-72.2408,-72.3881,-72.5389,-72.6913,-72.8462,-73.0011,-73.1683,-73.3415,-73.4935,-73.6395,-73.7897,-73.9426,-74.1022,-74.2690,-74.4414,-74.6142,-74.7867,-74.9605,-75.1353,-75.3076,-75.4749,-75.6347,-75.7816,-75.9258,-76.0719,-76.2170,-76.3586,-76.4935,-76.6406,-76.7949,-76.9515,-77.1151,-77.2683,-77.4200,-77.5665,-77.7127,-77.8690,-78.0371,-78.2013,-78.3557,-78.5113,-78.7060,-78.9407,-79.1550,-79.3462,-79.5160,-79.6904,-79.8985,-80.1217,-80.3188,-80.4624,-80.5782
+
+DP-600G_BICHM33 FEC Threshold Coarse Search( Lane 0 / DP-600G_BICHM33 / 195.80 THz / 25 °C / OSNR Sensitivity )     (Chan 3/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+31.750216	4.000000	0.015687	0.014054	0.014871	0.000000	0.000000
+31.235925	5.000000	0.016672	0.014998	0.015835	0.000000	0.000000
+30.677932	4.000000	0.017864	0.016073	0.016969	0.000000	0.000000
+30.123865	5.000000	0.019362	0.017479	0.018421	0.000000	0.000000
+29.520644	5.000000	0.021163	0.019171	0.020167	0.000000	0.000000
+28.901815	4.000000	0.023265	0.021206	0.022236	0.000000	0.000000
+28.255523	1.000000	0.025209	0.023170	0.024189	4.069010E-6	2976679.000000
+
+DP-600G_BICHM33 FEC Threshold( Lane 0 / DP-600G_BICHM33 / 195.80 THz / 25 °C / OSNR Sensitivity )     (Chan 3/3)
+OSNR_DB_	TIME_SEC	BER_XPOL	BER_YPOL	BER_TOTAL	BER_UNCOR	UCB
+28.033228	1.000000	0.023825	0.022410	0.023118	4.069010E-6	2976006.000000
+28.140921	1.000000	0.024289	0.022695	0.023492	4.069010E-6	2976006.000000
+28.195589	1.000000	0.024886	0.023109	0.023998	4.069010E-6	2976679.000000
+28.307676	1.000000	0.025501	0.023103	0.024302	4.061460E-6	2970484.000000
+28.378283	1.000000	0.025403	0.023034	0.024219	2.170459E-6	1587437.000000
+28.421498	1.000000	0.025080	0.022756	0.023918	1.904576E-7	139329.000000
+28.568815	2.000000	0.024571	0.022329	0.023450	4.493208E-9	3287.000000
+28.639011	1.000000	0.024276	0.022016	0.023146	1.818061E-10	133.000000
+28.699531	1.000000	0.023956	0.021779	0.022867	2.733926E-12	2.000000
+28.783092	6.000000	0.023595	0.021513	0.022554	0.000000	0.000000
+*****	Execution_Time	235.7505256535	*****

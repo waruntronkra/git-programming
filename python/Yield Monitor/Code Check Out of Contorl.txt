@@ -1,0 +1,59 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Generate sample data
+np.random.seed(0)
+data = np.random.randint(80, 120, size=100)
+
+# Calculate control limits
+mean = np.mean(data)
+std_dev = np.std(data)
+upper_limit = mean + 3 * std_dev
+lower_limit = mean - 3 * std_dev
+
+# Plot the control chart
+plt.plot(data, 'b-', label='Data')
+plt.axhline(upper_limit, color='r', linestyle='--', label='Upper Control Limit')
+plt.axhline(lower_limit, color='r', linestyle='--', label='Lower Control Limit')
+plt.xlabel('Sample')
+plt.ylabel('Value')
+plt.legend()
+plt.title('Control Chart')
+plt.show()
+
+# Rule 1: Check for data points outside control limits
+out_of_control_points = np.where((data > upper_limit) | (data < lower_limit))[0]
+if len(out_of_control_points) > 0:
+    print("Rule 1: Data points outside control limits detected at indices:", out_of_control_points)
+
+# Rule 2: Check for non-random patterns
+diff = np.diff(data)
+runs = np.where(diff[:-1] * diff[1:] < 0)[0]
+if len(runs) > 0:
+    print("Rule 2: Non-random patterns detected at indices:", runs)
+
+# Rule 3: Check for clustering of data points
+clusters = np.where(np.abs(diff) < std_dev)[0]
+if len(clusters) > 0:
+    print("Rule 3: Clustering of data points detected at indices:", clusters)
+
+# Rule 4: Check for outliers
+outliers = np.where((data > upper_limit + std_dev) | (data < lower_limit - std_dev))[0]
+if len(outliers) > 0:
+    print("Rule 4: Outliers detected at indices:", outliers)
+
+# Rule 5: Check for runs
+runs = np.where((data[:-1] - mean) * (data[1:] - mean) < 0)[0]
+if len(runs) > 0:
+    print("Rule 5: Runs detected at indices:", runs)
+
+# Rule 6: Check for trends
+trend = np.polyfit(range(len(data)), data, 1)[0]
+if np.abs(trend) > std_dev:
+    print("Rule 6: Trend detected with slope:", trend)
+
+# Rule 7: Check if the process is stable
+if len(out_of_control_points) == 0 and len(runs) == 0 and len(clusters) == 0 and len(outliers) == 0 and np.abs(trend) <= std_dev:
+    print("Rule 7: The process is stable.")
+else:
+    print("Rule 7: The process may not be stable.")

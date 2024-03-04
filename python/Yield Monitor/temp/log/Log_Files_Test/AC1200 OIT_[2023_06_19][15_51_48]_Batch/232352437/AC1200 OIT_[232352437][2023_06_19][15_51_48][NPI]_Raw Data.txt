@@ -1,0 +1,11 @@
+
+***********************************************************************************
+232352437
+SKU, AC1200, DUAL CARRIER, ENC-EN PICO B1, GLACIER-CS HB-SFF-HERM A0, HAM A1, PRI OPTICS, EDFA, TOF, WEST, 600G, DC OPTICS, REVD PCBA, REVC ODC
+AC1200-00X-XX
+XX
+500-0091-12D
+14
+NPI
+OIT
+***********************************************************************************

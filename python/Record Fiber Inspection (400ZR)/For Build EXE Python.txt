@@ -1,0 +1,1 @@
+pyinstaller --onefile --noconsole --distpath "D:\Folder Data\EXE\Fiber Inspection Record EXS" --icon="C:\Users\waruntronk\Downloads\exe.ico" "Fiber_Inspection_Record_EXS.py"

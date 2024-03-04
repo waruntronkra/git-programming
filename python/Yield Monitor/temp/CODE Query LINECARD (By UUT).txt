@@ -1,0 +1,13 @@
+SELECT Top number VD.STATION_ID,
+      VD.TEST_SOCKET_INDEX,
+      VD.UUT_SERIAL_NUMBER,
+      convert(varchar,DATEADD(hour, 7, VD.START_DATE_TIME), 113) as Local_START_DATE_TIME,
+      VD.FAIL_MODE,
+      VD.FIXTURE_ID,
+      UUT.FIXTURE2_ID,
+      UUT.PROCESS,
+      UUT.MODE
+      
+  FROM [ATSResults].[dbo].[vw_test_defect] VD 
+  LEFT JOIN [ATSResults].[dbo].[UUT_RESULT] UUT 
+  ON UUT.ID = VD.ID

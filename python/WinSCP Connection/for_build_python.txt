@@ -1,0 +1,1 @@
+pyinstaller --onefile --distpath "D:\Folder Data\EXE\Read_File_WinSCP" --icon="\\fbn-fs-bu5\acacia$\Test Module\Utility for FIR Program\icon\fish.ico" "Read_File_WinSCP.py"

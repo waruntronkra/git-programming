@@ -1,0 +1,1 @@
+pyinstaller --onefile --noconsole --distpath "D:\Folder Data\EXE\Yield Monitor" --icon="C:\Users\waruntronk\Downloads\table_1061.ico" "Yield_Monitor.py"

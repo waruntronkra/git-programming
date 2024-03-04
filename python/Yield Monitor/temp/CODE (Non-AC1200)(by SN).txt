@@ -1,0 +1,29 @@
+SELECT VD.STATION_ID,
+      VD.TEST_SOCKET_INDEX,
+      VD.UUT_SERIAL_NUMBER,
+      convert(varchar,DATEADD(hour, 7, VD.START_DATE_TIME), 22) as Local_START_DATE_TIME,
+      VD.FAIL_MODE,
+      VD.FIXTURE_ID,
+      VD.FIXTURE_ID,
+      VD.MODE,
+      VD.PROCESS,
+      VD.TEST_COUNT,
+      VD.PRODUCT_CODE,
+      VD.PRODUCT_CODE_REV,
+      VD.HW_PART_NUMBER,
+      VD.HW_REV,
+      VD.TPS_NAME,
+      VD.TPS_PART_NUMBER,
+      VD.TPS_REV,
+      VD.SW_NAME,
+      VD.SW_PART_NUMBER,
+      VD.SW_REV,
+      VD.FW_NAME,
+      VD.FW_PART_NUMBER,
+      VD.FW_REV
+      
+  FROM [ATS_Results].[dbo].[vw_test_defect] VD 
+  LEFT JOIN [ATSResults].[dbo].[UUT_RESULT] UUT 
+  ON UUT.ID = VD.ID
+
+  where VD.UUT_SERIAL_NUMBER in ('

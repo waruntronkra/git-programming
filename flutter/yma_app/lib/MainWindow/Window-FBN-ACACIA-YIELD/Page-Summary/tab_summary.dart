@@ -776,7 +776,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                 ),            
                 // Button to see filter page
                 Container(
-                  margin: const EdgeInsets.only(top: 10),
+                  margin: const EdgeInsets.only(top: 5, bottom: 5),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: const [
@@ -838,7 +838,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
           // Button for click Query ==================
           Container(
             width: MediaQuery.of(context).size.width * 0.85,
-            margin: const EdgeInsets.only(top: 5),
+            margin: const EdgeInsets.only(top: 10),
             height: 30,
             child : ElevatedButton(
               onPressed: () {

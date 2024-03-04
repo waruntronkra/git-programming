@@ -1,0 +1,1 @@
+pyinstaller --onefile --noconsole --distpath "D:\Folder Data\EXE\AutoFIT_EBT" --icon="D:\Folder Data\Project Python\Auto FITs EBT\icon.ico" "Auto_FITs_EBT.py"

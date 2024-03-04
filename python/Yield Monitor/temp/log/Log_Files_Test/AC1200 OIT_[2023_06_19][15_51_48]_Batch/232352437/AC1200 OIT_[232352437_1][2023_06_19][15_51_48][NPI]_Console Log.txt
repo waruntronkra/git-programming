@@ -1,0 +1,393 @@
+
+******************************************************************************
+* CLEAR CONSOLE:  Calibration per Network Lane   ( Lane 1 / DP-16QAM / 193.50 THz / 25 °C )
+* 23:04:24 6/19/2023
+******************************************************************************
+: 103, general flags: 0x0E200007, lane flags: 0x00060000
+0>I:(163.8025):N0: BSP: FCN_ENTER(HighPowerUpStart)
+0>I:(163.8025):N0: BSP: FCN_EXIT(HighPowerUpStart)
+2>I:(163.8025):I1: BSP_PWR_MGMT_MODEM1: FCN_ENTER(PowerUpV2)
+1>I:(164.1260):I0: BSP_PWR_MGMT_MODEM: PS AutoShutdown = 1 using EEPROM defaults
+1>I:(164.1310):I0: BSP_PWR_MGMT_MODEM0: FCN_EXIT(PowerUpV2)
+1>I:(164.1312):I0: SM_RX0: INIT, event: 0x00000001
+1>I:(164.1313):I0: SM_TX0: LASER_INIT, event: 0x00000001
+1>I:(164.1313):I0: BNL0: FCN_ENTER(PowerUpRxPath)
+1>I:(164.1313):I0: PicCntlHlb::RxHighPowerUp() 
+1>I:(164.1314):N0: SigPwr LOS = -23.000000. SetAdc: 0xffff, ClrAdc: 0x0000
+1>I:(164.1321):I0: PIC: Temp increased. thresh=10.0: old [0.000000, 0x0000], new [35.138794, 0x3DB9]<--- 
+1>I:(164.1321):N0: ControlLoops::SetLosThresh(-23.00 dBm) uncor=-23.00 dac = 0x4FBE (20414) IdarkAdc=0 
+1>I:(164.1322):N0: SigPwr LOS = -23.000000. SetAdc: 0xffff, ClrAdc: 0x0000
+1>I:(164.1323):I0: ColdStart or WaveLength Changed. ITU = 0!! <---- 
+1>I:(164.1324):I0: RDP0: FCN_ENTER(ProcessHighPowerUpStartMsg)
+1>I:(164.1325):I0: NTWK_RX::AsicAccessCntl::Lock() - Locked in 0 ms
+1>I:(164.1325):I0: BNL0: FCN_EXIT(PowerUpRxPath)
+1>I:(164.1325):I0: BNL0: FCN_ENTER(PowerUpTxLaser)
+1>I:(164.1326):I0: ITLA0: Power State: 1
+1>I:(164.1326):I0: ITLA0: INIT_SM: ENABLE_ITLA
+1>I:(164.1327):I0: ITLA0: ITLA HW Control Pins Disabled
+1>I:(164.1327):I0: BNL0: FCN_EXIT(PowerUpTxLaser)
+1>I:(164.1820):I1: ADC : e_CAL_START
+2>I:(164.4620):I1: BSP_PWR_MGMT_MODEM: PS AutoShutdown = 1 using EEPROM defaults
+2>I:(164.4670):I1: BSP_PWR_MGMT_MODEM1: FCN_EXIT(PowerUpV2)
+2>I:(164.4671):I1: SM_RX1: INIT, event: 0x00000001
+2>I:(164.4673):I1: SM_TX1: LASER_INIT, event: 0x00000001
+2>I:(164.4673):I1: BNL1: FCN_ENTER(PowerUpRxPath)
+2>I:(164.4673):I1: PicCntlHlb::RxHighPowerUp() 
+2>I:(164.4674):N0: SigPwr LOS = -23.000000. SetAdc: 0xffff, ClrAdc: 0x0000
+2>I:(164.4681):I1: PIC: Temp increased. thresh=10.0: old [0.000000, 0x0000], new [34.015991, 0x3F77]<--- 
+2>I:(164.4681):N0: ControlLoops::SetLosThresh(-23.00 dBm) uncor=-23.00 dac = 0x4FBE (20414) IdarkAdc=0 
+2>I:(164.4682):N0: SigPwr LOS = -23.000000. SetAdc: 0xffff, ClrAdc: 0x0000
+2>I:(164.4683):I1: ColdStart or WaveLength Changed. ITU = 0!! <---- 
+2>I:(164.4684):I1: RDP1: FCN_ENTER(ProcessHighPowerUpStartMsg)
+2>I:(164.4684):I1: NTWK_RX::AsicAccessCntl::Lock() - Locked in 0 ms
+2>I:(164.4685):I1: BNL1: FCN_EXIT(PowerUpRxPath)
+2>I:(164.4685):I1: BNL1: FCN_ENTER(PowerUpTxLaser)
+2>I:(164.4686):I1: ITLA1: Power State: 1
+2>I:(164.4686):I1: ITLA1: INIT_SM: ENABLE_ITLA
+2>I:(164.4686):I1: ITLA1: ITLA HW Control Pins Disabled
+2>I:(164.4687):I1: BNL1: FCN_EXIT(PowerUpTxLaser)
+2>I:(164.5180):I2: ADC : e_CAL_START
+1>I:(164.5960):I0: RDP0: FCN_EXIT(ProcessHighPowerUpStartMsg)
+1>I:(164.5960):I1: ADC : e_CHECK_ZERO_CAL
+2>I:(164.7250):I1: RDP1: FCN_EXIT(ProcessHighPowerUpStartMsg)
+2>I:(164.7520):I2: ADC : e_CHECK_ZERO_CAL
+1>I:(164.9310):I1: ADC : e_CAL_RUNNING
+2>I:(165.1020):I2: ADC : e_CAL_RUNNING
+@1>I:(165.7810):I1: ADC : e_CAL_COMPLETE_SUCCESS
+2>I:(165.9520):I2: ADC : e_CAL_COMPLETE_SUCCESS
+1>I:(166.0810):I0: SM_RX0: ASIC_READY, event: 0x00000008
+1>I:(166.1730):I0: NTWK_RX::AsicAccessCntl::Unlock() - Unlocked
+1>I:(166.1731):I0: SM_RX0: LO_READY, event: 0x00000010
+2>I:(166.2520):I1: SM_RX1: ASIC_READY, event: 0x00000008
+1>I:(166.3420):I0: ITLA0: ITLA HW Control Pins Enabled
+1>I:(166.3430):I0: ITLA0: INIT_SM: WAIT_FOR_MRDY
+2>I:(166.3440):I1: NTWK_RX::AsicAccessCntl::Unlock() - Unlocked
+2>I:(166.3441):I1: SM_RX1: LO_READY, event: 0x00000010
+2>I:(166.6780):I1: ITLA1: ITLA HW Control Pins Enabled
+2>I:(166.6790):I1: ITLA1: INIT_SM: WAIT_FOR_MRDY
+1>I:(166.7210):I0: ITLA0: MRDY asserted in 378 ms
+1>I:(166.7650):I0: ITLA0: Case Temp: 34.04 deg C
+1>I:(166.7870):I0: ITLA0: Frequency Change event: 0.000000 THz
+1>I:(166.7871):I0: ITLA0: Clear and enable SRQ interrupt, HOST_GPIO_IN.WORD: 0x7FA84434
+1>I:(166.7980):I0: ITLA0: INIT_SM: READ_DEVICE_TYPE
+1>I:(166.8780):I0: ITLA0: INIT_SM: READ_MANUFACTURER
+1>I:(166.9480):I0: ITLA0: INIT_SM: READ_MODEL_NUM
+2>I:(167.0560):I1: ITLA1: MRDY asserted in 377 ms
+1>I:(167.0730):I0: ITLA0: INIT_SM: READ_SERIAL_NUM
+2>I:(167.1000):I1: ITLA1: Case Temp: 33.47 deg C
+2>I:(167.1220):I1: ITLA1: Frequency Change event: 0.000000 THz
+2>I:(167.1221):I1: ITLA1: Clear and enable SRQ interrupt, HOST_GPIO_IN.WORD: 0xFFA84434
+2>I:(167.1330):I1: ITLA1: INIT_SM: READ_DEVICE_TYPE
+1>I:(167.1610):I0: ITLA0: INIT_SM: READ_MFG_DATE
+2>I:(167.2130):I1: ITLA1: INIT_SM: READ_MANUFACTURER
+1>I:(167.2630):I0: ITLA0: INIT_SM: READ_FW_RELEASE
+2>I:(167.2790):I1: ITLA1: INIT_SM: READ_MODEL_NUM
+2>I:(167.4030):I1: ITLA1: INIT_SM: READ_SERIAL_NUM
+2>I:(167.4940):I1: ITLA1: INIT_SM: READ_MFG_DATE
+1>I:(167.5330):I0: ITLA0: INIT_SM: READ_NVRAM_REVISION
+1>I:(167.5480):I0: ITLA0: INIT_SM: READ_FW_RELEASE_BACK
+2>I:(167.5960):I1: ITLA1: INIT_SM: READ_FW_RELEASE
+1>I:(167.8080):I0: ITLA0: Device Type: CW ITLA
+1>I:(167.8080):I0: ITLA0: Manufacturer: Emcore
+1>I:(167.8081):I0: ITLA0: Model Number: TTX199578U10AE0
+1>I:(167.8081):I0: ITLA0: Serial Number: CRTMP1H12T
+1>I:(167.8081):I0: ITLA0: Manufacturing Date: 29-JAN-2023
+1>I:(167.8081):I0: ITLA0: FW Release: PV 2.0.0:HW 2.0.0:FW 3.6.8:AS C1:OT 1.0.0
+1>I:(167.8082):I0: ITLA0: Detected ITLA FW Revision 3.6.8
+1>I:(167.8082):I0: ITLA0: FW Release Back: PV 1.0.0:HW 2.0.0:FW 3.0.0:AS C1:OT 1.0.0
+1>I:(167.8083):I0: ITLA0: Using Model ID: 5 (Emcore TTX1995) in OIF 1.2 mode
+1>I:(167.8190):I0: ITLA0: INIT_SM: READ_FTF_RANGE
+1>I:(167.8410):I0: ITLA0: INIT_SM: READ_MIN_POWER
+1>I:(167.8630):I0: ITLA0: INIT_SM: READ_MAX_POWER
+2>I:(167.8730):I1: ITLA1: INIT_SM: READ_NVRAM_REVISION
+2>I:(167.8840):I1: ITLA1: INIT_SM: READ_FW_RELEASE_BACK
+1>I:(167.8890):I0: ITLA0: INIT_SM: READ_MIN_GRID_SPACING
+1>I:(167.9110):I0: ITLA0: INIT_SM: READ_MIN_FREQ
+1>I:(167.9440):I0: ITLA0: INIT_SM: READ_MAX_FREQ
+1>I:(167.9660):I0: ITLA0: FTF Range: +/-6000 MHz
+1>I:(167.9660):I0: ITLA0: Output Power Range: 10.00 dBm to 16.02 dBm
+1>I:(167.9661):I0: ITLA0: Minimum Grid Spacing: 100 MHz
+1>I:(167.9661):I0: ITLA0: Lowest Frequency: 191.120000 THz
+1>I:(167.9661):I0: ITLA0: Highest Frequency: 196.300000 THz
+1>I:(167.9770):I0: ITLA0: INIT_SM: SET_MCB
+1>I:(167.9770):I0: ITLA0: Set MCB: 0x4
+1>I:(168.0030):I0: ITLA0: INIT_SM: SET_SRQT
+1>I:(168.0470):I0: ITLA0: SRQ_FE (168.0171) StatusF/W: 0x8000 0x8005
+1>I:(168.0471):I0: ITLA0: INIT_SM: SET_FATALT
+1>I:(168.1060):I0: ITLA0: SRQ_RE (168.0792) StatusF/W: 0x0000 0x0000
+1>I:(168.1061):I0: ITLA0: INIT_SM: SET_ALARMT
+1>I:(168.1170):I0: ITLA0: INIT_SM: SET_TBTFH
+1>I:(168.1280):I0: ITLA0: INIT_SM: SET_POWER_RAMP
+1>I:(168.1390):I0: ITLA0: INIT_SM: SET_FTF_TUNING_RATE
+2>I:(168.1440):I1: ITLA1: Device Type: CW ITLA
+2>I:(168.1440):I1: ITLA1: Manufacturer: Emcore
+2>I:(168.1441):I1: ITLA1: Model Number: TTX199578U10AE0
+2>I:(168.1441):I1: ITLA1: Serial Number: CRTMP1H13N
+2>I:(168.1441):I1: ITLA1: Manufacturing Date: 22-JAN-2023
+2>I:(168.1442):I1: ITLA1: FW Release: PV 2.0.0:HW 2.0.0:FW 3.6.8:AS C1:OT 1.0.0
+2>I:(168.1442):I1: ITLA1: Detected ITLA FW Revision 3.6.8
+2>I:(168.1442):I1: ITLA1: FW Release Back: PV 1.0.0:HW 2.0.0:FW 3.0.0:AS C1:OT 1.0.0
+2>I:(168.1443):I1: ITLA1: Using Model ID: 5 (Emcore TTX1995) in OIF 1.2 mode
+1>I:(168.1500):I0: ITLA0: INIT_SM: SET_CHANNEL_1
+2>I:(168.1550):I1: ITLA1: INIT_SM: READ_FTF_RANGE
+1>I:(168.1720):I0: ITLA0: INIT_SM: COMPLETE
+1>I:(168.1723):N0: Dicon: Table Found Idx=108, freq=195.500 THz, f1=32.320V, f2=0.000V Temp=-999.00
+1>I:(168.1724):N0: ETOF: Table Next Idx=109, freq=195.550 THz, f1=32.730V, f2=0.000V Temp=-999.00
+1>I:(168.1724):N0: Dicon: ditherV=0.008lsbsPerGHz=12 dGHz=100.01 dV=0.8200 lsbs=1254 f1=32.320 f2=0.000 
+1>I:(168.1725):N0: TFC: ditherStep=(10.000GHz, 3.000GHz)
+2>I:(168.1770):I1: ITLA1: INIT_SM: READ_MIN_POWER
+2>I:(168.1990):I1: ITLA1: INIT_SM: READ_MAX_POWER
+2>I:(168.2240):I1: ITLA1: INIT_SM: READ_MIN_GRID_SPACING
+2>I:(168.2460):I1: ITLA1: INIT_SM: READ_MIN_FREQ
+1>I:(168.2720):N0: TOF: Table: Set F1=32.320000 F2=0.000000 
+2>I:(168.2790):I1: ITLA1: INIT_SM: READ_MAX_FREQ
+1>I:(168.2820):N0: TOF: TabNIle: Get F1=32.319984 F2=0.000000 
+1>I:(168.2821):I0: ITLA0: Full Tune: Coarse: 193.500000 THz, Fine: 0 MHz
+1>I:(168.2822):I0: SM_TX0: BOARD_INIT, event: 0x00000004
+1>I:(168.2822):I0: TDP0: FCN_ENTER(ProcessHighPowerUpStartMsg)
+1>I:(168.2822):I0: NTWK_TX::AsicAccessCntl::Lock() - Locked in 0 ms
+1>I:(168.2823):I0: ITLA0: TUNE_SM: SET_OUTPUT_POWER
+1>I:(168.2824):I0: ITLA0: Set output power: 16.02 dBm
+1>I:(168.2824):I0: BNL0: FCN_ENTER(PowerUpTxPath)
+1>I:(168.2824):I0: BNL0: FCN_EXIT(PowerUpTxPath)
+2>I:(168.3010):I1: ITLA1: FTF Range: +/-6000 MHz
+2>I:(168.3010):I1: ITLA1: Output Power Range: 10.00 dBm to 16.02 dBm
+2>I:(168.3011):I1: ITLA1: Minimum Grid Spacing: 100 MHz
+2>I:(168.3011):I1: ITLA1: Lowest Frequency: 191.120000 THz
+2>I:(168.3012):I1: ITLA1: Highest Frequency: 196.300000 THz
+1>I:(168.3070):I0: ITLA0: TUNE_SM: SET_FTF
+2>I:(168.3120):I1: ITLA1: INIT_SM: SET_MCB
+2>I:(168.3120):I1: ITLA1: Set MCB: 0x4
+1>I:(168.3290):I0: ITLA0: TUNE_SM: SET_SAFE_FCF1
+1>I:(168.3320):I0: DAC : e_CAL_START
+1>I:(168.3320):I0: TDP0: FCN_EXIT(ProcessHighPowerUpStartMsg)
+2>I:(168.3340):I1: ITLA1: INIT_SM: SET_SRQT
+1>I:(168.3540):I0: ITLA0: TUNE_SM: SET_FCF2
+1>I:(168.3760):I0: ITLA0: TUNE_SM: SET_FCF1
+2>I:(168.3810):I1: ITLA1: SRQ_FE (168.3529) StatusF/W: 0x8000 0x8005
+1>I:(168.3810):I0: DAC : e_CHECK_PLL
+2>I:(168.3811):I1: ITLA1: INIT_SM: SET_FATALT
+1>I:(168.3980):I0: ITLA0: TUNE_SM: SET_FCF3
+1>I:(168.4090):I0: ITLA0: TUNE_SM: ENABLE_SENA
+2>I:(168.4140):I1: ITLA1: INIT_SM: SET_ALARMT
+2>I:(168.4470):I1: ITLA1: SRQ_RE (168.4150) StatusF/W: 0x0000 0x0000
+2>I:(168.4471):I1: ITLA1: INIT_SM: SET_TBTFH
+2>I:(168.4580):I1: ITLA1: INIT_SM: SET_POWER_RAMP
+2>I:(168.4720):I1: ITLA1: INIT_SM: SET_FTF_TUNING_RATE
+2>I:(168.4830):I1: ITLA1: INIT_SM: SET_CHANNEL_1
+2>I:(168.5050):I1: ITLA1: INIT_SM: COMPLETE
+2>I:(168.5053):N0: Dicon: Table Found Idx=108, freq=195.500 THz, f1=32.250V, f2=0.000V Temp=-999.00
+2>I:(168.5054):N0: ETOF: Table Next Idx=109, freq=195.550 THz, f1=32.660V, f2=0.000V Temp=-999.00
+2>I:(168.5054):N0: Dicon: ditherV=0.0082 lsbsPerGHz=12 dGHz=100.01 dV=0.8200 lsbs=1254 f1=32.250 f2=0.000 
+2>I:(168.5055):N0: TFC: ditherStep=(10.000GHz, 3.000GHz)
+1>I:(168.5310):I0: DAC : e_CAL_RUNNING
+1>I:(168.5810):I0: DAC : e_CAL_COMPLETE_SUCCESS
+2>I:(168.6050):N0: TOF: Table: Set F1=32.250000 F2=0.000000 
+2>I:(168.6150):N0: TOF: Table: Get F1=32.249420 F2=0.000000 
+2>I:(168.6151):I1: ITLA1: Full Tune: Coarse: 193.500000 THz, Fine: 0 MHz
+2>I:(168.6151):I1: SM_TX1: BOARD_INIT, event: 0x00000004
+2>I:(168.6152):I1: TDP1: FCN_ENTER(ProcessHighPowerUpStartMsg)
+2>I:(168.6152):I1: NTWK_TX::AsicAccessCntl::Lock() - Locked in 0 ms
+2>I:(168.6153):I1: ITLA1: TUNE_SM: SET_OUTPUT_POWER
+2>I:(168.6153):I1: ITLA1: Set output power: 16.02 dBm
+2>I:(168.6153):I1: BNL1: FCN_ENTER(PowerUpTxPath)
+2>I:(168.6154):I1: BNL1: FCN_EXIT(PowerUpTxPath)
+2>I:(168.6420):I1: ITLA1: TUNE_SM: SET_FTF
+2>I:(168.6640):I1: ITLA1: TUNE_SM: SET_SAFE_FCF1
+2>I:(168.6650):I1: DAC : e_CAL_START
+2>I:(168.6650):I1: TDP1: FCN_EXIT(ProcessHighPowerUpStartMsg)
+1>I:(168.6811):I0: SM_TX0: DEVICES_READY, event: 0x00000020
+1>I:(168.6811):I0: TDP0: FCN_ENTER(ConfigureAndStartAsicBlocks)
+2>I:(168.6900):I1: ITLA1: TUNE_SM: SET_FCF2
+1>I:(168.7010):I0: TX PLL 0 InitReg 3
+1>I:(168.7010):I0: TX PLL 0 EnableControlLoop 3
+1>I:(168.7011):I0: TX PLL 1 EnableControlLoop 0
+2>I:(168.7120):I1: ITLA1: TUNE_SM: SET_FCF1
+2>I:(168.7340):I1: ITLA1: TUNE_SM: SET_FCF3
+2>I:(168.7450):I1: ITLA1: TUNE_SM: ENABLE_SENA
+2>I:(168.7520):I1: DAC : e_CHECK_PLL
+1>I:(168.7766):N0: TxOduMux::SetPrbsTestMode en:0 l:8 m:4 i:1
+2>I:(168.9020):I1: DAC : e_CAL_RUNNING
+2>I:(168.9520):I1: DAC : e_CAL_COMPLETE_SUCCESS
+2>I:(169.0521):I1: SM_TX1: DEVICES_READY, event: 0x00000020
+2>I:(169.0521):I1: TDP1: FCN_ENTER(ConfigureAndStartAsicBlocks)
+2>I:(169.0720):I1: TX PLL 0 InitReg 3
+2>I:(169.0720):I1: TX PLL 0 EnableControlLoop 3
+2>I:(169.0721):I1: TX PLL 1 EnableControlLoop 0
+2>I:(169.1476):N0: TxOduMux::SetPrbsTestMode en:0 l:8 m:4 i:1
+1>I:(169.7940):I0: TX PLL 0 Locked in 1008 ms
+1>I:(169.7940):I0: NTWK_TX::AsicAccessCntl::Unlock() - Unlocked
+1>I:(169.7941):I0: TDP0: FCN_EXIT(ConfigureAndStartAsicBlocks)
+1>I:(169.7942):I0: SM_TX0: LASER_READY_OFF, event: 0x00000040
+1>I:(169.7942):I0: SM_TX0: LASER_READY, event: 0x00002000
+1>I:(169.7944):I0: BNL0: FCN_ENTER(PowerUpOptics)
+1>I:(169.7946):I0: ** PIC: TxHighPowerUp modFormat = 4          <--- ** 
+1>I:(170.0050):N0: ControlLoops: FCN_ENTER(TxHighPowerUp)
+1>I:(170.0051):N0: ControlLoops: FCN_EXIT(TxHighPowerUp)
+1>I:(170.0051):I0: BNL0: FCN_EXIT(PowerUpOptics)
+2>I:(170.1670):I1: TX PLL 0 Locked in 1010 ms
+2>I:(170.1670):I1: NTWK_TX::AsicAccessCntl::Unlock() - Unlocked
+2>I:(170.1671):I1: TDP1: FCN_EXIT(ConfigureAndStartAsicBlocks)
+2>I:(170.1672):I1: SM_TX1: LASER_READY_OFF, event: 0x00000040
+2>I:(170.1672):I1: SM_TX1: LASER_READY, event: 0x00002000
+2>I:(170.1674):I1: BNL1: FCN_ENTER(PowerUpOptics)
+2>I:(170.1676):I1: ** PIC: TxHighPowerUp modFormat = 4          <--- ** 
+~2>I:(170.3780):N0: ControlLoops: FCN_ENTER(TxHighPowerUp)
+2>I:(170.3781):N0: ControlLoops: FCN_EXIT(TxHighPowerUp)
+2>I:(170.3781):I1: BNL1: FCN_EXIT(PowerUpOptics)
+!1>I:(173.2510):I0: PIC: Temp increased. thresh=10.0: old [35.138794, 0x3DB9], new [45.352356, 0x2F58]<--- 
+1>I:(173.2511):N0: ControlLoops::SetLosThresh(-23.00 dBm) uncor=-23.00 dac = 0x4FBE (20414) IdarkAdc=0 
+1>I:(173.2512):N0: SigPwr LOS = -23.000000. SetAdc: 0xffff, ClrAdc: 0x0000
+2>I:(174.1510):I1: PIC: Temp increased. thresh=10.0: old [34.015991, 0x3F77], new [44.493286, 0x3072]<--- 
+2>I:(174.1511):N0: ControlLoops::SetLosThresh(-23.00 dBm) uncor=-23.00 dac = 0x4FBE (20414) IdarkAdc=0 
+2>I:(174.1512):N0: SigPwr LOS = -23.000000. SetAdc: 0xffff, ClrAdc: 0x0000
+@~!2>I:(183.1620):I1: ITLA1: TUNE_SM: COMPLETE
+2>I:(183.1621):I1: SM_TX1: MODULATOR_CONVERGE, event: 0x00000080
+2>I:(183.1622):N0: FecFrameSync SetUniqueWord::Primary 
+2>I:(183.1746):I1: ITLA1: Frequency Change event: 193.500000 THz
+2>I:(183.1747):I1: ** PIC: DoModulatorConverge modFormat = 4  ER_method=0        <--- ** 
+2>I:(183.2010):I1: 
+
+[PIC Loop]: ITLA tuned to 193.500000 THz 
+
+2>I:(183.2011):I1: ColdStart or WaveLength Changed. itu=193.50 THz Init PIC RX 
+2>I:(183.2080):I1: PIC: Setting RFPD_BIAS to 2.939V  PD=9.579mA R=0.025Ohms Target=1.700V offset=1.000
+2>I:(183.2081):I1: CalcRxpd T(-0.08339198, 0.01149227 0.03153182) 
+2>I:(183.2082):I1: RxPD[-0.083392, 0.011492, 0.031532 TL -nan] T[16.415001, 50.082500, 74.224998 TL 0.000000] 
+2>I:(183.2082):I1: Slope[0.002818, 0.000830 -nan] Offset[-0.129654, -0.030079 -nan] 
+2>I:(183.2083):N0: ControlLoops::SetLosThresh(-23.00 dBm) uncor=-22.99 dac = 0x4FC5 (20421) IdarkAdc=0 
+2>I:(183.2085):N0: SigPwr LOS = -23.000000. SetAdc: 0x7a00, ClrAdc: 0x7800
+2>I:(183.2153):I1: VCC1 = 3.5000V, VCC2 = 5.8000V, TIA_VCC = 3.3000 V
+2>I:(183.3850):I1: PIC: InitDriver PostConv 
+2>I:(183.3851):I1: InitDriverConfig extMod=4 intFormat=4
+2>I:(183.3851):I1: HamiltonDevice::InitializeSennaModConfig
+2>I:(183.3852):I1: 
+
+ ***  extendedSettingsValid=1 **** 
+
+2>I:(183.3852):I1: InitDriverPerChan modFormat=4 extMod=4
+1>I:(183.7620):I0: ITLA0: TUNE_SM: COMPLETE
+1>I:(183.7621):I0: SM_TX0: MODULATOR_CONVERGE, event: 0x00000080
+1>I:(183.7622):N0: FecFrameSync SetUniqueWord::Primary 
+1>I:(183.7746):I0: ITLA0: Frequency Change event: 193.500000 THz
+1>I:(183.7747):I0: ** PIC: DoModulatorConverge modFormat = 4  ER_method=0        <--- ** 
+1>I:(183.8010):I0: 
+
+[PIC Loop]: ITLA tuned to 193.500000 THz 
+
+1>I:(183.8011):I0: ColdStart or WaveLength Changed. itu=193.50 THz Init PIC RX 
+1>I:(183.8080):I0: PIC: Setting RFPD_BIAS to 2.942V  PD=9.696mA R=0.025Ohms Target=1.700V offset=1.000
+1>I:(183.8081):I0: CalcRxpd T(-0.29455203, 0.00765875 0.14827012) 
+1>I:(183.8082):I0: RxPD[-0.294552, 0.007659, 0.148270 TL -nan] T[15.012500, 50.009998, 74.029999 TL 0.000000] 
+1>I:(183.8082):I0: Slope[0.008635, 0.005854 -nan] Offset[-0.424188, -0.285096 -nan] 
+1>I:(183.8083):N0: ControlLoops::SetLosThresh(-23.00 dBm) uncor=-22.99 dac = 0x4FC9 (20425) IdarkAdc=0 
+1>I:(183.8085):N0: SigPwr LOS = -23.000000. SetAdc: 0x7980, ClrAdc: 0x7800
+1>I:(183.8153):I0: VCC1 = 3.5000V, VCC2 = 5.8000V, TIA_VCC = 3.3000 V
+1>I:(183.9850):I0: PIC: InitDriver PostConv 
+1>I:(183.9851):I0: InitDriverConfig extMod=4 intFormat=4
+1>I:(183.9851):I0: HamiltonDevice::InitializeSennaModConfig
+1>I:(183.9852):I0: 
+
+ ***  extendedSettingsValid=1 **** 
+
+1>I:(183.9852):I0: InitDriverPerChan modFormat=4 extMod=4
+@2>I:(186.2962):I1: RunOnce: iter=8 converged=1 pdx=88.626 pdy=92.594 rfpd=9.505 txpow=3.7125 24330 et=1.041 et=8.111 
+1>I:(186.8652):I0: RunOnce: iter=7 converged=1 pdx=111.991 pdy=107.326 rfpd=9.639 txpow=3.5257 23106 et=0.906 et=7.111 
+2>I:(187.3780):I1: ReCentering Integrators  
+1>I:(187.9470):I0: ReCentering Integrators  
+2>I:(189.3802):I1: RunOnce: iter=1 converged=1 pdx=79.776 pdy=85.500 rfpd=9.478 txpow=3.7125 24330 et=0.110 et=1.113 
+1>I:(189.9492):I0: RunOnce: iter=1 converged=1 pdx=102.234 pdy=95.407 rfpd=9.630 txpow=3.5257 23106 et=0.111 et=1.112 
+~!@2>I:(195.3852):I1: RunOnce: iter=4 converged=1 pdx=86.224 pdy=82.679 rfpd=9.477 txpow=3.7211 24386 et=0.514 et=4.114 
+1>I:(195.9512):I0: RunOnce: iter=1 converged=1 pdx=105.049 pdy=96.259 rfpd=9.639 txpow=3.5257 23106 et=0.112 et=1.125 
+2>I:(196.9282):I1: RunOnce: iter=1 converged=1 pdx=86.564 pdy=82.168 rfpd=9.477 txpow=3.7211 24386 et=0.110 et=1.109 
+2>I:(197.0280):I1: PIC: swTxErVoa control loop Disabled!! 
+2>I:(197.0281):I1: MDL: modFormat=4, modFormat_=4, target=-17.5 HiLimit=40 LoLimit=5
+2>I:(197.0282):I1: SM_TX1: TX_PWR_OFF, event: 0x00000200
+2>I:(197.0283):N0: FecFrameSync SetUniqueWord::Primary 
+0>I:(197.0284):I1: SM_MSA1: FCN_ENTER(HighPowerUpExit), LANE_LOPWRs: 0, LANE_RSTs: 0
+0>I:(197.0285):I1: SM_MSA1: FCN_EXIT(HighPowerUpExit)
+2>I:(197.0285):N0: ControlLoops::SetLosThresh(-23.00 dBm) uncor=-22.99 dac = 0x4FC8 (20424) IdarkAdc=0 
+0>I:(197.0285):I1: SM_MSA1: TX_OFF, event: 3, general flags: 0x0E20000F, lane flags: 0x00000003
+2>I:(197.0286):I1: ITLA1: ReissueFawsEvents: 0x00000000
+2>I:(197.0288):N0: ControlLoops::SetLosThresh(-23.00 dBm) uncor=-22.99 dac = 0x4FC8 (20424) IdarkAdc=0 
+0>I:(197.0834):N0: DiagsHndlr: MTB DIAG, cmdName: TX_TURN_UP_TIME, accessOp: 2, transNum: 252
+0>I:(197.0834):I1: DiagsHndlrCntlr: Writing value 0x000000FC to mailbox id: 9
+0>I:(197.3419):N0: DiagsHndlr: MTB DIAG, cmdName: RX_TURN_UP_TIME, accessOp: 2, transNum: 253
+0>I:(197.3419):I1: DiagsHndlrCntlr: Writing value 0x000000FD to mailbox id: 9
+0>I:(197.3860):I1: SM_MSA1: TX_TURN_ON, event: 107, general flags: 0x0E20000F, lane flags: 0x0000000F
+2>I:(197.3861):I1: SM_TX1: OUTPUT_PWR_ADJ, event: 0x00080000
+2>I:(197.3861):N0: ControlLoops::AddPumpLasTmrMsgToTaskQueue e_MSB_START_PUMP_LAS_TIMER 
+2>I:(197.3862):N0: TFC: SetTargetOutput to -20.00 dBm step=0
+2>I:(197.3864):N0: Dicon: Table Found Idx=56, freq=193.500 THz, f1=0.000V, f2=3.870V Temp=-999.00
+2>I:(197.3865):N0: ETOF: Table next Idx=57, freq=193.510 THz, f1=0.000V, f2=3.100V Temp=-999.00
+2>I:(197.3865):N0: Dicon: ditherV=0.0700 lsbsPerGHz=107 dGHz=19.99 dV=1.4000 lsbs=2142 f1=0.000 f2=3.870 
+2>I:(197.3866):N0: TFC: ditherStep=(10.000GHz, 3.000GHz)
+2>I:(197.4860):N0: TOF: Table: Set F1=0.000000 F2=3.870000 
+1>I:(197.4952):I0: RunOnce: iter=2 converged=1 pdx=102.727 pdy=97.587 rfpd=9.645 txpow=3.5228 23087 et=0.243 et=2.111 
+2>I:(197.4961):N0: TOF: Table: Get F1=0.000000 F2=3.869381 
+2>I:(197.5520):N0: VoaPwrCntlTx1 VoaConverged oor=0
+1>I:(197.5950):I0: PIC: swTxErVoa control loop Disabled!! 
+1>I:(197.5951):I0: MDL: modFormat=4, modFormat_=4, target=-17.5 HiLimit=40 LoLimit=5
+1>I:(197.5952):I0: SM_TX0: TX_PWR_OFF, event: 0x00000200
+1>I:(197.5953):N0: FecFrameSync SetUniqueWord::Primary 
+0>I:(197.5954):I0: SM_MSA0: FCN_ENTER(HighPowerUpExit), LANE_LOPWRs: 0, LANE_RSTs: 0
+0>I:(197.5954):I0: SM_MSA0: FCN_EXIT(HighPowerUpExit)
+1>I:(197.5955):N0: ControlLoops::SetLosThresh(-23.00 dBm) uncor=-22.97 dac = 0x4FD4 (20436) IdarkAdc=0 
+0>I:(197.5955):I0: SM_MSA0: TX_OFF, event: 3, general flags: 0x0E20000F, lane flags: 0x00000007
+1>I:(197.5956):I0: ITLA0: ReissueFawsEvents: 0x00000000
+1>I:(197.5957):N0: ControlLoops::SetLosThresh(-23.00 dBm) uncor=-22.97 dac = 0x4FD4 (20436) IdarkAdc=0 
+2>I:(197.6011):N0: TFC: SetTargetOutput to -20.00 dBm step=1
+2>I:(197.6060):N0: VoaPwrCntlTx1 VoaConverged oor=0
+2>I:(197.6111):N0: TFC: Dither setup. filter=2 dither[10,20,50] [10.000, 3.000, 1.200] 
+0>I:(197.6827):N0: DiagsHndlr: MTB DIAG, cmdName: TX_TURN_UP_TIME, accessOp: 2, transNum: 254
+0>I:(197.6827):I0: DiagsHndlrCntlr: Writing value 0x000000FE to mailbox id: 5
+2>I:(197.6980):N0: VoaPwrCntlTx1 VoaConverged oor=0
+0>I:(197.7000):N0: AVS Active
+2>I:(197.8612):N0: ControlLoops: Restore to Host output power = 0.000 
+2>I:(197.8612):N0: FecFrameSync SetUniqueWord::Primary 
+0>I:(197.8984):N0: DiagsHndlr: MTB DIAG, cmdName: RX_TURN_UP_TIME, accessOp: 2, transNum: 255
+0>I:(197.8984):I0: DiagsHndlrCntlr: Writing value 0x000000FF to mailbox id: 5
+0>I:(197.9221):I0: SM_MSA0: TX_TURN_ON, event: 107, general flags: 0x0E20000F, lane flags: 0x0000000F
+1>I:(197.9221):I0: SM_TX0: OUTPUT_PWR_ADJ, event: 0x00080000
+1>I:(197.9222):N0: ControlLoops::AddPumpLasTmrMsgToTaskQueue e_MSB_START_PUMP_LAS_TIMER 
+1>I:(197.9223):N0: TFC: SetTargetOutput to -20.00 dBm step=0
+1>I:(197.9224):N0: Dicon: Table Found Idx=56, freq=193.500 THz, f1=0.000V, f2=3.250V Temp=-999.00
+1>I:(197.9225):N0: ETOF: Table next Idx=57, freq=193.510 THz, f1=0.000V, f2=2.340V Temp=-999.00
+1>I:(197.9225):N0: Dicon: ditherV=0.0810 lsbsPerGHz=124 dGHz=19.99 dV=1.6200 lsbs=2479 f1=0.000 f2=3.250 
+1>I:(197.9226):N0: TFC: ditherStep=(10.000GHz, 3.000GHz)
+2>I:(197.9800):N0: VoaPwrCntlTx1 VoaConverged oor=0
+2>I:(197.9800):N0: VoaPwrCntlTx1 Post OutputPwrAdj PwrSel=0 oor=0
+2>I:(197.9802):I1: SM_TX1: TURN_UP_DONE, event: 0x00000800
+0>I:(197.9802):I1: SM_MSA1: READY, event: 115, general flags: 0x0E20000F, lane flags: 0x0000001F
+2>I:(197.9803):I1: ITLA1: ReissueFawsEvents: 0x00000000
+2>I:(197.9811):I1: DSP_DATA_PROC: Set Task Priority = 42
+1>I:(198.0220):N0: TOF: Table: Set F1=0.000000 F2=3.250000 
+1>I:(198.0321):N0: TOF: Table: Get F1=0.000000 F2=3.249967 
+0>I:(198.0801):N0: DiagsHndlr: MTB DIAG, cmdName: TX_TURN_UP_TIME, accessOp: 2, transNum: 256
+0>I:(198.0802):I1: DiagsHndlrCntlr: Writing value 0x00000100 to mailbox id: 9
+1>I:(198.0940):N0: VoaPwrCntlTx0 VoaConverged oor=0
+1>I:(198.1411):N0: TFC: SetTargetOutput to -20.00 dBm step=1
+1>I:(198.1460):N0: VoaPwrCntlTx0 VoaConverged oor=0
+1>I:(198.1511):N0: TFC: Dither setup. filter=2 dither[10,20,50] [10.000, 3.000, 1.200] 
+1>I:(198.2350):N0: VoaPwrCntlTx0 VoaConverged oor=0
+0>I:(198.3457):N0: DiagsHndlr: MTB DIAG, cmdName: RX_TURN_UP_TIME, accessOp: 2, transNum: 257
+0>I:(198.3458):I1: DiagsHndlrCntlr: Writing value 0x00000101 to mailbox id: 9
+1>I:(198.3612):N0: ControlLoops: Restore to Host output power = 0.000 
+1>I:(198.3612):N0: FecFrameSync SetUniqueWord::Primary 
+1>I:(198.4950):N0: VoaPwrCntlTx0 VoaConverged oor=0
+1>I:(198.4950):N0: VoaPwrCntlTx0 Post OutputPwrAdj PwrSel=0 oor=0
+1>I:(198.4952):I0: SM_TX0: TURN_UP_DONE, event: 0x00000800
+1>I:(198.4952):I0: DSP_DATA_PROC: Set Task Priority = 42
+0>I:(198.4952):I0: SM_MSA0: READY, event: 115, general flags: 0x0E20000F, lane flags: 0x0000001F
+1>I:(198.4953):I0: ITLA0: ReissueFawsEvents: 0x00000000
+0>I:(198.5826):N0: DiagsHndlr: MTB DIAG, cmdName: TX_TURN_UP_TIME, accessOp: 2, transNum: 258
+0>I:(198.5826):I0: DiagsHndlrCntlr: Writing value 0x00000102 to mailbox id: 5
+0>I:(198.7880):N0: DiagsHndlr: MTB DIAG, cmdName: RX_TURN_UP_TIME, accessOp: 2, transNum: 259
+0>I:(198.7881):I0: DiagsHndlrCntlr: Writing value 0x00000103 to mailbox id: 5
+0>I:(199.9738):N0: DiagsHndlr: MTB DIAG, cmdName: ABC_PRODUCT_ID, accessOp: 4, transNum: 260
+~0>I:(200.4246):N0: DiagsHndlr: MTB DIAG, cmdName: ABC_PRODUCT_ID, accessOp: 4, transNum: 261
+0>I:(200.8688):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_MDL_OPT, accessOp: 1, transNum: 262
+0>I:(200.8689):I1: DiagsHndlrCntlr: Writing value 0x00000106 to mailbox id: 9
+0>I:(201.0031):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_MDL_OPT, accessOp: 1, transNum: 263
+0>I:(201.0031):I0: DiagsHndlrCntlr: Writing value 0x00000107 to mailbox id: 5
+!

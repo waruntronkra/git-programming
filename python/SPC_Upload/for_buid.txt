@@ -1,0 +1,1 @@
+pyinstaller --onefile --noconsole --distpath "D:\Folder Data\EXE\SPC Upload" --icon="Z:\Utility for FIR Program\icon\SPC_Upload.ico" "SPC_Upload.py"

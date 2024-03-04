@@ -1,0 +1,938 @@
+
+******************************************************************************
+* CLEAR CONSOLE:   Calibration - Modulation Specific   ( Lane 1 / DP-16QAM / 193.40 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+* 8:11:08 6/21/2023
+******************************************************************************
+
+
+******************************************************************************
+* CLEAR CONSOLE:   Calibration - Modulation Specific   ( Lane 1 / DP-16QAM / 193.40 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+* 8:15:00 6/21/2023
+******************************************************************************
+ VOA_TX_CNTL_ENABLE, accessOp: 1, transNum: 678
+0>I:(441.4592):I1: DiagsHndlrCntlr: Writing value 0x000002A6 to mailbox id: 9
+2>I:(441.4593):N0: VoaPwrCntlTx1: [0x004C6394=mVoaCntl].isEnabled=1. 
+0>I:(441.8561):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 679
+0>I:(441.8562):I0: DiagsHndlrCntlr: Writing value 0x000002A7 to mailbox id: 5
+1>I:(441.8610):N0: VoaPwrCntlTx0 VoaConverged oor=1
+1>I:(441.8610):N0: VoaPwrCntlTx0 Post OutputPwrAdj PwrSel=0 oor=1
+0>I:(441.9615):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 680
+0>I:(441.9615):I1: DiagsHndlrCntlr: Writing value 0x000002A8 to mailbox id: 9
+2>I:(441.9660):N0: VoaPwrCntlTx1 VoaConverged oor=1
+2>I:(441.9660):N0: VoaPwrCntlTx1 Post OutputPwrAdj PwrSel=0 oor=1
+1>I:(442.3940):N0: ******************************************************************
+1>I:(442.3941):N0: **                   ASSERT RAM BUFF CONTENTS                   **
+1>I:(442.3941):N0: ******************************************************************
+1>I:(442.3941):N0: (ASSERT Tick: 105428): File: PumpLasCntl: line:  900 ec: 0 (0x00000000)
+1>I:(442.3942):N0: ******************************************************************
+0>I:(442.5804):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 681
+0>I:(442.5805):I0: DiagsHndlrCntlr: Writing value 0x000002A9 to mailbox id: 5
+1>I:(442.5810):N0: VoaPwrCntlTx0 VoaConverged oor=1
+1>I:(442.5810):N0: VoaPwrCntlTx0 Post OutputPwrAdj PwrSel=0 oor=1
+0>I:(442.6717):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 682
+0>I:(442.6717):I1: DiagsHndlrCntlr: Writing value 0x000002AA to mailbox id: 9
+2>I:(442.6760):N0: VoaPwrCntlTx1 VoaConverged oor=1
+2>I:(442.6760):N0: VoaPwrCntlTx1 Post OutputPwrAdj PwrSel=0 oor=1
+1>I:(442.6900):N0: VoaPwrCntlTx0 VoaConverged oor=0
+2>I:(442.7900):N0: VoaPwrCntlTx1 VoaConverged oor=0
+1>I:(442.9111):N0: Dicon: DitherWithAdc DEC_F(2) voa=40483 adc=40852 goto Dither F1=0.00 F2=12.55 step=620 
+1>I:(442.9610):N0: TFC: Dither setup. filter=2 dither[10,20,50] [10.000, 3.000, 1.200] 
+0>I:(443.8408):N0: DiagsHndlr: MTB DIAG, cmdName: TX_TURN_UP_TIME, accessOp: 2, transNum: 683
+0>I:(443.8409):I0: DiagsHndlrCntlr: Writing value 0x000002AB to mailbox id: 5
+0>I:(443.9472):N0: DiagsHndlr: MTB DIAG, cmdName: TX_TURN_UP_TIME, accessOp: 2, transNum: 684
+0>I:(443.9472):I1: DiagsHndlrCntlr: Writing value 0x000002AC to mailbox id: 9
+0>I:(444.6729):N0: DiagsHndlr: MTB DIAG, cmdName: RX_TURN_UP_TIME, accessOp: 2, transNum: 685
+0>I:(444.6729):I0: DiagsHndlrCntlr: Writing value 0x000002AD to mailbox id: 5
+0>I:(445.7329):N0: DiagsHndlr: MTB DIAG, cmdName: RX_TURN_UP_TIME, accessOp: 2, transNum: 686
+0>I:(445.7330):I1: DiagsHndlrCntlr: Writing value 0x000002AE to mailbox id: 9
+@!2>I:(449.8570):N0: ******************************************************************
+2>I:(449.8571):N0: **                   ASSERT RAM BUFF CONTENTS                   **
+2>I:(449.8571):N0: ******************************************************************
+2>I:(449.8571):N0: (ASSERT Tick: 98069): File: PumpLasCntl: line:  900 ec: 0 (0x00000000)
+2>I:(449.8572):N0: ******************************************************************
+~@!~@!~@!~0>I:(485.0823):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 2, transNum: 687
+0>I:(485.0823):I0: DiagsHndlrCntlr: Writing value 0x000002AF to mailbox id: 5
+0>I:(485.0846):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 2, transNum: 688
+0>I:(485.0846):I0: DiagsHndlrCntlr: Writing value 0x000002B0 to mailbox id: 5
+0>I:(485.0869):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 2, transNum: 689
+0>I:(485.0870):I0: DiagsHndlrCntlr: Writing value 0x000002B1 to mailbox id: 5
+0>I:(485.0897):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 2, transNum: 690
+0>I:(485.0898):I0: DiagsHndlrCntlr: Writing value 0x000002B2 to mailbox id: 5
+0>I:(485.0919):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_CNTL_ENABLE, accessOp: 1, transNum: 691
+0>I:(485.0920):I0: DiagsHndlrCntlr: Writing value 0x000002B3 to mailbox id: 5
+1>I:(485.0921):N0: VoaPwrCntlTx0: [0x004C6394=mVoaCntl].isEnabled=0. 
+0>I:(485.0941):N0: DiagsHndlr: MTB DIAG, cmdName: TUNE2_FILTER_CNTL, accessOp: 1, transNum: 692
+0>I:(485.0942):I0: DiagsHndlrCntlr: Writing value 0x000002B4 to mailbox id: 5
+0>I:(485.0951):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_MDL_OPT, accessOp: 1, transNum: 693
+0>I:(485.0951):I0: DiagsHndlrCntlr: Writing value 0x000002B5 to mailbox id: 5
+0>I:(485.0960):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_IQ_OFF, accessOp: 1, transNum: 694
+0>I:(485.0960):I0: DiagsHndlrCntlr: Writing value 0x000002B6 to mailbox id: 5
+0>I:(485.0969):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_TXPOW, accessOp: 1, transNum: 695
+0>I:(485.0970):I0: DiagsHndlrCntlr: Writing value 0x000002B7 to mailbox id: 5
+0>I:(485.0992):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_TXERVOA, accessOp: 1, transNum: 696
+0>I:(485.0993):I0: DiagsHndlrCntlr: Writing value 0x000002B8 to mailbox id: 5
+0>I:(485.1001):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 697
+0>I:(485.1002):I0: DiagsHndlrCntlr: Writing value 0x000002B9 to mailbox id: 5
+0>I:(485.1043):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_RXTIA, accessOp: 1, transNum: 698
+0>I:(485.1043):I0: DiagsHndlrCntlr: Writing value 0x000002BA to mailbox id: 5
+0>I:(485.1063):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_IQ_OFF, accessOp: 1, transNum: 699
+0>I:(485.1064):I0: DiagsHndlrCntlr: Writing value 0x000002BB to mailbox id: 5
+0>I:(485.6112):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_ADC_EEPROM_SCALING, accessOp: 4, transNum: 700
+0>I:(485.6112):I0: DiagsHndlrCntlr: Writing value 0x000002BC to mailbox id: 5
+@0>I:(486.3140):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_ADC_EEPROM_SCALING, accessOp: 4, transNum: 701
+0>I:(486.3141):I0: DiagsHndlrCntlr: Writing value 0x000002BD to mailbox id: 5
+0>I:(487.0169):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_ADC_EEPROM_SCALING, accessOp: 4, transNum: 702
+0>I:(487.0170):I0: DiagsHndlrCntlr: Writing value 0x000002BE to mailbox id: 5
+0>I:(487.7197):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_ADC_EEPROM_SCALING, accessOp: 4, transNum: 703
+0>I:(487.7198):I0: DiagsHndlrCntlr: Writing value 0x000002BF to mailbox id: 5
+0>I:(487.9224):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_RX_AGC_MODE, accessOp: 1, transNum: 704
+0>I:(487.9225):I0: DiagsHndlrCntlr: Writing value 0x000002C0 to mailbox id: 5
+0>I:(487.9246):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_EEPROM_SCALING, accessOp: 4, transNum: 705
+0>I:(487.9247):I0: DiagsHndlrCntlr: Writing value 0x000002C1 to mailbox id: 5
+0>I:(487.9272):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 706
+0>I:(487.9273):I0: DiagsHndlrCntlr: Writing value 0x000002C2 to mailbox id: 5
+0>I:(487.9293):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_EEPROM_SCALING, accessOp: 4, transNum: 707
+0>I:(487.9294):I0: DiagsHndlrCntlr: Writing value 0x000002C3 to mailbox id: 5
+0>I:(487.9317):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 708
+0>I:(487.9317):I0: DiagsHndlrCntlr: Writing value 0x000002C4 to mailbox id: 5
+0>I:(487.9324):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_EEPROM_SCALING, accessOp: 4, transNum: 709
+0>I:(487.9324):I0: DiagsHndlrCntlr: Writing value 0x000002C5 to mailbox id: 5
+0>I:(487.9346):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 710
+0>I:(487.9346):I0: DiagsHndlrCntlr: Writing value 0x000002C6 to mailbox id: 5
+0>I:(487.9352):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_EEPROM_SCALING, accessOp: 4, transNum: 711
+0>I:(487.9353):I0: DiagsHndlrCntlr: Writing value 0x000002C7 to mailbox id: 5
+0>I:(487.9375):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 712
+0>I:(487.9375):I0: DiagsHndlrCntlr: Writing value 0x000002C8 to mailbox id: 5
+0>I:(487.9395):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 713
+0>I:(487.9395):I0: DiagsHndlrCntlr: Writing value 0x000002C9 to mailbox id: 5
+0>I:(487.9414):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 714
+0>I:(487.9415):I0: DiagsHndlrCntlr: Writing value 0x000002CA to mailbox id: 5
+0>I:(487.9433):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 715
+0>I:(487.9433):I0: DiagsHndlrCntlr: Writing value 0x000002CB to mailbox id: 5
+0>I:(487.9451):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 716
+0>I:(487.9451):I0: DiagsHndlrCntlr: Writing value 0x000002CC to mailbox id: 5
+!~@!~@!~0>I:(511.6218):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 717
+0>I:(511.6218):I0: DiagsHndlrCntlr: Writing value 0x000002CD to mailbox id: 5
+0>I:(511.7145):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 718
+0>I:(511.7146):I0: DiagsHndlrCntlr: Writing value 0x000002CE to mailbox id: 5
+0>I:(511.7399):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 719
+0>I:(511.7400):I0: DiagsHndlrCntlr: Writing value 0x000002CF to mailbox id: 5
+0>I:(511.8426):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 720
+0>I:(511.8427):I0: DiagsHndlrCntlr: Writing value 0x000002D0 to mailbox id: 5
+0>I:(512.4320):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 2, transNum: 721
+0>I:(512.4321):I1: DiagsHndlrCntlr: Writing value 0x000002D1 to mailbox id: 9
+0>I:(512.4342):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 2, transNum: 722
+0>I:(512.4343):I1: DiagsHndlrCntlr: Writing value 0x000002D2 to mailbox id: 9
+0>I:(512.4363):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 2, transNum: 723
+0>I:(512.4364):I1: DiagsHndlrCntlr: Writing value 0x000002D3 to mailbox id: 9
+0>I:(512.4384):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 2, transNum: 724
+0>I:(512.4385):I1: DiagsHndlrCntlr: Writing value 0x000002D4 to mailbox id: 9
+0>I:(512.4405):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_CNTL_ENABLE, accessOp: 1, transNum: 725
+0>I:(512.4406):I1: DiagsHndlrCntlr: Writing value 0x000002D5 to mailbox id: 9
+2>I:(512.4406):N0: VoaPwrCntlTx1: [0x004C6394=mVoaCntl].isEnabled=0. 
+0>I:(512.4413):N0: DiagsHndlr: MTB DIAG, cmdName: TUNE2_FILTER_CNTL, accessOp: 1, transNum: 726
+0>I:(512.4413):I1: DiagsHndlrCntlr: Writing value 0x000002D6 to mailbox id: 9
+0>I:(512.4426):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_MDL_OPT, accessOp: 1, transNum: 727
+0>I:(512.4427):I1: DiagsHndlrCntlr: Writing value 0x000002D7 to mailbox id: 9
+0>I:(512.4435):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_IQ_OFF, accessOp: 1, transNum: 728
+0>I:(512.4436):I1: DiagsHndlrCntlr: Writing value 0x000002D8 to mailbox id: 9
+0>I:(512.4443):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_TXPOW, accessOp: 1, transNum: 729
+0>I:(512.4443):I1: DiagsHndlrCntlr: Writing value 0x000002D9 to mailbox id: 9
+0>I:(512.4451):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_TXERVOA, accessOp: 1, transNum: 730
+0>I:(512.4451):I1: DiagsHndlrCntlr: Writing value 0x000002DA to mailbox id: 9
+0>I:(512.4459):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 731
+0>I:(512.4459):I1: DiagsHndlrCntlr: Writing value 0x000002DB to mailbox id: 9
+0>I:(512.4502):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_RXTIA, accessOp: 1, transNum: 732
+0>I:(512.4502):I1: DiagsHndlrCntlr: Writing value 0x000002DC to mailbox id: 9
+0>I:(512.4523):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_IQ_OFF, accessOp: 1, transNum: 733
+0>I:(512.4524):I1: DiagsHndlrCntlr: Writing value 0x000002DD to mailbox id: 9
+0>I:(512.9571):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_ADC_EEPROM_SCALING, accessOp: 4, transNum: 734
+0>I:(512.9572):I1: DiagsHndlrCntlr: Writing value 0x000002DE to mailbox id: 9
+0>I:(513.6599):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_ADC_EEPROM_SCALING, accessOp: 4, transNum: 735
+0>I:(513.6600):I1: DiagsHndlrCntlr: Writing value 0x000002DF to mailbox id: 9
+0>I:(514.3612):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_ADC_EEPROM_SCALING, accessOp: 4, transNum: 736
+0>I:(514.3613):I1: DiagsHndlrCntlr: Writing value 0x000002E0 to mailbox id: 9
+0>I:(515.0640):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_ADC_EEPROM_SCALING, accessOp: 4, transNum: 737
+0>I:(515.0641):I1: DiagsHndlrCntlr: Writing value 0x000002E1 to mailbox id: 9
+0>I:(515.2665):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_RX_AGC_MODE, accessOp: 1, transNum: 738
+0>I:(515.2665):I1: DiagsHndlrCntlr: Writing value 0x000002E2 to mailbox id: 9
+0>I:(515.2683):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_EEPROM_SCALING, accessOp: 4, transNum: 739
+0>I:(515.2683):I1: DiagsHndlrCntlr: Writing value 0x000002E3 to mailbox id: 9
+0>I:(515.2704):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 740
+0>I:(515.2705):I1: DiagsHndlrCntlr: Writing value 0x000002E4 to mailbox id: 9
+0>I:(515.2723):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_EEPROM_SCALING, accessOp: 4, transNum: 741
+0>I:(515.2723):I1: DiagsHndlrCntlr: Writing value 0x000002E5 to mailbox id: 9
+0>I:(515.2745):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 742
+0>I:(515.2745):I1: DiagsHndlrCntlr: Writing value 0x000002E6 to mailbox id: 9
+0>I:(515.2768):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_EEPROM_SCALING, accessOp: 4, transNum: 743
+0>I:(515.2769):I1: DiagsHndlrCntlr: Writing value 0x000002E7 to mailbox id: 9
+0>I:(515.2791):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 744
+0>I:(515.2791):I1: DiagsHndlrCntlr: Writing value 0x000002E8 to mailbox id: 9
+0>I:(515.2801):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_EEPROM_SCALING, accessOp: 4, transNum: 745
+0>I:(515.2802):I1: DiagsHndlrCntlr: Writing value 0x000002E9 to mailbox id: 9
+0>I:(515.2823):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 746
+0>I:(515.2823):I1: DiagsHndlrCntlr: Writing value 0x000002EA to mailbox id: 9
+0>I:(515.2842):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 747
+0>I:(515.2842):I1: DiagsHndlrCntlr: Writing value 0x000002EB to mailbox id: 9
+0>I:(515.2860):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 748
+0>I:(515.2861):I1: DiagsHndlrCntlr: Writing value 0x000002EC to mailbox id: 9
+0>I:(515.2883):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 749
+0>I:(515.2884):I1: DiagsHndlrCntlr: Writing value 0x000002ED to mailbox id: 9
+0>I:(515.2902):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 750
+0>I:(515.2902):I1: DiagsHndlrCntlr: Writing value 0x000002EE to mailbox id: 9
+@!~@!~@0>I:(537.5245):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 751
+0>I:(537.5245):I0: DiagsHndlrCntlr: Writing value 0x000002EF to mailbox id: 5
+0>I:(537.5661):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 752
+0>I:(537.5661):I0: DiagsHndlrCntlr: Writing value 0x000002F0 to mailbox id: 5
+0>I:(537.6675):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 753
+0>I:(537.6676):I0: DiagsHndlrCntlr: Writing value 0x000002F1 to mailbox id: 5
+0>I:(537.6698):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 754
+0>I:(537.6698):I0: DiagsHndlrCntlr: Writing value 0x000002F2 to mailbox id: 5
+!~0>I:(540.8648):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 755
+0>I:(540.8648):I1: DiagsHndlrCntlr: Writing value 0x000002F3 to mailbox id: 9
+0>I:(540.9667):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 756
+0>I:(540.9668):I1: DiagsHndlrCntlr: Writing value 0x000002F4 to mailbox id: 9
+0>I:(541.0723):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 757
+0>I:(541.0724):I1: DiagsHndlrCntlr: Writing value 0x000002F5 to mailbox id: 9
+0>I:(541.1317):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 758
+0>I:(541.1318):I1: DiagsHndlrCntlr: Writing value 0x000002F6 to mailbox id: 9
+@!~@!~0>I:(563.2579):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 759
+0>I:(563.2581):I0: DiagsHndlrCntlr: Writing value 0x000002F7 to mailbox id: 5
+0>I:(563.3225):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 760
+0>I:(563.3226):I0: DiagsHndlrCntlr: Writing value 0x000002F8 to mailbox id: 5
+0>I:(563.4239):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 761
+0>I:(563.4239):I0: DiagsHndlrCntlr: Writing value 0x000002F9 to mailbox id: 5
+0>I:(563.4442):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 762
+0>I:(563.4443):I0: DiagsHndlrCntlr: Writing value 0x000002FA to mailbox id: 5
+@0>I:(566.8637):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 763
+0>I:(566.8638):I1: DiagsHndlrCntlr: Writing value 0x000002FB to mailbox id: 9
+0>I:(566.9162):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 764
+0>I:(566.9162):I1: DiagsHndlrCntlr: Writing value 0x000002FC to mailbox id: 9
+0>I:(567.0182):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 765
+0>I:(567.0183):I1: DiagsHndlrCntlr: Writing value 0x000002FD to mailbox id: 9
+0>I:(567.1207):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 766
+0>I:(567.1207):I1: DiagsHndlrCntlr: Writing value 0x000002FE to mailbox id: 9
+!~@!~@!0>I:(589.3608):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 767
+0>I:(589.3609):I0: DiagsHndlrCntlr: Writing value 0x000002FF to mailbox id: 5
+0>I:(589.4313):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 768
+0>I:(589.4314):I0: DiagsHndlrCntlr: Writing value 0x00000300 to mailbox id: 5
+0>I:(589.5336):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 769
+0>I:(589.5337):I0: DiagsHndlrCntlr: Writing value 0x00000301 to mailbox id: 5
+0>I:(589.5553):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 770
+0>I:(589.5553):I0: DiagsHndlrCntlr: Writing value 0x00000302 to mailbox id: 5
+0>I:(589.5607):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 771
+0>I:(589.5607):I0: DiagsHndlrCntlr: Writing value 0x00000303 to mailbox id: 5
+0>I:(589.5629):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_TXERVOA, accessOp: 1, transNum: 772
+0>I:(589.5631):I0: DiagsHndlrCntlr: Writing value 0x00000304 to mailbox id: 5
+0>I:(589.5653):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_TXPOW, accessOp: 1, transNum: 773
+0>I:(589.5654):I0: DiagsHndlrCntlr: Writing value 0x00000305 to mailbox id: 5
+0>I:(589.5664):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_IQ_OFF, accessOp: 1, transNum: 774
+0>I:(589.5664):I0: DiagsHndlrCntlr: Writing value 0x00000306 to mailbox id: 5
+0>I:(589.5675):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_MDL_OPT, accessOp: 1, transNum: 775
+0>I:(589.5675):I0: DiagsHndlrCntlr: Writing value 0x00000307 to mailbox id: 5
+0>I:(589.5685):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_CNTL_ENABLE, accessOp: 1, transNum: 776
+0>I:(589.5685):I0: DiagsHndlrCntlr: Writing value 0x00000308 to mailbox id: 5
+1>I:(589.5686):N0: VoaPwrCntlTx0: [0x004C6394=mVoaCntl].isEnabled=1. 
+0>I:(589.5695):N0: DiagsHndlr: MTB DIAG, cmdName: TUNE2_FILTER_CNTL, accessOp: 1, transNum: 777
+0>I:(589.5696):I0: DiagsHndlrCntlr: Writing value 0x00000309 to mailbox id: 5
+0>I:(589.5706):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_RXTIA, accessOp: 1, transNum: 778
+0>I:(589.5706):I0: DiagsHndlrCntlr: Writing value 0x0000030A to mailbox id: 5
+0>I:(589.5722):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_IQ_OFF, accessOp: 1, transNum: 779
+0>I:(589.5722):I0: DiagsHndlrCntlr: Writing value 0x0000030B to mailbox id: 5
+0>I:(589.5824):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_RX_AGC_MODE, accessOp: 1, transNum: 780
+0>I:(589.5825):I0: DiagsHndlrCntlr: Writing value 0x0000030C to mailbox id: 5
+1>I:(589.6015):I0: PIC: Init mbData_.VoaInt[-98.0, -74.0, -3309.0, -9508.0] VoaX24[926, 74] VoaY13[1930, 0]
+1>I:(589.6015):I0: SwCntlLoopTxErVoa2 N=32, errVoaGnew=0.000000 <---
+
+
+1>I:(589.6711):N0: TFC: SetTargetOutput to -20.00 dBm step=1
+1>I:(589.6811):N0: TFC: Dither setup. filter=2 dither[10,20,50] [10.000, 3.000, 1.200] 
+1>I:(589.7520):N0: VoaPwrCntlTx0 VoaConverged oor=0
+1>I:(589.8100):N0: VoaPwrCntlTx0 VoaConverged oor=0
+1>I:(589.9012):N0: ControlLoops: Restore to Host output power = 0.000 
+1>I:(589.9016):N0: FecFrameSync SetUniqueWord::Primary 
+1>I:(590.0050):N0: VoaPwrCntlTx0 VoaConverged oor=0
+1>I:(590.0050):N0: VoaPwrCntlTx0 Post OutputPwrAdj PwrSel=0 oor=0
+~0>I:(592.7707):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 781
+0>I:(592.7708):I1: DiagsHndlrCntlr: Writing value 0x0000030D to mailbox id: 9
+0>I:(592.8371):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 782
+0>I:(592.8371):I1: DiagsHndlrCntlr: Writing value 0x0000030E to mailbox id: 9
+0>I:(592.9399):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 783
+0>I:(592.9399):I1: DiagsHndlrCntlr: Writing value 0x0000030F to mailbox id: 9
+0>I:(593.0413):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 784
+0>I:(593.0414):I1: DiagsHndlrCntlr: Writing value 0x00000310 to mailbox id: 9
+@!~@!~@0>I:(616.8227):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 785
+0>I:(616.8228):I1: DiagsHndlrCntlr: Writing value 0x00000311 to mailbox id: 9
+0>I:(616.8517):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 786
+0>I:(616.8518):I1: DiagsHndlrCntlr: Writing value 0x00000312 to mailbox id: 9
+0>I:(616.9527):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 787
+0>I:(616.9528):I1: DiagsHndlrCntlr: Writing value 0x00000313 to mailbox id: 9
+0>I:(616.9562):N0: DiagsHndlr: MTB DIAG, cmdName: PIC_DRIVER_REG, accessOp: 1, transNum: 788
+0>I:(616.9563):I1: DiagsHndlrCntlr: Writing value 0x00000314 to mailboid: 9
+0>I:(616.9597):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 789
+0>I:(616.9598):I1: DiagsHndlrCntlr: Writing value 0x00000315 to mailbox id: 9
+0>I:(616.9618):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_TXERVOA, accessOp: 1, transNum: 790
+0>I:(616.9619):I1: DiagsHndlrCntlr: Writing value 0x00000316 to mailbox id: 9
+0>I:(616.9640):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_TXPOW, accessOp: 1, transNum: 791
+0>I:(616.9641):I1: DiagsHndlrCntlr: Writing value 0x00000317 to mailbox id: 9
+0>I:(616.9648):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_IQ_OFF, accessOp: 1, transNum: 792
+0>I:(616.9648):I1: DiagsHndlrCntlr: Writing value 0x00000318 to mailbox id: 9
+0>I:(616.9656):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_MDL_OPT, accessOp: 1, transNum: 793
+0>I:(616.9657):I1: DiagsHndlrCntlr: Writing value 0x00000319 to mailbox id: 9
+0>I:(616.9667):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_CNTL_ENABLE, accessOp: 1, transNum: 794
+0>I:(616.9667):I1: DiagsHndlrCntlr: Writing value 0x0000031A to mailbox id: 9
+2>I:(616.9668):N0: VoaPwrCntlTx1: [0x004C6394=mVoaCntl].isEnabled=1. 
+0>I:(616.9689):N0: DiagsHndlr: MTB DIAG, cmdName: TUNE2_FILTER_CNTL, accessOp: 1, transNum: 795
+0>I:(616.9690):I1: DiagsHndlrCntlr: Writing value 0x0000031B to mailbox id: 9
+0>I:(616.9711):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_RXTIA, accessOp: 1, transNum: 796
+0>I:(616.9712):I1: DiagsHndlrCntlr: Writing value 0x0000031C to mailbox id: 9
+0>I:(616.9732):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_IQ_OFF, accessOp: 1, transNum: 797
+0>I:(616.9732):I1: DiagsHndlrCntlr: Writing value 0x0000031D to mailbox id: 9
+0>I:(616.9777):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_RX_AGC_MODE, accessOp: 1, transNum: 798
+0>I:(616.9777):I1: DiagsHndlrCntlr: Writing value 0x0000031E to mailbox id: 9
+2>I:(617.0015):I1: PIC: Init mbData_.VoaInt[-266.0, -883.0, 2448.0, -6511.0] VoaX24[266, 1204] VoaY13[3546, 0]
+2>I:(617.0015):I1: SwCntlLoopTxErVoa2 N=32, errVoaGnew=0.000000 <---
+
+
+2>I:(617.0711):N0: TFC: SetTargetOutput to -20.00 dBm step=1
+2>I:(617.0811):N0: TFC: Dither setup. filter=2 dither[10,20,50] [10.000, 3.000, 1.200] 
+2>I:(617.1540):N0: VoaPwrCntlTx1 VoaConverged oor=0
+2>I:(617.2280):N0: VoaPwrCntlTx1 VoaConverged oor=0
+2>I:(617.2612):N0: ControlLoops: Restore to Host output power = 0.000 
+2>I:(617.2612):N0: FecFrameSync SetUniqueWord::Primary 
+2>I:(617.3670):N0: VoaPwrCntlTx1 VoaConverged oor=0
+2>I:(617.3670):N0: VoaPwrCntlTx1 Post OutputPwrAt dj PwrSel=0 oor=0
+!~@!
+
+******************************************************************************
+* CLEAR CONSOLE:   Calibration - DSP Skew Extended   ( Lane 1 / DP-16QAM / 193.40 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+* 8:27:07 6/21/2023
+******************************************************************************
+1.8158):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 512
+0>I:(1191.8340):I1: DiagsHndlrCntlr: Writing value 0x00000202 to mailbox id: 9
+0>I:(1191.8536):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 516
+0>I:(1191.8639):I1: DiagsHndlrCntlr: Writing value 0x00000205 to mailbox id: 9
+0>I:(1191.8822):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 519
+0>I:(1191.8925):I1: DiagsHndlrCntlr: Writing value 0x00000208 to mailbox id: 9
+0>I:(1191.9116):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 522
+0>I:(1191.9311):I1: DiagsHndlrCntlr: Writing value 0x0000020C to mailbox id: 9
+0>I:(1191.9413):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 525
+0>I:(1191.9607):I1: DiagsHndlrCntlr: Writing value 0x0000020F to mailbox id: 9
+0>I:(1191.9701):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 528
+0>I:(1191.9898):I1: DiagsHndlrCntlr: Writing value 0x00000212 to mailbox id: 9
+0>I:(1192.0090):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 532
+0>I:(1192.0186):I1: DiagsHndlrCntlr: Writing value 0x00000215 to mailbox id: 9
+0>I:(1192.0373):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 535
+0>I:(1192.0480):I1: DiagsHndlrCntlr: Writing value 0x00000218 to mailbox id: 9
+0>I:(1192.0659):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 538
+0>I:(1192.0751):I1: DiagsHndlrCntlr: Writing value 0x0000021B to mailbox id: 9
+0>I:(1192.0947):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 541
+0>I:(1192.1138):I1: DiagsHndlrCntlr: Writing value 0x0000021F to mailbox id: 9
+0>I:(1192.1227):I1: DiagsHndlrCntlr: Writing value 0x00000220 to mailbox id: 9
+0>I:(1192.1419):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 546
+0>I:(1192.1509):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 547
+0>I:(1192.1728):I1: DiagsHndlrCntlr: Writing value 0x00000225 to mailbox id: 9
+0>I:(1192.1817):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 550
+0>I:(1192.2100):I1: DiagsHndlrCntlr: Writing value 0x00000229 to mailbox id: 9
+0>I:(1192.2189):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 554
+0>I:(1192.2371):I1: DiagsHndlrCntlr: Writing value 0x0000022C to mailbox id: 9
+0>I:(1192.2472):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 557
+0>I:(1192.2679):I1: DiagsHndlrCntlr: Writing value 0x0000022F to mailbox id: 9
+0>I:(1192.2770):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 560
+0>I:(1192.2969):I1: DiagsHndlrCntlr: Writing value 0x00000232 to mailbox id: 9
+0>I:(1192.3071):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 563
+0>I:(1192.3276):I1: DiagsHndlrCntlr: Writing value 0x00000235 to mailbox id: 9
+0>I:(1192.3379):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 566
+0>I:(1192.3571):I1: DiagsHndlrCntlr: Writing value 0x00000238 to mailbox id: 9
+0>I:(1192.3673):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 569
+0>I:(1192.3867):I1: DiagsHndlrCntlr: Writing value 0x0000023B to mailbox id: 9
+0>I:(1192.4072):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 573
+0>I:(1192.4175):I1: DiagsHndlrCntlr: Writing value 0x0000023E to mailbox id: 9
+0>I:(1192.4369):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 576
+0>I:(1192.4459):I1: DiagsHndlrCntlr: Writing value 0x00000241 to mailbox id: 9
+0>I:(1192.4664):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 579
+0>I:(1192.4769):I1: DiagsHndlrCntlr: Writing value 0x00000244 to mailbox id: 9
+0>I:(1192.4962):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 582
+0>I:(1192.5069):I1: DiagsHndlrCntlr: Writing value 0x00000247 to mailbox id: 9
+0>I:(1192.5269):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 585
+0>I:(1192.5366):I1: DiagsHndlrCntlr: Writing value 0x0000024A to mailbox id: 9
+0>I:(1192.5559):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 588
+0>I:(1192.5737):I1: DiagsHndlrCntlr: Writing value 0x0000024E to mailbox id: 9
+0>I:(1192.5839):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 591
+0>I:(1192.6017):I1: DiagsHndlrCntlr: Writing value 0x00000251 to mailbox id: 9
+0>I:(1192.6207):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 595
+0>I:(1192.6311):I1: DiagsHndlrCntlr: Writing value 0x00000254 to mailbox id: 9
+0>I:(1192.6489):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 598
+0>I:(1192.6667):I1: DiagsHndlrCntlr: Writing value 0x00000258 to mailbox id: 9
+0>I:(1192.6760):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 601
+0>I:(1192.6949):I1: DiagsHndlrCntlr: Writing value 0x0000025B to mailbox id: 9
+0>I:(1192.7127):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 605
+0>I:(1192.7229):I1: DiagsHndlrCntlr: Writing value 0x0000025E to mailbox id: 9
+0>I:(1192.7407):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 608
+0>I:(1192.7613):I1: DiagsHndlrCntlr: Writing value 0x00000262 to mailbox id: 9
+0>I:(1192.7709):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 611
+0>I:(1192.7893):I1: DiagsHndlrCntlr: Writing value 0x00000265 to mailbox id: 9
+0>I:(1192.7999):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 614
+0>I:(1192.8191):I1: DiagsHndlrCntlr: Writing value 0x00000268 to mailbox id: 9
+0>I:(1192.8371):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 618
+0>I:(1192.8474):I1: DiagsHndlrCntlr: Writing value 0x0000026B to mailbox id: 9
+@0>I:(1192.8679):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 621
+0>I:(1192.8768):I1: DiagsHndlrCntlr: Writing value 0x0000026E to mailbox id: 9
+0>I:(1192.8949):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 624
+0>I:(1192.9128):I1: DiagsHndlrCntlr: Writing value 0x00000272 to mailbox id: 9
+0>I:(1192.9217):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 627
+0>I:(1192.9408):I1: DiagsHndlrCntlr: Writing value 0x00000275 to mailbox id: 9
+0>I:(1192.9599):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 631
+0>I:(1192.9784):I1: DiagsHndlrCntlr: Writing value 0x00000279 to mailbox id: 9
+0>I:(1192.9892):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 634
+0>I:(1193.0100):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 636
+0>I:(1193.0101):I1: DiagsHndlrCntlr: Writing value 0x0000027C to mailbox id: 9
+0>I:(1193.0306):I1: DiagsHndlrCntlr: Writing value 0x0000027E to mailbox id: 9
+0>I:(1193.0491):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 640
+0>I:(1193.0687):I1: DiagsHndlrCntlr: Writing value 0x00000282 to mailbox id: 9
+0>I:(1193.0781):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 643
+0>I:(1193.0991):I1: DiagsHndlrCntlr: Writing value 0x00000285 to mailbox id: 9
+0>I:(1193.1096):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 646
+0>I:(1193.1201):I1: DiagsHndlrCntlr: Writing value 0x00000287 to mailbox id: 9
+0>I:(1193.1409):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 649
+0>I:(1193.1501):I1: DiagsHndlrCntlr: Writing value 0x0000028A to mailbox id: 9
+0>I:(1193.1706):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 652
+0>I:(1193.1918):I1: DiagsHndlrCntlr: Writing value 0x0000028E to mailbox id: 9
+0>I:(1193.2009):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 655
+0>I:(1193.2218):I1: DiagsHndlrCntlr: Writing value 0x00000291 to mailbox id: 9
+0>I:(1193.2322):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 658
+!0>I:(1193.2521):I1: DiagsHndlrCntlr: Writing value 0x00000294 to mailbox id: 9
+0>I:(1193.2626):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 661
+0>I:(1193.2841):I1: DiagsHndlrCntlr: Writing value 0x00000297 to mailbox id: 9
+0>I:(1193.2932):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 664
+0>I:(1193.3148):I1: DiagsHndlrCntlr: Writing value 0x0000029A to mailbox id: 9
+0>I:(1193.3239):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 667
+0>I:(1193.3423):I1: DiagsHndlrCntlr: Writing value 0x0000029D to mailbox id: 9
+0>I:(1193.3529):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 670
+0>I:(1193.3711):I1: DiagsHndlrCntlr: Writing value 0x000002A0 to mailbox id: 9
+0>I:(1193.3816):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 673
+0>I:(1193.4003):I1: DiagsHndlrCntlr: Writing value 0x000002A3 to mailbox id: 9
+0>I:(1193.4106):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 676
+0>I:(1193.4301):I1: DiagsHndlrCntlr: Writing value 0x000002A6 to mailbox id: 9
+0>I:(1193.4482):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 680
+0>I:(1193.4679):I1: DiagsHndlrCntlr: Writing value 0x000002AA to mailbox id: 9
+0>I:(1193.4769):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 683
+0>I:(1193.4968):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 685
+0>I:(1193.5073):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 686
+0>I:(1193.5274):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 688
+0>I:(1193.5487):I1: DiagsHndlrCntlr: Writing value 0x000002B2 to mailbox id: 9
+0>I:(1193.5592):I1: DiagsHndlrCntlr: Writing value 0x000002B3 to mailbox id: 9
+0>I:(1193.5802):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 693
+0>I:(1193.5908):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 694
+0>I:(1193.6003):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 695
+0>I:(1193.6201):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 697
+0>I:(1193.6411):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 699
+0>I:(1193.6626):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 701
+0>I:(1193.6729):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 702
+0>I:(1193.6930):I1: DiagsHndlrCntlr: Writing value 0x000002C0 to mailbox id: 9
+0>I:(1193.7022):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 705
+0>I:(1193.7235):I1: DiagsHndlrCntlr: Writing value 0x000002C3 to mailbox id: 9
+0>I:(1193.7329):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 708
+0>I:(1193.7534):I1: DiagsHndlrCntlr: Writing value 0x000002C6 to mailbox id: 9
+0>I:(1193.7629):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 711
+0>I:(1193.7829):I1: DiagsHndlrCntlr: Writing value 0x000002C9 to mailbox id: 9
+0>I:(1193.7919):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 714
+0>I:(1193.8119):I1: DiagsHndlrCntlr: Writing value 0x000002CC to mailbox id: 9
+0>I:(1193.8319):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 718
+0>I:(1193.8408):I1: DiagsHndlrCntlr: Writing value 0x000002CF to mailbox id: 9
+0>I:(1193.8606):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 721
+0>I:(1193.8711):I1: DiagsHndlrCntlr: Writing value 0x000002D2 to mailbox id: 9
+0>I:(1193.8904):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 724
+0>I:(1193.9008):I1: DiagsHndlrCntlr: Writing value 0x000002D5 to mailbox id: 9
+0>I:(1193.9213):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 727
+0>I:(1193.9316):I1: DiagsHndlrCntlr: Writing value 0x000002D8 to mailbox id: 9
+0>I:(1193.9511):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 730
+0>I:(1193.9707):I1: DiagsHndlrCntlr: Writing value 0x000002DC to mailbox id: 9
+0>I:(1193.9796):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 733
+0>I:(1193.9983):I1: DiagsHndlrCntlr: Writing value 0x000002DF to mailbox id: 9
+0>I:(1194.0086):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 736
+0>I:(1194.0289):I1: DiagsHndlrCntlr: Writing value 0x000002E2 to mailbox id: 9
+0>I:(1194.0480):I1: DiagsHndlrCntlr: Writing value 0x000002E4 to mailbox id: 9
+0>I:(1194.0569):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 741
+0>I:(1194.0748):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 743
+0>I:(1194.0849):I1: DiagsHndlrCntlr: Writing value 0x000002E8 to mailbox id: 9
+0>I:(1194.1041):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 746
+0>I:(1194.1246):I1: DiagsHndlrCntlr: Writing value 0x000002EC to mailbox id: 9
+0>I:(1194.1348):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 749
+0>I:(1194.1532):I1: DiagsHndlrCntlr: Writing value 0x000002EF to mailbox id: 9
+0>I:(1194.1649):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 752
+0>I:(1194.1841):I1: DiagsHndlrCntlr: Writing value 0x000002F2 to mailbox id: 9
+0>I:(1194.1943):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 755
+0>I:(1194.2148):I1: DiagsHndlrCntlr: Writing value 0x000002F5 to mailbox id: 9
+0>I:(1194.2237):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 758
+0>I:(1194.2418):I1: DiagsHndlrCntlr: Writing value 0x000002F8 to mailbox id: 9
+0>I:(1194.2598):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 762
+0>I:(1194.2782):I1: DiagsHndlrCntlr: Writing value 0x000002FC to mailbox id: 9
+0>I:(1194.2888):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 765
+0>I:(1194.3000):N0: ******************************************************************
+0>I:(1194.3185):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 768
+0>I:(1194.3388):I1: DiagsHndlrCntlr: Writing value 0x00000302 to mailbox id: 9
+0>I:(1194.3477):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 771
+0>I:(1194.3668):I1: DiagsHndlrCntlr: Writing value 0x00000305 to mailbox id: 9
+0>I:(1194.3757):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 774
+0>I:(1194.4041):I1: DiagsHndlrCntlr: Writing value 0x00000309 to mailbox id: 9
+0>I:(1194.4130):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 778
+0>I:(1194.4307):I1: DiagsHndlrCntlr: Writing value 0x0000030C to mailbox id: 9
+0>I:(1194.4401):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 781
+0>I:(1194.4608):I1: DiagsHndlrCntlr: Writing value 0x0000030F to mailbox id: 9
+0>I:(1194.4789):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 785
+0>I:(1194.4880):I1: DiagsHndlrCntlr: Writing value 0x00000312 to mailbox id: 9
+0>I:(1194.5078):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 788
+0>I:(1194.5168):I1: DiagsHndlrCntlr: Writing value 0x00000315 to mailbox id: 9
+0>I:(1194.5358):I1: DiagsHndlrCntlr: Writing value 0x00000317 to mailbox id: 9
+0>I:(1194.5538):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 793
+0>I:(1194.5626):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 794
+0>I:(1194.5818):I1: DiagsHndlrCntlr: Writing value 0x0000031C to mailbox id: 9
+0>I:(1194.5907):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 797
+0>I:(1194.6178):I1: DiagsHndlrCntlr: Writing value 0x00000320 to mailbox id: 9
+0>I:(1194.6267):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 801
+0>I:(1194.6446):I1: DiagsHndlrCntlr: Writing value 0x00000323 to mailbox id: 9
+0>I:(1194.6547):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 804
+0>I:(1194.6740):I1: DiagsHndlrCntlr: Writing value 0x00000326 to mailbox id: 9
+0>I:(1194.6945):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 808
+0>I:(1194.7047):I1: DiagsHndlrCntlr: Writing value 0x00000329 to mailbox id: 9
+0>I:(1194.7237):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 811
+0>I:(1194.7340):I1: DiagsHndlrCntlr: Writing value 0x0000032C to mailbox id: 9
+0>I:(1194.7518):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 814
+0>I:(1194.7608):I1: DiagsHndlrCntlr: Writing value 0x0000032F to mailbox id: 9
+0>I:(1194.7785):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 3, transNum: 817
+0>I:(1194.7993):I1: DiagsHndlrCntlr: Writing value 0x00000333 to mailbox id: 9
+0>I:(1194.8096):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 3, transNum: 820
+0>I:(1194.8288):I1: DiagsHndlrCntlr: Writing value 0x00000336 to mailbox id: 9
+0>I:(1194.8390):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 823
+0>I:(1194.8571):I1: DiagsHndlrCntlr: Writing value 0x00000339 to mailbox id: 9
+0>I:(1194.8749):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 3, transNum: 827
+0>I:(1194.8929):I1: DiagsHndlrCntlr: Writing value 0x0000033D to mailbox id: 9
+0>I:(1194.9021):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 3, transNum: 830
+~@!0>I:(1204.0233):N0: DiagsHndlr: MTB DIAG, cmdName: TUNE2_FILTER_CNTL, accessOp: 1, transNum: 831
+0>I:(1204.0233):I1: DiagsHndlrCntlr: Writing value 0x0000033F to mailbox id: 9
+2>I:(1204.1310):N0: TFC: SetTargetOutput to -20.00 dBm step=1
+2>I:(1204.1410):N0: TFC: Dither setup. filter=2 dither[10,20,50] [10.000, 3.000, 1.200] 
+2>I:(1204.2200):N0: VoaPwrCntlTx1 VoaConverged oor=0
+2>I:(1204.2600):N0: VoaPwrCntlTx1 VoaConverged oor=0
+2>I:(1204.3090):N0: VoaPwrCntlTx1 VoaConverged oor=0
+2>I:(1204.4011):N0: ControlLoops: Restore to Host output power = 0.000 
+2>I:(1204.4013):N0: FecFrameSync SetUniqueWord::Primary 
+2>I:(1204.5090):N0: VoaPwrCntlTx1 VoaConverged oor=0
+2>I:(1204.5090):N0: VoaPwrCntlTx1 Post OutputPwrAdj PwrSel=0 oor=0
+0>I:(1205.0456):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EEPROM_HDR, accessOp: 3, transNum: 832
+0>I:(1205.0456):I1: DiagsHndlrCntlr: Writing value 0x00000340 to mailbox id: 9
+0>I:(1205.0581):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EEPROM_HDR, accessOp: 3, transNum: 833
+0>I:(1205.0582):I1: DiagsHndlrCntlr: Writing value 0x00000341 to mailbox id: 9
+0>I:(1205.0899):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HI, accessOp: 4, transNum: 834
+0>I:(1205.0899):I1: DiagsHndlrCntlr: Writing value 0x00000342 to mailbox id: 9
+0>I:(1205.0942):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_HQ, accessOp: 4, transNum: 835
+0>I:(1205.0943):I1: DiagsHndlrCntlr: Writing value 0x00000343 to mailbox id: 9
+0>I:(1205.0968):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VI, accessOp: 4, transNum: 836
+0>I:(1205.0969):I1: DiagsHndlrCntlr: Writing value 0x00000344 to mailbox id: 9
+0>I:(1205.0987):N0: DiagsHndlr: MTB DIAG, cmdName: TMS_EQ_COEFFS_VQ, accessOp: 4, transNum: 837
+0>I:(1205.0988):I1: DiagsHndlrCntlr: Writing value 0x00000345 to mailbox id: 9
+0>I:(1209.3000):N0: ******************************************************************
+0>I:(1209.3001):N0: **                   ASSERT RAM BUFF CONTENTS                   **
+0>I:(1209.3001):N0: ******************************************************************
+0>I:(1209.3002):N0: (BAD EC Tick: 1194778): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3002):N0: (BAD EC Tick: 1194788): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3003):N0: (BAD EC Tick: 1194788): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3003):N0: (BAD EC Tick: 1194799): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3004):N0: (BAD EC Tick: 1194809): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3004):N0: (BAD EC Tick: 1194819): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3005):N0: (BAD EC Tick: 1194819): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3005):N0: (BAD EC Tick: 1194828): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3005):N0: (BAD EC Tick: 4839): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3006):N0: (BAD EC Tick: 1194847): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3006):N0: (BAD EC Tick: 1194847): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3006):N0: (BAD EC Tick: 1194857): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3007):N0: (BAD EC Tick: 1194866): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3007):N0: (BAD EC Tick: 1194866): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3007):N0: (BAD EC Tick: 1194874): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3008):N0: (BAD EC Tick: 1194884): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3008):N0: (BAD EC Tick: 1194884): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3008):N0: (BAD EC Tick: 1194892): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3009):N0: (BAD EC Tick: 1194902): File: LogMsg: line:  432 ec: 20 (0x00000014)
+0>I:(1209.3009):N0: ******************************************************************
+0>I:(1209.3009):N0: **     WARNING: ASSERT RAM BUFF OVERFLOWED SINCE LAST DUMP!     **
+0>I:(1209.3009):N0: ******************************************************************
+~@!~@!~@!~@!~@!~@!~@!~@!~@!~@!~@!~@!~@!~@!~@!0>I:(1354.1144):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 838
+0>I:(1354.1145):I1: DiagsHndlrCntlr: Writing value 0x00000346 to mailbox id: 9
+0>I:(1354.1184):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 839
+0>I:(1354.1185):I1: DiagsHndlrCntlr: Writing value 0x00000347 to mailbox id: 9
+0>I:(1354.1204):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 840
+0>I:(1354.1205):I0: DiagsHndlrCntlr: Writing value 0x00000348 to mailbox id: 5
+0>I:(1354.1225):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 841
+0>I:(1354.1225):I1: DiagsHndlrCntlr: Writing value 0x00000349 to mailbox id: 9
+0>I:(1354.1234):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 842
+0>I:(1354.1235):I0: DiagsHndlrCntlr: Writing value 0x0000034A to mailbox id: 5
+0>I:(1354.1245):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 843
+0>I:(1354.1245):I1: DiagsHndlrCntlr: Writing value 0x0000034B to mailbox id: 9
+0>I:(1354.1253):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 844
+0>I:(1354.1253):I0: DiagsHndlrCntlr: Writing value 0x0000034C to mailbox id: 5
+0>I:(1354.1265):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 845
+0>I:(1354.1265):I1: DiagsHndlrCntlr: Writing value 0x0000034D to mailbox id: 9
+0>I:(1354.1273):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 846
+0>I:(1354.1273):I0: DiagsHndlrCntlr: Writing value 0x0000034E to mailbox id: 5
+0>I:(1354.1285):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 847
+0>I:(1354.1286):I1: DiagsHndlrCntlr: Writing value 0x0000034F to mailbox id: 9
+0>I:(1354.1295):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 848
+0>I:(1354.1295):I0: DiagsHndlrCntlr: Writing value 0x00000350 to mailbox id: 5
+0>I:(1354.1312):N0: DiagsHndlr: MTB DIAG, cmdName: FPGA_REG, accessOp: 1, transNum: 849
+0>I:(1354.1312):I0: DiagsHndlrCntlr: Writing value 0x00000351 to mailbox id: 5
+0>I:(1354.1424):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 850
+0>I:(1354.1424):I1: DiagsHndlrCntlr: Writing value 0x00000352 to mailbox id: 9
+0>I:(1354.1549):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 851
+0>I:(1354.1550):I0: DiagsHndlrCntlr: Writing value 0x00000353 to mailbox id: 5
+2>I:(1354.2420):N0: VoaPwrCntlTx1 VoaConverged oor=0
+2>I:(1354.2420):N0: VoaPwrCntlTx1 Post OutputPwrAdj PwrSel=0 oor=0
+1>I:(1354.2470):N0: VoaPwrCntlTx0 VoaConverged oor=0
+1>I:(1354.2470):N0: VoaPwrCntlTx0 Post Outputec:PwrAdj PwrSel=0 oor=0
+
+
+******************************************************************************
+* CLEAR CONSOLE:   Calibration - Modulation Specific   ( Lane 1 / DP-16QAM / 193.40 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+* 8:36:01 6/21/2023
+******************************************************************************
+ansNum: 65
+0>I:(1832.0927):N0: DiagsHndlr: MTB DIAG, cmdName: ABC_PRODUCT_ID, accessOp: 4, transNum: 66
+0>I:(1832.2641):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 1, transNum: 67
+0>I:(1832.2642):I1: DiagsHndlrCntlr: Writing value 0x00000043 to mailbox id: 9
+0>I:(1832.7671):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 1, transNum: 68
+0>I:(1832.7672):I1: DiagsHndlrCntlr: Writing value 0x00000044 to mailbox id: 9
+2>I:(1832.7673):I1: 
+RX SKEW CAL. Adjusted Rx step value: 0.16 ps
+2>I:(1832.7673):I1: 
+RX SKEW CAL. Num of iterations: 9
+2>I:(1832.7673):I1: 
+RX SKEW CAL. calStartH: -1.627604,  calStartV: 0.813802, step-size: 0.162760
+0>I:(1832.9108):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 1, transNum: 69
+0>I:(1832.9109):I0: DiagsHndlrCntlr: Writing value 0x00000045 to mailbox id: 5
+0>I:(1833.2717):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 70
+0>I:(1833.2717):I1: DiagsHndlrCntlr: Writing value 0x00000046 to mailbox id: 9
+0>I:(1833.4152):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 1, transNum: 71
+0>I:(1833.4152):I0: DiagsHndlrCntlr: Writing value 0x00000047 to mailbox id: 5
+1>I:(1833.4153):I0: 
+RX SKEW CAL. Adjusted Rx step value: 0.16 ps
+1>I:(1833.4154):I0: 
+RX SKEW CAL. Num of iterations: 9
+1>I:(1833.4154):I0: 
+RX SKEW CAL. calStartH: -1.139323,  calStartV: -0.651042, step-size: 0.162760
+0>I:(1833.9181):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 72
+0>I:(1833.9182):I0: DiagsHndlrCntlr: Writing value 0x00000048 to mailbox id: 5
+2>I:(1834.0291):I1: 
+RX SKEW CAL ITERATION 1:
+1>I:(1835.0291):I0: 
+RX SKEW CAL ITERATION 1:
+@2>I:(1836.0291):I1: H0: (-0.85,0.77) BER=3.647096E-03
+1>I:(1837.0291):I0: H0: (-0.61,0.53) BER=4.618355E-03
+0>I:(1837.0733):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 73
+0>I:(1837.0734):I0: DiagsHndlrCntlr: Writing value 0x00000049 to mailbox id: 5
+0>I:(1837.0741):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 74
+0>I:(1837.0741):I1: DiagsHndlrCntlr: Writing value 0x0000004A to mailbox id: 9
+2>I:(1838.0291):I1: H1: (-0.77,0.69) BER=3.324617E-03
+!1>I:(1839.0291):I0: H1: (-0.53,0.45) BER=4.402776E-03
+2>I:(1840.0291):I1: H2: (-0.69,0.61) BER=3.084495E-03
+~1>I:(1841.0291):I0: H2: (-0.45,0.37) BER=4.278448E-03
+2>I:(1842.0291):I1: H3: (-0.61,0.53) BER=2.905347E-03
+0>I:(1842.0741):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 75
+0>I:(1842.0742):I0: DiagsHndlrCntlr: Writing value 0x0000004B to mailbox id: 5
+0>I:(1842.0753):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 76
+0>I:(1842.0754):I1: DiagsHndlrCntlr: Writing value 0x0000004C to mailbox id: 9
+1>I:(1843.0291):I0: H3: (-0.37,0.28) BER=4.233797E-03
+2>I:(1844.0291):I1: H4: (-0.53,0.45) BER=2.780193E-03
+1>I:(1845.0291):I0: H4: (-0.28,0.20) BER=4.254510E-03
+@2>I:(1846.0291):I1: H5: (-0.45,0.37) BER=2.727282E-03
+1>I:(1847.0291):I0: H5: (-0.20,0.12) BER=4.323470E-03
+0>I:(1847.0748):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 77
+0>I:(1847.0749):I0: DiagsHndlrCntlr: Writing value 0x0000004D to mailbox id: 5
+0>I:(1847.0767):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 78
+0>I:(1847.0768):I1: DiagsHndlrCntlr: Writing value 0x0000004E to mailbox id: 9
+2>I:(1848.0291):I1: H6: (-0.37,0.28) BER=2.714625E-03
+!1>I:(1849.0291):I0: H6: (-0.12,0.04) BER=4.511465E-03
+2>I:(1850.0291):I1: H7: (-0.28,0.20) BER=2.777319E-03
+~1>I:(1851.0291):I0: H7: (-0.04,-0.04) BER=4.717791E-03
+2>I:(1852.0291):I1: H8: (-0.20,0.12) BER=2.881551E-03
+0>I:(1852.0743):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 79
+0>I:(1852.0744):I1: DiagsHndlrCntlr: Writing value 0x0000004F to mailbox id: 9
+0>I:(1852.0755):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 80
+0>I:(1852.0755):I0: DiagsHndlrCntlr: Writing value 0x00000050 to mailbox id: 5
+1>I:(1853.0291):I0: H8: (0.04,-0.12) BER=5.088034E-03
+2>I:(1853.0291):I1: MIN H: (-0.37,0.28) BER=2.714625E-03
+2>I:(1854.0291):I1: 
+RX SKEW CAL ITERATION 1:
+1>I:(1854.0291):I0: MIN H: (-0.37,0.28) BER=4.233797E-03
+1>I:(1855.0291):I0: 
+RX SKEW CAL ITERATION 1:
+@2>I:(1856.0291):I1: V0: (0.37,-0.45) BER=3.400300E-03
+1>I:(1857.0291):I0: V0: (-0.37,0.28) BER=4.557788E-03
+0>I:(1857.0745):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 81
+0>I:(1857.0746):I0: DiagsHndlrCntlr: Writing value 0x00000051 to mailbox id: 5
+0>I:(1857.0760):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 82
+0>I:(1857.0761):I1: DiagsHndlrCntlr: Writing value 0x00000052 to mailbox id: 9
+2>I:(1858.0291):I1: V1: (0.45,-0.53) BER=3.122289E-03
+!1>I:(1859.0291):I0: V1: (-0.28,0.20) BER=4.386987E-03
+2>I:(1860.0291):I1: V2: (0.53,-0.61) BER=2.937820E-03
+~1>I:(1861.0291):I0: V2: (-0.20,0.12) BER=4.250983E-03
+2>I:(1862.0291):I1: V3: (0.61,-0.69) BER=2.788689E-03
+0>I:(1862.0743):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 83
+0>I:(1862.0744):I1: DiagsHndlrCntlr: Writing value 0x00000053 to mailbox id: 9
+0>I:(1862.0754):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 84
+0>I:(1862.0754):I0: DiagsHndlrCntlr: Writing value 0x00000054 to mailbox id: 5
+1>I:(1863.0291):I0: V3: (-0.12,0.04) BER=4.260745E-03
+2>I:(1864.0291):I1: V4: (0.69,-0.77) BER=2.717265E-03
+1>I:(1865.0291):I0: V4: (-0.04,-0.04) BER=4.246331E-03
+@2>I:(1866.0291):I1: V5: (0.77,-0.85) BER=2.693841E-03
+1>I:(1867.0291):I0: V5: (0.04,-0.12) BER=4.334148E-03
+0>I:(1867.0745):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 85
+0>I:(1867.0745):I0: DiagsHndlrCntlr: Writing value 0x00000055 to mailbox id: 5
+0>I:(1867.0754):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 86
+0>I:(1867.0755):I1: DiagsHndlrCntlr: Writing value 0x00000056 to mailbox id: 9
+2>I:(1868.0291):I1: V6: (0.85,-0.94) BER=2.730249E-03
+!1>I:(1869.0291):I0: V6: (0.12,-0.20) BER=4.570709E-03
+2>I:(1870.0291):I1: V7: (0.94,-1.02) BER=2.803048E-03
+~1>I:(1871.0291):I0: V7: (0.20,-0.28) BER=4.800005E-03
+2>I:(1872.0291):I1: V8: (1.02,-1.10) BER=2.937521E-03
+0>I:(1872.0741):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 87
+0>I:(1872.0742):I1: DiagsHndlrCntlr: Writing value 0x00000057 to mailbox id: 9
+0>I:(1872.0748):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 88
+0>I:(1872.0749):I0: DiagsHndlrCntlr: Writing value 0x00000058 to mailbox id: 5
+1>I:(1873.0291):I0: V8: (0.28,-0.37) BER=5.190560E-03
+2>I:(1873.0291):I1: MIN V: (0.77,-0.85) BER=2.693841E-03
+1>I:(1874.0291):I0: MIN V: (-0.04,-0.04) BER=4.246331E-03
+2>I:(1874.0509):I1: 
+RX SKEW CAL COMPLETE: PASSED
+2>I:(1874.0511):I1: MIN H: (-0.37,0.28) MIN V: (0.77,-0.85)
+1>I:(1875.0509):I0: 
+RX SKEW CAL COMPLETE: PASSED
+1>I:(1875.0511):I0: MIN H: (-0.37,0.28) MIN V: (-0.04,-0.04)
+@0>I:(1877.0743):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 89
+0>I:(1877.0744):I0: DiagsHndlrCntlr: Writing value 0x00000059 to mailbox id: 5
+0>I:(1877.0752):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 90
+0>I:(1877.0753):I1: DiagsHndlrCntlr: Writing value 0x0000005A to mailbox id: 9
+0>I:(1877.0783):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 91
+0>I:(1877.0784):I0: DiagsHndlrCntlr: Writing value 0x0000005B to mailbox id: 5
+0>I:(1877.0806):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 2, transNum: 92
+0>I:(1877.0806):I1: DiagsHndlrCntlr: Writing value 0x0000005C to mailbox id: 9
+0>I:(1877.0824):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 1, transNum: 93
+0>I:(1877.0825):I1: DiagsHndlrCntlr: Writing value 0x0000005D to mailbox id: 9
+0>I:(1877.0844):N0: DiagsHndlr: MTB DIAG, cmdName: DSP_CAL_RX_SKEW, accessOp: 1, transNum: 94
+0>I:(1877.0845):I0: DiagsHndlrCntlr: Writing value 0x0000005E to mailbox id: 5
+0>I:(1877.6038):N0: DiagsHndlr: MTB DIAG, cmdName: QEF_H_SKEW, accessOp: 4, transNum: 95
+0>I:(1877.6039):I1: DiagsHndlrCntlr: Writing value 0x0000005F to mailbox id: 9
+0>I:(1877.6084):N0: DiagsHndlr: MTB DIAG, cmdName: QEF_V_SKEW, accessOp: 4, transNum: 96
+0>I:(1877.6085):I1: DiagsHndlrCntlr: Writing value 0x00000060 to mailbox id: 9
+0>I:(1877.6148):N0: DiagsHndlr: MTB DIAG, cmdName: QEF_H_SKEW, accessOp: 4, transNum: 97
+0>I:(1877.6149):I0: DiagsHndlrCntlr: Writing value 0x00000061 to mailbox id: 5
+0>I:(1877.6188):N0: DiagsHndlr: MTB DIAG, cmdName: QEF_V_SKEW, accessOp: 4, transNum: 98
+0>I:(1877.6188):I0: agsHndlrCntlr: Writing value 0x00000062 to mailbox id: 5
+!0>I:(1878.7305):N0: DiagsHndlr: MTB DIAG, cmdName: TX_TURN_UP_TIME, accessOp: 2, transNum: 99
+0>I:(1878.7306):I1: DiagsHndlrCntlr: Writing value 0x00000063 to mailbox id: 9
+0>I:(1878.7367):N0: DiagsHndlr: MTB DIAG, cmdName: TX_TURN_UP_TIME, accessOp: 2, transNum: 100
+0>I:(1878.7367):I0: DiagsHndlrCntlr: Writing value 0x00000064 to mailbox id: 5
+0>I:(1878.8031):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_MDL_OPT, accessOp: 1, transNum: 101
+0>I:(1878.8032):I1: DiagsHndlrCntlr: Writing value 0x00000065 to mailbox id: 9
+0>I:(1878.8490):N0: DiagsHndlr: MTB DIAG, cmdName: PICP_SW_CNTL_MDL_OPT, accessOp: 1, transNum: 102
+0>I:(1878.8491):I0: DiagsHndlrCntlr: Writing value 0x00000066 to mailbox id: 5
+~0>I:(1880.4226):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_MIN_VOLTS, accessOp: 4, transNum: 103
+0>I:(1880.4227):I1: DiagsHndlrCntlr: Writing value 0x00000067 to mailbox id: 9
+0>I:(1880.4263):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_MAX_VOLTS, accessOp: 4, transNum: 104
+0>I:(1880.4264):I1: DiagsHndlrCntlr: Writing value 0x00000068 to mailbox id: 9
+0>I:(1880.4393):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_FREQ_COMP_TBL, accessOp: 4, transNum: 105
+0>I:(1880.4394):I1: DiagsHndlrCntlr: Writing value 0x00000069 to mailbox id: 9
+0>I:(1880.4436):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_FREQ_COMP_TBL, accessOp: 4, transNum: 106
+0>I:(1880.4436):I1: DiagsHndlrCntlr: Writing value 0x0000006A to mailbox id: 9
+0>I:(1880.4551):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_FREQ_COMP_TBL, accessOp: 4, transNum: 107
+0>I:(1880.4551):I0: DiagsHndlrCntlr: Writing value 0x0000006B to mailbox id: 5
+0>I:(1880.4678):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_COEFFS, accessOp: 4, transNum: 108
+0>I:(1880.4678):I1: DiagsHndlrCntlr: Writing value 0x0000006C to mailbox id: 9
+0>I:(1880.4704):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_MIN_VOLTS, accessOp: 4, transNum: 109
+0>I:(1880.4705):I0: DiagsHndlrCntlr: Writing value 0x0000006D to mailbox id: 5
+0>I:(1880.4722):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_MAX_VOLTS, accessOp: 4, transNum: 110
+0>I:(1880.4723):I0: DiagsHndlrCntlr: Writing value 0x0000006E to mailbox id: 5
+0>I:(1880.4806):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 111
+0>I:(1880.4807):I1: DiagsHndlrCntlr: Writing value 0x0000006F to mailbox id: 9
+0>I:(1880.4844):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_FREQ_COMP_TBL, accessOp: 4, transNum: 112
+0>I:(1880.4844):I0: DiagsHndlrCntlr: Writing value 0x00000070 to mailbox id: 5
+0>I:(1880.4883):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_FREQ_COMP_TBL, accessOp: 4, transNum: 113
+0>I:(1880.4884):I0: DiagsHndlrCntlr: Writing value 0x00000071 to mailbox id: 5
+0>I:(1880.4966):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_FREQ_COMP_TBL, accessOp: 4, transNum: 114
+0>I:(1880.4966):I0: DiagsHndlrCntlr: Writing value 0x00000072 to mailbox id: 5
+0>I:(1880.5055):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_COEFFS, accessOp: 4, transNum: 115
+0>I:(1880.5055):I0: DiagsHndlrCntlr: Writing value 0x00000073 to mailbox id: 5
+0>I:(1880.5170):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 116
+0>I:(1880.5171):I0: DiagsHndlrCntlr: Writing value 0x00000074 to mailbox id: 5
+2>I:(1880.5500):N0: VoaPwrCntlTx1 VoaConverged oor=1
+2>I:(1880.5500):N0: VoaPwrCntlTx1 Post OutputPwrAdj PwrSel=0 oor=1
+1>I:(1880.5910):N0: VoaPwrCntlTx0 VoaConverged oor=1
+1>I:(1880.5910):N0: VoaPwrCntlTx0 Post OutputPwrAdj PwrSel=0 oor=1
+1>I:(1880.6611):N0: Dicon: Dianther INC_F(2) @ voa=42241 adc=47644 goto DitherWithAdc F1=0.00 F2=12.59 step=510
+2>I:(1880.7012):N0: Dicon: Dither INC_F(2) @ voa=42088 adc=47471 goto DitherWithAdc F1=0.00 F2=7.22 step=510
+0>I:(1880.9832):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 117
+0>I:(1880.9833):I1: DiagsHndlrCntlr: Writing value 0x00000075 to mailbox id: 9
+0>I:(1880.9933):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 118
+0>I:(1880.9934):I1: DiagsHndlrCntlr: Writing value 0x00000076 to mailbox id: 9
+0>I:(1880.9972):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_ADC_REG, accessOp: 2, transNum: 119
+0>I:(1880.9972):I1: DiagsHndlrCntlr: Writing value 0x00000077 to mailbox id: 9
+0>I:(1881.0013):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_VOLTAGE, accessOp: 2, transNum: 120
+0>I:(1881.0014):I1: DiagsHndlrCntlr: Writing value 0x00000078 to mailbox id: 9
+0>I:(1881.0167):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_COEFFS, accessOp: 3, transNum: 121
+0>I:(1881.0167):I1: DiagsHndlrCntlr: Writing value 0x00000079 to mailbox id: 9
+0>I:(1881.0305):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 122
+0>I:(1881.0305):I0: DiagsHndlrCntlr: Writing value 0x0000007A to mailbox id: 5
+0>I:(1881.0325):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_REFS, accessOp: 3, transNum: 123
+0>I:(1881.0325):I1: DiagsHndlrCntlr: Writing value 0x0000007B to mailbox id: 9
+0>I:(1881.0389):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 2, transNum: 124
+0>I:(1881.0389):I0: DiagsHndlrCntlr: Writing value 0x0000007C to mailbox id: 5
+0>I:(1881.0420):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_EEPROM_HDR, accessOp: 3, transNum: 125
+0>I:(1881.0420):I1: DiagsHndlrCntlr: Writing value 0x0000007D to mailbox id: 9
+0>I:(1881.0479):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_ADC_REG, accessOp: 2, transNum: 126
+0>I:(1881.0479):I0: DiagsHndlrCntlr: Writing value 0x0000007E to mailbox id: 5
+0>I:(1881.0502):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CAL_DATA_LOAD, accessOp: 2, transNum: 127
+0>I:(1881.0503):I1: DiagsHndlrCntlr: Writing value 0x0000007F to mailbox id: 9
+2>I:(1881.0506):N0: PumpLasCntl1: Frequency Compensation Table has 53 valid entries
+0>I:(1881.0523):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_VOLTAGE, accessOp: 2, transNum: 128
+0>I:(1881.0523):I0: DiagsHndlrCntlr: Writing value 0x00000080 to mailbox id: 5
+0>I:(1881.0633):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CTRL_DIS, accessOp: 1, transNum: 129
+0>I:(1881.0633):I1: DiagsHndlrCntlr: Writing value 0x00000081 to mailbox id: 9
+0>I:(1881.2150):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_COEFFS, accessOp: 3, transNum: 130
+0>I:(1881.2150):I0: DiagsHndlrCntlr: Writing value 0x00000082 to mailbox id: 5
+0>I:(1881.2312):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_REFS, accessOp: 3, transNum: 131
+0>I:(1881.2312):I0: DiagsHndlrCntlr: Writing value 0x00000083 to mailbox id: 5
+0>I:(1881.2414):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_EEPROM_HDR, accessOp: 3, transNum: 132
+0>I:(1881.2414):I0: DiagsHndlrCntlr: Writing value 0x00000084 to mailbox id: 5
+0>I:(1881.2482):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CAL_DATA_LOAD, accessOp: 2, transNum: 133
+0>I:(1881.2483):I0: DiagsHndlrCntlr: Writing value 0x00000085 to mailbox id: 5
+1>I:(1881.2486):N0: PumpLasCntl0: Frequency Compensation Table has 53 valid entries
+0>I:(1881.2611):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CTRL_DIS, accessOp: 1, transNum: 134
+0>I:(1881.2611):I0: DiagsHndlrCntlr: Writing value 0x00000086 to mailbox id: 5
+0>I:(1881.2671):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CTRL_DIS, accessOp: 2, transNum: 135
+0>I:(1881.2672):I1: DiagsHndlrCntlr: Writing value 0x00000087 to mailbox id: 9
+0>I:(1881.2792):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_CNTL_ENABLE, accessOp: 1, transNum: 136
+0>I:(1881.2793):I1: DiagsHndlrCntlr: Writing value 0x00000088 to mailbox id: 9
+2>I:(1881.2793):N0: VoaPwrCntlTx1: [0x004C6394=mVoaCntl].isEnabled=0. 
+0>I:(1881.4653):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CTRL_DIS, accessOp: 2, transNum: 137
+0>I:(1881.4654):I0: DiagsHndlrCntlr: Writing value 0x00000089 to mailbox id: 5
+0>I:(1881.4761):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_CNTL_ENABLE, accessOp: 1, transNum: 138
+0>I:(1881.4761):I0: DiagsHndlrCntlr: Writing value 0x0000008A to mailbox id: 5
+1>I:(1881.4762):N0: VoaPwrCntlTx0: [0x004C6394=mVoaCntl].isEnabled=0. 
+0>I:(1881.7820):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_VOLTAGE, accessOp: 1, transNum: 139
+0>I:(1881.7821):I1: DiagsHndlrCntlr: Writing value 0x0000008B to mailbox id: 9
+0>I:(1881.9773):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_VOLTAGE, accessOp: 1, transNum: 140
+0>I:(1881.9773):I0: DiagsHndlrCntlr: Writing value 0x0000008C to mailbox id: 5
+0>I:(1882.2981):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 141
+0>I:(1882.2982):I1: DiagsHndlrCntlr: Writing value 0x0000008D to mailbox id: 9
+0>I:(1882.4941):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 142
+0>I:(1882.4942):I0: DiagsHndlrCntlr: Writing value 0x0000008E to mailbox id: 5
+0>I:(1882.8333):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 143
+0>I:(1882.8333):I1: DiagsHndlrCntlr: Writing value 0x0000008F to mailbox id: 9
+0>I:(1883.0288):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 144
+0>I:(1883.0289):I0: DiagsHndlrCntlr: Writing value 0x00000090 to mailbox id: 5
+0>I:(1883.3663):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 145
+0>I:(1883.3663):I1: DiagsHndlrCntlr: Writing value 0x00000091 to mailbox id: 9
+0>I:(1883.5635):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 146
+0>I:(1883.5636):I0: DiagsHndlrCntlr: Writing value 0x00000092 to mailbox id: 5
+0>I:(1883.9008):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 147
+0>I:(1883.9008):I1: DiagsHndlrCntlr: Writing value 0x00000093 to mailbox id: 9
+0>I:(1884.1147):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 148
+0>I:(1884.1147):I0: DiagsHndlrCntlr: Writing value 0x00000094 to mailbox id: 5
+0>I:(1884.4511):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 149
+0>I:(1884.4511):I1: DiagsHndlrCntlr: Writing value 0x00000095 to mailbox id: 9
+0>I:(1884.6490):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 150
+0>I:(1884.6491):I0: DiagsHndlrCntlr: Writing value 0x00000096 to mailbox id: 5
+0>I:(1884.9864):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 151
+0>I:(1884.9865):I1: DiagsHndlrCntlr: Writing value 0x00000097 to mailbox id: 9
+0>I:(1885.1844):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 152
+0>I:(1885.1845):I0: DiagsHndlrCntlr: Writing value 0x00000098 to mailbox id: 5
+0>I:(1885.5211):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 153
+0>I:(1885.5212):I1: DiagsHndlrCntlr: Writing value 0x00000099 to mailbox id: 9
+0>I:(1885.7323):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 154
+0>I:(1885.7324):I0: DiagsHndlrCntlr: Writing value 0x0000009A to mailbox id: 5
+@0>I:(1886.0733):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 155
+0>I:(1886.0734):I1: DiagsHndlrCntlr: Writing value 0x0000009B to mailbox id: 9
+0>I:(1886.2720):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 156
+0>I:(1886.2721):I0: DiagsHndlrCntlr: Writing value 0x0000009C to mailbox id: 5
+0>I:(1886.6075):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 157
+0>I:(1886.6076):I1: DiagsHndlrCntlr: Writing value 0x0000009D to mailbox id: 9
+0>I:(1886.8216):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 158
+0>I:(1886.8217):I0: DiagsHndlrCntlr: Writing value 0x0000009E to mailbox id: 5
+0>I:(1887.1559):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 159
+0>I:(1887.1561):I1: DiagsHndlrCntlr: Writing value 0x0000009F to mailbox id: 9
+0>I:(1887.3638):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 160
+0>I:(1887.3639):I0: DiagsHndlrCntlr: Writing value 0x000000A0 to mailbox id: 5
+0>I:(1887.6897):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 161
+0>I:(1887.6897):I1: DiagsHndlrCntlr: Writing value 0x000000A1 to mailbox id: 9
+0>I:(1887.9157):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 162
+0>I:(1887.9157):I0: DiagsHndlrCntlr: Writing value 0x000000A2 to mailbox id: 5
+0>I:(1888.2349):N0: DiagsHndlr: MTB DIAG, cmdName: BSP_DAC_REG, accessOp: 1, transNum: 163
+0>I:(1888.2349):I1: DiagsHndlrCntlr: Writing value 0x000000A3 to mailbox id: 9
+0>I:(1888.4938):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_COEFFS, accessOp: 3, transNum: 164
+0>I:(1888.4938):I0: DiagsHndlrCntlr: Writing value 0x000000A4 to mailbox id: 5
+0>I:(1888.5097):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_REFS, accessOp: 3, transNum: 165
+0>I:(1888.5097):I0: DiagsHndlrCntlr: Writing value 0x000000A5 to mailbox id: 5
+0>I:(1888.5212):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_EEPROM_HDR, accessOp: 3, transNum: 166
+0>I:(1888.5213):I0: DiagsHndlrCntlr: Writing value 0x000000A6 to mailbox id: 5
+0>I:(1888.5293):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CAL_DATA_LOAD, accessOp: 2, transNum: 167
+0>I:(1888.5294):I0: DiagsHndlrCntlr: Writing value 0x000000A7 to mailbox id: 5
+1>I:(1888.5298):N0: PumpLasCntl0: Frequency Compensation Table has 53 valid entries
+1>F:(1888.5298):N0: ASSERT( Unexpected code path ), ec = 0(0x00000000); File:Line PumpLasCntl.cpp:900
+0>I:(1888.5398):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CTRL_DIS, accessOp: 1, transNum: 168
+0>I:(1888.5399):I0: DiagsHndlrCntlr: Writing value 0x000000A8 to mailbox id: 5
+!0>I:(1888.7437):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CTRL_DIS, accessOp: 2, transNum: 169
+0>I:(1888.7437):I0: DiagsHndlrCntlr: Writing value 0x000000A9 to mailbox id: 5
+0>I:(1888.7570):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_CNTL_ENABLE, accessOp: 1, transNum: 170
+0>I:(1888.7571):I0: DiagsHndlrCntlr: Writing value 0x000000AA to mailbox id: 5
+1>I:(1888.7572):N0: VoaPwrCntlTx0: [0x004C6394=mVoaCntl].isEnabled=1. 
+0>I:(1888.7879):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_COEFFS, accessOp: 3, transNum: 171
+0>I:(1888.7879):I1: DiagsHndlrCntlr: Writing value 0x000000AB to mailbox id: 9
+0>I:(1888.8038):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_REFS, accessOp: 3, transNum: 172
+0>I:(1888.8039):I1: DiagsHndlrCntlr: Writing value 0x000000AC to mailbox id: 9
+0>I:(1888.8139):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_EEPROM_HDR, accessOp: 3, transNum: 173
+0>I:(1888.8141):I1: DiagsHndlrCntlr: Writing value 0x000000AD to mailbox id: 9
+0>I:(1888.8222):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CAL_DATA_LOAD, accessOp: 2, transNum: 174
+0>I:(1888.8223):I1: DiagsHndlrCntlr: Writing value 0x000000AE to mailbox id: 9
+2>I:(1888.8226):N0: PumpLasCntl1: Frequency Compensation Table has 53 valid entries
+2>F:(1888.8227):N0: ASSERT( Unexpected code path ), ec = 0(0x00000000); File:Line PumpLasCntl.cpp:900
+0>I:(1888.8337):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CTRL_DIS, accessOp: 1, transNum: 175
+0>I:(1888.8338):I1: DiagsHndlrCntlr: Writing value 0x000000AF to mailbox id: 9
+0>I:(1889.0380):N0: DiagsHndlr: MTB DIAG, cmdName: PUMP_LAS_CTRL_DIS, accessOp: 2, transNum: 176
+0>I:(1889.0381):I1: DiagsHndlrCntlr: Writing value 0x000000B0 to mailbox id: 9
+0>I:(1889.0509):N0: DiagsHndlr: MTB DIAG, cmdName: VOA_TX_CNTL_ENABLE, accessOp: 1, transNum: 177
+0>I:(1889.0509):I1: DiagsHndlrCntlr: Writing value 0x000000B1 to mailbox id: 9
+2>I:(1889.0511):N0: VoaPwrCntlTx1: [0x004C6394=mVoaCntl].isEnabled=1. 
+0>I:(1889.2602):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 178
+0>I:(1889.2603):I0: DiagsHndlrCntlr: Writing value 0x000000B2 to mailbox id: 5
+1>I:(1889.2610):N0: VoaPwrCntlTx0 VoaConverged oor=1
+1>I:(1889.2610):N0: VoaPwrCntlTx0 Post OutputPwrAdj PwrSel=0 oor=1
+0>I:(1889.5550):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 179
+0>I:(1889.5551):I1: DiagsHndlrCntlr: Writing value 0x000000B3 to mailbox id: 9
+2>I:(1889.5560):N0: VoaPwrCntlTx1 VoaConverged oor=1
+2>I:(1889.5560):N0: VoaPwrCntlTx1 Post OutputPwrAdj PwrSel=0 oor=1
+~
+
+******************************************************************************
+* CLEAR CONSOLE:   Calibration - Modulation Specific   ( Lane 1 / DP-QPSK / 193.40 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+* 8:40:29 6/21/2023
+******************************************************************************
+
+
+******************************************************************************
+* CLEAR CONSOLE:   Calibration - Modulation Specific   ( Lane 1 / DP-QPSK / 193.40 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+* 8:40:30 6/21/2023
+******************************************************************************
+
+
+******************************************************************************
+* CLEAR CONSOLE:   Calibration - Modulation Specific   ( Lane 1 / DP-QPSK / 193.40 THz / 25 °C / CALIBRATION )     (Chan 1/1)
+* 8:40:32 6/21/2023
+******************************************************************************
+0>I:(2159.2914):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 310
+0>I:(2159.2915):I0: DiagsHndlrCntlr: Writing value 0x00000136 to mailbox id: 5
+0>I:(2159.3264):N0: DiagsHndlr: MTB DIAG, cmdName: TX_POWER_DBM, accessOp: 1, transNum: 311
+0>I:(2159.3264):I1: DiagsHndlrCntlr: Writing value 0x00000137 to mailbox id: 9
+1>I:(2159.3880):N0: VoaPwrCntlTx0 VoaConverged oor=0
+1>I:(2159.3880):N0: VoaPwrCntlTx0 Post OutputPwrAdj PwrSel=0 oor=0
+2>I:(2159.4250):N0: VoaPwrCntlTx1 VoaConverged oor=0
+2>I:(2159.4250):N0: VoaPwrCntlTx1 Post OutputPwrAdj PwrSel=0 oor=0
+!~

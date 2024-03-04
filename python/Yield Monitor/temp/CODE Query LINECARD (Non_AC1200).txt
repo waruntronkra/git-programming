@@ -1,0 +1,15 @@
+SELECT VD.STATION_ID,
+      VD.TEST_SOCKET_INDEX,
+      VD.UUT_SERIAL_NUMBER,
+      convert(varchar,DATEADD(hour, 7, VD.START_DATE_TIME), 113) as Local_START_DATE_TIME,
+      VD.FAIL_MODE,
+      VD.FIXTURE_ID,
+      VD.FIXTURE_ID,
+      UUT.PROCESS,
+      UUT.MODE
+      
+  FROM [ATS_Results].[dbo].[vw_test_defect] VD 
+  LEFT JOIN [ATS_Results].[dbo].[UUT_RESULT] UUT 
+  ON UUT.ID = VD.ID
+
+  Where VD.START_DATE_TIME > getdate() -  
