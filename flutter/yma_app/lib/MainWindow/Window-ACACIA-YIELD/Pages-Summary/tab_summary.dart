@@ -776,7 +776,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
     ]);
 
     var dataYIELD = await getDataPOST(
-                                  'https://localhost:44342/api/YMA/QueryYield',
+                                  'https://supply-api.fabrinet.co.th/api/YMA/QueryYield',
                                   {
                                   'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
                                   'Model': stringEncryptedArray['data'][1],
@@ -1060,7 +1060,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
         '71'
       ]);
       var dataPARETO = await getDataPOST(
-        'https://localhost:44342/api/YMA/QueryPareto',
+        'https://supply-api.fabrinet.co.th/api/YMA/QueryPareto',
         {
         'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
         'Model': stringEncryptedArray['data'][1],
@@ -1316,7 +1316,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
     ]);
 
     var productName = await getDataPOST(
-      'https://localhost:44342/api/YMA/ProductName',
+      'https://supply-api.fabrinet.co.th/api/YMA/ProductName',
       {
         'Version' : '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
       } 

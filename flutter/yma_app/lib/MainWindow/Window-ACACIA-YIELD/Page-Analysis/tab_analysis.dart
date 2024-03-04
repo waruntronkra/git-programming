@@ -30,12 +30,13 @@ class PageAnalysis extends StatefulWidget {
 }
 
 class _PageAnalysisState extends State<PageAnalysis> {
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+
   List<String> stepName = [];
   List<String> itemsSpec = [];
   String defaultSpec = '';
   String processSelected = '';
   String stepNameSelected = '';
-  String stepNameSelectedToVoid = '';
   List<int> dataBarChartHistogram = [];
   List<Map<String, dynamic>> storeDecodedData = [];
   List<double> randomDataHistogram = [];
@@ -65,177 +66,194 @@ class _PageAnalysisState extends State<PageAnalysis> {
 
   Map<String, dynamic> stringEncryptedArray = {};
 
-  bool isLoading = false;
+  String stateRun = '';
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Stack(
-        children: [
-          // ================ [PROCESS] ================
-          Container(
-            margin: const EdgeInsets.only(left: 10, top: 10),
-            child: Wrap(
-              spacing: 1,
-              children: [..._buildListProcessForBarChart(widget.processArr)],
-            ),
-          ),
-          // ================ [CONDITION] ================
-          Container(
-            margin: const EdgeInsets.only(left: 10, top: 90),
-            width: MediaQuery.of(context).size.width * 0.96,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              border: Border.all(color: Colors.black, width: 2)
-            ),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [..._buildListStepName(stepName)],
-              )
-            )
-          ),
-          // ================ [SPEC] ================
-          Container(
-            margin: const EdgeInsets.only(left: 10, top: 160),
-            width: MediaQuery.of(context).size.width * 0.96,
-            height: 30,
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton2<String>(
-                isExpanded: true,
-                hint: Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          const Icon(Icons.dataset_linked_outlined, color: Color.fromARGB(255, 3, 141, 93), size: 23),
-                          const SizedBox(width: 5),
-                          Text(
-                            defaultSpec,
-                            style: const TextStyle(
-                              fontSize: 12,
-                              color: Color.fromARGB(255, 3, 141, 93)
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          )
-                        ]
-                      )
-                    )
-                  ],
-                ),
-                items: itemsSpec.map((String item) => DropdownMenuItem<String>(
-                  value: item,
-                  child: Row(
-                    children: [
-                      const Icon(Icons.confirmation_num_outlined, color: Color.fromARGB(255, 3, 141, 93), size: 23),
-                      const SizedBox(width: 5),
-                      Text(
-                        item,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Color.fromARGB(255, 3, 141, 93)
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      )
-                    ]
-                  )
-                )).toList(),
-                onChanged: (String? newVal) {
-                  setState(() {
-                    defaultSpec = newVal!;
-                    if (newVal != '') {
-                      dataBarChartHistogramArr = []; 
-                      randomDataHistogramArr = [];
-                      binArr = [];
-                      maxXRangeArr = [];
-                      minXRangeArr = [];
-                      maxYRangeArr = [];
-                      fetchDataHistogram(newVal, stepNameSelected);
-                    }
-                  });
-                },
-                buttonStyleData: ButtonStyleData(
-                  height: 50,
-                  width: 160,
-                  padding: const EdgeInsets.only(left: 14, right: 14),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: Colors.transparent,
-                    ),
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  elevation: 2,
-                ),
-                dropdownStyleData: DropdownStyleData(
-                  maxHeight: 200,
-                  width: MediaQuery.of(context).size.width * 0.96,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(0),
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  offset: const Offset(1, 0),
-                  scrollbarTheme: ScrollbarThemeData(
-                    radius: const Radius.circular(40),
-                    thickness: MaterialStateProperty.all<double>(6),
-                    thumbVisibility: MaterialStateProperty.all<bool>(true),
-                  ),
-                ),
-                menuItemStyleData: const MenuItemStyleData(
-                  height: 40,
-                  padding: EdgeInsets.only(left: 14, right: 14),
-                ),
-              )
-            )
-          ),
-          // ================ [Histogram] & [BoxPlot] ================
-          Container(
-            margin: const EdgeInsets.only(left: 10, top: 200),     
-            child: SingleChildScrollView(   
-              scrollDirection: Axis.horizontal,
-              child : Row(
-                children: [
-                  ..._createHistogramChart (
-                    randomDataHistogramArr,
-                    binArr,
-                    maxXRangeArr,
-                    minXRangeArr,
-                    maxYRangeArr,
-                    dataBoxPlotArr,
-                    minYRangeBox
-                  )
-                ]
-              )
-            )
-          ),
-          Visibility(
-            visible: isLoading,
-            child: Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: Container(
-                margin: const EdgeInsets.only(left: 10, top: 200),     
-                child: SingleChildScrollView(   
-                  scrollDirection: Axis.horizontal,
-                  child : Row(
-                    children: [
-                      ..._createHistogramChart (
-                        [[85.0, 70.0, 74.0, 73.0, 81.0, 72.0, 80.0, 85.0, 68.0, 78.0, 86.0, 78.0, 70.0, 73.0, 85.0, 73.0]],
-                        [1.7058823529411764],
-                        [98.70588235294113],
-                        [68.0],
-                        [12.0],
-                        [{'A': [85.0, 70.0, 74.0, 73.0, 81.0, 72.0, 80.0, 85.0, 68.0, 78.0, 86.0, 78.0, 70.0, 73.0, 85.0]}],
-                        68.0
-                      )
-                    ]
-                  )
-                ),
+    return RefreshIndicator(
+      key: _refreshIndicatorKey,
+      displacement: 70,
+      color: Colors.white,
+      backgroundColor: Colors.orange,
+      onRefresh: () async {
+          if (stateRun == 'queryCoditionPerProcess') {
+            await queryCoditionPerProcess();
+          }
+          else if (stateRun == 'fetchDataHistogram') {
+            await fetchDataHistogram();
+            await fetchRawDataHistogram();
+          }
+      },
+      child: SingleChildScrollView(
+        child: Stack(
+          children: [
+            // ================ [PROCESS] ================
+            Container(
+              margin: const EdgeInsets.only(left: 10, top: 10),
+              child: Wrap(
+                spacing: 1,
+                children: [..._buildListProcessForBarChart(widget.processArr)],
               ),
-            )
-          ),
-          Container(margin: const EdgeInsets.only(left: 10, top: 800), height: 200)
-        ]
+            ),
+            // ================ [CONDITION] ================
+            Container(
+              margin: const EdgeInsets.only(left: 10, top: 90),
+              width: MediaQuery.of(context).size.width * 0.96,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: Colors.black, width: 2)
+              ),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [..._buildListStepName(stepName)],
+                )
+              )
+            ),
+            // ================ [SPEC] ================
+            Container(
+              margin: const EdgeInsets.only(left: 10, top: 160),
+              width: MediaQuery.of(context).size.width * 0.96,
+              height: 30,
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton2<String>(
+                  isExpanded: true,
+                  hint: Row(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: [
+                            const Icon(Icons.dataset_linked_outlined, color: Colors.orange, size: 23),
+                            const SizedBox(width: 5),
+                            Text(
+                              defaultSpec,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.orange
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            )
+                          ]
+                        )
+                      )
+                    ],
+                  ),
+                  items: itemsSpec.map((String item) => DropdownMenuItem<String>(
+                    value: item,
+                    child: Row(
+                      children: [
+                        const Icon(Icons.confirmation_num_outlined, color: Colors.orange, size: 23),
+                        const SizedBox(width: 5),
+                        Text(
+                          item,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.orange
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        )
+                      ]
+                    )
+                  )).toList(),
+                  onChanged: (String? newVal) {
+                    setState(() {
+                      defaultSpec = newVal!;
+                      if (newVal != '') {
+                        dataBarChartHistogramArr = []; 
+                        randomDataHistogramArr = [];
+                        binArr = [];
+                        maxXRangeArr = [];
+                        minXRangeArr = [];
+                        maxYRangeArr = [];
+                        
+                        stateRun = 'fetchDataHistogram';
+                        _refreshIndicatorKey.currentState?.show();
+                      }
+                    });
+                  },
+                  buttonStyleData: ButtonStyleData(
+                    height: 50,
+                    width: 160,
+                    padding: const EdgeInsets.only(left: 14, right: 14),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: Colors.transparent,
+                      ),
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    elevation: 2,
+                  ),
+                  dropdownStyleData: DropdownStyleData(
+                    maxHeight: 200,
+                    width: MediaQuery.of(context).size.width * 0.96,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(0),
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    offset: const Offset(1, 0),
+                    scrollbarTheme: ScrollbarThemeData(
+                      radius: const Radius.circular(40),
+                      thickness: MaterialStateProperty.all<double>(6),
+                      thumbVisibility: MaterialStateProperty.all<bool>(true),
+                    ),
+                  ),
+                  menuItemStyleData: const MenuItemStyleData(
+                    height: 40,
+                    padding: EdgeInsets.only(left: 14, right: 14),
+                  ),
+                )
+              )
+            ),
+            // ================ [Histogram] & [BoxPlot] ================
+            Container(
+              margin: const EdgeInsets.only(left: 10, top: 200),     
+              child: SingleChildScrollView(   
+                scrollDirection: Axis.horizontal,
+                child : Row(
+                  children: [
+                    ..._createHistogramChart (
+                      randomDataHistogramArr,
+                      binArr,
+                      maxXRangeArr,
+                      minXRangeArr,
+                      maxYRangeArr,
+                      dataBoxPlotArr,
+                      minYRangeBox
+                    )
+                  ]
+                )
+              )
+            ),
+            // Visibility(
+            //   visible: isLoading,
+            //   child: Shimmer.fromColors(
+            //     baseColor: Colors.grey[300]!,
+            //     highlightColor: Colors.grey[100]!,
+            //     child: Container(
+            //       margin: const EdgeInsets.only(left: 10, top: 200),     
+            //       child: SingleChildScrollView(   
+            //         scrollDirection: Axis.horizontal,
+            //         child : Row(
+            //           children: [
+            //             ..._createHistogramChart (
+            //               [[85.0, 70.0, 74.0, 73.0, 81.0, 72.0, 80.0, 85.0, 68.0, 78.0, 86.0, 78.0, 70.0, 73.0, 85.0, 73.0]],
+            //               [1.7058823529411764],
+            //               [98.70588235294113],
+            //               [68.0],
+            //               [12.0],
+            //               [{'A': [85.0, 70.0, 74.0, 73.0, 81.0, 72.0, 80.0, 85.0, 68.0, 78.0, 86.0, 78.0, 70.0, 73.0, 85.0]}],
+            //               68.0
+            //             )
+            //           ]
+            //         )
+            //       ),
+            //     ),
+            //   )
+            // ),
+            Container(margin: const EdgeInsets.only(left: 10, top: 800), height: 200)
+          ]
+        )
       )
     );
   }
@@ -256,39 +274,10 @@ class _PageAnalysisState extends State<PageAnalysis> {
               )
             ),
             child: Text(item),
-            onPressed: () async{
-              stringEncryptedArray = await encryptData([
-                widget.levelSelected,
-                widget.modelSelected,
-                widget.daySelected,
-                widget.modeDay,
-                item,
-                '71'
-              ]);
-
-              var data = await getDataPOST(
-                'https://localhost:44342/api/YMA/AnalysisGroup',
-                {
-                'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-                'Model': stringEncryptedArray['data'][1],
-                'Day': stringEncryptedArray['data'][2],
-                'ModeDay': stringEncryptedArray['data'][3],
-                'Process': stringEncryptedArray['data'][4],
-                'Version': stringEncryptedArray['data'][5]
-                } 
-              );
-              String jsonEncrypted = jsonDecode(jsonDecode(data[0]))['encryptedJson'];
-
-              final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-              final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
-
-              String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-              List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-              
-              setState(() {
-                storeDecodedData = decodedData;
-              });
-              dataSorting(decodedData, item);
+            onPressed: () async {
+              processSelected = item;
+              stateRun = 'queryCoditionPerProcess';
+              _refreshIndicatorKey.currentState?.show();
             },
           ),    
         ));
@@ -297,15 +286,44 @@ class _PageAnalysisState extends State<PageAnalysis> {
     return subListProcessForBarChart;
   }
 
-  Future<void> dataSorting(List<Map<String, dynamic>> data, String process) async {
+  Future<void> queryCoditionPerProcess() async {
+    stringEncryptedArray = await encryptData([
+      widget.levelSelected,
+      widget.modelSelected,
+      widget.daySelected,
+      widget.modeDay,
+      processSelected,
+      '72'
+    ]);
+
+    var data = await getDataPOST(
+      'https://localhost:44342/api/YMA/AnalysisGroup',
+      {
+      'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+      'Model': stringEncryptedArray['data'][1],
+      'Day': stringEncryptedArray['data'][2],
+      'ModeDay': stringEncryptedArray['data'][3],
+      'Process': stringEncryptedArray['data'][4],
+      'Version': stringEncryptedArray['data'][5]
+      } 
+    );
+    String jsonEncrypted = jsonDecode(jsonDecode(data[0]))['encryptedJson'];
+
+    final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+    final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+
+    String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+    List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+    
     setState(() {
-      processSelected = process;
-      for (var i in data) {
+      storeDecodedData = decodedData;
+      for (var i in decodedData) {
         stepName.add(i['STEP NAME']);
       }
       stepName = stepName.toSet().toList();
     });
-  } 
+  }
+
   List<Widget> _buildListStepName(List<String> stepName) {
     List<Widget> subListStepName = [];
     for (String item in stepName) {
@@ -320,7 +338,6 @@ class _PageAnalysisState extends State<PageAnalysis> {
               }
             }
             setState(() {
-              isLoading = true;
               defaultSpec = itemsSpec[0];
               stepNameSelected = item;
               dataBarChartHistogramArr = []; 
@@ -329,12 +346,14 @@ class _PageAnalysisState extends State<PageAnalysis> {
               maxXRangeArr = [];
               minXRangeArr = [];
               maxYRangeArr = [];
-              fetchDataHistogram(defaultSpec, stepNameSelected);
+
+              stateRun = 'fetchDataHistogram';
+              _refreshIndicatorKey.currentState?.show();
             });         
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-            side: const BorderSide(color: Colors.green, width: 2),
+            side: const BorderSide(color: Colors.orange, width: 2),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(0),
             ),
@@ -362,19 +381,19 @@ class _PageAnalysisState extends State<PageAnalysis> {
     return subListStepName;
   }
 
-  Future<void> fetchDataHistogram(String parameter, String stepName) async {
-    if (parameter.isNotEmpty && stepName.isNotEmpty) {    
+  Future<void> fetchDataHistogram() async {
+    if (defaultSpec.isNotEmpty && stepNameSelected.isNotEmpty) {    
       stringEncryptedArray = await encryptData([
         widget.levelSelected,
         widget.modelSelected,
         widget.daySelected,
         widget.modeDay,
         processSelected,
-        stepName,
-        parameter.split('|')[1].split(' ')[3],
-        parameter.split('|')[2].split(' ')[3],
-        parameter.split('|')[0].split(' ')[0],
-        '71'
+        stepNameSelected,
+        defaultSpec.split('|')[1].split(' ')[3],
+        defaultSpec.split('|')[2].split(' ')[3],
+        defaultSpec.split('|')[0].split(' ')[0],
+        '72'
       ]);
 
       var data = await getDataPOST(
@@ -399,25 +418,22 @@ class _PageAnalysisState extends State<PageAnalysis> {
 
       String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
       decodedDataHistogram = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-      
-      stepNameSelectedToVoid = stepName;
-      fetchRawDataHistogram(parameter, stepName);
     }
   }
 
-  Future<void> fetchRawDataHistogram (String parameter, String stepName) async {
-    if (parameter.isNotEmpty && stepName.isNotEmpty) {
+  Future<void> fetchRawDataHistogram () async {
+    if (defaultSpec.isNotEmpty && stepNameSelected.isNotEmpty) {
       stringEncryptedArray = await encryptData([
         widget.levelSelected,
         widget.modelSelected,
         widget.daySelected,
         widget.modeDay,
         processSelected,
-        stepName,
-        parameter.split('|')[1].split(' ')[3],
-        parameter.split('|')[2].split(' ')[3],
-        parameter.split('|')[0].split(' ')[0],
-        '71'
+        stepNameSelected,
+        defaultSpec.split('|')[1].split(' ')[3],
+        defaultSpec.split('|')[2].split(' ')[3],
+        defaultSpec.split('|')[0].split(' ')[0],
+        '72'
       ]);
 
       dataBoxPlot = {};
@@ -442,18 +458,20 @@ class _PageAnalysisState extends State<PageAnalysis> {
       final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
       String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-      decodedDataHistogramRawData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
 
-      Map<String, dynamic> deictForDataBoxPlot = {};
-      for (var i in decodedDataHistogramRawData) {
-        if (!deictForDataBoxPlot.containsKey(i['GROUP'])) {
-          deictForDataBoxPlot[i['GROUP']] = [];
+      setState(() {
+        decodedDataHistogramRawData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+
+        Map<String, dynamic> deictForDataBoxPlot = {};
+        for (var i in decodedDataHistogramRawData) {
+          if (!deictForDataBoxPlot.containsKey(i['GROUP'])) {
+            deictForDataBoxPlot[i['GROUP']] = [];
+          }
+          deictForDataBoxPlot[i['GROUP']].add(i['DATA']);
         }
-        deictForDataBoxPlot[i['GROUP']].add(i['DATA']);
-      }
-      dataBoxPlot = deictForDataBoxPlot;
-      isLoading = false;
-      sortDataHistogram();
+        dataBoxPlot = deictForDataBoxPlot;
+        sortDataHistogram();
+      });
     }
   }
 
@@ -473,7 +491,7 @@ class _PageAnalysisState extends State<PageAnalysis> {
       if (decodedDataHistogram.isNotEmpty) {
         minYRangeBox = decodedDataHistogram[0]['MIN'];
         maxYRangeBox = decodedDataHistogram[0]['MAX'];
-        histogramTitle = stepNameSelectedToVoid;
+        histogramTitle = stepNameSelected;
         dateArray = [];
         for (var element in decodedDataHistogram) {
           if (element['GROUP'].isNotEmpty) { 
