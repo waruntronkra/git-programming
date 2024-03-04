@@ -2997,11 +2997,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Folder Data\\Project WebApp\\Auto FITs\\YMA.csproj",
+      "projectUniqueName": "D:\\GIT\\git-programming\\web\\Auto FITs\\YMA.csproj",
       "projectName": "YMA",
-      "projectPath": "D:\\Folder Data\\Project WebApp\\Auto FITs\\YMA.csproj",
+      "projectPath": "D:\\GIT\\git-programming\\web\\Auto FITs\\YMA.csproj",
       "packagesPath": "C:\\Users\\waruntronk\\.nuget\\packages\\",
-      "outputPath": "D:\\Folder Data\\Project WebApp\\Auto FITs\\obj\\",
+      "outputPath": "D:\\GIT\\git-programming\\web\\Auto FITs\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\waruntronk\\AppData\\Roaming\\NuGet\\NuGet.Config",

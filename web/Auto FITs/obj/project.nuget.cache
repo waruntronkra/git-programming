@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9chxO9+rAEObdJjgYhPm/3YPJdPmTJUG8E8VzqYo+zcQom7/Q0CEfmzpqnI25e9myZ0D7C6ySlDsJKNVQ155xQ==",
+  "dgSpecHash": "F/tkPEkEIj/4M1JVzfmew+f9VjKL5Xigzg9KvdIT2zZa8enaLJu5sZA71pxGMQFzfdOtACtL0yqLMF2rudUEMQ==",
   "success": true,
-  "projectFilePath": "D:\\Folder Data\\Project WebApp\\Auto FITs\\YMA.csproj",
+  "projectFilePath": "D:\\GIT\\git-programming\\web\\Auto FITs\\YMA.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\waruntronk\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\waruntronk\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
