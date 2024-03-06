@@ -14,6 +14,7 @@ $(document).ready(async function() {
     var duplicate_index = {};
     var index_bad_SN = [];
     var handshake_for_hover = [];
+	var sn_indicator_id_for_delete = [];
 
     $(`#input-dev-effective-date`).text('-');
     $(`#input-dev-end-date`).text('-');
@@ -25,13 +26,17 @@ $(document).ready(async function() {
     });
 
     $(document).on('mouseenter', '.sn-indicator', function () {
+
         if (handshake_for_hover.length > 0) {
-            $('#tooltip-new').text(handshake_for_hover[$(this).index()]);
-            $("#tooltip-new").css({
-                                    'top': $(this).offset()['top'] + 40, 
-                                    'left': $(this).offset()['left'],
-                                    'scale' : '1'
-                                });
+			if (handshake_for_hover[$(this).index()] != 'True') {
+				$('#tooltip-new').text(handshake_for_hover[$(this).index()]);
+				$("#tooltip-new").css({
+										'top': $(this).offset()['top'] + 40, 
+										'left': $(this).offset()['left'],
+										'scale' : '1'
+									});
+			}
+            
         }  
     });
     
@@ -213,8 +218,9 @@ $(document).ready(async function() {
     $(document).on('click', '.svg-button', function() {
         try {
         document.getElementById('revise-button').style.display = 'block';
-
+		
         button_id_for_revise = $(this).attr('id');
+		sn_indicator_id_for_delete = button_id_for_revise;
         edit_active = true;
         $('#input-sn').val($(`#${button_id_for_revise} p`).text());
 
@@ -226,7 +232,7 @@ $(document).ready(async function() {
         document.getElementById(button_id_for_revise).style.border = '4px solid rgb(37 37 160)';
      
         document.getElementById('container-revise-button').style.display = 'block';
-        document.getElementById('container-delete-sn-indicator').style.display = 'none';
+        document.getElementById('container-delete-sn-indicator').style.display = 'block';
         }
         catch (e) {
             $('#error-pop-up').html(`! ${e.message} ! <br> ${e.lineNumber || e.line}`);
@@ -240,7 +246,7 @@ $(document).ready(async function() {
     // Confirm editing ****************************************************
     $('#revise-button').click(function () { 
         try {
-            handshake_for_hover= [];
+            handshake_for_hover = [];
             $("#tooltip-new").css({
                 'scale' : '0'
             });
@@ -309,15 +315,28 @@ $(document).ready(async function() {
     // Delete Button SN Indicator ****************************************************
     $('#delete-sn-indicator').click(function () { 
         try {
+			console.log($(this).attr('id'))
+			var last_button_id_NEW;
+			if (edit_active == true) {
+				last_button_id_NEW = button_id_for_revise;
+				edit_active = false;
+				document.getElementById('container-revise-button').style.display = 'none';
+				document.getElementById('container-delete-sn-indicator').style.display = 'block';
+				$('#input-sn').val('');
+			}
+			else {
+				last_button_id_NEW = document.querySelectorAll('.sn-indicator')[document.querySelectorAll('.sn-indicator').length - 1].id;
+			}
+			
             handshake_for_hover= [];
             $("#tooltip-new").css({
                 'scale' : '0'
             });
             // *********** Disable the button to prevent multiple clicks ***********
             $('#delete-sn-indicator').prop('disabled', true);
-            $(`#${last_button_id}`).prop('disabled', true);
+            $(`#${last_button_id_NEW}`).prop('disabled', true);
             
-            document.getElementById(last_button_id).remove();
+            document.getElementById(last_button_id_NEW).remove();
             // Enable the button
             $('#delete-sn-indicator').prop('disabled', false);
 
@@ -399,7 +418,7 @@ $(document).ready(async function() {
             var data_work_flow = [];
             var data_handshake = [];
             var value_FITS_array = [];
-            var value_FITS_text_array = [];
+            value_FITS_text_array = [];
             var map_work_flow = [];
             if (Object.keys(duplicate_index).length == 0 && index_bad_SN.length == 0) {
                 document.querySelectorAll('.sn-indicator').forEach(function(item) {
@@ -446,6 +465,7 @@ $(document).ready(async function() {
                         document.getElementById(listSN_ID[i]).querySelector('p').style.color = 'white';
                     }
                     else {
+						handshake_for_hover.push('True');
                         let span_tooltip = document.getElementById(listSN_ID[i]).querySelector(`#tooltip-sn-indicator-${i}`);
                         if (span_tooltip) {
                             document.getElementById(listSN_ID[i]).querySelector('p').style.color = 'black';
@@ -473,7 +493,10 @@ $(document).ready(async function() {
                             }
                             else if (parameter_FITS_array[j] == 'send to') {
                                 array.push(map_work_flow[i]);
-                            }   
+                            }  
+							else if (parameter_FITS_array[j] == 'Error Code') {
+                                array.push('-');
+                            }  
                             else {
                                 try {
                                     array.push((await getLastTest(parameter_FITS_array[j], listSN[i]))['data'][0]['OUTPUT']);
@@ -485,7 +508,7 @@ $(document).ready(async function() {
                         }
                         value_FITS_array.push(array);
                     }
-                    
+					
                     // Insert data to Table >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     const history_data_table = document.getElementById('history_data_table');
                     history_data_table.innerHTML = '';
@@ -521,6 +544,7 @@ $(document).ready(async function() {
 
                     // Validate last test queried and Test count >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     initial_check = [];
+					handshake_for_hover = [];
                     for (let i = 0; i < value_FITS_array.length; i++) {
                         let span_tooltip = document.getElementById(listSN_ID[i]).querySelector(`#tooltip-sn-indicator-${i}`)
                         if (span_tooltip) {
@@ -528,17 +552,23 @@ $(document).ready(async function() {
                             document.getElementById(listSN_ID[i]).querySelector('p').style.color = 'black';
                         }
                         document.getElementById(listSN_ID[i]).style.background = '#00FF17';
-
+					
                         if (value_FITS_array[i][14] == 'PASS') {
                             var value_FITS_text = '';
-                            for (let j = 0; j < value_FITS_array.length; j++) {
-                                value_FITS_text += `,${value_FITS_array[i]}`;
+                            for (let j = 0; j < value_FITS_array[i].length; j++) {
+                                value_FITS_text += `,${value_FITS_array[i][j]}`;
                             }
+
                             value_FITS_text = value_FITS_text.slice(1);
                             value_FITS_text_array.push(value_FITS_text);
+							
+							handshake_for_hover.push(value_FITS_array[i][14])
                             initial_check.push(true);
+							
                         }
                         else {
+							handshake_for_hover.push(value_FITS_array[i][14])
+
                             let span = document.createElement('div');
                             span.className = 'tooltip-sn-indicator';
                             span.id = `tooltip-sn-indicator-${i}`;
@@ -550,7 +580,7 @@ $(document).ready(async function() {
                             document.getElementById(listSN_ID[i]).style.background = 'red';
                             document.getElementById(listSN_ID[i]).appendChild(span);
                             initial_check.push(false);
-                        }
+                        }	
                     }
                 }
             }
@@ -580,58 +610,58 @@ $(document).ready(async function() {
                 document.getElementById('loader').style.display = 'block';
                 var initial_check_active = [...new Set(initial_check)];
                 result_check_out_FITs = [];
-                if (initial_check_active.length == 1 && initial_check_active[0] == true) {
-                    for (let i = 0; i < initial_check.length; i++) {
-                        if (initial_check[i] == true) {
-                            const result = await WebServiceFIts('', 'fn_Log', parameter_FITS_text, value_FITS_text_array[i]);
-                            result_check_out_FITs.push([listSN[i], result]);
-                            if (result == 'True') {
-                                document.getElementById(listSN_ID[i]).style.transition = 'all 0.5s ease';
-                                document.getElementById(listSN_ID[i]).style.width = '0';
-                                document.getElementById(listSN_ID[i]).style.height = '0';
-                                document.getElementById(listSN_ID[i]).style.border = '1px solid black';
-                                document.getElementById(listSN_ID[i]).querySelector('p').textContent = '';
-                                setTimeout(function() {
-                                    document.getElementById(listSN_ID[i]).remove();
-                                }, 350);
-                            }
-                        }
-                    }
+               
+				for (let i = 0; i < initial_check.length; i++) {
+					if (initial_check[i] == true) {
+						const result = await WebServiceFIts('', 'fn_Log', parameter_FITS_text, value_FITS_text_array[i]);
+						result_check_out_FITs.push([listSN[i], result]);
+						if (result == 'True') {
+							document.getElementById(listSN_ID[i]).style.transition = 'all 0.5s ease';
+							document.getElementById(listSN_ID[i]).style.width = '0';
+							document.getElementById(listSN_ID[i]).style.height = '0';
+							document.getElementById(listSN_ID[i]).style.border = '1px solid black';
+							document.getElementById(listSN_ID[i]).querySelector('p').textContent = '';
+							setTimeout(function() {
+								document.getElementById(listSN_ID[i]).remove();
+							}, 350);
+						}
+					}
+				}
+			
+				// Insert data to Table >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+				const result_data_table = document.getElementById('result_data_table');
+				result_data_table.innerHTML = '';
+
+				const theader = document.createElement('thead');
+				const headerRow = document.createElement('tr');
+				var col_th = ['SERIAL_NUMBER', 'RESULT']
+				for (let i = 0; i < result_check_out_FITs[0].length; i++) {
+					const th = document.createElement('th');
+					th.textContent = col_th[i];
+					headerRow.appendChild(th);
+				}
+				theader.appendChild(headerRow);
+				result_data_table.appendChild(theader);
+
+				const tbody = document.createElement('tbody');
+				result_check_out_FITs.forEach(rowData => {
+					const row = document.createElement('tr');
+					rowData.forEach(cellData => {
+						const cell = document.createElement('td');
+						cell.textContent = cellData;
+						row.appendChild(cell);
+					});
+					tbody.appendChild(row);
+				});
+				result_data_table.appendChild(tbody);
+
+				const tableData = document.getElementById('table-result-data');
+				tableData.appendChild(result_data_table);
+
+				setTimeout(function() {
+					document.getElementById('table-result-data').style.top = '500px';
+				}, 400);	
                 
-                    // Insert data to Table >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                    const result_data_table = document.getElementById('result_data_table');
-                    result_data_table.innerHTML = '';
-
-                    const theader = document.createElement('thead');
-                    const headerRow = document.createElement('tr');
-                    var col_th = ['SERIAL_NUMBER', 'RESULT']
-                    for (let i = 0; i < result_check_out_FITs[0].length; i++) {
-                        const th = document.createElement('th');
-                        th.textContent = col_th[i];
-                        headerRow.appendChild(th);
-                    }
-                    theader.appendChild(headerRow);
-                    result_data_table.appendChild(theader);
-
-                    const tbody = document.createElement('tbody');
-                    result_check_out_FITs.forEach(rowData => {
-                        const row = document.createElement('tr');
-                        rowData.forEach(cellData => {
-                            const cell = document.createElement('td');
-                            cell.textContent = cellData;
-                            row.appendChild(cell);
-                        });
-                        tbody.appendChild(row);
-                    });
-                    result_data_table.appendChild(tbody);
-
-                    const tableData = document.getElementById('table-result-data');
-                    tableData.appendChild(result_data_table);
-
-                    setTimeout(function() {
-                        document.getElementById('table-result-data').style.top = '500px';
-                    }, 400);
-                }
                 document.getElementById('loader').style.display = 'none';
             }
         }
