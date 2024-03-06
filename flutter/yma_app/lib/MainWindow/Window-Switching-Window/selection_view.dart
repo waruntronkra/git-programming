@@ -37,7 +37,7 @@ class _WindowSelectViewState extends State<WindowSelectView> {
                   margin: const EdgeInsets.only(bottom: 10, top: 50),
                   width: 350,
                   height: 350,
-                  child: Image.asset('images/dashboard.png')
+                  child: Image.asset('assets/images/dashboard.png')
                 )
               ),
               // Go to page ACACIA FBN Yield
@@ -120,7 +120,7 @@ class _WindowSelectViewState extends State<WindowSelectView> {
                         margin: const EdgeInsets.only(left: 10),
                         width: 50,
                         height: 50,
-                        child: Image.asset('images/cisco.png')
+                        child: Image.asset('assets/images/cisco.png')
                       )
                     ]
                   )
@@ -166,7 +166,7 @@ class _WindowSelectViewState extends State<WindowSelectView> {
                         margin: const EdgeInsets.only(left: 10),
                         width: 90,
                         height: 90,
-                        child: Image.asset('images/effect-photonic.png')
+                        child: Image.asset('assets/images/effect-photonic.png')
                       )
                     ]
                   )
@@ -212,7 +212,7 @@ class _WindowSelectViewState extends State<WindowSelectView> {
                         margin: const EdgeInsets.only(left: 4),
                         width: 90,
                         height: 90,
-                        child: Image.asset('images/acacia.png')
+                        child: Image.asset('assets/images/acacia.png')
                       )
                     ]
                   )

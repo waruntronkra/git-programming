@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'dart:convert';
 // ignore: depend_on_referenced_packages
@@ -20,7 +19,6 @@ class WindowLogin extends StatefulWidget {
 class _WindowLoginState extends State<WindowLogin> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
   String currentDate = '';
   String username = '';
   String password = '';
@@ -45,19 +43,6 @@ class _WindowLoginState extends State<WindowLogin> {
 
   void checkUsername() async {
     await queryUser();
-    if (statusQueried == true) {
-        _btnController.success();
-        Timer(const Duration(seconds: 1), () {
-          _btnController.reset();
-          navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => const WindowSelectView()));
-      });
-    }
-    else {
-      _btnController.error();
-      Timer(const Duration(seconds: 1), () {
-        _btnController.reset();
-      });
-    }
   }
 
   @override
@@ -78,7 +63,7 @@ class _WindowLoginState extends State<WindowLogin> {
                 child: SizedBox(
                   width: 100,
                   height: 100,
-                  child: Image.asset('images/fabrinet_image.png')
+                  child: Image.asset('assets/images/fabrinet_image.png')
                 ),
               ),
               // Image Login
@@ -86,7 +71,7 @@ class _WindowLoginState extends State<WindowLogin> {
                 child: SizedBox(
                   width: 250,
                   height: 250,
-                  child: Image.asset('images/login_image.png')
+                  child: Image.asset('assets/images/login_image.png')
                 ),
               ),
               // Username Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -165,13 +150,22 @@ class _WindowLoginState extends State<WindowLogin> {
               ),
               // Login Button >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
               Container(
+                decoration:  BoxDecoration(
+                  color: const Color.fromARGB(255, 3, 141, 93),
+                  boxShadow: const [
+                    BoxShadow(
+                      blurRadius: 5,
+                      offset: Offset(1, 1),
+                      color: Colors.grey
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(10)
+                ),
                 margin: const EdgeInsets.only(top: 20),
                 width: MediaQuery.of(context).size.width * 0.5,
-                child: RoundedLoadingButton(
-                  successColor: const Color.fromARGB(255, 3, 141, 93),
-                  color: const Color.fromARGB(255, 3, 141, 93),
-                  controller: _btnController,
-                  onPressed: () async {
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () {
                     // await queryUserAppInfo();
                     // await queryAppInfo();
                     // if (username.isNotEmpty) {
@@ -188,12 +182,18 @@ class _WindowLoginState extends State<WindowLogin> {
                     // }
                     // checkUsername();
                     navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => const WindowSelectView()));
-                    _btnController.reset();
                   },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)
+                    )
+                  ),
                   child: const Text(
                     'Login', 
                     style: TextStyle(
-                      color: Colors.white
+                      color: Colors.white,
+                      fontSize: 20
                     )
                   ),
                 ) 
