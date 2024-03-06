@@ -4,9 +4,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:cool_alert/cool_alert.dart';
-import 'package:yma_app/Widget/widget_DATE.dart';
+import 'package:YMs/Widget/widget_DATE.dart';
 import 'package:intl/intl.dart';
-import 'package:yma_app/Chart/mixChartYIELDMultiLine.dart';
+import 'package:YMs/Chart/mixChartYIELDMultiLine.dart';
 
 class WindowCiscoOTBUYIELD extends StatefulWidget {
   const WindowCiscoOTBUYIELD({super.key});

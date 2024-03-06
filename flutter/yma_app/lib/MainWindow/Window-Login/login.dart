@@ -7,7 +7,7 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
-import 'package:yma_app/MainWindow/Window-Switching-Window/selection_view.dart';
+import 'package:YMs/MainWindow/Window-Switching-Window/selection_view.dart';
 // import 'package:device_imei/device_imei.dart';
 
 class WindowLogin extends StatefulWidget {

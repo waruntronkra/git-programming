@@ -2,10 +2,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
-import 'package:yma_app/Chart/barChartBox.dart';
+import 'package:YMs/Chart/barChartBox.dart';
 import 'dart:convert';
 import 'package:cool_alert/cool_alert.dart';
-import 'package:yma_app/Chart/barChartHistogram.dart';
+import 'package:YMs/Chart/barChartHistogram.dart';
 import '../../../Table/table_histogram.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 

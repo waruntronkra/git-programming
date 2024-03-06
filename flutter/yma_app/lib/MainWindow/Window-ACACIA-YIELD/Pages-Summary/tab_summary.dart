@@ -7,18 +7,18 @@ import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:http/http.dart' as http;
 import 'package:cool_alert/cool_alert.dart';
 // import 'table_yield.dart';
-import 'package:yma_app/Widget/widget_DATE.dart';
-import 'package:yma_app/Widget/widget_CHART.dart';
-import 'package:yma_app/Chart/barChartPARETO.dart';
-import 'package:yma_app/Chart/barChartPARETObyDATE.dart';
+import 'package:YMs/Widget/widget_DATE.dart';
+import 'package:YMs/Widget/widget_CHART.dart';
+import 'package:YMs/Chart/barChartPARETO.dart';
+import 'package:YMs/Chart/barChartPARETObyDATE.dart';
 import '../Page-Analysis/tab_analysis.dart';
 import '../Page-Result-Test/tab_result_test.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:motion_tab_bar_v2/motion-tab-controller.dart';
 import 'tab_pareto.dart';
-import 'package:yma_app/Table/metrix_table.dart';
-import 'package:yma_app/Table/row_head_metrix_table.dart';
+import 'package:YMs/Table/metrix_table.dart';
+import 'package:YMs/Table/row_head_metrix_table.dart';
 
 class WindowATSYield extends StatefulWidget {
   static final activePage = GlobalKey<_WindowATSYieldState>();
