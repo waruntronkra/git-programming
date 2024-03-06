@@ -459,7 +459,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                             color: Colors.grey,
                           )
                         ],
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(10)
                       ),
                       child: RawMaterialButton(
                         child: const Row(
@@ -869,6 +869,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
               ),
             )
           ),
+          // Chart YIELD ==================
           Visibility(
             visible: mixChartVisible,
             child: Container(
@@ -995,243 +996,273 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
   }
 
   Future<void> queryDataForYieldChart(String drillOn) async {
-    if (stringFilterSelectedCode.isNotEmpty) {
-      stringEncryptedArray = await encryptData([
-        levelSelected,
-        modelSelected,
-        startDate.toString(),
-        endDate.toString(),
-        stringFilterSelectedCode.split(' ')[1],
-        stringFilterSelectedCode,
-        defaultGroupBy,
-        drillOn,
-        '71'
-      ]);
-      var dataQueried = await getDataPOST(
-        'https://localhost:44342/api/YMA/FbnYieldQueryDetail',
-        {
-          'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-          'Model': stringEncryptedArray['data'][1],
-          'From': stringEncryptedArray['data'][2],
-          'To': stringEncryptedArray['data'][3],
-          'FilterSelected': stringEncryptedArray['data'][4],
-          'FilterCode': stringEncryptedArray['data'][5],
-          'Groupby': stringEncryptedArray['data'][6],
-          'Drillon': stringEncryptedArray['data'][7],
-          'Version': stringEncryptedArray['data'][8]
-        },
-      );
-    
-      if (dataQueried[1] == 200) {
-        String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+    try {
+      if (stringFilterSelectedCode.isNotEmpty) {
+        stringEncryptedArray = await encryptData([
+          levelSelected,
+          modelSelected,
+          startDate.toString(),
+          endDate.toString(),
+          stringFilterSelectedCode.split(' ')[1],
+          stringFilterSelectedCode,
+          defaultGroupBy,
+          drillOn,
+          '71'
+        ]);
+        var dataQueried = await getDataPOST(
+          'https://supply-api.fabrinet.co.th/api/YMA/FbnYieldQueryDetail',
+          {
+            'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+            'Model': stringEncryptedArray['data'][1],
+            'From': stringEncryptedArray['data'][2],
+            'To': stringEncryptedArray['data'][3],
+            'FilterSelected': stringEncryptedArray['data'][4],
+            'FilterCode': stringEncryptedArray['data'][5],
+            'Groupby': stringEncryptedArray['data'][6],
+            'Drillon': stringEncryptedArray['data'][7],
+            'Version': stringEncryptedArray['data'][8]
+          },
+        );
+      
+        if (dataQueried[1] == 200) {
+          String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
 
-        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+          final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+          final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-        
-        dictDecodedDataByDate = [];
-        dataTable = [];
-        dictDecodedDataPercentByDate = [];
-        var categoryFilter = [];
-        List<String> categoryGroupBy = [];
-        for (var item in decodedData) {
-          dataTable.add([item[defaultGroupBy], item['Param'], item['In'], item['Out'], item['Fail'], item['Yield']]);
-          if (item[defaultGroupBy] != 'OVERALL Cummulative' && item[defaultGroupBy] != 'OVERALL In/Out') {
-            dictDecodedDataByDate.add([item[defaultGroupBy], item['Out'], item['Fail']]);
-            dictDecodedDataPercentByDate.add(double.parse(((item['Out'] / item['In']) * 100).toStringAsFixed(2)));
-
-            categoryGroupBy.add(item[defaultGroupBy]);
-            categoryFilter.add(item['Param']);
-          }
-        }
-        titleMixChart = 'Yield By $defaultGroupBy';
-        mixChartVisible = true;
-
-        categoryGroupBy = categoryGroupBy.toSet().toList();
-        categoryFilter = categoryFilter.toSet().toList();
-
-        Map<String, dynamic> objGroupBy = {};
-        for (var cat in categoryFilter) {
-          Map<String, dynamic> subObject = {};
+          String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+          List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+          
+          dictDecodedDataByDate = [];
+          dataTable = [];
+          dictDecodedDataPercentByDate = [];
+          var categoryFilter = [];
+          List<String> categoryGroupBy = [];
           for (var item in decodedData) {
+            dataTable.add([item[defaultGroupBy], item['Param'], item['In'], item['Out'], item['Fail'], item['Yield']]);
             if (item[defaultGroupBy] != 'OVERALL Cummulative' && item[defaultGroupBy] != 'OVERALL In/Out') {
-              if (!subObject.containsKey(cat)) {
-                subObject[cat] = [];
+              dictDecodedDataByDate.add([item[defaultGroupBy], item['Out'], item['Fail']]);
+              dictDecodedDataPercentByDate.add(double.parse(((item['Out'] / item['In']) * 100).toStringAsFixed(2)));
+
+              categoryGroupBy.add(item[defaultGroupBy]);
+              categoryFilter.add(item['Param']);
+            }
+          }
+          titleMixChart = 'Yield By $defaultGroupBy';
+          mixChartVisible = true;
+
+          categoryGroupBy = categoryGroupBy.toSet().toList();
+          categoryFilter = categoryFilter.toSet().toList();
+
+          Map<String, dynamic> objGroupBy = {};
+          for (var cat in categoryFilter) {
+            Map<String, dynamic> subObject = {};
+            for (var item in decodedData) {
+              if (item[defaultGroupBy] != 'OVERALL Cummulative' && item[defaultGroupBy] != 'OVERALL In/Out') {
+                if (!subObject.containsKey(cat)) {
+                  subObject[cat] = [];
+                }
+
+                if (item['Param'] == cat) {
+                  subObject[cat].add([item[defaultGroupBy], item['Yield'], item['In']]);
+                }
+                else {
+                  subObject[cat].add([item[defaultGroupBy], '', '']);
+                }
+              }
+            }
+
+            List<dynamic> bigArrSorted = [];
+            for (var obj in subObject.entries) {
+              for (var valObj in obj.value) {
+                if (valObj[1].toString().isNotEmpty) {
+                  bigArrSorted.add(obj.value[obj.value.indexOf(valObj)]);
+                }
+              }
+            }
+
+            if (!objGroupBy.containsKey(cat)) {
+              objGroupBy[cat] = bigArrSorted;
+            }
+          }
+
+          Map<String, dynamic> dataToLineChart = {};
+          Map<String, dynamic> dataQtyToLineChart = {};
+          for (var obj in objGroupBy.entries) {
+            List<String> listDT = [];
+            for (var i in obj.value) {
+              listDT.add(i[0]);
+            }
+
+            List<double> listNum = [];
+            for (var i in obj.value) {
+              listNum.add(i[1]);
+            }
+
+            List<int> listQty = [];
+            for (var i in obj.value) {
+              listQty.add(i[2]);
+            }
+
+            for (int i = 0; i < categoryGroupBy.length; i++) {
+              if (!dataToLineChart.containsKey(obj.key)) {
+                dataToLineChart[obj.key] = [];
+              }
+              if (!dataQtyToLineChart.containsKey(obj.key)) {
+                dataQtyToLineChart[obj.key] = [];
               }
 
-              if (item['Param'] == cat) {
-                subObject[cat].add([item[defaultGroupBy], item['Yield'], item['In']]);
+              if (listDT.contains(categoryGroupBy[i])) {
+                dataToLineChart[obj.key].add(listNum[listDT.indexOf(categoryGroupBy[i])]);
+                dataQtyToLineChart[obj.key].add(listQty[listDT.indexOf(categoryGroupBy[i])]);
               }
               else {
-                subObject[cat].add([item[defaultGroupBy], '', '']);
+                dataToLineChart[obj.key].add(null);
+                dataQtyToLineChart[obj.key].add(0);
               }
             }
-          }
+          } 
 
-          List<dynamic> bigArrSorted = [];
-          for (var obj in subObject.entries) {
-            for (var valObj in obj.value) {
-              if (valObj[1].toString().isNotEmpty) {
-                bigArrSorted.add(obj.value[obj.value.indexOf(valObj)]);
-              }
-            }
-          }
-
-          if (!objGroupBy.containsKey(cat)) {
-            objGroupBy[cat] = bigArrSorted;
-          }
+          setState(() {
+            dataLineChart = dataToLineChart;
+            dataQtyLineChart = dataQtyToLineChart;
+            xAxis = categoryGroupBy;
+          });
         }
-
-        Map<String, dynamic> dataToLineChart = {};
-        Map<String, dynamic> dataQtyToLineChart = {};
-        for (var obj in objGroupBy.entries) {
-          List<String> listDT = [];
-          for (var i in obj.value) {
-            listDT.add(i[0]);
-          }
-
-          List<double> listNum = [];
-          for (var i in obj.value) {
-            listNum.add(i[1]);
-          }
-
-          List<int> listQty = [];
-          for (var i in obj.value) {
-            listQty.add(i[2]);
-          }
-
-          for (int i = 0; i < categoryGroupBy.length; i++) {
-            if (!dataToLineChart.containsKey(obj.key)) {
-              dataToLineChart[obj.key] = [];
-            }
-            if (!dataQtyToLineChart.containsKey(obj.key)) {
-              dataQtyToLineChart[obj.key] = [];
-            }
-
-            if (listDT.contains(categoryGroupBy[i])) {
-              dataToLineChart[obj.key].add(listNum[listDT.indexOf(categoryGroupBy[i])]);
-              dataQtyToLineChart[obj.key].add(listQty[listDT.indexOf(categoryGroupBy[i])]);
-            }
-            else {
-              dataToLineChart[obj.key].add(null);
-              dataQtyToLineChart[obj.key].add(0);
-            }
-          }
-        } 
-
-        setState(() {
-          dataLineChart = dataToLineChart;
-          dataQtyLineChart = dataQtyToLineChart;
-          xAxis = categoryGroupBy;
-        });
+        else {
+          CoolAlert.show(
+            width: 1,
+            context: scaffoldKey.currentContext!,
+            type: CoolAlertType.error,
+            text:'Enable to connect Database ! ${dataQueried[0]}'
+          );
+        }
       }
-      else {
-        CoolAlert.show(
-          width: 1,
-          context: scaffoldKey.currentContext!,
-          type: CoolAlertType.error,
-          text:'Enable to connect Database ! ${dataQueried[0]}'
-        );
-      }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
     }
   }
 
   Future<void> queryDataForParetoChart(String drillOn) async {
-    if (stringFilterSelectedCode.isNotEmpty) {
-      stringEncryptedArray = await encryptData([
-        levelSelected,
-        modelSelected,
-        startDate.toString(),
-        endDate.toString(),
-        stringFilterSelectedCode.split(' ')[1],
-        stringFilterSelectedCode,
-        defaultGroupBy,
-        drillOn,
-        '71'
-      ]);
-      var dataQueried = await getDataPOST(
-        'https://localhost:44342/api/YMA/FbnYieldQueryDetail',
-        {
-          'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-          'Model': stringEncryptedArray['data'][1],
-          'From': stringEncryptedArray['data'][2],
-          'To': stringEncryptedArray['data'][3],
-          'FilterSelected': stringEncryptedArray['data'][4],
-          'FilterCode': stringEncryptedArray['data'][5],
-          'Groupby': stringEncryptedArray['data'][6],
-          'Drillon': stringEncryptedArray['data'][7],
-          'Version': stringEncryptedArray['data'][8]
-        },
-      );
-    
-      if (dataQueried[1] == 200) {
-        String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+    try {
+      if (stringFilterSelectedCode.isNotEmpty) {
+        stringEncryptedArray = await encryptData([
+          levelSelected,
+          modelSelected,
+          startDate.toString(),
+          endDate.toString(),
+          stringFilterSelectedCode.split(' ')[1],
+          stringFilterSelectedCode,
+          defaultGroupBy,
+          drillOn,
+          '71'
+        ]);
+        var dataQueried = await getDataPOST(
+          'https://supply-api.fabrinet.co.th/api/YMA/FbnYieldQueryDetail',
+          {
+            'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+            'Model': stringEncryptedArray['data'][1],
+            'From': stringEncryptedArray['data'][2],
+            'To': stringEncryptedArray['data'][3],
+            'FilterSelected': stringEncryptedArray['data'][4],
+            'FilterCode': stringEncryptedArray['data'][5],
+            'Groupby': stringEncryptedArray['data'][6],
+            'Drillon': stringEncryptedArray['data'][7],
+            'Version': stringEncryptedArray['data'][8]
+          },
+        );
+      
+        if (dataQueried[1] == 200) {
+          String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
 
-        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+          final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+          final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+          String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+          List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
 
-        groupDataToBarChart = [];
-        for (var data in decodedData) {
-          groupDataToBarChart.add([data['defect'], double.parse(((data['fail'] / data['count']) * 100).toStringAsFixed(2))]);
-        } 
+          groupDataToBarChart = [];
+          for (var data in decodedData) {
+            groupDataToBarChart.add([data['defect'], double.parse(((data['fail'] / data['count']) * 100).toStringAsFixed(2))]);
+          } 
 
-        groupDataToTable = [];
-        for (var data in decodedData) {
-          groupDataToTable.add([data['defect'], data['fail'], ((data['fail'] / data['count']) * 100).toStringAsFixed(2)]);
+          groupDataToTable = [];
+          for (var data in decodedData) {
+            groupDataToTable.add([data['defect'], data['fail'], ((data['fail'] / data['count']) * 100).toStringAsFixed(2)]);
+          }
+          
+          setState(() {
+            groupDataToBarChart = groupDataToBarChart;
+            groupDataToTable = groupDataToTable;
+          });
         }
-        
-        setState(() {
-          groupDataToBarChart = groupDataToBarChart;
-          groupDataToTable = groupDataToTable;
-        });
       }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
     }
   }
 
   // ========================================= Query [LEVEL] =========================================
   Future<void> fetchDataLevel() async {
-    stringEncryptedArray = await encryptData([
-      '71'
-    ]);
+    try {
+      stringEncryptedArray = await encryptData([
+        '71'
+      ]);
 
-    var productName = await getDataPOST(
-      'https://localhost:44342/api/YMA/ProductName',
-      {
-        'Version' : '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-      } 
-    );
-    String jsonEncrypted = jsonDecode(jsonDecode(productName[0]))['encryptedJson'];
+      var productName = await getDataPOST(
+        'https://supply-api.fabrinet.co.th/api/YMA/ProductName',
+        {
+          'Version' : '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+        } 
+      );
+      String jsonEncrypted = jsonDecode(jsonDecode(productName[0]))['encryptedJson'];
 
-    final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-    final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+      final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-    String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-    List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+      List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
 
-    List<String> levelNameSorted = [];
-    for (var element in decodedData) {
-      if (!levelNameSorted.contains(element['Level'])) {
-        levelNameSorted.add(element['Level']);
+      List<String> levelNameSorted = [];
+      for (var element in decodedData) {
+        if (!levelNameSorted.contains(element['Level'])) {
+          levelNameSorted.add(element['Level']);
+        }
       }
-    }
 
-    Map<String, dynamic> modelNameSorted = {};
-    for (var element in decodedData) {
-      if (!modelNameSorted.containsKey(element['Level'])) {
-        modelNameSorted[element['Level']] = [];
+      Map<String, dynamic> modelNameSorted = {};
+      for (var element in decodedData) {
+        if (!modelNameSorted.containsKey(element['Level'])) {
+          modelNameSorted[element['Level']] = [];
+        }
+        modelNameSorted[element['Level']].add(element['Model']);
       }
-      modelNameSorted[element['Level']].add(element['Model']);
-    }
 
-    setState(() {
-      dataLevelObject = modelNameSorted; // Send this value to List
-      tableProductName = levelNameSorted;
-    });
+      setState(() {
+        dataLevelObject = modelNameSorted; // Send this value to List
+        tableProductName = levelNameSorted;
+      });
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
   }
 
   // ========================= Create drop list by [LEVEL] =========================

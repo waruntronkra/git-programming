@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:cool_alert/cool_alert.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
@@ -564,76 +565,85 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
   
   // Query from Filter selected
   Future<void> queryByFilter() async {
-    setState(() {
-      listFilterSelectedFrom = [];
-    });
-    if (widget.levelSelected.isNotEmpty && widget.modelSelected.isNotEmpty) {
-      listFilterSelectedFrom = [];
-
-      Map<String, dynamic> stringEncryptedArray = await encryptData([
-        widget.levelSelected,
-        widget.modelSelected,
-        widget.startDate,
-        widget.endDate,
-        filterSelected,
-        'true',
-        '71'
-      ]);
-      
-      var dataQueried = await getDataPOST(
-        'https://localhost:44342/api/YMA/FbnYieldQueryFilter',
-        {
-          'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-          'Model': stringEncryptedArray['data'][1],
-          'From': stringEncryptedArray['data'][2],
-          'To': stringEncryptedArray['data'][3],
-          'Filter': stringEncryptedArray['data'][4],
-          'IsFirstFilter' : stringEncryptedArray['data'][5],
-          'Version': stringEncryptedArray['data'][6], 
-        }                         
-      );
-      if (dataQueried[1] == 200) {
-        String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
-
-        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
-
-        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-        
+    try {
+      setState(() {
         listFilterSelectedFrom = [];
-        for (var i in decodedData) {
-          listFilterSelectedFrom.add(i['param']);
-        }
-        isCheckedFrom = [];
-        isCheckedColorFrom = [];
-        for (var i = 0; i < listFilterSelectedFrom.length; i++) {
-          isCheckedFrom.add(true); 
-          isCheckedColorFrom.add(const Color.fromARGB(255, 3, 141, 93)); 
-        }
+      });
+      if (widget.levelSelected.isNotEmpty && widget.modelSelected.isNotEmpty) {
+        listFilterSelectedFrom = [];
 
-        isCheckedStringFrom = [];
-        for (String val in listFilterSelectedFrom) {
-          isCheckedStringFrom.add(val);
+        Map<String, dynamic> stringEncryptedArray = await encryptData([
+          widget.levelSelected,
+          widget.modelSelected,
+          widget.startDate,
+          widget.endDate,
+          filterSelected,
+          'true',
+          '71'
+        ]);
+        
+        var dataQueried = await getDataPOST(
+          'https://supply-api.fabrinet.co.th/api/YMA/FbnYieldQueryFilter',
+          {
+            'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+            'Model': stringEncryptedArray['data'][1],
+            'From': stringEncryptedArray['data'][2],
+            'To': stringEncryptedArray['data'][3],
+            'Filter': stringEncryptedArray['data'][4],
+            'IsFirstFilter' : stringEncryptedArray['data'][5],
+            'Version': stringEncryptedArray['data'][6], 
+          }                         
+        );
+        if (dataQueried[1] == 200) {
+          String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+
+          final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+          final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+
+          String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+          List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+          
+          listFilterSelectedFrom = [];
+          for (var i in decodedData) {
+            listFilterSelectedFrom.add(i['param']);
+          }
+          isCheckedFrom = [];
+          isCheckedColorFrom = [];
+          for (var i = 0; i < listFilterSelectedFrom.length; i++) {
+            isCheckedFrom.add(true); 
+            isCheckedColorFrom.add(const Color.fromARGB(255, 3, 141, 93)); 
+          }
+
+          isCheckedStringFrom = [];
+          for (String val in listFilterSelectedFrom) {
+            isCheckedStringFrom.add(val);
+          }
+          stringFilterSelectedCode = '';
+          for (var i in isCheckedStringFrom) {
+            if (i.isNotEmpty) {
+              stringFilterSelectedCode += ",''$i''";
+            }
+          }
+          setState(() {
+            if (decodedData.isNotEmpty) {
+              stringFilterSelectedCode = stringFilterSelectedCode.replaceFirst(RegExp(r','), '');
+              widget.sendMergedFilterCode('AND $filterSelected IN ($stringFilterSelectedCode)$allCMDFilter', defaultGroupBy);
+              listFilterSelectedFrom = listFilterSelectedFrom;
+            }
+            else {
+              listFilterSelectedFrom = [];
+            }
+          });
         }
-        stringFilterSelectedCode = '';
-        for (var i in isCheckedStringFrom) {
-          if (i.isNotEmpty) {
-            stringFilterSelectedCode += ",''$i''";
-          }
-        }
-        setState(() {
-          if (decodedData.isNotEmpty) {
-            stringFilterSelectedCode = stringFilterSelectedCode.replaceFirst(RegExp(r','), '');
-            widget.sendMergedFilterCode('AND $filterSelected IN ($stringFilterSelectedCode)$allCMDFilter', defaultGroupBy);
-            listFilterSelectedFrom = listFilterSelectedFrom;
-          }
-          else {
-            listFilterSelectedFrom = [];
-          }
-        });
       }
-    
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
     }
   }
 

@@ -429,6 +429,7 @@ class _WindowCiscoOTBUYIELDState extends State<WindowCiscoOTBUYIELD> {
                 child: Image.asset('images/FBN_CISCO_1.png')
               )
             ),
+          // Chart YIELD ==================
           Visibility(
             visible: visibleChart,
             child: Container(
@@ -502,258 +503,278 @@ class _WindowCiscoOTBUYIELDState extends State<WindowCiscoOTBUYIELD> {
   // +++++++++++++++++++++++++++++++++++++++++++++++++ [Zone Query] +++++++++++++++++++++++++++++++++++++++++++++++++
   
   Future<void> listDetail() async {
-    stringEncryptedArray = await encryptData([
-      firstExpandeString, 
-      secondExpandeString, 
-      previousTS.toString()
-    ]);
+    try {
+      stringEncryptedArray = await encryptData([
+        firstExpandeString, 
+        secondExpandeString, 
+        previousTS.toString()
+      ]);
 
-    var dataQueried = await getDataPOST(
-      'https://localhost:44342/api/YMA/QueryListDetailCiscoOTBU',
-      {
-        'Parameter': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-        'Level': stringEncryptedArray['data'][1],
-        'Date': stringEncryptedArray['data'][2],
-      } 
-    );
-
-    if (dataQueried[1] == 200) {
-      String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
-
-      final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
-
-      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-      List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-      setState(() {
-        if (decodedData.isNotEmpty) {
-          dataDetailFromList = [];
-          for (var i in decodedData) {
-            dataDetailFromList.add(i[secondExpandeString]);
-          }
+      var dataQueried = await getDataPOST(
+        'https://supply-api.fabrinet.co.th/api/YMA/QueryListDetailCiscoOTBU',
+        {
+          'Parameter': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+          'Level': stringEncryptedArray['data'][1],
+          'Date': stringEncryptedArray['data'][2],
         } 
-        else {
-          dataDetailFromList = [];
-        }
-      });
+      );
+
+      if (dataQueried[1] == 200) {
+        String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+
+        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+        setState(() {
+          if (decodedData.isNotEmpty) {
+            dataDetailFromList = [];
+            for (var i in decodedData) {
+              dataDetailFromList.add(i[secondExpandeString]);
+            }
+          } 
+          else {
+            dataDetailFromList = [];
+          }
+        });
+      }
+      else {
+        dataDetailFromList = [];
+        CoolAlert.show(
+          width: 1,
+          context: scaffoldKey.currentContext!,
+          type: CoolAlertType.error,
+          text:'Enable to connect Database ! ${dataQueried[0]}'
+        );
+      }
     }
-    else {
-      dataDetailFromList = [];
+    catch (e) {
       CoolAlert.show(
         width: 1,
         context: scaffoldKey.currentContext!,
         type: CoolAlertType.error,
-        text:'Enable to connect Database ! ${dataQueried[0]}'
+        text:'Error : $e'
       );
     }
   }
 
   Future<void> queryYield() async {
-    stringEncryptedArray = await encryptData([
-      (int.parse(selectedTS.split(' ')[0]) - 1).toString(), 
-      selectedTS.split(' ')[1][0], 
-      firstExpandeString,
-      secondExpandeString,
-      parameterSelected
-    ]);
+    try {
+      stringEncryptedArray = await encryptData([
+        (int.parse(selectedTS.split(' ')[0]) - 1).toString(), 
+        selectedTS.split(' ')[1][0], 
+        firstExpandeString,
+        secondExpandeString,
+        parameterSelected
+      ]);
 
-    var dataQueried = await getDataPOST(
-      'https://localhost:44342/api/YMA/QueryYieldCiscoOTBU',
-      {
-        'Day': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-        'DayMode': stringEncryptedArray['data'][1],
-        'Level': stringEncryptedArray['data'][2],
-        'StepName': stringEncryptedArray['data'][3],
-        'Parameter': stringEncryptedArray['data'][4],
-      } 
-    );
+      var dataQueried = await getDataPOST(
+        'https://supply-api.fabrinet.co.th/api/YMA/QueryYieldCiscoOTBU',
+        {
+          'Day': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+          'DayMode': stringEncryptedArray['data'][1],
+          'Level': stringEncryptedArray['data'][2],
+          'StepName': stringEncryptedArray['data'][3],
+          'Parameter': stringEncryptedArray['data'][4],
+        } 
+      );
 
-    if (dataQueried[1] == 200) {
-      String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+      if (dataQueried[1] == 200) {
+        String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
 
-      final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-      List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
 
-      String modeDT = '';
-      if (selectedTS.split(' ')[1][0] == 'D') {
-        modeDT = 'DATE';
-      }
-      else if (selectedTS.split(' ')[1][0] == 'W') {
-        modeDT = 'WEEK';
-      }
-      else if (selectedTS.split(' ')[1][0] == 'M') {
-        modeDT = 'MONTH';
-      }
-      else if (selectedTS.split(' ')[1][0] == 'Q') {
-        modeDT = 'QUARTER';
-      }
+        String modeDT = '';
+        if (selectedTS.split(' ')[1][0] == 'D') {
+          modeDT = 'DATE';
+        }
+        else if (selectedTS.split(' ')[1][0] == 'W') {
+          modeDT = 'WEEK';
+        }
+        else if (selectedTS.split(' ')[1][0] == 'M') {
+          modeDT = 'MONTH';
+        }
+        else if (selectedTS.split(' ')[1][0] == 'Q') {
+          modeDT = 'QUARTER';
+        }
 
-      xAxis = [];
-      stackBarChartPerDT = [];
-      mapMultiLineChartPerOP = {};
-      if (decodedData.isNotEmpty) {
-        setState(() {
-          List<String> dtJSON = [];
-          for (var i in decodedData) {
-            dtJSON.add(i[modeDT]);
-          }
-          Set<String> uniqueDates = Set<String>.from(dtJSON);
-          dtJSON = uniqueDates.toList();
-          // ================================== Sort DATE ==================================
-          if (modeDT == 'DATE') {
-            String getMonthAbbreviation(int month) {
-              final months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-              return months[month - 1];
+        xAxis = [];
+        stackBarChartPerDT = [];
+        mapMultiLineChartPerOP = {};
+        if (decodedData.isNotEmpty) {
+          setState(() {
+            List<String> dtJSON = [];
+            for (var i in decodedData) {
+              dtJSON.add(i[modeDT]);
             }
-            DateTime customParse(String dateString) {
-              final months = {
-                'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
-                'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
-              };
-              final parts = dateString.split(' ');
-              final day = int.parse(parts[0]);
-              final month = months[parts[1]]!;
-              final year = int.parse(parts[2]);
-
-              return DateTime(year, month, day);
-            }
-
-            List<DateTime> dateTimes = dtJSON.map(customParse).toList();
-            dateTimes.sort((a, b) => b.compareTo(a));
-            xAxis = dateTimes.map((dateTime) {
-              final day = dateTime.day.toString().padLeft(2, '0');
-              final month = getMonthAbbreviation(dateTime.month);
-              final year = dateTime.year.toString();
-              return '$day $month $year';
-            }).toList();
-          }
-          // ================================== Sort WEEK ==================================
-          if (modeDT == 'WEEK') {
-            xAxis = dtJSON.toList()..sort((a, b) {
-              // Extract the week and year from the strings
-              int weekA = int.parse(a.substring(3, a.indexOf(' ')));
-              int yearA = int.parse(a.substring(a.lastIndexOf('\'') + 1));
-
-              int weekB = int.parse(b.substring(3, b.indexOf(' ')));
-              int yearB = int.parse(b.substring(b.lastIndexOf('\'') + 1));
-
-              int yearComparison = yearB.compareTo(yearA);
-              if (yearComparison != 0) {
-                return yearComparison;
+            Set<String> uniqueDates = Set<String>.from(dtJSON);
+            dtJSON = uniqueDates.toList();
+            // ================================== Sort DATE ==================================
+            if (modeDT == 'DATE') {
+              String getMonthAbbreviation(int month) {
+                final months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                return months[month - 1];
               }
-              return weekB.compareTo(weekA);
-            });
-          }
-          // ================================== Sort MONTH ==================================
-          if (modeDT == 'MONTH') {
-            List<String> sortDatesDescending(List<String> dateStrings) {
-              List<DateTime> dates = dateStrings.map((dateString) {
-                return DateFormat('MMM yyyy').parse(dateString);
-              }).toList();
+              DateTime customParse(String dateString) {
+                final months = {
+                  'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+                  'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+                };
+                final parts = dateString.split(' ');
+                final day = int.parse(parts[0]);
+                final month = months[parts[1]]!;
+                final year = int.parse(parts[2]);
 
-              dates.sort((a, b) => b.compareTo(a));
-
-              List<String> xAxis = dates.map((date) {
-                return DateFormat('MMM yyyy').format(date);
-              }).toList();
-
-              return xAxis;
-            }
-            xAxis = sortDatesDescending(dtJSON);
-          }
-          // ================================== Sort QUARTER ==================================
-          if (modeDT == 'QUARTER') {
-            List<String> sortQuarterYearsDescending(List<String> quarterYears) {
-              List<DateTime> dates = quarterYears.map((quarterYear) {
-                int quarter = int.parse(quarterYear.substring(1, 2));
-                int year = int.parse(quarterYear.substring(3));
-                return DateTime(year, (quarter - 1) * 3 + 1);
-              }).toList();
-
-              dates.sort((a, b) => b.compareTo(a));
-
-              List<String> sortedQuarterYears = dates.map((date) {
-                int quarter = (date.month - 1) ~/ 3 + 1;
-                int year = date.year;
-                return 'Q$quarter-$year';
-              }).toList();
-
-              return sortedQuarterYears;
-            }
-            xAxis = sortQuarterYearsDescending(dtJSON);
-          }
-          xAxis = xAxis.reversed.toList();
-          // ==================================================================================
-          
-          // =========================== Prepare data for stack Bar Chart ===========================
-          Map<String, dynamic> groupStackBarChartPerDT = {};
-          for (var i in decodedData) {
-            if (!groupStackBarChartPerDT.containsKey(i[modeDT])) {
-              groupStackBarChartPerDT[i[modeDT]] = [];
-            }
-            groupStackBarChartPerDT[i[modeDT]].add([i['Pass'], i['Fail']]);
-          }
-          
-          Map<String, dynamic> sumStackBarChartPerDT = {};
-          for (var item in groupStackBarChartPerDT.entries) {
-            int sumPass = 0;
-            int sumFail = 0;
-            for (var value in item.value) {
-              sumPass = sumPass + value[0] as int;
-              sumFail = sumFail + value[1] as int;
-            }
-            sumStackBarChartPerDT[item.key] = [sumPass, sumFail];
-          } 
-
-          Map<String, dynamic> mapStackBarChartPerDT = {};
-          for (var dt in xAxis) {
-            mapStackBarChartPerDT[dt] = sumStackBarChartPerDT[dt];
-          }
-          stackBarChartPerDT = mapStackBarChartPerDT.values.toList();
-
-          // =========================== Prepare data for Multiple Line Chart ===========================
-          Map<String, dynamic> groupMultiLineChartPerOP = {};
-          for (var i in decodedData) {
-            if (!groupMultiLineChartPerOP.containsKey(i['Operation'])) {
-              groupMultiLineChartPerOP[i['Operation']] = [];
-            }
-            groupMultiLineChartPerOP[i['Operation']].add([i[modeDT], i['FPY']]);
-          }
-
-          for (var item in groupMultiLineChartPerOP.entries) {
-            List<String> subDT = [];
-            for (var i in item.value) {
-              subDT.add(i[0]);
-            }
-
-            List<double?> arr = [];
-            for (var val in item.value) {
-              for (var dt in xAxis) {
-                if (subDT.contains(dt)) {
-                  arr.add(val[1]);
-                }
-                else {
-                  arr.add(null);
-                }
+                return DateTime(year, month, day);
               }
-              break;
+
+              List<DateTime> dateTimes = dtJSON.map(customParse).toList();
+              dateTimes.sort((a, b) => b.compareTo(a));
+              xAxis = dateTimes.map((dateTime) {
+                final day = dateTime.day.toString().padLeft(2, '0');
+                final month = getMonthAbbreviation(dateTime.month);
+                final year = dateTime.year.toString();
+                return '$day $month $year';
+              }).toList();
             }
-            mapMultiLineChartPerOP[item.key] = arr;
-          }
-          visibleChart = true;
-        });
+            // ================================== Sort WEEK ==================================
+            if (modeDT == 'WEEK') {
+              xAxis = dtJSON.toList()..sort((a, b) {
+                // Extract the week and year from the strings
+                int weekA = int.parse(a.substring(3, a.indexOf(' ')));
+                int yearA = int.parse(a.substring(a.lastIndexOf('\'') + 1));
+
+                int weekB = int.parse(b.substring(3, b.indexOf(' ')));
+                int yearB = int.parse(b.substring(b.lastIndexOf('\'') + 1));
+
+                int yearComparison = yearB.compareTo(yearA);
+                if (yearComparison != 0) {
+                  return yearComparison;
+                }
+                return weekB.compareTo(weekA);
+              });
+            }
+            // ================================== Sort MONTH ==================================
+            if (modeDT == 'MONTH') {
+              List<String> sortDatesDescending(List<String> dateStrings) {
+                List<DateTime> dates = dateStrings.map((dateString) {
+                  return DateFormat('MMM yyyy').parse(dateString);
+                }).toList();
+
+                dates.sort((a, b) => b.compareTo(a));
+
+                List<String> xAxis = dates.map((date) {
+                  return DateFormat('MMM yyyy').format(date);
+                }).toList();
+
+                return xAxis;
+              }
+              xAxis = sortDatesDescending(dtJSON);
+            }
+            // ================================== Sort QUARTER ==================================
+            if (modeDT == 'QUARTER') {
+              List<String> sortQuarterYearsDescending(List<String> quarterYears) {
+                List<DateTime> dates = quarterYears.map((quarterYear) {
+                  int quarter = int.parse(quarterYear.substring(1, 2));
+                  int year = int.parse(quarterYear.substring(3));
+                  return DateTime(year, (quarter - 1) * 3 + 1);
+                }).toList();
+
+                dates.sort((a, b) => b.compareTo(a));
+
+                List<String> sortedQuarterYears = dates.map((date) {
+                  int quarter = (date.month - 1) ~/ 3 + 1;
+                  int year = date.year;
+                  return 'Q$quarter-$year';
+                }).toList();
+
+                return sortedQuarterYears;
+              }
+              xAxis = sortQuarterYearsDescending(dtJSON);
+            }
+            xAxis = xAxis.reversed.toList();
+            // ==================================================================================
+            
+            // =========================== Prepare data for stack Bar Chart ===========================
+            Map<String, dynamic> groupStackBarChartPerDT = {};
+            for (var i in decodedData) {
+              if (!groupStackBarChartPerDT.containsKey(i[modeDT])) {
+                groupStackBarChartPerDT[i[modeDT]] = [];
+              }
+              groupStackBarChartPerDT[i[modeDT]].add([i['Pass'], i['Fail']]);
+            }
+            
+            Map<String, dynamic> sumStackBarChartPerDT = {};
+            for (var item in groupStackBarChartPerDT.entries) {
+              int sumPass = 0;
+              int sumFail = 0;
+              for (var value in item.value) {
+                sumPass = sumPass + value[0] as int;
+                sumFail = sumFail + value[1] as int;
+              }
+              sumStackBarChartPerDT[item.key] = [sumPass, sumFail];
+            } 
+
+            Map<String, dynamic> mapStackBarChartPerDT = {};
+            for (var dt in xAxis) {
+              mapStackBarChartPerDT[dt] = sumStackBarChartPerDT[dt];
+            }
+            stackBarChartPerDT = mapStackBarChartPerDT.values.toList();
+
+            // =========================== Prepare data for Multiple Line Chart ===========================
+            Map<String, dynamic> groupMultiLineChartPerOP = {};
+            for (var i in decodedData) {
+              if (!groupMultiLineChartPerOP.containsKey(i['Operation'])) {
+                groupMultiLineChartPerOP[i['Operation']] = [];
+              }
+              groupMultiLineChartPerOP[i['Operation']].add([i[modeDT], i['FPY']]);
+            }
+
+            for (var item in groupMultiLineChartPerOP.entries) {
+              List<String> subDT = [];
+              for (var i in item.value) {
+                subDT.add(i[0]);
+              }
+
+              List<double?> arr = [];
+              for (var val in item.value) {
+                for (var dt in xAxis) {
+                  if (subDT.contains(dt)) {
+                    arr.add(val[1]);
+                  }
+                  else {
+                    arr.add(null);
+                  }
+                }
+                break;
+              }
+              mapMultiLineChartPerOP[item.key] = arr;
+            }
+            visibleChart = true;
+          });
+        }
+      }
+      else {
+        dataDetailFromList = [];
+        CoolAlert.show(
+          width: 1,
+          context: scaffoldKey.currentContext!,
+          type: CoolAlertType.error,
+          text:'Enable to connect Database ! ${dataQueried[0]}'
+        );
       }
     }
-    else {
-      dataDetailFromList = [];
+    catch (e) {
       CoolAlert.show(
         width: 1,
         context: scaffoldKey.currentContext!,
         type: CoolAlertType.error,
-        text:'Enable to connect Database ! ${dataQueried[0]}'
+        text:'Error : $e'
       );
     }
   }

@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:http/http.dart' as http;
+import 'package:cool_alert/cool_alert.dart';
 // import 'table_yield.dart';
 import 'package:yma_app/Widget/widget_DATE.dart';
 import 'package:yma_app/Widget/widget_CHART.dart';
@@ -89,6 +90,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
 
   Map<String, dynamic> stringEncryptedArray = {};
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   late MotionTabBarController _tabController;
@@ -743,371 +745,304 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
 
   // ============== Function Query Yield ==============
   Future<void> fetchYIELD() async {
-    String day = updateDayString;
-    if (day.split(' ')[1] == 'Day' || day.split(' ')[1] == 'Days') {
-      modeDay = 'DATE';
-    }
-    else if (day.split(' ')[1] == 'Week' || day.split(' ')[1] == 'Weeks') {
-      modeDay = 'WEEK';
-    }
-    else if (day.split(' ')[1] == 'Month' || day.split(' ')[1] == 'Months') {
-      modeDay = 'MONTH';
-    }
-    else if (day.split(' ')[1] == 'Quarter' || day.split(' ')[1] == 'Quarters') {
-      modeDay = 'QUARTER';
-    }
-
-    setState(() {
-      isLoadingLineChart = true;
-      mixChartVisible = false;
-      arrProcessForMixChart = [];
-      daySelected = day;
-      dataQtyToMetrixTable = [];
-      dataFPYToMetrixTable = [];
-      dataRTYToMetrixTable = [];
-    });
-
-    stringEncryptedArray = await encryptData([
-      levelSelected,
-      modelSelected,
-      (int.parse(day.split(' ')[0])-1).toString(),
-      modeDay.toString(),
-      '71'
-    ]);
-
-    var dataYIELD = await getDataPOST(
-                                  'https://supply-api.fabrinet.co.th/api/YMA/QueryYield',
-                                  {
-                                  'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-                                  'Model': stringEncryptedArray['data'][1],
-                                  'Day': stringEncryptedArray['data'][2],
-                                  'ModeDay': stringEncryptedArray['data'][3],
-                                  'Version': stringEncryptedArray['data'][4]
-                                  } 
-                                );
-
-    String jsonEncrypted = jsonDecode(jsonDecode(dataYIELD[0]))['encryptedJson'];
-
-    final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-    final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
-
-    String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-    List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-
-    List<String> prJSON = [];
-    for (var item in decodedData) {
-      prJSON.add(item['Process']);
-    }
-    
-    Set<String> uniquePr = Set<String>.from(prJSON);
-    prJSON = uniquePr.toList();
-    if (decodedData.isNotEmpty) {
-      List<String> dtJSON = [];
-      for (var item in decodedData) {
-        dtJSON.add(item[modeDay]);
+    try {
+      String day = updateDayString;
+      if (day.split(' ')[1] == 'Day' || day.split(' ')[1] == 'Days') {
+        modeDay = 'DATE';
       }
-      Set<String> uniqueDates = Set<String>.from(dtJSON);
-      dtJSON = uniqueDates.toList();
-      // ================================== Sort DATE ==================================
-      sortedDates = [];
-      if (modeDay == 'DATE') {
-        String getMonthAbbreviation(int month) {
-          final months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-          return months[month - 1];
-        }
-        DateTime customParse(String dateString) {
-          final months = {
-            'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
-            'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
-          };
-          final parts = dateString.split(' ');
-          final day = int.parse(parts[0]);
-          final month = months[parts[1]]!;
-          final year = int.parse(parts[2]);
-
-          return DateTime(year, month, day);
-        }
-
-        List<DateTime> dateTimes = dtJSON.map(customParse).toList();
-        dateTimes.sort((a, b) => b.compareTo(a));
-        sortedDates = dateTimes.map((dateTime) {
-          final day = dateTime.day.toString().padLeft(2, '0');
-          final month = getMonthAbbreviation(dateTime.month);
-          final year = dateTime.year.toString();
-          return '$day $month $year';
-        }).toList();
+      else if (day.split(' ')[1] == 'Week' || day.split(' ')[1] == 'Weeks') {
+        modeDay = 'WEEK';
       }
-      // ================================== Sort WEEK ==================================
-      if (modeDay == 'WEEK') {
-        sortedDates = dtJSON.toList()..sort((a, b) {
-          // Extract the week and year from the strings
-          int weekA = int.parse(a.substring(3, a.indexOf(' ')));
-          int yearA = int.parse(a.substring(a.lastIndexOf('\'') + 1));
-
-          int weekB = int.parse(b.substring(3, b.indexOf(' ')));
-          int yearB = int.parse(b.substring(b.lastIndexOf('\'') + 1));
-
-          int yearComparison = yearB.compareTo(yearA);
-          if (yearComparison != 0) {
-            return yearComparison;
-          }
-          return weekB.compareTo(weekA);
-        });
+      else if (day.split(' ')[1] == 'Month' || day.split(' ')[1] == 'Months') {
+        modeDay = 'MONTH';
       }
-      // ================================== Sort MONTH ==================================
-      if (modeDay == 'MONTH') {
-        List<String> sortDatesDescending(List<String> dateStrings) {
-          List<DateTime> dates = dateStrings.map((dateString) {
-            return DateFormat('MMM yyyy').parse(dateString);
-          }).toList();
-
-          dates.sort((a, b) => b.compareTo(a));
-
-          List<String> sortedDates = dates.map((date) {
-            return DateFormat('MMM yyyy').format(date);
-          }).toList();
-
-          return sortedDates;
-        }
-        sortedDates = sortDatesDescending(dtJSON);
-      }
-      // ================================== Sort QUARTER ==================================
-      if (modeDay == 'QUARTER') {
-        List<String> sortQuarterYearsDescending(List<String> quarterYears) {
-          List<DateTime> dates = quarterYears.map((quarterYear) {
-            int quarter = int.parse(quarterYear.substring(1, 2));
-            int year = int.parse(quarterYear.substring(3));
-            return DateTime(year, (quarter - 1) * 3 + 1);
-          }).toList();
-
-          dates.sort((a, b) => b.compareTo(a));
-
-          List<String> sortedQuarterYears = dates.map((date) {
-            int quarter = (date.month - 1) ~/ 3 + 1;
-            int year = date.year;
-            return 'Q$quarter-$year';
-          }).toList();
-
-          return sortedQuarterYears;
-        }
-        sortedDates = sortQuarterYearsDescending(dtJSON);
-      }
-      // ==================================================================================    
-     
-      // Group fro YIELD
-      Map<String, dynamic> groupProcessFromJSON = {};
-      for (var item in decodedData) {
-        if (!groupProcessFromJSON.containsKey(item['Process'])) {
-          groupProcessFromJSON[item['Process']] = [];
-        }
-        groupProcessFromJSON[item['Process']].add([
-          item[modeDay],
-          item['QTY'],
-          item['FPY'],
-          item['RTY'],
-          item['IN'],
-          item['Pass'],
-          item['IN'] - item['OUT']
-        ]);
-      }
-      
-      Map<String, dynamic> groupProcessDTFromJSON = {};
-      for (var entry in groupProcessFromJSON.entries) {
-        String key = entry.key;
-        List<dynamic> value = entry.value;
-
-        Set<String> uniqueSet = {};
-        List<List<dynamic>> resultList = [];
-
-        for (var subList in value) {
-          String subListString = subList.toString();
-          if (uniqueSet.add(subListString)) {
-            resultList.add(subList);
-          }
-        }
-        value = resultList;
-        List<String> subDT = [];
-        for (var dt in value) {
-          subDT.add(dt[0]);
-        } 
-        subDT = subDT.toSet().toList();
-        
-        for (var j in sortedDates) { 
-          if (subDT.contains(j)) {
-            if (!groupProcessDTFromJSON.containsKey(key)) {
-              groupProcessDTFromJSON[key] = [];
-            }
-            groupProcessDTFromJSON[key].add(value[subDT.indexOf(j)]);
-          }
-          else {
-            if (!groupProcessDTFromJSON.containsKey(key)) {
-              groupProcessDTFromJSON[key] = [];
-            }
-            groupProcessDTFromJSON[key].add(['', '', '', '', '', '', '']);
-          }
-        }
+      else if (day.split(' ')[1] == 'Quarter' || day.split(' ')[1] == 'Quarters') {
+        modeDay = 'QUARTER';
       }
 
-      dataQtyToMetrixTable = [];
-      dataFPYToMetrixTable = [];
-      dataRTYToMetrixTable = [];
-      for (var data in groupProcessDTFromJSON.entries) {
-        List<String> subQtyArray = [];
-        List<String> subFPYArray = [];
-        List<String> subRTYArray = [];
-        for (var val in data.value) {
-          subQtyArray.add(val[1].toString());
-          subFPYArray.add(val[2].toString().isNotEmpty ? '${val[2].toString()} %' : '');
-          subRTYArray.add(val[3].toString().isNotEmpty ? '${val[3].toString()} %' : '');
-        }
-        dataQtyToMetrixTable.add(subQtyArray);
-        dataFPYToMetrixTable.add(subFPYArray);
-        dataRTYToMetrixTable.add(subRTYArray);
-      } 
-
-      sortedJsonYield = groupProcessDTFromJSON;
-      colMetrixTable = sortedDates;
-      rowMetrixTable = prJSON;
-
-      setState(() {   
-        dataQtyToMetrixTable = dataQtyToMetrixTable;
-        dataFPYToMetrixTable = dataFPYToMetrixTable;
-        dataRTYToMetrixTable = dataRTYToMetrixTable;
-
-        paretoChartVisible = false;
-        isLoadingLineChart = false;
-        _startValue = 0;
-        _endValue = (sortedDates.length).toDouble() - 1;
-        fromDATE = sortedDates[sortedDates.length - 1];
-        toDATE = sortedDates[0];
-
-        mixChartVisible = false;
-        daySelected = day;
-
-        tableData = [];
-        dataLineChart = {};
-        dataQtyLineChart = {};
-        xAxis = [];
-        dataForLineChart = {};
-        dataForQtyLineChart = {};
-        dataPareto = {};
-
-        arrProcessForMixChart = [];
-        for (var entry in sortedJsonYield.entries) {
-          var key = entry.key;
-          var subArray = entry.value;
-          for (var arr in subArray) {
-            if (!dataForLineChart.containsKey(key)) {
-              dataForLineChart[key] = [];
-            }
-            if (!dataForQtyLineChart.containsKey(key)) {
-              dataForQtyLineChart[key] = [];
-            }
-
-            if (arr[2] != '') {
-              dataForLineChart[key]?.add(arr[2]);
-              dataForQtyLineChart[key]?.add(arr[1]);
-            }
-            else {
-              dataForLineChart[key]?.add(null);
-              dataForQtyLineChart[key]?.add(null);
-            }
-          }
-          arrProcessForMixChart.add(key);
-        }
-        // ++++++++++++++++++++ Prepare data to Line ++++++++++++++++++++
-        dataForLineChart.forEach((key, value) {
-          dataLineChart[key] = value.reversed.toList();
-        });
-        dataForQtyLineChart.forEach((key, value) {
-          dataQtyLineChart[key] = value.reversed.toList();
-        });
-        for (var val in colMetrixTable.reversed.toList()) {
-          xAxis.add(val);
-        } 
-      });
-      fetchPARETO(levelSelected, modelSelected, daySelected);
-    }
-    else {
       setState(() {
-        isLoadingLineChart = false;
-        sortedDates = [];
+        isLoadingLineChart = true;
+        mixChartVisible = false;
         arrProcessForMixChart = [];
-        sortedJsonYield = {};
-        dataLineChart = {};
-        _startValue = 0;
-        _endValue = 1;
-        fromDATE = '';
-        toDATE = '';
-
-        failuresPareto = [];
-        decodedDataPareto = [];
-        sliderVisible = false;
-        paretoChartVisible = false;
-        paretoByDateChartVisible = false;
+        daySelected = day;
+        dataQtyToMetrixTable = [];
+        dataFPYToMetrixTable = [];
+        dataRTYToMetrixTable = [];
       });
-    }
-  }
 
-  // ============== Function Query PARETO ==============
-  Future<void> fetchPARETO(String level, String model, String day) async {
-    if (level.isNotEmpty && model.isNotEmpty && day.isNotEmpty) {
       stringEncryptedArray = await encryptData([
-        level,
-        model,
+        levelSelected,
+        modelSelected,
         (int.parse(day.split(' ')[0])-1).toString(),
         modeDay.toString(),
         '71'
       ]);
-      var dataPARETO = await getDataPOST(
-        'https://supply-api.fabrinet.co.th/api/YMA/QueryPareto',
-        {
-        'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-        'Model': stringEncryptedArray['data'][1],
-        'Day': stringEncryptedArray['data'][2],
-        'ModeDay': stringEncryptedArray['data'][3],
-        'Version': stringEncryptedArray['data'][4],
-        } 
-      );
 
-      String jsonEncrypted = jsonDecode(jsonDecode(dataPARETO[0]))['encryptedJson'];
+      var dataYIELD = await getDataPOST(
+                                    'https://supply-api.fabrinet.co.th/api/YMA/QueryYield',
+                                    {
+                                    'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+                                    'Model': stringEncryptedArray['data'][1],
+                                    'Day': stringEncryptedArray['data'][2],
+                                    'ModeDay': stringEncryptedArray['data'][3],
+                                    'Version': stringEncryptedArray['data'][4]
+                                    } 
+                                  );
 
-      dynamic keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-      dynamic encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+      String jsonEncrypted = jsonDecode(jsonDecode(dataYIELD[0]))['encryptedJson'];
+
+      final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
       String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
       List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+
+      List<String> prJSON = [];
+      for (var item in decodedData) {
+        prJSON.add(item['Process']);
+      }
       
+      Set<String> uniquePr = Set<String>.from(prJSON);
+      prJSON = uniquePr.toList();
       if (decodedData.isNotEmpty) {
-        setState(() {
-          failuresPareto = [];
-          decodedDataPareto = [];
-          for (var i in decodedData) {
-            failuresPareto.add(i['Result']);
+        List<String> dtJSON = [];
+        for (var item in decodedData) {
+          dtJSON.add(item[modeDay]);
+        }
+        Set<String> uniqueDates = Set<String>.from(dtJSON);
+        dtJSON = uniqueDates.toList();
+        // ================================== Sort DATE ==================================
+        sortedDates = [];
+        if (modeDay == 'DATE') {
+          String getMonthAbbreviation(int month) {
+            final months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            return months[month - 1];
           }
-          failuresPareto = failuresPareto.toSet().toList();
-          if (failuresPareto.isNotEmpty) {
-            failuresPareto.removeAt(0);
-            if (failuresPareto.isEmpty) {
-              paretoChartVisible = false;
-              paretoByDateChartVisible = false;
-              sliderVisible = false;
-              mergedDataPareto = [];
+          DateTime customParse(String dateString) {
+            final months = {
+              'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+              'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+            };
+            final parts = dateString.split(' ');
+            final day = int.parse(parts[0]);
+            final month = months[parts[1]]!;
+            final year = int.parse(parts[2]);
+
+            return DateTime(year, month, day);
+          }
+
+          List<DateTime> dateTimes = dtJSON.map(customParse).toList();
+          dateTimes.sort((a, b) => b.compareTo(a));
+          sortedDates = dateTimes.map((dateTime) {
+            final day = dateTime.day.toString().padLeft(2, '0');
+            final month = getMonthAbbreviation(dateTime.month);
+            final year = dateTime.year.toString();
+            return '$day $month $year';
+          }).toList();
+        }
+        // ================================== Sort WEEK ==================================
+        if (modeDay == 'WEEK') {
+          sortedDates = dtJSON.toList()..sort((a, b) {
+            // Extract the week and year from the strings
+            int weekA = int.parse(a.substring(3, a.indexOf(' ')));
+            int yearA = int.parse(a.substring(a.lastIndexOf('\'') + 1));
+
+            int weekB = int.parse(b.substring(3, b.indexOf(' ')));
+            int yearB = int.parse(b.substring(b.lastIndexOf('\'') + 1));
+
+            int yearComparison = yearB.compareTo(yearA);
+            if (yearComparison != 0) {
+              return yearComparison;
+            }
+            return weekB.compareTo(weekA);
+          });
+        }
+        // ================================== Sort MONTH ==================================
+        if (modeDay == 'MONTH') {
+          List<String> sortDatesDescending(List<String> dateStrings) {
+            List<DateTime> dates = dateStrings.map((dateString) {
+              return DateFormat('MMM yyyy').parse(dateString);
+            }).toList();
+
+            dates.sort((a, b) => b.compareTo(a));
+
+            List<String> sortedDates = dates.map((date) {
+              return DateFormat('MMM yyyy').format(date);
+            }).toList();
+
+            return sortedDates;
+          }
+          sortedDates = sortDatesDescending(dtJSON);
+        }
+        // ================================== Sort QUARTER ==================================
+        if (modeDay == 'QUARTER') {
+          List<String> sortQuarterYearsDescending(List<String> quarterYears) {
+            List<DateTime> dates = quarterYears.map((quarterYear) {
+              int quarter = int.parse(quarterYear.substring(1, 2));
+              int year = int.parse(quarterYear.substring(3));
+              return DateTime(year, (quarter - 1) * 3 + 1);
+            }).toList();
+
+            dates.sort((a, b) => b.compareTo(a));
+
+            List<String> sortedQuarterYears = dates.map((date) {
+              int quarter = (date.month - 1) ~/ 3 + 1;
+              int year = date.year;
+              return 'Q$quarter-$year';
+            }).toList();
+
+            return sortedQuarterYears;
+          }
+          sortedDates = sortQuarterYearsDescending(dtJSON);
+        }
+        // ==================================================================================    
+      
+        // Group fro YIELD
+        Map<String, dynamic> groupProcessFromJSON = {};
+        for (var item in decodedData) {
+          if (!groupProcessFromJSON.containsKey(item['Process'])) {
+            groupProcessFromJSON[item['Process']] = [];
+          }
+          groupProcessFromJSON[item['Process']].add([
+            item[modeDay],
+            item['QTY'],
+            item['FPY'],
+            item['RTY'],
+            item['IN'],
+            item['Pass'],
+            item['IN'] - item['OUT']
+          ]);
+        }
+        
+        Map<String, dynamic> groupProcessDTFromJSON = {};
+        for (var entry in groupProcessFromJSON.entries) {
+          String key = entry.key;
+          List<dynamic> value = entry.value;
+
+          Set<String> uniqueSet = {};
+          List<List<dynamic>> resultList = [];
+
+          for (var subList in value) {
+            String subListString = subList.toString();
+            if (uniqueSet.add(subListString)) {
+              resultList.add(subList);
+            }
+          }
+          value = resultList;
+          List<String> subDT = [];
+          for (var dt in value) {
+            subDT.add(dt[0]);
+          } 
+          subDT = subDT.toSet().toList();
+          
+          for (var j in sortedDates) { 
+            if (subDT.contains(j)) {
+              if (!groupProcessDTFromJSON.containsKey(key)) {
+                groupProcessDTFromJSON[key] = [];
+              }
+              groupProcessDTFromJSON[key].add(value[subDT.indexOf(j)]);
             }
             else {
-              sliderVisible = true;
+              if (!groupProcessDTFromJSON.containsKey(key)) {
+                groupProcessDTFromJSON[key] = [];
+              }
+              groupProcessDTFromJSON[key].add(['', '', '', '', '', '', '']);
             }
           }
-          else {
-            paretoChartVisible = false;
-            paretoByDateChartVisible = false;
-            mergedDataPareto = [];
+        }
+
+        dataQtyToMetrixTable = [];
+        dataFPYToMetrixTable = [];
+        dataRTYToMetrixTable = [];
+        for (var data in groupProcessDTFromJSON.entries) {
+          List<String> subQtyArray = [];
+          List<String> subFPYArray = [];
+          List<String> subRTYArray = [];
+          for (var val in data.value) {
+            subQtyArray.add(val[1].toString());
+            subFPYArray.add(val[2].toString().isNotEmpty ? '${val[2].toString()} %' : '');
+            subRTYArray.add(val[3].toString().isNotEmpty ? '${val[3].toString()} %' : '');
           }
-          decodedDataPareto = decodedData;
+          dataQtyToMetrixTable.add(subQtyArray);
+          dataFPYToMetrixTable.add(subFPYArray);
+          dataRTYToMetrixTable.add(subRTYArray);
+        } 
+
+        sortedJsonYield = groupProcessDTFromJSON;
+        colMetrixTable = sortedDates;
+        rowMetrixTable = prJSON;
+
+        setState(() {   
+          dataQtyToMetrixTable = dataQtyToMetrixTable;
+          dataFPYToMetrixTable = dataFPYToMetrixTable;
+          dataRTYToMetrixTable = dataRTYToMetrixTable;
+
+          paretoChartVisible = false;
+          isLoadingLineChart = false;
+          _startValue = 0;
+          _endValue = (sortedDates.length).toDouble() - 1;
+          fromDATE = sortedDates[sortedDates.length - 1];
+          toDATE = sortedDates[0];
+
+          mixChartVisible = false;
+          daySelected = day;
+
+          tableData = [];
+          dataLineChart = {};
+          dataQtyLineChart = {};
+          xAxis = [];
+          dataForLineChart = {};
+          dataForQtyLineChart = {};
+          dataPareto = {};
+
+          arrProcessForMixChart = [];
+          for (var entry in sortedJsonYield.entries) {
+            var key = entry.key;
+            var subArray = entry.value;
+            for (var arr in subArray) {
+              if (!dataForLineChart.containsKey(key)) {
+                dataForLineChart[key] = [];
+              }
+              if (!dataForQtyLineChart.containsKey(key)) {
+                dataForQtyLineChart[key] = [];
+              }
+
+              if (arr[2] != '') {
+                dataForLineChart[key]?.add(arr[2]);
+                dataForQtyLineChart[key]?.add(arr[1]);
+              }
+              else {
+                dataForLineChart[key]?.add(null);
+                dataForQtyLineChart[key]?.add(null);
+              }
+            }
+            arrProcessForMixChart.add(key);
+          }
+          // ++++++++++++++++++++ Prepare data to Line ++++++++++++++++++++
+          dataForLineChart.forEach((key, value) {
+            dataLineChart[key] = value.reversed.toList();
+          });
+          dataForQtyLineChart.forEach((key, value) {
+            dataQtyLineChart[key] = value.reversed.toList();
+          });
+          for (var val in colMetrixTable.reversed.toList()) {
+            xAxis.add(val);
+          } 
         });
+        fetchPARETO(levelSelected, modelSelected, daySelected);
       }
       else {
         setState(() {
+          isLoadingLineChart = false;
+          sortedDates = [];
+          arrProcessForMixChart = [];
+          sortedJsonYield = {};
+          dataLineChart = {};
+          _startValue = 0;
+          _endValue = 1;
+          fromDATE = '';
+          toDATE = '';
+
           failuresPareto = [];
           decodedDataPareto = [];
           sliderVisible = false;
@@ -1115,6 +1050,93 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
           paretoByDateChartVisible = false;
         });
       }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
+  }
+
+  // ============== Function Query PARETO ==============
+  Future<void> fetchPARETO(String level, String model, String day) async {
+    try {
+      if (level.isNotEmpty && model.isNotEmpty && day.isNotEmpty) {
+        stringEncryptedArray = await encryptData([
+          level,
+          model,
+          (int.parse(day.split(' ')[0])-1).toString(),
+          modeDay.toString(),
+          '71'
+        ]);
+        var dataPARETO = await getDataPOST(
+          'https://supply-api.fabrinet.co.th/api/YMA/QueryPareto',
+          {
+          'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+          'Model': stringEncryptedArray['data'][1],
+          'Day': stringEncryptedArray['data'][2],
+          'ModeDay': stringEncryptedArray['data'][3],
+          'Version': stringEncryptedArray['data'][4],
+          } 
+        );
+
+        String jsonEncrypted = jsonDecode(jsonDecode(dataPARETO[0]))['encryptedJson'];
+
+        dynamic keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+        dynamic encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+        
+        if (decodedData.isNotEmpty) {
+          setState(() {
+            failuresPareto = [];
+            decodedDataPareto = [];
+            for (var i in decodedData) {
+              failuresPareto.add(i['Result']);
+            }
+            failuresPareto = failuresPareto.toSet().toList();
+            if (failuresPareto.isNotEmpty) {
+              failuresPareto.removeAt(0);
+              if (failuresPareto.isEmpty) {
+                paretoChartVisible = false;
+                paretoByDateChartVisible = false;
+                sliderVisible = false;
+                mergedDataPareto = [];
+              }
+              else {
+                sliderVisible = true;
+              }
+            }
+            else {
+              paretoChartVisible = false;
+              paretoByDateChartVisible = false;
+              mergedDataPareto = [];
+            }
+            decodedDataPareto = decodedData;
+          });
+        }
+        else {
+          setState(() {
+            failuresPareto = [];
+            decodedDataPareto = [];
+            sliderVisible = false;
+            paretoChartVisible = false;
+            paretoByDateChartVisible = false;
+          });
+        }
+      }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
     }
   }
 
@@ -1311,51 +1333,61 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
 
   // ========================= Query [LEVEL] =========================
   Future<void> fetchDataLevel() async {
-    stringEncryptedArray = await encryptData([
-      '71'
-    ]);
+    try {
+      stringEncryptedArray = await encryptData([
+        '71'
+      ]);
 
-    var productName = await getDataPOST(
-      'https://supply-api.fabrinet.co.th/api/YMA/ProductName',
-      {
-        'Version' : '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-      } 
-    );
+      var productName = await getDataPOST(
+        'https://supply-api.fabrinet.co.th/api/YMA/ProductName',
+        {
+          'Version' : '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+        } 
+      );
 
-    Map<String, dynamic> modelNameSorted = {};
-    List<String> levelNameSorted = [];
-    if (productName[1] == 200) {
-      connectionError = true;
-      String jsonEncrypted = jsonDecode(jsonDecode(productName[0]))['encryptedJson'];
+      Map<String, dynamic> modelNameSorted = {};
+      List<String> levelNameSorted = [];
+      if (productName[1] == 200) {
+        connectionError = true;
+        String jsonEncrypted = jsonDecode(jsonDecode(productName[0]))['encryptedJson'];
 
-      final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-      List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
 
-      for (var element in decodedData) {
-        if (!levelNameSorted.contains(element['Level'])) {
-          levelNameSorted.add(element['Level']);
+        for (var element in decodedData) {
+          if (!levelNameSorted.contains(element['Level'])) {
+            levelNameSorted.add(element['Level']);
+          }
+        }
+        
+        for (var element in decodedData) {
+          if (!modelNameSorted.containsKey(element['Level'])) {
+            modelNameSorted[element['Level']] = [];
+          }
+          modelNameSorted[element['Level']].add(element['Model']);
         }
       }
-      
-      for (var element in decodedData) {
-        if (!modelNameSorted.containsKey(element['Level'])) {
-          modelNameSorted[element['Level']] = [];
-        }
-        modelNameSorted[element['Level']].add(element['Model']);
+      else {
+        connectionError = false;
       }
-    }
-    else {
-      connectionError = false;
-    }
 
-    setState(() {
-      dataLevelObject = modelNameSorted; // Send this value to List
-      tableProductName = levelNameSorted;
-      connectionError = connectionError;
-    });
+      setState(() {
+        dataLevelObject = modelNameSorted; // Send this value to List
+        tableProductName = levelNameSorted;
+        connectionError = connectionError;
+      });
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
   }
 
   // ========================= Create drop list by [LEVEL] =========================

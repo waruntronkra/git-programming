@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:yma_app/Chart/barChartBox.dart';
 import 'dart:convert';
+import 'package:cool_alert/cool_alert.dart';
 import 'package:yma_app/Chart/barChartHistogram.dart';
 import '../../../Table/table_histogram.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -29,6 +30,7 @@ class PageAnalysis extends StatefulWidget {
 }
 
 class _PageAnalysisState extends State<PageAnalysis> {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
 
   List<String> stepName = [];
@@ -286,41 +288,51 @@ class _PageAnalysisState extends State<PageAnalysis> {
   }
 
   Future<void> queryCoditionPerProcess() async {
-    stringEncryptedArray = await encryptData([
-      widget.levelSelected,
-      widget.modelSelected,
-      widget.daySelected,
-      widget.modeDay,
-      processSelected,
-      '72'
-    ]);
+    try {
+      stringEncryptedArray = await encryptData([
+        widget.levelSelected,
+        widget.modelSelected,
+        widget.daySelected,
+        widget.modeDay,
+        processSelected,
+        '72'
+      ]);
 
-    var data = await getDataPOST(
-      'https://localhost:44342/api/YMA/AnalysisGroup',
-      {
-      'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-      'Model': stringEncryptedArray['data'][1],
-      'Day': stringEncryptedArray['data'][2],
-      'ModeDay': stringEncryptedArray['data'][3],
-      'Process': stringEncryptedArray['data'][4],
-      'Version': stringEncryptedArray['data'][5]
-      } 
-    );
-    String jsonEncrypted = jsonDecode(jsonDecode(data[0]))['encryptedJson'];
+      var data = await getDataPOST(
+        'https://supply-api.fabrinet.co.th/api/YMA/AnalysisGroup',
+        {
+        'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+        'Model': stringEncryptedArray['data'][1],
+        'Day': stringEncryptedArray['data'][2],
+        'ModeDay': stringEncryptedArray['data'][3],
+        'Process': stringEncryptedArray['data'][4],
+        'Version': stringEncryptedArray['data'][5]
+        } 
+      );
+      String jsonEncrypted = jsonDecode(jsonDecode(data[0]))['encryptedJson'];
 
-    final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-    final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+      final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-    String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-    List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-    
-    setState(() {
-      storeDecodedData = decodedData;
-      for (var i in decodedData) {
-        stepName.add(i['STEP NAME']);
-      }
-      stepName = stepName.toSet().toList();
-    });
+      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+      List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+      
+      setState(() {
+        storeDecodedData = decodedData;
+        for (var i in decodedData) {
+          stepName.add(i['STEP NAME']);
+        }
+        stepName = stepName.toSet().toList();
+      });
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
   }
 
   List<Widget> _buildListStepName(List<String> stepName) {
@@ -381,96 +393,116 @@ class _PageAnalysisState extends State<PageAnalysis> {
   }
 
   Future<void> fetchDataHistogram() async {
-    if (defaultSpec.isNotEmpty && stepNameSelected.isNotEmpty) {    
-      stringEncryptedArray = await encryptData([
-        widget.levelSelected,
-        widget.modelSelected,
-        widget.daySelected,
-        widget.modeDay,
-        processSelected,
-        stepNameSelected,
-        defaultSpec.split('|')[1].split(' ')[3],
-        defaultSpec.split('|')[2].split(' ')[3],
-        defaultSpec.split('|')[0].split(' ')[0],
-        '72'
-      ]);
+    try {
+      if (defaultSpec.isNotEmpty && stepNameSelected.isNotEmpty) {    
+        stringEncryptedArray = await encryptData([
+          widget.levelSelected,
+          widget.modelSelected,
+          widget.daySelected,
+          widget.modeDay,
+          processSelected,
+          stepNameSelected,
+          defaultSpec.split('|')[1].split(' ')[3],
+          defaultSpec.split('|')[2].split(' ')[3],
+          defaultSpec.split('|')[0].split(' ')[0],
+          '72'
+        ]);
 
-      var data = await getDataPOST(
-        'https://localhost:44342/api/YMA/HistogramData',
-        {
-        'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-        'Model': stringEncryptedArray['data'][1],
-        'Day': stringEncryptedArray['data'][2],
-        'ModeDay': stringEncryptedArray['data'][3],
-        'Process': stringEncryptedArray['data'][4],
-        'StepName': stringEncryptedArray['data'][5],
-        'Lsl': stringEncryptedArray['data'][6],
-        'Usl': stringEncryptedArray['data'][7],
-        'Mode': stringEncryptedArray['data'][8],
-        'Version': stringEncryptedArray['data'][9]
-        } 
+        var data = await getDataPOST(
+          'https://supply-api.fabrinet.co.th/api/YMA/HistogramData',
+          {
+          'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+          'Model': stringEncryptedArray['data'][1],
+          'Day': stringEncryptedArray['data'][2],
+          'ModeDay': stringEncryptedArray['data'][3],
+          'Process': stringEncryptedArray['data'][4],
+          'StepName': stringEncryptedArray['data'][5],
+          'Lsl': stringEncryptedArray['data'][6],
+          'Usl': stringEncryptedArray['data'][7],
+          'Mode': stringEncryptedArray['data'][8],
+          'Version': stringEncryptedArray['data'][9]
+          } 
+        );
+        String jsonEncrypted = jsonDecode(jsonDecode(data[0]))['encryptedJson'];
+
+        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+        decodedDataHistogram = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+      }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
       );
-      String jsonEncrypted = jsonDecode(jsonDecode(data[0]))['encryptedJson'];
-
-      final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
-
-      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-      decodedDataHistogram = List<Map<String, dynamic>>.from(json.decode(decryptJson));
     }
   }
 
   Future<void> fetchRawDataHistogram () async {
-    if (defaultSpec.isNotEmpty && stepNameSelected.isNotEmpty) {
-      stringEncryptedArray = await encryptData([
-        widget.levelSelected,
-        widget.modelSelected,
-        widget.daySelected,
-        widget.modeDay,
-        processSelected,
-        stepNameSelected,
-        defaultSpec.split('|')[1].split(' ')[3],
-        defaultSpec.split('|')[2].split(' ')[3],
-        defaultSpec.split('|')[0].split(' ')[0],
-        '72'
-      ]);
+    try {
+      if (defaultSpec.isNotEmpty && stepNameSelected.isNotEmpty) {
+        stringEncryptedArray = await encryptData([
+          widget.levelSelected,
+          widget.modelSelected,
+          widget.daySelected,
+          widget.modeDay,
+          processSelected,
+          stepNameSelected,
+          defaultSpec.split('|')[1].split(' ')[3],
+          defaultSpec.split('|')[2].split(' ')[3],
+          defaultSpec.split('|')[0].split(' ')[0],
+          '72'
+        ]);
 
-      dataBoxPlot = {};
-      var data = await getDataPOST(
-        'https://localhost:44342/api/YMA/HistogramRawData',
-        {
-        'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-        'Model': stringEncryptedArray['data'][1],
-        'Day': stringEncryptedArray['data'][2],
-        'ModeDay': stringEncryptedArray['data'][3],
-        'Process': stringEncryptedArray['data'][4],
-        'StepName': stringEncryptedArray['data'][5],
-        'Lsl': stringEncryptedArray['data'][6],
-        'Usl': stringEncryptedArray['data'][7],
-        'Mode': stringEncryptedArray['data'][8],
-        'Version': stringEncryptedArray['data'][9]
-        }  
-      );
-      String jsonEncrypted = jsonDecode(jsonDecode(data[0]))['encryptedJson'];
+        dataBoxPlot = {};
+        var data = await getDataPOST(
+          'https://supply-api.fabrinet.co.th/api/YMA/HistogramRawData',
+          {
+          'Level': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+          'Model': stringEncryptedArray['data'][1],
+          'Day': stringEncryptedArray['data'][2],
+          'ModeDay': stringEncryptedArray['data'][3],
+          'Process': stringEncryptedArray['data'][4],
+          'StepName': stringEncryptedArray['data'][5],
+          'Lsl': stringEncryptedArray['data'][6],
+          'Usl': stringEncryptedArray['data'][7],
+          'Mode': stringEncryptedArray['data'][8],
+          'Version': stringEncryptedArray['data'][9]
+          }  
+        );
+        String jsonEncrypted = jsonDecode(jsonDecode(data[0]))['encryptedJson'];
 
-      final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
 
-      setState(() {
-        decodedDataHistogramRawData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+        setState(() {
+          decodedDataHistogramRawData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
 
-        Map<String, dynamic> deictForDataBoxPlot = {};
-        for (var i in decodedDataHistogramRawData) {
-          if (!deictForDataBoxPlot.containsKey(i['GROUP'])) {
-            deictForDataBoxPlot[i['GROUP']] = [];
+          Map<String, dynamic> deictForDataBoxPlot = {};
+          for (var i in decodedDataHistogramRawData) {
+            if (!deictForDataBoxPlot.containsKey(i['GROUP'])) {
+              deictForDataBoxPlot[i['GROUP']] = [];
+            }
+            deictForDataBoxPlot[i['GROUP']].add(i['DATA']);
           }
-          deictForDataBoxPlot[i['GROUP']].add(i['DATA']);
-        }
-        dataBoxPlot = deictForDataBoxPlot;
-        sortDataHistogram();
-      });
+          dataBoxPlot = deictForDataBoxPlot;
+          sortDataHistogram();
+        });
+      }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
     }
   }
 
@@ -684,6 +716,8 @@ class _PageAnalysisState extends State<PageAnalysis> {
   }
 }
 
+// ============================== API ==============================
+// https://supply-api.fabrinet.co.th/api
 Future<dynamic> getDataPOST(String url, Map<String, String> body) async {
   http.Response response = await http.post(
     Uri.parse(url),

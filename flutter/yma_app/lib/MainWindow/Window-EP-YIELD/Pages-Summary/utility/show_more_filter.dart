@@ -271,10 +271,10 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
                                   filterSelected = "IIF(m.isrework = 1,'Yes','No')";
                                 }
                                 else if (defaultFilter == itemFilter[2]) {
-                                  filterSelected = 'e.operation + '' : '' + o.description';
+                                  filterSelected = 'e.equip_id';
                                 }
                                 else if (defaultFilter == itemFilter[3]) {
-                                  filterSelected = 'e.emp_no';
+                                  filterSelected = "e.operation + ' : ' + o.description";
                                 }
                                 else if (defaultFilter == itemFilter[4]) {
                                   filterSelected = 'e.emp_no';
@@ -394,7 +394,7 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
                                     'AND $filterSelected IN ($stringFilterSelectedCode)$allCMDFilter',
                                     defaultGroupBy,
                                     filterSelected,
-                                      defaultFilter
+                                    defaultFilter
                                   );
                                 }
                               });
@@ -419,7 +419,8 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
                     width: MediaQuery.of(context).size.width * 0.88,
                     height: 100,
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black)
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(10)
                     ),
                     child: SingleChildScrollView(
                       child: Container(
@@ -530,9 +531,9 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: isCheckedFrom[i] == true ? isCheckedColorFrom[i] : Colors.white,
-              side: const BorderSide(color: Colors.black),
+              side: const BorderSide(color: Colors.transparent),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(0)
+                borderRadius: BorderRadius.circular(5)
               )
             ),
             child: Text(
@@ -585,84 +586,94 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
   
   // Query from Filter selected
   Future<void> queryByFilter() async {
-    setState(() {
-      listFilterSelectedFrom = [];
-    });
-    if (widget.levelSelected.isNotEmpty && widget.modelSelected.isNotEmpty) {
-      listFilterSelectedFrom = [];
-
-      Map<String, dynamic> stringEncryptedArray = await encryptData([
-        filterSelected,
-        widget.modelSelected,
-        widget.startDate,
-        widget.endDate
-      ]);
-      
-      var dataQueried = await getDataPOST(
-        'https://localhost:44342/api/YMA/EPYieldQueryFilter',
-        {
-          'Filter': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-          'Model': stringEncryptedArray['data'][1],
-          'From': stringEncryptedArray['data'][2],
-          'To': stringEncryptedArray['data'][3],
-        }                         
-      );
-      
-      if (dataQueried[1] == 200) {
-        String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
-
-        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
-
-        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-        
+    try {
+      setState(() {
         listFilterSelectedFrom = [];
-        for (var i in decodedData) {
-          listFilterSelectedFrom.add(i['Param']);
-        }
-        isCheckedFrom = [];
-        isCheckedColorFrom = [];
-        for (var i = 0; i < listFilterSelectedFrom.length; i++) {
-          isCheckedFrom.add(true); 
-          isCheckedColorFrom.add(Colors.red); 
-        }
+      });
+      if (widget.levelSelected.isNotEmpty && widget.modelSelected.isNotEmpty) {
+        listFilterSelectedFrom = [];
 
-        isCheckedStringFrom = [];
-        for (String val in listFilterSelectedFrom) {
-          isCheckedStringFrom.add(val);
-        }
-        stringFilterSelectedCode = '';
-        for (var i in isCheckedStringFrom) {
-          if (i.isNotEmpty) {
-            stringFilterSelectedCode += ",''$i''";
-          }
-        }
-
-        setState(() {
-          if (decodedData.isNotEmpty) {
-            stringFilterSelectedCode = stringFilterSelectedCode.replaceFirst(RegExp(r','), '');
-            widget.sendMergedFilterCode(
-              'AND $filterSelected IN ($stringFilterSelectedCode)$allCMDFilter',
-              defaultGroupBy,
-              filterSelected,
-              defaultFilter
-            );
-            listFilterSelectedFrom = listFilterSelectedFrom;
-          }
-          else {
-            listFilterSelectedFrom = [];
-          }
-        });
-      }
-      else {
-        CoolAlert.show(
-          width: 1,
-          context: scaffoldKey.currentContext!,
-          type: CoolAlertType.error,
-          text:'Enable to connect Database !'
+        Map<String, dynamic> stringEncryptedArray = await encryptData([
+          filterSelected,
+          widget.modelSelected,
+          widget.startDate,
+          widget.endDate
+        ]);
+        
+        var dataQueried = await getDataPOST(
+          'https://supply-api.fabrinet.co.th/api/YMA/EPYieldQueryFilter',
+          {
+            'Filter': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+            'Model': stringEncryptedArray['data'][1],
+            'From': stringEncryptedArray['data'][2],
+            'To': stringEncryptedArray['data'][3],
+          }                         
         );
+        
+        if (dataQueried[1] == 200) {
+          String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+
+          final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+          final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+
+          String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+          List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+
+          listFilterSelectedFrom = [];
+          for (var i in decodedData) {
+            listFilterSelectedFrom.add(i['Param']);
+          }
+          isCheckedFrom = [];
+          isCheckedColorFrom = [];
+          for (var i = 0; i < listFilterSelectedFrom.length; i++) {
+            isCheckedFrom.add(true); 
+            isCheckedColorFrom.add(Colors.red); 
+          }
+
+          isCheckedStringFrom = [];
+          for (String val in listFilterSelectedFrom) {
+            isCheckedStringFrom.add(val);
+          }
+          stringFilterSelectedCode = '';
+          for (var i in isCheckedStringFrom) {
+            if (i.isNotEmpty) {
+              stringFilterSelectedCode += ",''$i''";
+            }
+          }
+
+          setState(() {
+            if (decodedData.isNotEmpty) {
+              stringFilterSelectedCode = stringFilterSelectedCode.replaceFirst(RegExp(r','), '');
+              widget.sendMergedFilterCode(
+                'AND $filterSelected IN ($stringFilterSelectedCode)$allCMDFilter',
+                defaultGroupBy,
+                filterSelected,
+                defaultFilter
+              );
+              listFilterSelectedFrom = listFilterSelectedFrom;
+            }
+            else {
+              listFilterSelectedFrom = [];
+            }
+          });
+        }
+        else {
+          CoolAlert.show(
+            width: 1,
+            context: scaffoldKey.currentContext!,
+            type: CoolAlertType.error,
+            text:'Enable to connect Database !'
+          );
+        }
       }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
     }
   }
 

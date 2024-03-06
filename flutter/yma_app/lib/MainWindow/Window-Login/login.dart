@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:rounded_loading_button/rounded_loading_button.dart';
+import 'package:cool_alert/cool_alert.dart';
 import 'dart:convert';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
@@ -8,8 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:yma_app/MainWindow/Window-Switching-Window/selection_view.dart';
 // import 'package:device_imei/device_imei.dart';
-import 'package:shorebird_code_push/shorebird_code_push.dart';
-final shorebirdCodePush = ShorebirdCodePush();
+
 class WindowLogin extends StatefulWidget {
   const WindowLogin({super.key});
 
@@ -18,6 +18,7 @@ class WindowLogin extends StatefulWidget {
 }
 
 class _WindowLoginState extends State<WindowLogin> {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
   String currentDate = '';
@@ -40,9 +41,6 @@ class _WindowLoginState extends State<WindowLogin> {
     var formatter = DateFormat('MM/dd/yyyy hh:mm:ss a');
     currentDate = formatter.format(now);
     super.initState();
-    shorebirdCodePush
-        .currentPatchNumber()
-        .then((value) => print('current patch number is $value'));
   }
 
   void checkUsername() async {
@@ -210,52 +208,15 @@ class _WindowLoginState extends State<WindowLogin> {
 
   // ****************************************** Query Zone ******************************************
   Future<void> queryUser() async {
-    Map<String, dynamic> stringEncryptedArray = await encryptData([
-      username,
-    ]);
-
-    var dataQueried = await getDataPOST(
-      'https://localhost:44342/api/YMA/UserInfo',
-      {
-        'Username': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-      },
-    );
-
-    if (dataQueried[1] == 200) {
-      String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
-
-      final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
-
-      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-      List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-
-      setState(() {
-        if (decodedData.isNotEmpty) {
-          statusQueried = true;
-        }
-        else {
-          statusQueried = false;
-        }
-      });
-    }
-    else {
-      setState(() {
-        statusQueried = false;
-      });
-    }
-  }
-
-  Future<void> queryUserAppInfo() async {
-    if (username.isNotEmpty) {
+    try {
       Map<String, dynamic> stringEncryptedArray = await encryptData([
-        username
+        username,
       ]);
 
       var dataQueried = await getDataPOST(
-        'https://localhost:44342/api/YMA/QueryUserAppInfo',
+        'https://supply-api.fabrinet.co.th/api/YMA/UserInfo',
         {
-          'LoginName': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}'
+          'Username': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
         },
       );
 
@@ -270,42 +231,109 @@ class _WindowLoginState extends State<WindowLogin> {
 
         setState(() {
           if (decodedData.isNotEmpty) {
-            currentVersion = decodedData[0]['CURRENT_VERSION'].toString();
-            currentRevision = decodedData[0]['CURRENT_REVISION'].toString();
-            currentSubRevision = decodedData[0]['CURRENT_SUB_REVISION'].toString();
+            statusQueried = true;
+          }
+          else {
+            statusQueried = false;
           }
         });
       }
+      else {
+        setState(() {
+          statusQueried = false;
+        });
+      }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
+  }
+
+  Future<void> queryUserAppInfo() async {
+    try {
+      if (username.isNotEmpty) {
+        Map<String, dynamic> stringEncryptedArray = await encryptData([
+          username
+        ]);
+
+        var dataQueried = await getDataPOST(
+          'https://supply-api.fabrinet.co.th/api/YMA/QueryUserAppInfo',
+          {
+            'LoginName': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}'
+          },
+        );
+
+        if (dataQueried[1] == 200) {
+          String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+
+          final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+          final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+
+          String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+          List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+
+          setState(() {
+            if (decodedData.isNotEmpty) {
+              currentVersion = decodedData[0]['CURRENT_VERSION'].toString();
+              currentRevision = decodedData[0]['CURRENT_REVISION'].toString();
+              currentSubRevision = decodedData[0]['CURRENT_SUB_REVISION'].toString();
+            }
+          });
+        }
+      }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
     }
   }
 
   Future<void> queryAppInfo() async {
-    String keyValue = 'yieldeachproduct'; // *** important, same as flutter sent ***
-    var iv = encrypt.IV.fromLength(16);
+    try {
+      String keyValue = 'yieldeachproduct'; // *** important, same as flutter sent ***
+      var iv = encrypt.IV.fromLength(16);
 
-    var dataQueried = await getDataPOST(
-      'https://localhost:44342/api/YMA/QueryAppInfo',
-      {
-        'Value' : iv.base16
-      },
-    );
+      var dataQueried = await getDataPOST(
+        'https://supply-api.fabrinet.co.th/api/YMA/QueryAppInfo',
+        {
+          'Value' : iv.base16
+        },
+      );
 
-    if (dataQueried[1] == 200) {
-      String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+      if (dataQueried[1] == 200) {
+        String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
 
-      final keyBytes = encrypt.Key.fromUtf8(keyValue);
-      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+        final keyBytes = encrypt.Key.fromUtf8(keyValue);
+        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: iv);
-      List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: iv);
+        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
 
-      setState(() {
-        if (decodedData.isNotEmpty) {
-          currentVersionLastest = decodedData[0]['VERSION'].toString();
-          currentRevisionLastest = decodedData[0]['REVISION'].toString();
-          currentSubRevisionLastest = decodedData[0]['SUB_REVISION'].toString();
-        }
-      });
+        setState(() {
+          if (decodedData.isNotEmpty) {
+            currentVersionLastest = decodedData[0]['VERSION'].toString();
+            currentRevisionLastest = decodedData[0]['REVISION'].toString();
+            currentSubRevisionLastest = decodedData[0]['SUB_REVISION'].toString();
+          }
+        });
+      }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
     }
   }
 

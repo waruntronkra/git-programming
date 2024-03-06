@@ -3,6 +3,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
+import 'package:cool_alert/cool_alert.dart';
 
 typedef SendCMDFilter = void Function(String cmdFilter, int tagNumber);
 class AddMoreFilter extends StatefulWidget {
@@ -28,6 +29,7 @@ class AddMoreFilter extends StatefulWidget {
 }
 
 class _AddMoreFilterState extends State<AddMoreFilter> {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();   
   String defaultFilterString = '{No FIlter}';
   String filterSelected = '';
@@ -128,10 +130,10 @@ class _AddMoreFilterState extends State<AddMoreFilter> {
                         filterSelected = "IIF(m.isrework = 1,'Yes','No')";
                       }
                       else if (defaultFilterString == itemFilter[2]) {
-                        filterSelected = 'e.operation + '' : '' + o.description';
+                        filterSelected = 'e.equip_id';
                       }
                       else if (defaultFilterString == itemFilter[3]) {
-                        filterSelected = 'e.emp_no';
+                        filterSelected = "e.operation + ' : ' + o.description";
                       }
                       else if (defaultFilterString == itemFilter[4]) {
                         filterSelected = 'e.emp_no';
@@ -288,57 +290,67 @@ class _AddMoreFilterState extends State<AddMoreFilter> {
 
   // Query from Added Filter selected
   Future<void> queryByFilter() async {
-    if (widget.levelSelected.isNotEmpty && widget.modelSelected.isNotEmpty && widget.startDate.isNotEmpty && widget.endDate.isNotEmpty) {
-      if (filterSelected != '{No FIlter}') {
-        Map<String, dynamic> stringEncryptedArray = await encryptData([
-          filterSelected,
-          widget.modelSelected,
-          widget.startDate,
-          widget.endDate
-        ]);
-        
-        var dataQueried = await getDataPOST(
-          'https://localhost:44342/api/YMA/EPYieldQueryFilter',
-          {
-            'Filter': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-            'Model': stringEncryptedArray['data'][1],
-            'From': stringEncryptedArray['data'][2],
-            'To': stringEncryptedArray['data'][3]
-          }                         
-        );
-   
-        if (dataQueried[1] == 200) {
-          String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
-
-          final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-          final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
-
-          String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-          List<Map<String, dynamic>> decodedDataAddedFilter = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+    try {
+      if (widget.levelSelected.isNotEmpty && widget.modelSelected.isNotEmpty && widget.startDate.isNotEmpty && widget.endDate.isNotEmpty) {
+        if (filterSelected != '{No FIlter}') {
+          Map<String, dynamic> stringEncryptedArray = await encryptData([
+            filterSelected,
+            widget.modelSelected,
+            widget.startDate,
+            widget.endDate
+          ]);
           
-          setState(() {
-            if (decodedDataAddedFilter.isNotEmpty) {
-              filteredList = [];
-              switchValues = [];
-              cmdAddMoreFilter = '';
-              for (var i in decodedDataAddedFilter) {
-                if (i[filterSelected] != null) {
-                  filteredList.add(i[filterSelected]);
-                  cmdAddMoreFilter += ",''${i[filterSelected]}''";
+          var dataQueried = await getDataPOST(
+            'https://supply-api.fabrinet.co.th/api/YMA/EPYieldQueryFilter',
+            {
+              'Filter': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+              'Model': stringEncryptedArray['data'][1],
+              'From': stringEncryptedArray['data'][2],
+              'To': stringEncryptedArray['data'][3]
+            }                         
+          );
+    
+          if (dataQueried[1] == 200) {
+            String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+
+            final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+            final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+
+            String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+            List<Map<String, dynamic>> decodedDataAddedFilter = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+          
+            setState(() {
+              if (decodedDataAddedFilter.isNotEmpty) {
+                filteredList = [];
+                switchValues = [];
+                cmdAddMoreFilter = '';
+                for (var i in decodedDataAddedFilter) {
+                  if (i['Param'] != null) {
+                    filteredList.add(i['Param']);
+                    cmdAddMoreFilter += ",''${i['Param']}''";
+                  }
                 }
+                cmdAddMoreFilter = 'AND $filterSelected IN (${cmdAddMoreFilter.replaceFirst(RegExp(r','), '')})';
+                widget.sendCMDFilter(cmdAddMoreFilter, widget.number);
+                switchValues = List.filled(filteredList.length, true);
               }
-              cmdAddMoreFilter = 'AND $filterSelected IN (${cmdAddMoreFilter.replaceFirst(RegExp(r','), '')})';
-              widget.sendCMDFilter(cmdAddMoreFilter, widget.number);
-              switchValues = List.filled(filteredList.length, true);
-            }
+            });
+          }  
+        }   
+        else {
+          setState(() {
+            filteredList = [];
           });
-        }  
-      }   
-      else {
-        setState(() {
-          filteredList = [];
-        });
+        }
       }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
     }
   }
   

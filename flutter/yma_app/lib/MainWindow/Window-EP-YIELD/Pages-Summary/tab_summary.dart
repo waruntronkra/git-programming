@@ -7,9 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter_sliding_up_panel/flutter_sliding_up_panel.dart';
 import 'package:cool_alert/cool_alert.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:yma_app/Chart/mixChartYIELD.dart';
-import 'package:yma_app/Table/table_fbn_yield.dart';
+import 'package:yma_app/MainWindow/Window-EP-YIELD/Pages-Summary/utility/multiLineChart.dart';
+import 'package:yma_app/MainWindow/Window-EP-YIELD/Pages-Summary/utility/table.dart';
 import 'package:yma_app/MainWindow/Window-EP-YIELD/Pages-Summary/utility/show_more_filter.dart';
 
 class WindowEPYIELD extends StatefulWidget {
@@ -29,9 +28,11 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
   late DateTime startDate;
   late DateTime endDate;
 
-  var tableProductName = [];
-  Map<String, dynamic> dataLevelObject = {};
   List<String> dataModelArr = [];
+
+  Map<String, dynamic> dataLineChart = {};
+  List<String> xAxis = [];
+  Map<String, dynamic> dataQtyLineChart = {};
 
   String fromDATE = '';
   String toDATE = '';
@@ -72,7 +73,7 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
   List<bool> isChecked = [];
   List<Color> isCheckedColor = [];
   List<String> isCheckedString = [];
-  String stringFilterSelectedCode = '';
+  String stringFilterSelectedCode = ' .';
   
   List<Map<String, dynamic>> decodedData = [];
   List<Map<String, dynamic>> decodedDataProductName = [];
@@ -89,6 +90,61 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
 
   bool isLoading = false;
   bool expandMoreFilter = false;
+
+  DateTime selectedDate = DateTime.now();
+  Future<void> _selectDateFrom(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      builder: (BuildContext context, Widget? child) {
+      return Theme(
+        data: ThemeData (
+          colorScheme: const ColorScheme.light(
+            primary: Colors.red, // Header background color
+            onPrimary: Colors.white, // Header text color
+            surface: Colors.white, // Dialog background color
+            onSurface: Colors.black, // Dialog text color
+          ),
+        ),
+        child: child!,
+      );
+    });
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        fromDATE = DateFormat('dd/MM/yyyy HH:mm').format(selectedDate);
+      });
+    }
+  }
+
+  Future<void> _selectDateTo(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+      builder: (BuildContext context, Widget? child) {
+      return Theme(
+        data: ThemeData (
+          colorScheme: const ColorScheme.light(
+            primary: Colors.red, // Header background color
+            onPrimary: Colors.white, // Header text color
+            surface: Colors.white, // Dialog background color
+            onSurface: Colors.black, // Dialog text color
+          ),
+        ),
+        child: child!,
+      );
+    });
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        toDATE = DateFormat('dd/MM/yyyy HH:mm').format(selectedDate);
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -224,6 +280,41 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                 ),         
               ),
             ),
+            endDrawer: Drawer(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  const UserAccountsDrawerHeader(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topRight,
+                        end: Alignment.bottomLeft,
+                        colors: [
+                          Colors.red,
+                          Color.fromARGB(255, 255, 119, 119)
+                        ]
+                      )
+                    ),
+                    accountName: Text(''),
+                    accountEmail: Text(
+                      'waruntronk.fabrinet.co.th',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontSize: 15
+                      ),
+                    ),
+                    currentAccountPicture: CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        "https://fits/emp_pic/511997.jpg"
+                      ),
+                    ),
+                    currentAccountPictureSize: Size(100, 100),
+                  ),
+                  ..._buildSubListLevel(listProductName),
+                ],
+              ),
+            ),
             body: RefreshIndicator(
               key: _refreshIndicatorKey,
               displacement: 60,
@@ -249,87 +340,87 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
               ),
             )
           ),
-          SlidingUpPanelWidget(
-            panelController: panelController,
-            controlHeight: 50.0,
-            anchor: 0.4,
-            onTap: () {
-              if (SlidingUpPanelStatus.expanded == panelController.status) {
-                panelController.collapse();
-              } else {
-                panelController.expand();
-              }
-            },
-            enableOnTap: true,
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 15.0),
-              decoration: const ShapeDecoration(
-                color: Colors.red,
-                shadows: [
-                  BoxShadow(
-                    blurRadius: 5.0,
-                    spreadRadius: 2.0,
-                    color: Color(0x11000000)
-                  )
-                ],
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10.0),
-                    topRight: Radius.circular(10.0),
-                  ),
-                ),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    height: 50.0,
-                    child: const  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.menu,
-                          size: 30,
-                          color: Colors.white,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: 8.0,
-                          ),
-                        ),
-                        Text(
-                          'Choose Product to View',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Divider(
-                    height: 0.5,
-                    color: Colors.grey[300],
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5)
-                    ),
-                    height: MediaQuery.of(context).size.height * 0.83,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: _buildSubListLevel(listProductName),
-                      )
-                    )
-                  )
-                ]
-              )
-            )
-          )
+          // SlidingUpPanelWidget(
+          //   panelController: panelController,
+          //   controlHeight: 50.0,
+          //   anchor: 0.4,
+          //   onTap: () {
+          //     if (SlidingUpPanelStatus.expanded == panelController.status) {
+          //       panelController.collapse();
+          //     } else {
+          //       panelController.expand();
+          //     }
+          //   },
+          //   enableOnTap: true,
+          //   child: Container(
+          //     margin: const EdgeInsets.symmetric(horizontal: 15.0),
+          //     decoration: const ShapeDecoration(
+          //       color: Colors.red,
+          //       shadows: [
+          //         BoxShadow(
+          //           blurRadius: 5.0,
+          //           spreadRadius: 2.0,
+          //           color: Color(0x11000000)
+          //         )
+          //       ],
+          //       shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.only(
+          //           topLeft: Radius.circular(10.0),
+          //           topRight: Radius.circular(10.0),
+          //         ),
+          //       ),
+          //     ),
+          //     child: Column(
+          //       mainAxisSize: MainAxisSize.min,
+          //       children: <Widget>[
+          //         Container(
+          //           alignment: Alignment.center,
+          //           height: 50.0,
+          //           child: const  Row(
+          //             mainAxisAlignment: MainAxisAlignment.center,
+          //             children: [
+          //               Icon(
+          //                 Icons.menu,
+          //                 size: 30,
+          //                 color: Colors.white,
+          //               ),
+          //               Padding(
+          //                 padding: EdgeInsets.only(
+          //                   left: 8.0,
+          //                 ),
+          //               ),
+          //               Text(
+          //                 'Choose Product to View',
+          //                 style: TextStyle(
+          //                   color: Colors.white,
+          //                   fontWeight: FontWeight.bold,
+          //                   fontSize: 16
+          //                 ),
+          //               )
+          //             ],
+          //           ),
+          //         ),
+          //         Divider(
+          //           height: 0.5,
+          //           color: Colors.grey[300],
+          //         ),
+          //         Container(
+          //           margin: const EdgeInsets.all(5),
+          //           decoration: BoxDecoration(
+          //             color: Colors.white,
+          //             borderRadius: BorderRadius.circular(5)
+          //           ),
+          //           height: MediaQuery.of(context).size.height * 0.83,
+          //           child: SingleChildScrollView(
+          //             child: Column(
+          //               children: _buildSubListLevel(listProductName),
+          //             )
+          //           )
+          //         )
+          //       ]
+          //     )
+          //   )
+          // )
         ]
       )
     );
@@ -356,7 +447,14 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                       margin: const EdgeInsets.only(top: 5, bottom: 5),
                       decoration: BoxDecoration(
                         color: Colors.red,
-                        border: Border.all(color: Colors.black, width: 2)
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 5,
+                            offset: Offset(1, 1),
+                            color: Colors.grey,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(10)
                       ),
                       child: RawMaterialButton(
                         child: const Row(
@@ -380,7 +478,14 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                       margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 255, 200, 200),
-                        border: Border.all(color: Colors.black, width: 2)
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 5,
+                            offset: Offset(1, 1),
+                            color: Colors.grey,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(10)
                       ),
                       child: RawMaterialButton(
                         child: const Row(
@@ -405,7 +510,14 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                       margin: const EdgeInsets.only(top: 5, bottom: 5, left: 15),
                       decoration: BoxDecoration(
                         color: Colors.red,
-                        border: Border.all(color: Colors.black, width: 2)
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 5,
+                            offset: Offset(1, 1),
+                            color: Colors.grey,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(10)
                       ),
                       child: RawMaterialButton(
                         child: const Row(
@@ -429,7 +541,14 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                       margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 255, 200, 200),
-                        border: Border.all(color: Colors.black, width: 2)
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 5,
+                            offset: Offset(1, 1),
+                            color: Colors.grey,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(10)
                       ),
                       child: RawMaterialButton(
                         child: const Row(
@@ -454,7 +573,14 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                       margin: const EdgeInsets.only(top: 5, bottom: 5, left: 15),
                       decoration: BoxDecoration(
                         color: Colors.red,
-                        border: Border.all(color: Colors.black, width: 2)
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 5,
+                            offset: Offset(1, 1),
+                            color: Colors.grey,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(10)
                       ),
                       child: RawMaterialButton(
                         child: const Row(
@@ -478,7 +604,14 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                       margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 255, 200, 200),
-                        border: Border.all(color: Colors.black, width: 2)
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 5,
+                            offset: Offset(1, 1),
+                            color: Colors.grey,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(10)
                       ),
                       child: RawMaterialButton(
                         child: const Row(
@@ -503,7 +636,14 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                       margin: const EdgeInsets.only(top: 5, bottom: 5, left: 15),
                       decoration: BoxDecoration(
                         color: Colors.red,
-                        border: Border.all(color: Colors.black, width: 2)
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 5,
+                            offset: Offset(1, 1),
+                            color: Colors.grey,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(10)
                       ),
                       child: RawMaterialButton(
                         child: const Row(
@@ -527,7 +667,14 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                       margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
                       decoration: BoxDecoration(
                         color: const Color.fromARGB(255, 255, 200, 200),
-                        border: Border.all(color: Colors.black, width: 2)
+                        boxShadow: const [
+                          BoxShadow(
+                            blurRadius: 5,
+                            offset: Offset(1, 1),
+                            color: Colors.grey,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(10)
                       ),
                       child: RawMaterialButton(
                         child: const Row(
@@ -566,7 +713,9 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                       height: 20,
                       width: 100,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black)
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white
                       ),
                       child: Text(
                         fromDATE,
@@ -577,6 +726,10 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                           color: Colors.red
                         ),
                       )
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.calendar_month_outlined),
+                      onPressed: () => _selectDateFrom(context)
                     ),
                     // Label To ==================
                     Container(
@@ -595,7 +748,9 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                       width: 100,
                       margin: const EdgeInsets.only(left: 5),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black)
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.white
                       ),
                       child: Text(
                         toDATE,
@@ -606,22 +761,19 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                           color: Colors.red
                         ),
                       )
-                    )
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.calendar_month_outlined),
+                      onPressed: () => _selectDateTo(context)
+                    ),
                   ]
                 ),            
                 // Button to see filter page
                 Container(
                   margin: const EdgeInsets.only(top: 10),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    gradient: const LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                      Color.fromARGB(255, 255, 17, 0),
-                      Color.fromARGB(255, 152, 55, 55)
-                      ]
-                    )
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(5)
                   ),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -697,33 +849,16 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
           ),
           // Mix Chart ==================
           Visibility(
-            visible: isLoading,
-            child: Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.98,
-                height: 300,
-                margin: const EdgeInsets.only(top: 10),
-                child: const MixChartFBNYield(
-                  dataBarChart: [[' ', 2, 0], ['  ', 3, 0], ['   ', 1, 0], ['    ', 4, 0]],
-                  dataLineChartMix: [3, 4, 2, 5],
-                  chartTitle: '',
-                ),
-              )
-            ),
-          ),
-          Visibility(
             visible: mixChartVisible,
             child: Container(
               width: MediaQuery.of(context).size.width * 0.98,
               height: 300,
               margin: const EdgeInsets.only(top: 10),
-              child: MixChartFBNYield(
-                dataBarChart: dictDecodedDataByDate,
-                dataLineChartMix: dictDecodedDataPercentByDate,
-                chartTitle: titleMixChart,
-              ),
+               child: MyLineChart(
+                dataLineChart: dataLineChart,
+                dataQtyLineChart: dataQtyLineChart,
+                xAxis: xAxis,
+              )
             )
           ),
           // Table FBN YIELD ==================
@@ -739,38 +874,14 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                     children: [
                       TableFBNYIELD(
                         dataTable: dataTable,
-                        columnName: [defaultGroupBy, oldFilterSelected, 'In', 'Out', 'Fail', 'Yield'],
-                      ),
+                        columnName: [defaultGroupBy, stringFilterSelectedCode.split(' ')[1],'In', 'Out', 'Fail', 'Yield'],
+                      )
                     ],
                   ),
                 ),
               ),
             ),
           ),
-          Visibility(
-            visible: isLoading,
-            child: Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.95,
-                height: 200,
-                child: const SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children:  [
-                        TableFBNYIELD(
-                          dataTable: [['', '', '', '', ''], ['', '', '', '', ''], ['', '', '', '', ''], ['', '', '', '', ''], ['', '', '', '', '']],
-                          columnName: ['', '', '', '', ''],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),    
           const SizedBox(height: 50)   
         ],
       ),
@@ -800,55 +911,197 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
   }
 
   Future<void> queryDataForMixChart(String drillOn) async {
-    if (stringFilterSelectedCode.isNotEmpty) {
-      isLoading = true;
-      stringEncryptedArray = await encryptData([
-        modelSelected,
-        startDate.toString(),
-        endDate.toString(),
-        filterSelected,
-        stringFilterSelectedCode,
-        defaultGroupBy,
-        drillOn,
-        '01'
-      ]);
-      var dataQueried = await getDataPOST(
-        'https://localhost:44342/api/YMA/EPYieldQueryDetail',
-        {
-          'Model': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-          'From': stringEncryptedArray['data'][1],
-          'To': stringEncryptedArray['data'][2],
-          'FilterSelected': stringEncryptedArray['data'][3],
-          'FilterCode': stringEncryptedArray['data'][4],
-          'Groupby': stringEncryptedArray['data'][5],
-          'Drillon': stringEncryptedArray['data'][6],
-          'Version': stringEncryptedArray['data'][7]
-        },
-      );
+    try {
+      if (stringFilterSelectedCode.isNotEmpty) {
+        isLoading = true;
+        if (!stringFilterSelectedCode.contains("'' : ''")) {
+          stringFilterSelectedCode = stringFilterSelectedCode.replaceAll("' : '", "'' : ''");
+        }
+        
+        stringEncryptedArray = await encryptData([
+          modelSelected,
+          startDate.toString(),
+          endDate.toString(),
+          filterSelected,
+          stringFilterSelectedCode,
+          defaultGroupBy,
+          drillOn,
+          '01'
+        ]);
+        var dataQueried = await getDataPOST(
+          'https://supply-api.fabrinet.co.th/api/YMA/EPYieldQueryDetail',
+          {
+            'Model': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+            'From': stringEncryptedArray['data'][1],
+            'To': stringEncryptedArray['data'][2],
+            'FilterSelected': stringEncryptedArray['data'][3],
+            'FilterCode': stringEncryptedArray['data'][4],
+            'Groupby': stringEncryptedArray['data'][5],
+            'Drillon': stringEncryptedArray['data'][6],
+            'Version': stringEncryptedArray['data'][7]
+          },
+        );
 
-      if (dataQueried[1] == 200) {
-        String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+        if (dataQueried[1] == 200) {
+          String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
 
-        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+          final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+          final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-        print(decodedData);
-        setState(() {
+          String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+          List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+          
           dictDecodedDataByDate = [];
           dataTable = [];
           dictDecodedDataPercentByDate = [];
+          var categoryFilter = [];
+          List<String> categoryGroupBy = [];
           for (var item in decodedData) {
             dataTable.add([item[defaultGroupBy], item['Param'], item['In'], item['Out'], item['Fail'], item['Yield']]);
             if (item[defaultGroupBy] != 'All First Pass' && item[defaultGroupBy] != 'All In/Out') {
               dictDecodedDataByDate.add([item[defaultGroupBy], item['Out'], item['Fail']]);
               dictDecodedDataPercentByDate.add(double.parse(((item['Out'] / item['In']) * 100).toStringAsFixed(2)));
+
+              categoryGroupBy.add(item[defaultGroupBy]);
+              categoryFilter.add(item['Param']);
             }
           }
           titleMixChart = 'Yield By $defaultGroupBy';
-          isLoading = false;
           mixChartVisible = true;
+
+          categoryGroupBy = categoryGroupBy.toSet().toList();
+          categoryFilter = categoryFilter.toSet().toList();
+          Map<String, dynamic> objGroupBy = {};
+          for (var cat in categoryFilter) {
+            Map<String, dynamic> subObject = {};
+            for (var item in decodedData) {
+              if (item[defaultGroupBy] != 'All First Pass' && item[defaultGroupBy] != 'All In/Out') {
+                if (!subObject.containsKey(cat)) {
+                  subObject[cat] = [];
+                }
+
+                if (item['Param'] == cat) {
+                  subObject[cat].add([item[defaultGroupBy], item['Yield'], item['In']]);
+                }
+                else {
+                  subObject[cat].add([item[defaultGroupBy], '', '']);
+                }
+              }
+            }
+
+            List<dynamic> bigArrSorted = [];
+            for (var obj in subObject.entries) {
+              for (var valObj in obj.value) {
+                if (valObj[1].toString().isNotEmpty) {
+                  bigArrSorted.add(obj.value[obj.value.indexOf(valObj)]);
+                }
+              }
+            }
+
+            if (!objGroupBy.containsKey(cat)) {
+              objGroupBy[cat] = bigArrSorted;
+            }
+          }
+
+          Map<String, dynamic> dataToLineChart = {};
+          Map<String, dynamic> dataQtyToLineChart = {};
+          for (var obj in objGroupBy.entries) {
+            List<String> listDT = [];
+            for (var i in obj.value) {
+              listDT.add(i[0]);
+            }
+
+            List<double> listNum = [];
+            for (var i in obj.value) {
+              listNum.add(i[1]);
+            }
+
+            List<int> listQty = [];
+            for (var i in obj.value) {
+              listQty.add(i[2]);
+            }
+
+            for (int i = 0; i < categoryGroupBy.length; i++) {
+              if (!dataToLineChart.containsKey(obj.key)) {
+                dataToLineChart[obj.key] = [];
+              }
+              if (!dataQtyToLineChart.containsKey(obj.key)) {
+                dataQtyToLineChart[obj.key] = [];
+              }
+
+              if (listDT.contains(categoryGroupBy[i])) {
+                dataToLineChart[obj.key].add(listNum[listDT.indexOf(categoryGroupBy[i])]);
+                dataQtyToLineChart[obj.key].add(listQty[listDT.indexOf(categoryGroupBy[i])]);
+              }
+              else {
+                dataToLineChart[obj.key].add(null);
+                dataQtyToLineChart[obj.key].add(0);
+              }
+            }
+          } 
+
+          setState(() {
+            dataLineChart = dataToLineChart;
+            dataQtyLineChart = dataQtyToLineChart;
+            xAxis = categoryGroupBy;
+          });
+        }
+        else {
+          CoolAlert.show(
+            width: 1,
+            context: scaffoldKey.currentContext!,
+            type: CoolAlertType.error,
+            text:'Enable to connect Database ! ${dataQueried[0]}'
+          );
+        }
+      }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
+  }
+
+  // ****************************************** Tab [PARETO] ******************************************
+  // ************************************************************************************
+
+  // ========================================= Query [LEVEL] =========================================
+  Future<void> fetchDataLevel() async {
+    try {
+      String keyValue = 'yieldeachproduct'; // *** important, same as flutter sent ***
+      var iv = encrypt.IV.fromLength(16);
+
+      var dataQueried = await getDataPOST(
+        'https://supply-api.fabrinet.co.th/api/YMA/ProductNameEP',
+        {
+          'Value' : iv.base16
+        } 
+      );
+
+      if (dataQueried[1] == 200) {
+        String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+
+        final keyBytes = encrypt.Key.fromUtf8(keyValue);
+        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: iv);
+        decodedDataProductName = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+        
+        setState(() {
+          listProductName = [];
+          if (decodedDataProductName.isNotEmpty) {
+            for (var i in decodedDataProductName) {
+              listProductName.add(i['model_type']);
+            }
+          } 
+          else {
+            listProductName = [];
+          }
+
         });
       }
       else {
@@ -860,51 +1113,12 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
         );
       }
     }
-  }
-
-  // ****************************************** Tab [PARETO] ******************************************
-  // ************************************************************************************
-
-  // ========================================= Query [LEVEL] =========================================
-  Future<void> fetchDataLevel() async {
-    String keyValue = 'yieldeachproduct'; // *** important, same as flutter sent ***
-    var iv = encrypt.IV.fromLength(16);
-
-    var dataQueried = await getDataPOST(
-      'https://localhost:44342/api/YMA/ProductNameEP',
-      {
-        'Value' : iv.base16
-      } 
-    );
-
-    if (dataQueried[1] == 200) {
-      String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
-
-      final keyBytes = encrypt.Key.fromUtf8(keyValue);
-      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
-
-      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: iv);
-      decodedDataProductName = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-      
-      setState(() {
-        listProductName = [];
-        if (decodedDataProductName.isNotEmpty) {
-          for (var i in decodedDataProductName) {
-            listProductName.add(i['model_type']);
-          }
-        } 
-        else {
-          listProductName = [];
-        }
-
-      });
-    }
-    else {
+    catch (e) {
       CoolAlert.show(
         width: 1,
         context: scaffoldKey.currentContext!,
         type: CoolAlertType.error,
-        text:'Enable to connect Database ! ${dataQueried[0]}'
+        text:'Error : $e'
       );
     }
   }

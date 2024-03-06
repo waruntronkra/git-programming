@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'dart:convert';
+import 'package:cool_alert/cool_alert.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import '../Page-Result-Test/Metrix-Table/metrix_table.dart';
 import '../Page-Result-Test/Metrix-Table/row_head_metrix_table.dart';
@@ -15,6 +16,7 @@ class TabResultTest extends StatefulWidget {
 }
 
 class _TabResultTestState extends State<TabResultTest> {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();   
 
   List<List<dynamic>> dataToTable = [];
@@ -376,128 +378,139 @@ class _TabResultTestState extends State<TabResultTest> {
 
   // ================================ Query Result Test ================================
   Future<void> queryResultTest() async {
-    for (String station in stationArray) {
-      stringEncryptedArray = await encryptData(['2', station, processArry[selectedRadio]]);
-      var result = await getDataPOST(
-        'https://localhost:44342/api/YMA/QueryResultTest',
-        {
-        'Day': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-        'Station': stringEncryptedArray['data'][1],
-        'Process': stringEncryptedArray['data'][2],
-        } 
-      );
-      String jsonEncrypted = jsonDecode(jsonDecode(result[0]))['encryptedJson'];
+    try {
+      for (String station in stationArray) {
+        stringEncryptedArray = await encryptData(['2', station, processArry[selectedRadio]]);
+        var result = await getDataPOST(
+          'https://supply-api.fabrinet.co.th/api/YMA/QueryResultTest',
+          {
+          'Day': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+          'Station': stringEncryptedArray['data'][1],
+          'Process': stringEncryptedArray['data'][2],
+          } 
+        );
+        String jsonEncrypted = jsonDecode(jsonDecode(result[0]))['encryptedJson'];
 
-      final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-      List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
 
-      // Group by SLOT =========================
-      Map<String, dynamic> groupResultTestBySlot = {};
-      columnNameDate = [];
-      for (var item in decodedData) {
-        if (!groupResultTestBySlot.containsKey(item['TEST_SOCKET_INDEX'].toString())) {
-          groupResultTestBySlot[item['TEST_SOCKET_INDEX'].toString()] = [];
+        // Group by SLOT =========================
+        Map<String, dynamic> groupResultTestBySlot = {};
+        columnNameDate = [];
+        for (var item in decodedData) {
+          if (!groupResultTestBySlot.containsKey(item['TEST_SOCKET_INDEX'].toString())) {
+            groupResultTestBySlot[item['TEST_SOCKET_INDEX'].toString()] = [];
+          }
+          groupResultTestBySlot[item['TEST_SOCKET_INDEX'].toString()].add([
+            item['LOCAL_START_DATE_TIME'],
+            item['FAIL_MODE'],
+          ]);
+          columnNameDate.add(item['LOCAL_START_DATE_TIME'].substring(0, item['LOCAL_START_DATE_TIME'].length - 4));
         }
-        groupResultTestBySlot[item['TEST_SOCKET_INDEX'].toString()].add([
-          item['LOCAL_START_DATE_TIME'],
-          item['FAIL_MODE'],
-        ]);
-        columnNameDate.add(item['LOCAL_START_DATE_TIME'].substring(0, item['LOCAL_START_DATE_TIME'].length - 4));
-      }
-      columnNameDate = columnNameDate.toSet().toList();
+        columnNameDate = columnNameDate.toSet().toList();
 
-      // Group by DATE =========================
-      Map<String, dynamic> groupResultTestByDate = {};
-      for (var item in groupResultTestBySlot.entries) {
-        List<String> subDt = [];
-        for (var i in item.value) {
-          subDt.add(i[0].substring(0, i[0].length - 4));
-        }
-        List<String> subValue = [];
-        for (var i in item.value) {
-          subValue.add(i[1]);
-        }
-        for (var j = 0; j < columnNameDate.length; j++) {
-          if (subDt.contains(columnNameDate[j])) {
-            if (!groupResultTestByDate.containsKey(item.key)) {
-              groupResultTestByDate[item.key] = [];
+        // Group by DATE =========================
+        Map<String, dynamic> groupResultTestByDate = {};
+        for (var item in groupResultTestBySlot.entries) {
+          List<String> subDt = [];
+          for (var i in item.value) {
+            subDt.add(i[0].substring(0, i[0].length - 4));
+          }
+          List<String> subValue = [];
+          for (var i in item.value) {
+            subValue.add(i[1]);
+          }
+          for (var j = 0; j < columnNameDate.length; j++) {
+            if (subDt.contains(columnNameDate[j])) {
+              if (!groupResultTestByDate.containsKey(item.key)) {
+                groupResultTestByDate[item.key] = [];
+              }
+              groupResultTestByDate[item.key].add(subValue[subDt.indexOf(columnNameDate[j])]);
             }
-            groupResultTestByDate[item.key].add(subValue[subDt.indexOf(columnNameDate[j])]);
-          }
-          else {
-            if (!groupResultTestByDate.containsKey(item.key)) {
-              groupResultTestByDate[item.key] = [];
+            else {
+              if (!groupResultTestByDate.containsKey(item.key)) {
+                groupResultTestByDate[item.key] = [];
+              }
+              groupResultTestByDate[item.key].add('');
             }
-            groupResultTestByDate[item.key].add('');
           }
         }
-      }
 
-      // Group follow by SLOT quantity =========================
-      Map<String, dynamic> groupResultCompletely = {};
-      
-      rowNameSlot = [];
-      for (var i in slotArray) {
-        rowNameSlot.add('SLOT $i');
-      }
-
-      for (var i in slotArray) {
-        if (!groupResultCompletely.containsKey(i)) {
-          groupResultCompletely[i.toString()] = [];
+        // Group follow by SLOT quantity =========================
+        Map<String, dynamic> groupResultCompletely = {};
+        
+        rowNameSlot = [];
+        for (var i in slotArray) {
+          rowNameSlot.add('SLOT $i');
         }
 
-        List<String> subSlots = [];
-        for (var item in groupResultTestByDate.entries) {
-          subSlots.add(item.key);
-        }
-        List<dynamic> subValues = [];
-        for (var item in groupResultTestByDate.entries) {
-          subValues.add(item.value);
-        }
-
-        // ignore: unused_local_variable
-        for (var item in groupResultTestByDate.entries) {
-          if (subSlots.contains(i)) {
-            groupResultCompletely[i.toString()] = subValues[subSlots.indexOf(i)];
+        for (var i in slotArray) {
+          if (!groupResultCompletely.containsKey(i)) {
+            groupResultCompletely[i.toString()] = [];
           }
-          else {
-            List<String> emptyArray = [];
-            for (var x = 0; x < columnNameDate.length; x++) {
-              emptyArray.add('');
+
+          List<String> subSlots = [];
+          for (var item in groupResultTestByDate.entries) {
+            subSlots.add(item.key);
+          }
+          List<dynamic> subValues = [];
+          for (var item in groupResultTestByDate.entries) {
+            subValues.add(item.value);
+          }
+
+          // ignore: unused_local_variable
+          for (var item in groupResultTestByDate.entries) {
+            if (subSlots.contains(i)) {
+              groupResultCompletely[i.toString()] = subValues[subSlots.indexOf(i)];
             }
-            groupResultCompletely[i.toString()] = emptyArray;
+            else {
+              List<String> emptyArray = [];
+              for (var x = 0; x < columnNameDate.length; x++) {
+                emptyArray.add('');
+              }
+              groupResultCompletely[i.toString()] = emptyArray;
+            }
+            break;
           }
-          break;
         }
+
+        // Prepare to Table =========================
+        dataToTable = [];
+        for (var item in groupResultCompletely.entries) {
+          dataToTable.add(item.value);
+        }
+        dataToTableArr.add(dataToTable);
+        columnNameDateArr.add(columnNameDate);
+
+        await Future.delayed(const Duration(milliseconds: 500));
       }
 
-      // Prepare to Table =========================
-      dataToTable = [];
-      for (var item in groupResultCompletely.entries) {
-        dataToTable.add(item.value);
-      }
-      dataToTableArr.add(dataToTable);
-      columnNameDateArr.add(columnNameDate);
-
-      await Future.delayed(const Duration(milliseconds: 500));
+      setState(() {
+        dataToTableArr = dataToTableArr;
+        columnNameDateArr = columnNameDateArr;
+      });
     }
-
-    setState(() {
-      dataToTableArr = dataToTableArr;
-      columnNameDateArr = columnNameDateArr;
-    });
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
   }
 
   Future<void> queryProcessStation() async {
+    try {
       stringEncryptedArray = await encryptData([
         '10', 
         '400ZR'
       ]);
       var result = await getDataPOST(
-        'https://localhost:44342/api/YMA/QueryProssStation',
+        'https://supply-api.fabrinet.co.th/api/YMA/QueryProssStation',
         {
         'Day': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
         'Product': stringEncryptedArray['data'][1],
@@ -511,6 +524,15 @@ class _TabResultTestState extends State<TabResultTest> {
       String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
       List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
       print(decodedData);
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
      
   }
 
@@ -572,37 +594,47 @@ class _TabResultTestState extends State<TabResultTest> {
 
   // ========================= Query [LEVEL] =========================
   Future<void> fetchDataLevel() async {
-    stringEncryptedArray = await encryptData([
-      '71'
-    ]);
+    try {
+      stringEncryptedArray = await encryptData([
+        '71'
+      ]);
 
-    var productName = await getDataPOST(
-      'https://localhost:44342/api/YMA/ProductName',
-      {
-        'Version' : '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
-      } 
-    );
+      var productName = await getDataPOST(
+        'https://supply-api.fabrinet.co.th/api/YMA/ProductName',
+        {
+          'Version' : '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+        } 
+      );
 
-    levelNameSorted = [];
-    if (productName[1] == 200) {
-      String jsonEncrypted = jsonDecode(jsonDecode(productName[0]))['encryptedJson'];
+      levelNameSorted = [];
+      if (productName[1] == 200) {
+        String jsonEncrypted = jsonDecode(jsonDecode(productName[0]))['encryptedJson'];
 
-      final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-      final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-      String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-      List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
 
-      for (var element in decodedData) {
-        if (!levelNameSorted.contains(element['Level'])) {
-          levelNameSorted.add(element['Level']);
+        for (var element in decodedData) {
+          if (!levelNameSorted.contains(element['Level'])) {
+            levelNameSorted.add(element['Level']);
+          }
         }
       }
-    }
 
-    setState(() {
-      levelNameSorted = levelNameSorted;
-    });
+      setState(() {
+        levelNameSorted = levelNameSorted;
+      });
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
   }
 
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! [Encrypt] Data !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
