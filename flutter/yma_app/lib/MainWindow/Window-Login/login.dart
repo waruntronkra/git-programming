@@ -169,7 +169,7 @@ class _WindowLoginState extends State<WindowLogin> {
                     // await queryUserAppInfo();
                     // await queryAppInfo();
                     // if (username.isNotEmpty) {
-                    //   if (currentRevision != currentRevisionLastest) {
+                    //   if (currentRevision != curRrentevisionLastest) {
                     //     print('Please Update');
                     //     print('currentRevision : $currentRevision');
                     //     print('currentRevisionLastest : $currentRevisionLastest');

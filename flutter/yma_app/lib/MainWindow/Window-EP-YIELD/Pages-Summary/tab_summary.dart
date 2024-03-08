@@ -922,7 +922,7 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
           modelSelected,
           startDate.toString(),
           endDate.toString(),
-          filterSelected,
+          filterSelected.replaceAll("' : '", "'' : ''"),
           stringFilterSelectedCode,
           defaultGroupBy,
           drillOn,
@@ -941,7 +941,7 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
             'Version': stringEncryptedArray['data'][7]
           },
         );
-
+        
         if (dataQueried[1] == 200) {
           String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
 

@@ -369,9 +369,13 @@
         </div>
     </div>
 
+    <!-- ================================ [Tooltip] ================================ -->
     <div id="tooltip-new"></div>
+
+    <!-- ================================ [Error pop up] ================================ -->
     <div id="error-pop-up"></div>
 
+    <!-- ================================ [Container for FITs Linecard doing] ================================ -->
     <div id='container-LC-fits'>
         <button class="continue-application" id="bt-LC-1-time">
             <div>
@@ -419,7 +423,17 @@
             </div>  
         </div>
     </div>
+    <!-- ================================ [Input detail for process LCT] ================================ -->
+    <div id="container-detail-LCT">
+        <p>EN</p>
+        <form class="form-EN">
+            <input placeholder="EN" type="text" maxlength="6" id="input-EN-LCT" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+        </form>
+        <p>PI Location</p>
+        <form class="form-PI">
+            <input placeholder="PI Location" type="text" id="input-PI-LCT">
+        </form>
+    </div>
 
 </body>
-
 </html>

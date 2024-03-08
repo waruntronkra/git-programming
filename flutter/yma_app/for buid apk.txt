@@ -1,4 +1,8 @@
-[Build APK] : flutter build apk --release
+[Build APK]
+Add => <uses-permission android:name="android.permission.INTERNET"/>
+Before build 
+Path: /android/app/src/main/AndroidManifest.xml
+flutter build apk --release
 
 [In case move folder] 
 1. flutter clean

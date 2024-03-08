@@ -2037,14 +2037,15 @@ body {
   text-align: center;
 }
 
-.page-for-LC-1-time #check-in-LC-1-time {
-  display: none;
+#check-in-LC-1-time {
+  display: block;
   margin-top: 15px;
   font-size: 15px;
   font-weight: bold;
   background-color: #00f0ff;
   width: 100%;
   height: 110px;
+  scale: 0;
   border: none;
   border-radius: 5px;
   transition-duration: .3s;
@@ -2329,4 +2330,141 @@ body {
   --pby: -3px;
   --pbd: .15s;
   --pex: -24px;
+}
+
+/* ================================== Container Lincard FITs ================================== */
+#container-detail-LCT {
+  padding-block: 10px;
+  padding-inline: 20px;
+  position: absolute;
+  left: 490px;
+  top: 430px;
+  border-radius: 20px;
+  width: 165px;
+  height: 180px;
+  box-shadow: 0px 0px 10px 1px #dddddd;
+  background-color: #d0f6ff;
+  scale: 0;
+  transition: .5s;
+}
+
+#container-detail-LCT p {
+  font-weight: bold;
+}
+
+.form-EN {
+  --timing: 0.3s;
+  --width-of-input: 80px;
+  --height-of-input: 40px;
+  --border-height: 2px;
+  --input-bg: #fff;
+  --border-color: #2f2ee9;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: var(--width-of-input);
+  height: var(--height-of-input);
+  display: flex;
+  align-items: center;
+  padding-inline: 0.8em;
+  border-radius: var(--border-radius);
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg,#fff);
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+#input-EN-LCT {
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  text-align: center;
+}
+
+.form-EN:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+
+.form-EN:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+#input-EN-LCT:focus {
+  outline: none;
+}
+
+.form-EN:focus-within:before {
+  transform: scale(1);
+}
+
+.form-PI {
+  --timing: 0.3s;
+  --width-of-input: 140px;
+  --height-of-input: 40px;
+  --border-height: 2px;
+  --input-bg: #fff;
+  --border-color: #2f2ee9;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: var(--width-of-input);
+  height: var(--height-of-input);
+  display: flex;
+  align-items: center;
+  padding-inline: 0.8em;
+  border-radius: var(--border-radius);
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg,#fff);
+  margin-top: 10px;
+}
+
+#input-PI-LCT {
+  font-size: 0.9rem;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  text-align: center;
+}
+
+.form-PI:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  transform: scaleX(0);
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+  border-radius: 1px;
+  transition: transform var(--timing) ease;
+}
+
+.form-PI:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+#input-PI-LCT:focus {
+  outline: none;
+}
+
+.form-PI:focus-within:before {
+  transform: scale(1);
 }

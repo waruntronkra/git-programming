@@ -141,10 +141,38 @@ $(document).ready(async function() {
                 $("#tooltip-new").css({
                     'scale' : '0'
                 });
+
                 if (Object.keys(duplicate_index).length == 0) {
                     try {
                         last_button_id = document.querySelectorAll('.sn-indicator')[document.querySelectorAll('.sn-indicator').length - 1].id;
                         last_button_id = `sn-indicator-${(parseInt(last_button_id.split('-')[2]) + 1)}`
+                        if (process == 'DEV01') {
+                            setTimeout(function() {
+                                document.querySelector('.user-container').style.top = '50px';
+                            }, 100);
+                        }
+                        else if (process == 'LCT1' || process == 'LCT2') {
+                            document.getElementById('container-detail-LCT').style.scale = '1';
+                            setTimeout(function() {
+                                var style = document.createElement('style');
+                                style.innerHTML = `
+                                        .form-EN:before { display: block; }
+                                        .form-PI:before { display: block; }
+                                `;
+                                document.head.appendChild(style);
+                            }, 100);
+                        }
+                        else {
+                            document.getElementById('container-detail-LCT').style.scale = '0';
+                            setTimeout(function() {
+                                var style = document.createElement('style');
+                                style.innerHTML = `
+                                        .form-EN:before { display: none; }
+                                        .form-PI:before { display: none; }
+                                `;
+                                document.head.appendChild(style);
+                            }, 100)
+                        }
                     }
                     catch (e) {
                         last_button_id = 'sn-indicator-0';
@@ -153,10 +181,24 @@ $(document).ready(async function() {
                         document.getElementById('container-initial-button').style.display = 'flex';
                         document.getElementById('button-save').style.display = 'flex';
                         
-                        if (operation == 'DEV01') {
+                        if (process == 'DEV01') {
                             setTimeout(function() {
                                 document.querySelector('.user-container').style.top = '50px';
                             }, 100);
+                        }
+                        else if (process == 'LCT1' || process == 'LCT2') {
+                            document.getElementById('container-detail-LCT').style.scale = '1';
+                            setTimeout(function() {
+                                var style = document.createElement('style');
+                                style.innerHTML = `
+                                        .form-EN:before { display: block; }
+                                        .form-PI:before { display: block; }
+                                `;
+                                document.head.appendChild(style);
+                            }, 100);
+                        }
+                        else {
+                            document.getElementById('container-detail-LCT').style.scale = '0';
                         }
                     }
 
@@ -359,10 +401,21 @@ $(document).ready(async function() {
                 document.getElementById('tag-fail-badword').style.display = 'none';
                 document.getElementById('button-save').style.display = 'none';
 
-                if (operation == 'DEV01') {
+                if (process == 'DEV01') {
                     setTimeout(function() {
-                        document.querySelector('.user-container').style.top = '-900px';
+                        document.querySelector('.user-container').style.top = '50px';
                     }, 100);
+                }
+                else if (process == 'LCT1' || process == 'LCT2') {
+                    document.getElementById('container-detail-LCT').style.scale = '0';
+                    setTimeout(function() {
+                        var style = document.createElement('style');
+                        style.innerHTML = `
+                                .form-EN:before { display: none; }
+                                .form-PI:before { display: none; }
+                        `;
+                        document.head.appendChild(style);
+                    }, 100)
                 }
             }
 
@@ -494,7 +547,6 @@ $(document).ready(async function() {
                                 map_work_flow.push(value[j + 1]['attribute_value']);
                             }
                         }
-
                         let array = [];
                         for (let j = 0; j < parameter_FITS_array.length; j++) {
                             if (parameter_FITS_array[j] == 'FBN Serial No') {
@@ -521,6 +573,14 @@ $(document).ready(async function() {
 									}
 									else if (process == 'EXS' && parameter_FITS_array[j] == 'Tester Fiber Rx SN') {
 										array.push('');	
+									}
+                                    else if (process == 'LCT1' || process == 'LCT2') {
+                                        if (parameter_FITS_array[j] == 'EN') {
+										    array.push($('#input-EN-LCT').val());	
+                                        }
+                                        else if (parameter_FITS_array[j] == 'PI Location') {
+                                            array.push($('#input-PI-LCT').val());
+                                        }
 									}
 									else {
 										array.push((await getLastTest(parameter_FITS_array[j], listSN[i]))['data'][0]['OUTPUT']);
@@ -1009,7 +1069,10 @@ $(document).ready(async function() {
 
     $(document).on('click', '#bt-LC-1-time', function() {
         document.querySelector('.page-for-LC-1-time').style.height = '200px';
-        document.getElementById('check-in-LC-1-time').style.display = 'block';
+        setTimeout(function() {
+            document.getElementById('check-in-LC-1-time').style.scale = '1';
+        }, 250);
+        
     });
 
     $(document).on('click', '#bt-LC-3-times', function() {
@@ -1074,15 +1137,17 @@ $(document).ready(async function() {
 
         if (!LC_fits.is(e.target) && LC_fits.has(e.target).length == 0) {
             document.getElementById('container-LC-fits').style.opacity = '0';
+
             document.querySelector('.page-for-LC-1-time').style.height = '0';
-            document.getElementById('check-in-LC-1-time').style.display = 'none';
+            document.getElementById('check-in-LC-1-time').style.scale = '0';
+
             document.querySelector('.page-for-LC-3-times').style.height = '0';
             document.getElementById('container-input-LC-SN-3-times').style.display = 'none';
         }
 
         if (LC_fits_button_3.is(e.target)) {
             document.querySelector('.page-for-LC-1-time').style.height = '0';
-            document.getElementById('check-in-LC-1-time').style.display = 'none';
+            document.getElementById('check-in-LC-1-time').style.scale = '0';
         }
 
         if (LC_fits_button_1.is(e.target)) {
@@ -1091,7 +1156,7 @@ $(document).ready(async function() {
         }
     });
 
-    // ******************************************** Query Zone ********************************************
+    // **************************************************************************************** Query Zone ****************************************************************************************
     async function getParamFITs() {
         try {
             // !!! use "<NAME_OF_YOUR_SITE>/get-param-fits?"
