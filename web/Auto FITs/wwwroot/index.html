@@ -18,7 +18,6 @@
     <!-- <link rel="stylesheet" href="autofits/css/style.css">
     <script src="autofits/js/script.js" defer></script>
 
-
     <script src="autofits/js/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="/autofits/fontawesome-free-6.5.1-web/css/all.min.css">
     
@@ -58,9 +57,9 @@
                 <div class="card-process">OPMP</div>
                 <div class="card-process">OPMT</div>
                 <div class="card-process">EXP</div>
-                <div class="card-process">EXS</div>
-                <div class="card-process">DEV01</div>
-                <div class="card-process">...</div>
+                <div class="card-process">LCT1</div>
+                <div class="card-process">LCT2</div>
+                <div class="card-process">LCTT</div>
 
                 <p id="text-process"></p>
             </div>
@@ -290,7 +289,7 @@
         </div>
 
         <div class="menu-2">
-            <div id="tooltip-link2">Setting</div>
+            <div id="tooltip-link2">Linecard Input Data</div>
             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 503.563 503.563" xml:space="preserve">
                 <path style="fill:#FF7058;" d="M406.641,490.541c7.314,7.314,18.808,7.314,26.122,0l57.469-57.469
@@ -372,6 +371,54 @@
 
     <div id="tooltip-new"></div>
     <div id="error-pop-up"></div>
+
+    <div id='container-LC-fits'>
+        <button class="continue-application" id="bt-LC-1-time">
+            <div>
+                <div class="pencil"></div>
+                <div class="folder">
+                    <div class="top">
+                        <svg viewBox="0 0 24 27">
+                            <path d="M1,0 L23,0 C23.5522847,-1.01453063e-16 24,0.44771525 24,1 L24,8.17157288 C24,8.70200585 23.7892863,9.21071368 23.4142136,9.58578644 L20.5857864,12.4142136 C20.2107137,12.7892863 20,13.2979941 20,13.8284271 L20,26 C20,26.5522847 19.5522847,27 19,27 L1,27 C0.44771525,27 6.76353751e-17,26.5522847 0,26 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z"></path>
+                        </svg>
+                    </div>
+                    <div class="paper"></div>
+                </div>
+            </div>
+            Rework 1 time
+        </button>
+        <div class="page-for-LC-1-time">
+            <div id="container-input-LC-SN-1-time">
+                <label for="input-LC-SN-1-time">LINCARD SN</label>
+                <input type="text" maxlength="9" id="input-LC-SN-1-time" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>  
+            <div id="container-input-EN-1-time">
+                <label for="input-LC-SN-1-time">EN</label>
+                <input type="text" maxlength="6" id="input-EN-1-time" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>
+            <button id="check-in-LC-1-time">Check In<br>.<br>Check Out<br>.<br>Release</button>
+        </div>
+        <button class="continue-application" id="bt-LC-3-times">
+            <div>
+                <div class="pencil"></div>
+                <div class="folder">
+                    <div class="top">
+                        <svg viewBox="0 0 24 27">
+                            <path d="M1,0 L23,0 C23.5522847,-1.01453063e-16 24,0.44771525 24,1 L24,8.17157288 C24,8.70200585 23.7892863,9.21071368 23.4142136,9.58578644 L20.5857864,12.4142136 C20.2107137,12.7892863 20,13.2979941 20,13.8284271 L20,26 C20,26.5522847 19.5522847,27 19,27 L1,27 C0.44771525,27 6.76353751e-17,26.5522847 0,26 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z"></path>
+                        </svg>
+                    </div>
+                    <div class="paper"></div>
+                </div>
+            </div>
+            Rework 3 times
+        </button>
+        <div class="page-for-LC-3-times">
+            <div id="container-input-LC-SN-3-times">
+                <label for="input-LC-SN-3-times">LINCARD SN</label>
+                <input type="text" maxlength="9" id="input-LC-SN-3-times" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>  
+        </div>
+    </div>
 
 </body>
 

@@ -1,5 +1,5 @@
 $(document).ready(async function() {
-    var model = 'All Module';
+	var model = 'All Module';
     var revision = '1'; // Check-in = 0, Check-in = 1
     var value_FITS_text_array = [];
     var initial_check = [];
@@ -14,7 +14,8 @@ $(document).ready(async function() {
     var duplicate_index = {};
     var index_bad_SN = [];
     var handshake_for_hover = [];
-	var sn_indicator_id_for_delete = [];
+    var data_handshake = [];
+	var data_handshake_all = [];
 
     $(`#input-dev-effective-date`).text('-');
     $(`#input-dev-end-date`).text('-');
@@ -59,7 +60,9 @@ $(document).ready(async function() {
                 process == 'OPMP' ||
                 process == 'OPMT' ||
                 process == 'EXP' ||
-                process == 'EXS'
+                process == 'LCT1' ||
+                process == 'LCT2' ||
+                process == 'LCTT'
                 ) 
                 {
                 model = 'All Module';
@@ -68,12 +71,17 @@ $(document).ready(async function() {
             else if (process == 'DEV01') {
                 model = '*';
             }
-
+			
             var data = await getParamFITs();
 
             parameter_FITS_array = [];
             for (let i = 0; i < data['data'].length; i++) {
-                parameter_FITS_array.push(data['data'][i]['PARAMETER']);
+                if (data['data'][i]['PARAMETER'] != 'Lid RT & SN') {
+                    parameter_FITS_array.push(data['data'][i]['PARAMETER']);
+                }
+                else {
+                    parameter_FITS_array.push('Lid RT _SN');
+                }
             }
 
             parameter_FITS_text = '';
@@ -415,8 +423,8 @@ $(document).ready(async function() {
             edit_active = false
             
             // If everything OK, let query data >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-            var data_work_flow = [];
-            var data_handshake = [];
+            data_handshake = [];
+			data_handshake_all = [];
             var value_FITS_array = [];
             value_FITS_text_array = [];
             var map_work_flow = [];
@@ -443,7 +451,7 @@ $(document).ready(async function() {
                 });
                 
                 for (const sn of listSN) {
-                    const val = await WebServiceFIts(sn, 'fn_Handshake', '', '');
+                    const val = await WebServiceFIts(sn, 'fn_Handshake', '', '', '1', operation);
                     data_handshake.push(val)
                 }
                 
@@ -474,6 +482,7 @@ $(document).ready(async function() {
                         document.getElementById(listSN_ID[i]).style.background = '#00FF17';
                     }
                 } 
+				data_handshake_all = data_handshake;
                 data_handshake = [...new Set(data_handshake)];
                 // Preapare value for map with Parameters >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                 if (data_handshake.length == 1 && data_handshake[0] == 'True') {
@@ -496,10 +505,27 @@ $(document).ready(async function() {
                             }  
 							else if (parameter_FITS_array[j] == 'Error Code') {
                                 array.push('-');
-                            }  
+                            }
+                            
                             else {
                                 try {
-                                    array.push((await getLastTest(parameter_FITS_array[j], listSN[i]))['data'][0]['OUTPUT']);
+									
+									if (process == 'EXP' && parameter_FITS_array[j] == 'Tester Fiber Tx SN') {
+										array.push('');					
+									}
+									else if (process == 'EXP' && parameter_FITS_array[j] == 'Tester Fiber Rx SN') {
+										array.push('');	
+									}
+									else if (process == 'EXS' && parameter_FITS_array[j] == 'Tester Fiber Tx SN') {
+										array.push('');	
+									}
+									else if (process == 'EXS' && parameter_FITS_array[j] == 'Tester Fiber Rx SN') {
+										array.push('');	
+									}
+									else {
+										array.push((await getLastTest(parameter_FITS_array[j], listSN[i]))['data'][0]['OUTPUT']);
+									}
+									
                                 }
                                 catch {
                                     array.push('');
@@ -508,6 +534,7 @@ $(document).ready(async function() {
                         }
                         value_FITS_array.push(array);
                     }
+					
 					
                     // Insert data to Table >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     const history_data_table = document.getElementById('history_data_table');
@@ -552,8 +579,8 @@ $(document).ready(async function() {
                             document.getElementById(listSN_ID[i]).querySelector('p').style.color = 'black';
                         }
                         document.getElementById(listSN_ID[i]).style.background = '#00FF17';
-					
-                        if (value_FITS_array[i][14] == 'PASS') {
+		
+                        if (value_FITS_array[i][parameter_FITS_array.indexOf('Result')] == 'PASS') {
                             var value_FITS_text = '';
                             for (let j = 0; j < value_FITS_array[i].length; j++) {
                                 value_FITS_text += `,${value_FITS_array[i][j]}`;
@@ -562,19 +589,19 @@ $(document).ready(async function() {
                             value_FITS_text = value_FITS_text.slice(1);
                             value_FITS_text_array.push(value_FITS_text);
 							
-							handshake_for_hover.push(value_FITS_array[i][14])
+							handshake_for_hover.push(value_FITS_array[i][parameter_FITS_array.indexOf('Result')])
                             initial_check.push(true);
 							
                         }
                         else {
-							handshake_for_hover.push(value_FITS_array[i][14])
+							handshake_for_hover.push(value_FITS_array[i][parameter_FITS_array.indexOf('Result')])
 
                             let span = document.createElement('div');
                             span.className = 'tooltip-sn-indicator';
                             span.id = `tooltip-sn-indicator-${i}`;
                             span.style.backgroundColor = 'yellow';
                             span.style.color = 'black';
-                            span.appendChild(document.createTextNode(value_FITS_array[i][14]));
+                            span.appendChild(document.createTextNode(value_FITS_array[i][parameter_FITS_array.indexOf('Result')]));
                         
                             document.getElementById(listSN_ID[i]).querySelector('p').style.color = 'black';
                             document.getElementById(listSN_ID[i]).style.background = 'red';
@@ -582,6 +609,7 @@ $(document).ready(async function() {
                             initial_check.push(false);
                         }	
                     }
+					
                 }
             }
             document.getElementById('loader').style.display = 'none';
@@ -606,14 +634,14 @@ $(document).ready(async function() {
             // *********** Disable the button to prevent multiple clicks ***********
             $('#button-save').prop('disabled', true);
             // Check out FITs >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-            if (initial_check.length > 0) {
+			
+            if (initial_check.length > 0 && initial_check.length == data_handshake_all.length) {
                 document.getElementById('loader').style.display = 'block';
-                var initial_check_active = [...new Set(initial_check)];
                 result_check_out_FITs = [];
                
 				for (let i = 0; i < initial_check.length; i++) {
-					if (initial_check[i] == true) {
-						const result = await WebServiceFIts('', 'fn_Log', parameter_FITS_text, value_FITS_text_array[i]);
+					if (data_handshake_all[i] == 'True') {
+						const result = await WebServiceFIts('', 'fn_Log', parameter_FITS_text, value_FITS_text_array[i], '1', operation);
 						result_check_out_FITs.push([listSN[i], result]);
 						if (result == 'True') {
 							document.getElementById(listSN_ID[i]).style.transition = 'all 0.5s ease';
@@ -664,6 +692,9 @@ $(document).ready(async function() {
                 
                 document.getElementById('loader').style.display = 'none';
             }
+            else {
+                alert('There is some UNIT not found data in Database yet !')
+            }
         }
         catch (e) {
             $('#error-pop-up').html(`! ${e.message} ! <br> ${e.lineNumber || e.line}`);
@@ -695,6 +726,15 @@ $(document).ready(async function() {
             else if (process == 'EXS') {
                 operation = '3600';
             }
+            else if (process == 'LCT1') {
+                operation = '2253';
+            }
+            else if (process == 'LCT2') {
+                operation = '2254';
+            }
+            else if (process == 'LCTT') {
+                operation = '2257';
+            }
             else if (process == 'DEV01') {
                 operation = 'DEV01';
             }
@@ -705,7 +745,9 @@ $(document).ready(async function() {
                 process == 'OPMP' ||
                 process == 'OPMT' ||
                 process == 'EXP' ||
-                process == 'EXS'
+                process == 'LCT1' ||
+                process == 'LCT2' ||
+                process == 'LCTT'
                 ) 
                 {
                 model = 'All Module';
@@ -724,7 +766,12 @@ $(document).ready(async function() {
 
             parameter_FITS_array = [];
             for (let i = 0; i < data['data'].length; i++) {
-                parameter_FITS_array.push(data['data'][i]['PARAMETER']);
+                if (data['data'][i]['PARAMETER'] != 'Lid RT & SN') {
+                    parameter_FITS_array.push(data['data'][i]['PARAMETER']);
+                }
+                else {
+                    parameter_FITS_array.push('Lid RT _SN');
+                }
             }
 
             parameter_FITS_text = '';
@@ -783,7 +830,8 @@ $(document).ready(async function() {
     })
     
     $('.menu-2').click(async function() {
-     
+        
+        document.getElementById('container-LC-fits').style.opacity = '1';
     });
 
     // Get date from day selected
@@ -959,6 +1007,28 @@ $(document).ready(async function() {
         $(`#input-dev-pn`).text($(this).text());
     });
 
+    $(document).on('click', '#bt-LC-1-time', function() {
+        document.querySelector('.page-for-LC-1-time').style.height = '200px';
+        document.getElementById('check-in-LC-1-time').style.display = 'block';
+    });
+
+    $(document).on('click', '#bt-LC-3-times', function() {
+        document.querySelector('.page-for-LC-3-times').style.height = '200px';
+        document.getElementById('container-input-LC-SN-3-times').style.display = 'flex';
+    });
+
+    $(document).on('click', '#check-in-LC-1-time', async function() {
+        if ($('#input-LC-SN-1-time').val() != '' && $('#input-EN-1-time').val() != '') {
+            const result_check_in = await WebServiceFIts('', 'fn_Log', 'Fixture ID', $('#input-LC-SN-1-time').val(), '0', '9965');
+            const result_check_out = await WebServiceFIts('', 'fn_Log', 'Fixture ID,EN,Result,Remark', `${$('#input-LC-SN-1-time').val()},${$('#input-EN-1-time').val()},PASS,GOOD`, '1', '9965');
+            const result_check_release = await WebServiceFIts('', 'fn_Log', 'Fixture ID,EN,Result,Reason for release', `${$('#input-LC-SN-1-time').val()},${$('#input-EN-1-time').val()},PASS,GOOD`, '1', '9967');
+
+            console.log(result_check_in)
+            console.log(result_check_out)
+            console.log(result_check_release)
+        }
+    });
+
     // Click another area to close widget
     $(document).mouseup(function (e) { 
         var table = $('#table-parameter-fits');
@@ -966,7 +1036,11 @@ $(document).ready(async function() {
         var calendar = $('.calendar');
         var dropdown_model = $('#dropdown-model');
         var dropdown_pn = $('#dropdown-pn');
+        var LC_fits = $('#container-LC-fits');
 
+        var LC_fits_button_1 = $('#bt-LC-1-time');
+        var LC_fits_button_3 = $('#bt-LC-3-times');
+        
         if (!table.is(e.target) && table.has(e.target).length == 0 && !menu_process.is(e.target)) {
             document.getElementById('container-table-parameter-fits').style.top = '260px';
             document.getElementById('container-table-parameter-fits').style.left = '370px';
@@ -997,13 +1071,31 @@ $(document).ready(async function() {
             });
             document.getElementById('dropdown-pn').style.height = '0';
         }
+
+        if (!LC_fits.is(e.target) && LC_fits.has(e.target).length == 0) {
+            document.getElementById('container-LC-fits').style.opacity = '0';
+            document.querySelector('.page-for-LC-1-time').style.height = '0';
+            document.getElementById('check-in-LC-1-time').style.display = 'none';
+            document.querySelector('.page-for-LC-3-times').style.height = '0';
+            document.getElementById('container-input-LC-SN-3-times').style.display = 'none';
+        }
+
+        if (LC_fits_button_3.is(e.target)) {
+            document.querySelector('.page-for-LC-1-time').style.height = '0';
+            document.getElementById('check-in-LC-1-time').style.display = 'none';
+        }
+
+        if (LC_fits_button_1.is(e.target)) {
+            document.querySelector('.page-for-LC-3-times').style.height = '0';
+            document.getElementById('container-input-LC-SN-3-times').style.display = 'none';
+        }
     });
 
     // ******************************************** Query Zone ********************************************
     async function getParamFITs() {
         try {
             // !!! use "<NAME_OF_YOUR_SITE>/get-param-fits?"
-            const response = await fetch(`/get-param-fits?process=${process}`);
+            const response = await fetch(`/get-param-fits?operation=${operation}`);
             const dataJSON = await response.json();
             return dataJSON;
         } catch (error) {
@@ -1060,10 +1152,10 @@ $(document).ready(async function() {
         }
     }
 
-    async function WebServiceFIts(sn, type, parameter, value) {
+    async function WebServiceFIts(sn, type, parameter, value, rev, oper) {
         try {
             // !!! use "<NAME_OF_YOUR_SITE>/webservice-fits?"
-            const response = await fetch(`/webservice-fits?serialnumber=${sn}&operation=${operation}&type=${type}&parameter=${parameter}&value=${value}&model=${model}&revision=${revision}`);
+            const response = await fetch(`/webservice-fits?serialnumber=${sn}&operation=${oper}&type=${type}&parameter=${parameter}&value=${value}&model=${model}&revision=${rev}`);
             const dataXML = await response.text();
             if (dataXML.split('<a:Message/><a:Result>').length > 1) {
                 return dataXML.split('<a:Message/><a:Result>')[1].split('</a:Result>')[0];

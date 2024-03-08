@@ -2,8 +2,9 @@ body {
   font-family: 'Century Gothic';
 }
 
-#keyfram-picture{
-  display: none; /* If you want to open this key frame*/
+#keyfram-picture {
+  display: none;
+  /* If you want to open this key frame*/
   border: 1px solid black;
   position: absolute;
   width: 900px;
@@ -430,6 +431,7 @@ body {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
+
 .card-process:nth-child(7):hover {
   transition: .2s;
   background-color: rgb(3, 141, 93);
@@ -658,16 +660,18 @@ body {
 }
 
 #container-initial-button #initial-button:hover {
-  background: var(--bg-color);
+  background: #adfdad;
 }
 
 #container-initial-button #initial-button:hover #initial-button__text {
   color: transparent;
+  background: #adfdad;
 }
 
 #container-initial-button #initial-button:hover #initial-button__icon {
   width: 410px;
   transform: translateX(0);
+  background: #adfdad;
 }
 
 #container-initial-button #initial-button:active {
@@ -725,7 +729,7 @@ body {
   margin-left: 29px;
   margin-top: 5px;
   padding-top: 10px;
-  padding-bottom: 60px;
+  padding-bottom: 5px;
   padding-left: 5px;
   border: 3px solid rgb(193, 193, 193);
   border-radius: 10px;
@@ -966,6 +970,7 @@ body {
 .user-container #model_bt:hover {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
+
 .user-container #pn_bt:hover {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 }
@@ -1910,11 +1915,13 @@ body {
   text-align: center;
   background-color: rgb(3, 141, 93);
   border-radius: 5px;
+  padding-block: 5px;
+  font-weight: bold;
 }
 
 .card-menu-setting .menu-2 #tooltip-link2 {
   display: none;
-  width: 70px;
+  width: 170px;
   position: absolute;
   top: -40px;
   font-size: 15px;
@@ -1922,6 +1929,8 @@ body {
   background-color: #00ccff;
   border-radius: 5px;
   color: black;
+  padding-block: 5px;
+  font-weight: bold;
 }
 
 .card-menu-setting svg {
@@ -1966,7 +1975,7 @@ body {
   }
 }
 
-/* ================================================== */
+/* ================================== Tooltip (NEW) ================================== */
 #tooltip-new {
   position: absolute;
   border-radius: 7px;
@@ -1984,7 +1993,7 @@ body {
   transition: 0.3s;
 }
 
-/* ================================================== */
+/* ================================== Error pop up ================================== */
 #error-pop-up {
   position: absolute;
   border: 5px solid black;
@@ -2001,4 +2010,323 @@ body {
   font-size: 20px;
   font-weight: bold;
   transition: 0.5s;
+}
+
+/* ================================== Container Lincard FITs ================================== */
+#container-LC-fits {
+  position: absolute;
+  left: 500px;
+  top: 240px;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  opacity: 0;
+  gap: 10px;
+  padding-block: 10px;
+  padding-inline: 10px;
+  box-shadow: 0px 0px 10px 5px #d7d7d7;
+  transition: 0.7s;
+}
+
+.page-for-LC-1-time {
+  height: 0;
+  display: block;
+  background-color: #404660;
+  transition: 0.7s;
+  padding-inline: 10px;
+  text-align: center;
+}
+
+.page-for-LC-1-time #check-in-LC-1-time {
+  display: none;
+  margin-top: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #00f0ff;
+  width: 100%;
+  height: 110px;
+  border: none;
+  border-radius: 5px;
+  transition-duration: .3s;
+}
+
+#check-in-LC-1-time:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 5px 1px #00f0ff;
+  border: 1px solid black;
+}
+
+#check-in-LC-1-time:active {
+  transform: translateY(5px);
+  box-shadow: 0px 0px 1px;
+}
+  
+#container-input-LC-SN-1-time {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+#container-input-EN-1-time {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 63px;
+}
+
+#input-LC-SN-1-time {
+  width: 95px;
+  margin-left: 10px;
+  margin-top: -1px;
+  text-align: center;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 3px;
+  padding-block: 3px;
+}
+
+#input-EN-1-time {
+  width: 60px;
+  margin-left: 10px;
+  margin-top: -1px;
+  text-align: center;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 3px;
+  padding-block: 3px;
+}
+
+.page-for-LC-3-times {
+  height: 0;
+  display: block;
+  background-color: #404660;
+  transition: 0.7s;
+  padding-inline: 10px;
+}
+
+#container-input-LC-SN-3-times {
+  display: none;
+  flex-direction: row;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+#container-input-LC-SN-3-times #input-LC-SN-3-times {
+  width: 95px;
+  margin-left: 10px;
+  margin-top: -1px;
+  text-align: center;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 3px;
+  padding-block: 3px;
+}
+
+#container-LC-fits .continue-application {
+  --color: #fff;
+  --background: #404660;
+  --background-hover: #3A4059;
+  --background-left: #2B3044;
+  --folder: #F3E9CB;
+  --folder-inner: #BEB393;
+  --paper: #FFFFFF;
+  --paper-lines: #BBC1E1;
+  --paper-behind: #E1E6F9;
+  --pencil-cap: #fff;
+  --pencil-top: #275EFE;
+  --pencil-middle: #fff;
+  --pencil-bottom: #5C86FF;
+  --shadow: rgba(13, 15, 25, .2);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 19px;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  padding: 17px 29px 17px 69px;
+  transition: background 0.3s;
+  color: var(--color);
+  background: var(--bg, var(--background));
+}
+
+#container-LC-fits .continue-application > div {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 53px;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 5px 0 0 5px;
+  background: var(--background-left);
+}
+
+#container-LC-fits .continue-application > div .folder {
+  width: 23px;
+  height: 27px;
+  position: absolute;
+  left: 15px;
+  top: 13px;
+}
+
+#container-LC-fits .continue-application > div .folder .top {
+  left: 0;
+  top: 0;
+  z-index: 2;
+  position: absolute;
+  transform: translateX(var(--fx, 0));
+  transition: transform 0.4s ease var(--fd, 0.3s);
+}
+
+#container-LC-fits .continue-application > div .folder .top svg {
+  width: 24px;
+  height: 27px;
+  display: block;
+  fill: var(--folder);
+  transform-origin: 0 50%;
+  transition: transform 0.3s ease var(--fds, 0.45s);
+  transform: perspective(120px) rotateY(var(--fr, 0deg));
+}
+
+#container-LC-fits .continue-application > div .folder:before,
+#container-LC-fits .continue-application > div .folder:after,
+#container-LC-fits .continue-application > div .folder .paper {
+  content: "";
+  position: absolute;
+  left: var(--l, 0);
+  top: var(--t, 0);
+  width: var(--w, 100%);
+  height: var(--h, 100%);
+  border-radius: 1px;
+  background: var(--b, var(--folder-inner));
+}
+
+#container-LC-fits .continue-application>div .folder:before {
+  box-shadow: 0 1.5px 3px var(--shadow), 0 2.5px 5px var(--shadow), 0 3.5px 7px var(--shadow);
+  transform: translateX(var(--fx, 0));
+  transition: transform 0.4s ease var(--fd, 0.3s);
+}
+
+#container-LC-fits .continue-application>div .folder:after,
+#container-LC-fits .continue-application>div .folder .paper {
+  --l: 1px;
+  --t: 1px;
+  --w: 21px;
+  --h: 25px;
+  --b: var(--paper-behind);
+}
+
+#container-LC-fits .continue-application>div .folder:after {
+  transform: translate(var(--pbx, 0), var(--pby, 0));
+  transition: transform 0.4s ease var(--pbd, 0s);
+}
+
+#container-LC-fits .continue-application>div .folder .paper {
+  z-index: 1;
+  --b: var(--paper);
+}
+
+#container-LC-fits .continue-application>div .folder .paper:before,
+#container-LC-fits .continue-application>div .folder .paper:after {
+  content: "";
+  width: var(--wp, 14px);
+  height: 2px;
+  border-radius: 1px;
+  transform: scaleY(0.5);
+  left: 3px;
+  top: var(--tp, 3px);
+  position: absolute;
+  background: var(--paper-lines);
+  box-shadow: 0 12px 0 0 var(--paper-lines), 0 24px 0 0 var(--paper-lines);
+}
+
+#container-LC-fits .continue-application>div .folder .paper:after {
+  --tp: 6px;
+  --wp: 10px;
+}
+
+#container-LC-fits .continue-application>div .pencil {
+  height: 2px;
+  width: 3px;
+  border-radius: 1px 1px 0 0;
+  top: 8px;
+  left: 105%;
+  position: absolute;
+  z-index: 3;
+  transform-origin: 50% 19px;
+  background: var(--pencil-cap);
+  transform: translateX(var(--pex, 0)) rotate(35deg);
+  transition: transform 0.4s ease var(--pbd, 0s);
+}
+
+#container-LC-fits .continue-application>div .pencil:before,
+#container-LC-fits .continue-application>div .pencil:after {
+  content: "";
+  position: absolute;
+  display: block;
+  background: var(--b, linear-gradient(var(--pencil-top) 55%, var(--pencil-middle) 55.1%, var(--pencil-middle) 60%, var(--pencil-bottom) 60.1%));
+  width: var(--w, 5px);
+  height: var(--h, 20px);
+  border-radius: var(--br, 2px 2px 0 0);
+  top: var(--t, 2px);
+  left: var(--l, -1px);
+}
+
+#container-LC-fits .continue-application>div .pencil:before {
+  -webkit-clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
+  clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
+}
+
+#container-LC-fits .continue-application>div .pencil:after {
+  --b: none;
+  --w: 3px;
+  --h: 6px;
+  --br: 0 2px 1px 0;
+  --t: 3px;
+  --l: 3px;
+  border-top: 1px solid var(--pencil-top);
+  border-right: 1px solid var(--pencil-top);
+}
+
+#container-LC-fits .continue-application:before,
+#container-LC-fits .continue-application:after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--color);
+  transform-origin: 9px 1px;
+  transform: translateX(var(--cx, 0)) scale(0.5) rotate(var(--r, -45deg));
+  top: 26px;
+  right: 16px;
+  transition: transform 0.3s;
+}
+
+#container-LC-fits .continue-application:after {
+  --r: 45deg;
+}
+
+#container-LC-fits .continue-application:hover {
+  --cx: 2px;
+  --bg: var(--background-hover);
+  --fx: -40px;
+  --fr: -60deg;
+  --fd: .15s;
+  --fds: 0s;
+  --pbx: 3px;
+  --pby: -3px;
+  --pbd: .15s;
+  --pex: -24px;
 }

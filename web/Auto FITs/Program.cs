@@ -31,9 +31,13 @@ app.MapGet("/get-param-fits", async (HttpContext context) => {
     using var connection = new SqlConnection(connectionString);
     await connection.OpenAsync();
 
-    var process = context.Request.Query["process"];
+    var operation = context.Request.Query["operation"];
     var sqlQuery = $@"
-                    SELECT [PARAMETER] FROM [dbAcacia_Center].[dbo].[tb_web_FITs] NOLOCK WHERE [PROCESS] = '{process}'
+                    SELECT [attribute_desc] as PARAMETER
+                    FROM [dbAcacia_VW].[dbo].[vw_dataentry]
+                    WHERE operation = '{operation}'
+                    AND description is not null
+                    AND field_type_desc not in ('button')
                 ";
     using var command = new SqlCommand(sqlQuery, connection);
     using var reader = await command.ExecuteReaderAsync();

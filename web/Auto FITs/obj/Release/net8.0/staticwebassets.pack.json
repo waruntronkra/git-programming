@@ -1,23 +1,23 @@
 {
   "Files": [
     {
-      "Id": "D:\\Folder Data\\Project WebApp\\Auto FITs\\wwwroot\\background-1.png",
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\background-1.png",
       "PackagePath": "staticwebassets\\background-1.png"
     },
     {
-      "Id": "D:\\Folder Data\\Project WebApp\\Auto FITs\\wwwroot\\images\\Logo.png",
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\images\\Logo.png",
       "PackagePath": "staticwebassets\\images\\Logo.png"
     },
     {
-      "Id": "D:\\Folder Data\\Project WebApp\\Auto FITs\\wwwroot\\index.html",
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "D:\\Folder Data\\Project WebApp\\Auto FITs\\wwwroot\\script.js",
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\script.js",
       "PackagePath": "staticwebassets\\script.js"
     },
     {
-      "Id": "D:\\Folder Data\\Project WebApp\\Auto FITs\\wwwroot\\style.css",
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\style.css",
       "PackagePath": "staticwebassets\\style.css"
     },
     {
