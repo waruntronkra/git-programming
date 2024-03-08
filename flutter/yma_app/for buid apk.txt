@@ -1,5 +1,5 @@
 [Build APK]
-Add => <uses-permission android:name="android.permission.INTERNET"/>
+(If ot add yet) Add => <uses-permission android:name="android.permission.INTERNET"/>
 Before build 
 Path: /android/app/src/main/AndroidManifest.xml
 flutter build apk --release
