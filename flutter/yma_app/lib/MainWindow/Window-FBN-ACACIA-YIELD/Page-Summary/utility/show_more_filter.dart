@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -126,9 +127,9 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
                         padding: const EdgeInsets.only(top: 3),
                         alignment: Alignment.topLeft,
                         width: 60,
-                        child: const Text(
+                        child: Text(
                           'Group By', 
-                          style: TextStyle(
+                          style: GoogleFonts.nunito(
                             fontSize: 12, 
                             fontWeight: FontWeight.bold
                           )
@@ -147,10 +148,10 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
                                 Expanded(
                                   child: Text(
                                     defaultGroupBy,
-                                    style: const TextStyle(
+                                    style: GoogleFonts.nunito(
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold,
-                                      color: Color.fromARGB(255, 3, 141, 93)
+                                      color: const Color.fromARGB(255, 3, 141, 93)
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -161,9 +162,9 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
                               value: item,
                               child: Text(
                                 item,
-                                style: const TextStyle(
+                                style: GoogleFonts.nunito(
                                   fontSize: 11,
-                                  color: Color.fromARGB(255, 3, 141, 93)
+                                  color: const Color.fromARGB(255, 3, 141, 93)
                                 ),
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -215,9 +216,9 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
                         margin: const EdgeInsets.only(left: 10),
                         padding: const EdgeInsets.only(top: 3),
                         alignment: Alignment.topLeft,
-                        child: const Text(
+                        child: Text(
                           'Filter', 
-                          style: TextStyle(
+                          style: GoogleFonts.nunito(
                             fontSize: 12, 
                             fontWeight: FontWeight.bold
                           )
@@ -236,10 +237,10 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
                                 Expanded(
                                   child: Text(
                                     defaultFilter,
-                                    style: const TextStyle(
+                                    style: GoogleFonts.nunito(
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold,
-                                      color: Color.fromARGB(255, 3, 141, 93)
+                                      color: const Color.fromARGB(255, 3, 141, 93)
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   )
@@ -250,9 +251,9 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
                               value: item,
                               child: Text(
                                 item,
-                                style: const TextStyle(
+                                style: GoogleFonts.nunito(
                                   fontSize: 11,
-                                  color: Color.fromARGB(255, 3, 141, 93)
+                                  color: const Color.fromARGB(255, 3, 141, 93)
                                 ),
                                 overflow: TextOverflow.ellipsis,
                               )
@@ -396,11 +397,11 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
                             },
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 19,
                           child: Text(
                             'Unselect All', 
-                            style: TextStyle(
+                            style: GoogleFonts.nunito(
                               fontSize: 12, 
                               fontWeight: FontWeight.bold
                             )
@@ -522,7 +523,7 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
             ),
             child: Text(
               data[i],
-              style: TextStyle(
+              style: GoogleFonts.nunito(
                 color: isCheckedFrom[i] == true ? Colors.white : Colors.black,
                 fontSize: 11
               ),

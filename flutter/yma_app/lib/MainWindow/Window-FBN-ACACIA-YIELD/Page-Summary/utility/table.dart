@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TableFBNYIELD extends StatefulWidget {
   const TableFBNYIELD({
@@ -39,9 +40,9 @@ class _TableFBNYIELDState extends State<TableFBNYIELD> {
       child: Center(
         child: Text(
           col,
-          style: const TextStyle(
+          style: GoogleFonts.nunito(
             fontSize: 12,
-            color: Color.fromARGB(255, 255, 255, 255),
+            color: const Color.fromARGB(255, 255, 255, 255),
             fontWeight: FontWeight.bold),
         ),
       ),
@@ -59,7 +60,7 @@ class _TableFBNYIELDState extends State<TableFBNYIELD> {
               padding: const EdgeInsets.only(left: 5, right: 5),
               child: Text(
                 '$cell',
-                style: const TextStyle(
+                style: GoogleFonts.nunito(
                   fontSize: 11,
                   color: Colors.black,
                 ),

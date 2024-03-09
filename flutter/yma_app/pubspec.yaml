@@ -58,6 +58,8 @@ dependencies:
   telephony: ^0.2.0
   device_imei: ^0.0.4+2
   shorebird_code_push: ^1.1.3
+  google_fonts: ^6.2.1
+  flutter_user_guildance: ^2.0.5
 
 dev_dependencies:
   flutter_test:

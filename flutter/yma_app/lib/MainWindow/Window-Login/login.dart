@@ -198,7 +198,7 @@ class _WindowLoginState extends State<WindowLogin> {
                   ),
                 ) 
               ), 
-              Text(phonNo)
+              Text(phonNo),
             ],
           ),
         ),

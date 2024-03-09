@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_user_guildance/flutter_user_guildance.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'dart:convert';
@@ -21,6 +23,7 @@ class WindowFBNYIELD extends StatefulWidget {
 class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>(); 
+  UserGuidanceController userGuidanceController = UserGuidanceController();
 
   late ScrollController scrollController;
   SlidingUpPanelController panelController = SlidingUpPanelController();
@@ -113,6 +116,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
+        startDate = selectedDate;
         fromDATE = DateFormat('dd/MM/yyyy HH:mm').format(selectedDate);
       });
     }
@@ -140,6 +144,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
+        endDate = selectedDate;
         toDATE = DateFormat('dd/MM/yyyy HH:mm').format(selectedDate);
       });
     }
@@ -160,16 +165,10 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
       } else {}
     });
     updateDateRangeForToday();
-    
+   
     fetchDataLevel();
 
     super.initState();
-  }
-
-  // Clear memory
-  @override 
-  void dispose() { 
-    super.dispose(); 
   }
 
   // DATE for [THIS]
@@ -234,201 +233,227 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Stack(
-        children: [
-          Scaffold(
-            key: scaffoldKey,
-            appBar: PreferredSize(
-              preferredSize: const Size.fromHeight(100),
-              child: AppBar(
-                title: Text(
-                  "$levelSelected : $modelSelected",
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-                bottom: const TabBar(
-                  labelColor: Color.fromARGB(255, 3, 141, 93),
-                  indicatorColor: Color.fromARGB(255, 3, 141, 93),
-                  tabs: <Widget>[
-                    Tab(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.data_thresholding_outlined),
-                          Text('  OVERALL')
-                        ],
-                      )
+    return UserGuidance(
+      controller: userGuidanceController,
+      opacity: 0.5,
+      child: DefaultTabController(
+        length: 2,
+        child: Stack(
+          children: [
+            Scaffold(
+              key: scaffoldKey,
+              appBar: PreferredSize(
+                preferredSize: const Size.fromHeight(100),
+                child: AppBar(
+                  title: Text(
+                    "$levelSelected : $modelSelected",
+                    style: GoogleFonts.nunito(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold
                     ),
-                    Tab(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.bar_chart_rounded),
-                          Text('  PARETO')
-                        ],
-                      )
+                  ),
+                  actions: [
+                    IconButton(
+                      onPressed: () {
+                        userGuidanceController.show();
+                      },
+                      icon: const Icon(Icons.help),
                     )
                   ],
-                  labelStyle: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.bold
-                  ),
-                ),         
+                  bottom: TabBar(
+                    labelColor:const Color.fromARGB(255, 3, 141, 93),
+                    indicatorColor:const Color.fromARGB(255, 3, 141, 93),
+                    tabs: const <Widget>[
+                      Tab(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.data_thresholding_outlined),
+                            Text('  OVERALL')
+                          ],
+                        )
+                      ),
+                      Tab(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.bar_chart_rounded),
+                            Text('  PARETO')
+                          ],
+                        )
+                      )
+                    ],
+                    labelStyle: GoogleFonts.nunito(
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),         
+                ),
               ),
+              // floatingActionButton: Builder(
+              //   builder: (context) => FloatingActionButton(
+              //     backgroundColor: const Color.fromARGB(255, 3, 141, 93),
+              //     onPressed: () {
+              //       Scaffold.of(context).openEndDrawer();
+              //     },
+              //     child: const Icon(Icons.menu, color: Colors.white),
+              //   )
+              // ),
+              // endDrawer: Drawer(
+              //   child: ListView(
+              //     padding: EdgeInsets.zero,
+              //     children: [
+              //       const UserAccountsDrawerHeader(
+              //         decoration: BoxDecoration(
+              //           gradient: LinearGradient(
+              //             begin: Alignment.topRight,
+              //             end: Alignment.bottomLeft,
+              //             colors: [
+              //               Color.fromARGB(255, 3, 141, 93),
+              //               Color.fromARGB(255, 114, 249, 202)
+              //             ]
+              //           )
+              //         ),
+              //         accountName: Text(''),
+              //         accountEmail: Text(
+              //           'waruntronk.fabrinet.co.th',
+              //           style: GoogleFonts.nunito(
+              //             fontWeight: FontWeight.bold,
+              //             color: Color.fromARGB(255, 255, 255, 255),
+              //             fontSize: 15
+              //           ),
+              //         ),
+              //         currentAccountPicture: CircleAvatar(
+              //           backgroundImage: NetworkImage(
+              //             "https://fits/emp_pic/511997.jpg"
+              //           ),
+              //         ),
+              //         currentAccountPictureSize: Size(100, 100),
+              //       ),
+              //       ..._buildSubListLevel(dataLevelObject),
+              //     ],
+              //   ),
+              // ),
+              body: RefreshIndicator(
+                key: _refreshIndicatorKey,
+                displacement: 50,
+                color: Colors.white,
+                backgroundColor: const Color.fromARGB(255, 3, 141, 93),
+                onRefresh: () async {
+                  await queryDataForParetoChart('Pareto');
+                  await queryDataForYieldChart('Yield');
+                },
+                child: Container(
+                  color: const Color.fromARGB(172, 239, 245, 250),
+                  child: Column(
+                    children: [
+                      Container(
+                        child: fixAllPage()
+                      ),
+                      Expanded(
+                        child: TabBarView(
+                          children: <Widget>[
+                            _pageAverall(),
+                            _pagePareto(),
+                          ]
+                        )
+                      )
+                    ]
+                  )
+                )
+              )
             ),
-            endDrawer: Drawer(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  const UserAccountsDrawerHeader(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.bottomLeft,
-                        colors: [
-                          Color.fromARGB(255, 3, 141, 93),
-                          Color.fromARGB(255, 114, 249, 202)
-                        ]
+            SlidingUpPanelWidget(
+              panelController: panelController,
+              controlHeight: 50.0,
+              anchor: 0.4,
+              onTap: () {
+                if (SlidingUpPanelStatus.expanded == panelController.status) {
+                  panelController.collapse();
+                } else {
+                  panelController.expand();
+                }
+              },
+              enableOnTap: false,
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15.0),
+                decoration: const ShapeDecoration(
+                  color: Color.fromARGB(255, 3, 141, 93),
+                  shadows: [
+                    BoxShadow(
+                      blurRadius: 5.0,
+                      spreadRadius: 2.0,
+                      color: Color(0x11000000)
+                    )
+                  ],
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0),
+                    ),
+                  ),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      alignment: Alignment.center,
+                      height: 50.0,
+                      child: UserGuildanceAnchor(
+                        step: 1,
+                        tag: "Step 1: Choose product",
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.menu,
+                              size: 28,
+                              color: Colors.white,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(
+                                left: 8.0,
+                              ),
+                            ),
+                            Text(
+                              'Choose Product to View',
+                              style: GoogleFonts.nunito(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14
+                              ),
+                            )
+                          ],
+                        )
                       )
                     ),
-                    accountName: Text(''),
-                    accountEmail: Text(
-                      'waruntronk.fabrinet.co.th',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        fontSize: 15
-                      ),
-                    ),
-                    currentAccountPicture: CircleAvatar(
-                      backgroundImage: NetworkImage(
-                        "https://fits/emp_pic/511997.jpg"
-                      ),
-                    ),
-                    currentAccountPictureSize: Size(100, 100),
-                  ),
-                  ..._buildSubListLevel(dataLevelObject),
-                ],
-              ),
-            ),
-            body: RefreshIndicator(
-              key: _refreshIndicatorKey,
-              displacement: 50,
-              color: Colors.white,
-              backgroundColor: const Color.fromARGB(255, 3, 141, 93),
-              onRefresh: () async {
-                await queryDataForYieldChart('Yield');
-                await queryDataForParetoChart('Pareto');
-              },
-              child: Container(
-                color: const Color.fromARGB(172, 239, 245, 250),
-                child: Column(
-                  children: [
                     Container(
-                      child: fixAllPage()
-                    ),
-                    Expanded(
-                      child: TabBarView(
-                        children: <Widget>[
-                          _pageAverall(),
-                          _pagePareto(),
-                        ]
+                      margin: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5)
+                      ),
+                      height: MediaQuery.of(context).size.height * 0.83,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: _buildSubListLevel(dataLevelObject),
+                        )
                       )
                     )
                   ]
                 )
               )
-            ),
-          ),
-          
-          // SlidingUpPanelWidget(
-          //   panelController: panelController,
-          //   controlHeight: 50.0,
-          //   anchor: 0.4,
-          //   onTap: () {
-          //     if (SlidingUpPanelStatus.expanded == panelController.status) {
-          //       panelController.collapse();
-          //     } else {
-          //       panelController.expand();
-          //     }
-          //   },
-          //   enableOnTap: true,
-          //   child: Container(
-          //     margin: const EdgeInsets.symmetric(horizontal: 15.0),
-          //     decoration: const ShapeDecoration(
-          //       color: Color.fromARGB(255, 3, 141, 93),
-          //       shadows: [
-          //         BoxShadow(
-          //           blurRadius: 5.0,
-          //           spreadRadius: 2.0,
-          //           color: Color(0x11000000)
-          //         )
-          //       ],
-          //       shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.only(
-          //           topLeft: Radius.circular(10.0),
-          //           topRight: Radius.circular(10.0),
-          //         ),
-          //       ),
-          //     ),
-          //     child: Column(
-          //       mainAxisSize: MainAxisSize.min,
-          //       children: <Widget>[
-          //         Container(
-          //           alignment: Alignment.center,
-          //           height: 50.0,
-          //           child: const  Row(
-          //             mainAxisAlignment: MainAxisAlignment.center,
-          //             children: [
-          //               Icon(
-          //                 Icons.menu,
-          //                 size: 30,
-          //                 color: Colors.white,
-          //               ),
-          //               Padding(
-          //                 padding: EdgeInsets.only(
-          //                   left: 8.0,
-          //                 ),
-          //               ),
-          //               Text(
-          //                 'Choose Product to View',
-          //                 style: TextStyle(
-          //                   color: Colors.white,
-          //                   fontWeight: FontWeight.bold,
-          //                   fontSize: 16
-          //                 ),
-          //               )
-          //             ],
-          //           ),
-          //         ),
-          //         Divider(
-          //           height: 0.5,
-          //           color: Colors.grey[300],
-          //         ),
-          //         Container(
-          //           margin: const EdgeInsets.all(5),
-          //           decoration: BoxDecoration(
-          //             color: Colors.white,
-          //             borderRadius: BorderRadius.circular(5)
-          //           ),
-          //           height: MediaQuery.of(context).size.height * 0.83,
-          //           child: SingleChildScrollView(
-          //             child: Column(
-          //               children: _buildSubListLevel(dataLevelObject),
-          //             )
-          //           )
-          //         )
-          //       ]
-          //     )
-          //   )
-          // )
-        ]
+            )
+          ]
+        )
       )
     );
+  }
+
+  @override
+  void dispose() {
+    userGuidanceController.dispose();
+    super.dispose();
   }
 
   String defaultAdMoreFilterString = '{No FIlter}';
@@ -443,261 +468,297 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
             child: Column(
               children: [
                 // ----- Row DATE -----
-                Row(
-                  children: [
-                    // Day roll back ==================
-                    Container(
-                      width: 40,
-                      height: 40,
-                      margin: const EdgeInsets.only(top: 5, bottom: 5),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 3, 141, 93),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 5,
-                            offset: Offset(1, 1),
-                            color: Colors.grey,
-                          )
-                        ],
-                        borderRadius: BorderRadius.circular(10)
-                      ),
-                      child: RawMaterialButton(
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_back_rounded, size: 15, color: Colors.white),
-                            Text('D', style: TextStyle(color: Colors.white))
+                UserGuildanceAnchor(
+                  step: 2,
+                  tag: "Step 2: Select by Day/Week/Month/Quarter",
+                  child: Row(
+                    children: [
+                      // Day roll back ==================
+                      Container(
+                        width: 40,
+                        height: 40,
+                        margin: const EdgeInsets.only(top: 5, bottom: 5),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 3, 141, 93),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 1),
+                              color: Colors.grey,
+                            )
                           ],
+                          borderRadius: BorderRadius.circular(10)
                         ),
-                        onPressed: () {
-                          setState(() {
-                            updateDateRangeForYesterday();
-                            setDateRange();
-                          });
-                        },
-                      )
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 215, 249, 237),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 5,
-                            offset: Offset(1, 1),
-                            color: Colors.grey,
+                        child: UserGuildanceAnchor(
+                          step: 3,
+                          tag: 'Last Day',
+                          child: RawMaterialButton(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.arrow_back_rounded, size: 15, color: Colors.white),
+                                Text('D', style: GoogleFonts.nunito(color: Colors.white))
+                              ],
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                updateDateRangeForYesterday();
+                                setDateRange();
+                              });
+                            }
                           )
-                        ],
-                        borderRadius: BorderRadius.circular(10),
+                        )
                       ),
-                      child: RawMaterialButton(
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_downward_rounded, size: 15),
-                            Text('D')
+                      Container(
+                        width: 40,
+                        height: 40,
+                        margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 215, 249, 237),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 1),
+                              color: Colors.grey,
+                            )
                           ],
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            updateDateRangeForToday();
-                            setDateRange();
-                          });
-                        },
-                      )
-                    ),
-                    // Week roll back ==================
-                    Container(
-                      width: 40,
-                      height: 40,
-                      margin: const EdgeInsets.only(top: 5, bottom: 5, left: 15),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 3, 141, 93),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 5,
-                            offset: Offset(1, 1),
-                            color: Colors.grey,
+                        child: UserGuildanceAnchor(
+                          step: 4,
+                          tag: 'This Day',
+                          child: RawMaterialButton(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.arrow_downward_rounded, size: 15),
+                                Text('D', style: GoogleFonts.nunito(color: Colors.black))
+                              ],
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                updateDateRangeForToday();
+                                setDateRange();
+                              });
+                            }
                           )
-                        ],
-                        borderRadius: BorderRadius.circular(10),
+                        )
                       ),
-                      child: RawMaterialButton(
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_back_rounded, size: 15, color: Colors.white),
-                            Text('W', style: TextStyle(color: Colors.white))
+                      // Week roll back ==================
+                      Container(
+                        width: 40,
+                        height: 40,
+                        margin: const EdgeInsets.only(top: 5, bottom: 5, left: 15),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 3, 141, 93),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 1),
+                              color: Colors.grey,
+                            )
                           ],
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            updateDateRangeForLastWeek();
-                            setDateRange();
-                          });
-                        },
-                      )
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 215, 249, 237),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 5,
-                            offset: Offset(1, 1),
-                            color: Colors.grey,
+                        child: UserGuildanceAnchor(
+                          step: 5,
+                          tag: 'Last Week',
+                          child: RawMaterialButton(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.arrow_back_rounded, size: 15, color: Colors.white),
+                                Text('W', style: GoogleFonts.nunito(color: Colors.white))
+                              ],
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                updateDateRangeForLastWeek();
+                                setDateRange();
+                              });
+                            }
                           )
-                        ],
-                        borderRadius: BorderRadius.circular(10),
+                        )
                       ),
-                      child: RawMaterialButton(
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_downward_rounded, size: 15),
-                            Text('W')
+                      Container(
+                        width: 40,
+                        height: 40,
+                        margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 215, 249, 237),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 1),
+                              color: Colors.grey,
+                            )
                           ],
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            updateDateRangeForThisWeek();
-                            setDateRange();
-                          });
-                        },
-                      )
-                    ),
-                    // Month roll back ==================
-                    Container(
-                      width: 40,
-                      height: 40,
-                      margin: const EdgeInsets.only(top: 5, bottom: 5, left: 15),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 3, 141, 93),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 5,
-                            offset: Offset(1, 1),
-                            color: Colors.grey,
+                        child: UserGuildanceAnchor(
+                          step: 6,
+                          tag: 'This Week',
+                          child: RawMaterialButton(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.arrow_downward_rounded, size: 15),
+                                Text('W', style: GoogleFonts.nunito(color: Colors.black))
+                              ],
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                updateDateRangeForThisWeek();
+                                setDateRange();
+                              });
+                            }
                           )
-                        ],
-                        borderRadius: BorderRadius.circular(10),
+                        )
                       ),
-                      child: RawMaterialButton(
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_back_rounded, size: 15, color: Colors.white),
-                            Text('M', style: TextStyle(color: Colors.white))
+                      // Month roll back ==================
+                      Container(
+                        width: 40,
+                        height: 40,
+                        margin: const EdgeInsets.only(top: 5, bottom: 5, left: 15),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 3, 141, 93),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 1),
+                              color: Colors.grey,
+                            )
                           ],
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            updateDateRangeForLastMonth();
-                            setDateRange();
-                          });
-                        },
-                      )
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 215, 249, 237),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 5,
-                            offset: Offset(1, 1),
-                            color: Colors.grey,
+                        child: UserGuildanceAnchor(
+                          step: 7,
+                          tag: 'Last Month',
+                          child: RawMaterialButton(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.arrow_back_rounded, size: 15, color: Colors.white),
+                                Text('M', style: GoogleFonts.nunito(color: Colors.white))
+                              ],
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                updateDateRangeForLastMonth();
+                                setDateRange();
+                              });
+                            }
                           )
-                        ],
-                        borderRadius: BorderRadius.circular(10),
+                        )
                       ),
-                      child: RawMaterialButton(
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_downward_rounded, size: 15),
-                            Text('M')
+                      Container(
+                        width: 40,
+                        height: 40,
+                        margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 215, 249, 237),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 1),
+                              color: Colors.grey,
+                            )
                           ],
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            updateDateRangeForThisMonth();
-                            setDateRange();
-                          });
-                        },
-                      )
-                    ),
-                    // Quarter roll back ==================
-                    Container(
-                      width: 40,
-                      height: 40,
-                      margin: const EdgeInsets.only(top: 5, bottom: 5, left: 15),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 3, 141, 93),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 5,
-                            offset: Offset(1, 1),
-                            color: Colors.grey,
+                        child: UserGuildanceAnchor(
+                          step: 8,
+                          tag: 'This Month',
+                          child: RawMaterialButton(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.arrow_downward_rounded, size: 15),
+                                Text('M', style: GoogleFonts.nunito(color: Colors.black))
+                              ],
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                updateDateRangeForThisMonth();
+                                setDateRange();
+                              });
+                            }
                           )
-                        ],
-                        borderRadius: BorderRadius.circular(10),
+                        )
                       ),
-                      child: RawMaterialButton(
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_back_rounded, size: 15, color: Colors.white),
-                            Text('Q', style: TextStyle(color: Colors.white))
+                      // Quarter roll back ==================
+                     Container(
+                        width: 40,
+                        height: 40,
+                        margin: const EdgeInsets.only(top: 5, bottom: 5, left: 15),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 3, 141, 93),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 1),
+                              color: Colors.grey,
+                            )
                           ],
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            updateDateRangeForLastQuarter();
-                            setDateRange();
-                          });
-                        },
-                      )
-                    ),
-                    Container(
-                      width: 40,
-                      height: 40,
-                      margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 215, 249, 237),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 5,
-                            offset: Offset(1, 1),
-                            color: Colors.grey,
+                        child:  UserGuildanceAnchor(
+                          step: 9,
+                          tag: 'Last Quarter',
+                          child: RawMaterialButton(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.arrow_back_rounded, size: 15, color: Colors.white),
+                                Text('Q', style: GoogleFonts.nunito(color: Colors.white))
+                              ],
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                updateDateRangeForLastQuarter();
+                                setDateRange();
+                              });
+                            }
                           )
-                        ],
-                        borderRadius: BorderRadius.circular(10),
+                        )
                       ),
-                      child: RawMaterialButton(
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.arrow_downward_rounded, size: 15),
-                            Text('Q')
+                     Container(
+                        width: 40,
+                        height: 40,
+                        margin: const EdgeInsets.only(top: 5, bottom: 5, left: 5),
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 215, 249, 237),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 1),
+                              color: Colors.grey,
+                            )
                           ],
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            updateDateRangeForThisQuarter();
-                            setDateRange();
-                          });
-                        },
-                      )
-                    ),               
-                  ]
+                        child:  UserGuildanceAnchor(
+                          step: 10,
+                          tag: 'This Quarter',
+                          child: RawMaterialButton(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.arrow_downward_rounded, size: 15),
+                                Text('Q', style: GoogleFonts.nunito(color: Colors.black))
+                              ],
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                updateDateRangeForThisQuarter();
+                                setDateRange();
+                              });
+                            }
+                          )
+                        ) 
+                      )             
+                    ]
+                  )
                 ),
                 // ----- Row DATE Showing -----
                 Container(
@@ -709,9 +770,9 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                         height: 20,
                         alignment: Alignment.topLeft,
                         width: 35,
-                        child: const Text(
+                        child: Text(
                           'From', 
-                          style: TextStyle(
+                          style: GoogleFonts.nunito(
                             fontSize: 12, 
                           )
                         )
@@ -727,25 +788,29 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                         child: Text(
                           fromDATE,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: GoogleFonts.nunito(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 3, 141, 93)
+                            color:const Color.fromARGB(255, 3, 141, 93)
                           ),
                         )
                       ),
-                      IconButton(
-                        icon: const Icon(Icons.calendar_month_outlined),
-                        onPressed: () => _selectDateFrom(context)
+                      UserGuildanceAnchor(
+                        step: 11,
+                        tag: "[From] Date",
+                        child: IconButton(
+                          icon: const Icon(Icons.calendar_month_outlined),
+                          onPressed: () => _selectDateFrom(context)
+                        )
                       ),
                       // Label To ==================
                       Container(
                         height: 20,
                         alignment: Alignment.topRight,
                         width: 35,
-                        child: const Text(
+                        child: Text(
                           'To', 
-                          style: TextStyle(
+                          style: GoogleFonts.nunito(
                             fontSize: 12, 
                           )
                         )
@@ -762,17 +827,21 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                         child: Text(
                           toDATE,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
+                          style: GoogleFonts.nunito(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 3, 141, 93)
+                            color: const Color.fromARGB(255, 3, 141, 93)
                           ),
                         )
                       ),
-                      IconButton(
-                        icon: const Icon(Icons.calendar_month_outlined),
-                        onPressed: () => _selectDateTo(context)
-                      ),
+                      UserGuildanceAnchor(
+                        step: 12,
+                        tag: "[To] Date",
+                          child: IconButton(
+                          icon: const Icon(Icons.calendar_month_outlined),
+                          onPressed: () => _selectDateTo(context)
+                        )
+                      )
                     ]
                   )            
                 ),            
@@ -789,21 +858,31 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                       )
                     ]
                   ),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: const Color.fromARGB(255, 3, 141, 93),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)
-                      )
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        expandMoreFilter = !expandMoreFilter;
-                      });
-                    },
-                    child: const Text('See More Filter'),
-                  ),
+                  child: UserGuildanceAnchor(
+                    step: 13,
+                    tag: "Step 3: Click to see filter",
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: const Color.fromARGB(255, 3, 141, 93),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)
+                        )
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          expandMoreFilter = !expandMoreFilter;
+                        });
+                      },
+                      child: Text(
+                        'See More Filter',
+                        style: GoogleFonts.nunito(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    )
+                  )
                 ),
                 // More filter ==================
                 AnimatedContainer(
@@ -823,7 +902,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                     ]
                   ),
                   child: filterBox(),
-                )
+                )            
               ]        
             )
           ),
@@ -859,9 +938,9 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                   side: const BorderSide(color: Colors.grey)
                 )
               ),
-              child: const Text(
+              child: Text(
                 'QUERY',
-                style: TextStyle(
+                style: GoogleFonts.nunito(
                   color: Colors.black,
                   fontSize: 13,
                   fontWeight: FontWeight.bold
@@ -915,7 +994,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
               )
             )
           ),
-          const SizedBox(height: 50)   
+          const SizedBox(height: 100)   
         ]
       )
     );
@@ -1293,8 +1372,14 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
               children: [
                 const Icon(Icons.folder_copy, color: Colors.black),
                 const SizedBox(width: 8),
-                Text(dict.key, style: const TextStyle(color: Colors.black)),
-              ],
+                Text(
+                  dict.key, 
+                  style: GoogleFonts.nunito(
+                    color: Colors.black,
+                    fontSize: 13
+                  )
+                )
+              ]
             ),
             children: [..._buildSubListModel(dataModelArr)],
           ),
@@ -1334,10 +1419,16 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                 const SizedBox(width: 30),
                 const Icon(Icons.snippet_folder, color: Colors.black),
                 const SizedBox(width: 8),
-                Text(item, style: const TextStyle(color: Colors.black)),
-              ],
-            ),
-          ),
+                Text(
+                  item, 
+                  style: GoogleFonts.nunito(
+                    color: Colors.black,
+                    fontSize: 13
+                  )
+                )
+              ]
+            )
+          )
         );
       }
     }

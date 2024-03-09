@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyLineChart extends StatelessWidget {
   const MyLineChart({
@@ -59,7 +59,7 @@ class MyLineChart extends StatelessWidget {
       //           const SizedBox(width: 5),
       //           Text(
       //             '${legend[i]} : ${dataAllIndex[i]}',
-      //             style: const TextStyle(
+      //             style: const GoogleFonts.nunito(
       //               fontSize: 11
       //             ),
       //           )
@@ -87,7 +87,7 @@ class MyLineChart extends StatelessWidget {
       //       children: [
       //         Text(
       //           xAxis[trackballDetails.pointIndex!], 
-      //           style: const TextStyle(
+      //           style: const GoogleFonts.nunito(
       //             fontSize: 12,
       //             fontWeight: FontWeight.bold
       //           ),
@@ -113,10 +113,10 @@ class MyLineChart extends StatelessWidget {
 
     return SfCartesianChart(
       backgroundColor: Colors.transparent,
-      title: const ChartTitle(
+      title: ChartTitle(
         text: '% YIELD',
-        textStyle: TextStyle(
-          color: Color.fromARGB(255, 0, 0, 0), 
+        textStyle: GoogleFonts.nunito(
+          color: const Color.fromARGB(255, 0, 0, 0), 
           fontWeight: FontWeight.bold,
           fontSize: 13
         )
@@ -124,10 +124,10 @@ class MyLineChart extends StatelessWidget {
       primaryXAxis: const CategoryAxis(
         labelRotation: 0,
       ),
-      legend: const Legend(
+      legend: Legend(
         isVisible: true,
         position: LegendPosition.top,
-        textStyle: TextStyle(fontSize: 10)
+        textStyle: GoogleFonts.nunito(fontSize: 10)
       ),
       trackballBehavior: trackballBehavior,
       series: seriesList,

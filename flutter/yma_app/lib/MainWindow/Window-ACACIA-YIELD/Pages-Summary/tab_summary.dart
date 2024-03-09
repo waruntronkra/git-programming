@@ -3,7 +3,6 @@ import 'dart:convert';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'dart:async';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
 import 'package:http/http.dart' as http;
 import 'package:cool_alert/cool_alert.dart';
 // import 'table_yield.dart';
@@ -29,8 +28,6 @@ class WindowATSYield extends StatefulWidget {
 }
 
 class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProviderStateMixin{
-  final RoundedLoadingButtonController _btnController = RoundedLoadingButtonController();
-
   var tableProductName = [];
 
   double _startValue = 0;
@@ -119,19 +116,6 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
     if (value.isNotEmpty) {
       setState(() {
         dataParetoCallBack = value; // process
-      });
-    }
-  }
-
-  void reConnect() async {
-    await fetchDataLevel();
-    if (connectionError == true) {
-        _scaffoldKey.currentState?.openEndDrawer();
-    }
-    else {
-      _btnController.error();
-      Timer(const Duration(seconds: 1), () {
-        _btnController.reset();
       });
     }
   }
@@ -324,44 +308,14 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                             SizedBox(
                               width: 350,
                               height: 350,
-                              child: Image.asset('images/FBN_ACA_1.png')
+                              child: Image.asset('assets/images/FBN_ACA_1.png')
                             )
                             :
-                            Column(
-                              children: [
-                                SizedBox(
-                                  width: 350,
-                                  height: 350,
-                                  child: Image.asset('images/FBN_ACA_2.png')
-                                ),
-                                const Text(
-                                  '--- Error connection! ---',
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 20),
-                                  width: MediaQuery.of(context).size.width * 0.5,
-                                  child: RoundedLoadingButton(
-                                    successColor: const Color.fromARGB(255, 3, 141, 93),
-                                    color: Colors.red,
-                                    controller: _btnController,
-                                    onPressed: () {
-                                      reConnect();
-                                    },
-                                    child: const Text(
-                                      'Re-Connection', 
-                                      style: TextStyle(
-                                        color: Colors.white
-                                      )
-                                    )
-                                  )
-                                ) 
-                              ]
-                            )
+                            SizedBox(
+                              width: 350,
+                              height: 350,
+                              child: Image.asset('assets/images/FBN_ACA_2.png')
+                            ),
                           ),
                       ),
                       // +++++++++++++++++++++ [Tab Pareto] +++++++++++++++++++++
@@ -376,7 +330,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                 child: SizedBox(
                                   width: 350,
                                   height: 350,
-                                  child: Image.asset('images/FBN_ACA_1.png')
+                                  child: Image.asset('assets/images/FBN_ACA_1.png')
                                 )
                               )
                             ),
