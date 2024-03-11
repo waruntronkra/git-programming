@@ -9,7 +9,7 @@ import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter_sliding_up_panel/flutter_sliding_up_panel.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:YMs/MainWindow/Window-EP-YIELD/Pages-Summary/utility/multiLineChart.dart';
-import 'package:YMs/MainWindow/Window-EP-YIELD/Pages-Summary/utility/barchart.dart';
+// import 'package:YMs/MainWindow/Window-EP-YIELD/Pages-Summary/utility/barchart.dart';
 import 'package:YMs/MainWindow/Window-EP-YIELD/Pages-Summary/utility/table.dart';
 import 'package:YMs/MainWindow/Window-EP-YIELD/Pages-Summary/utility/show_more_filter.dart';
 
@@ -119,6 +119,7 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
+        startDate = selectedDate;
         fromDATE = DateFormat('dd/MM/yyyy HH:mm').format(selectedDate);
       });
     }
@@ -146,6 +147,7 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
+        endDate = selectedDate;
         toDATE = DateFormat('dd/MM/yyyy HH:mm').format(selectedDate);
       });
     }
@@ -987,10 +989,10 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
           stringFilterSelectedCode,
           defaultGroupBy,
           drillOn,
-          '01'
+          '02'
         ]);
         var dataQueried = await getDataPOST(
-          'https://supply-api.fabrinet.co.th/api/YMA/EPYieldQueryDetail',
+          'https://localhost:44342/api/YMA/EPYieldQueryDetail',
           {
             'Model': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
             'From': stringEncryptedArray['data'][1],
@@ -1104,6 +1106,7 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
           setState(() {
             dataLineChart = dataToLineChart;
             dataQtyLineChart = dataQtyToLineChart;
+            
             xAxis = categoryGroupBy;
           });
         }

@@ -62,7 +62,8 @@ $(document).ready(async function() {
                 process == 'EXP' ||
                 process == 'LCT1' ||
                 process == 'LCT2' ||
-                process == 'LCTT'
+                process == 'LCTT' ||
+                process == 'CFG'
                 ) 
                 {
                 model = 'All Module';
@@ -76,11 +77,13 @@ $(document).ready(async function() {
 
             parameter_FITS_array = [];
             for (let i = 0; i < data['data'].length; i++) {
-                if (data['data'][i]['PARAMETER'] != 'Lid RT & SN') {
-                    parameter_FITS_array.push(data['data'][i]['PARAMETER']);
-                }
-                else {
-                    parameter_FITS_array.push('Lid RT _SN');
+                if (data['data'][i]['PARAMETER'] != 'Test Param 1' && data['data'][i]['PARAMETER'] != 'Test Param 2' && data['data'][i]['PARAMETER'] != 'Test Param 3') {
+                    if (data['data'][i]['PARAMETER'] != 'Lid RT & SN') {
+                        parameter_FITS_array.push(data['data'][i]['PARAMETER']);
+                    }
+                    else {
+                        parameter_FITS_array.push('Lid RT _SN');
+                    }
                 }
             }
 
@@ -365,7 +368,6 @@ $(document).ready(async function() {
     // Delete Button SN Indicator ****************************************************
     $('#delete-sn-indicator').click(function () { 
         try {
-			console.log($(this).attr('id'))
 			var last_button_id_NEW;
 			if (edit_active == true) {
 				last_button_id_NEW = button_id_for_revise;
@@ -552,16 +554,17 @@ $(document).ready(async function() {
                             if (parameter_FITS_array[j] == 'FBN Serial No') {
                                 array.push(listSN[i]);
                             }
-                            else if (parameter_FITS_array[j] == 'send to') {
+                            else if (parameter_FITS_array[j] == 'send to' && process != 'CFG') {
                                 array.push(map_work_flow[i]);
                             }  
+                            else if (parameter_FITS_array[j] == 'send to' && process == 'CFG') {
+                                array.push('3800L : Label Printing');
+                            } 
 							else if (parameter_FITS_array[j] == 'Error Code') {
                                 array.push('-');
                             }
-                            
                             else {
                                 try {
-									
 									if (process == 'EXP' && parameter_FITS_array[j] == 'Tester Fiber Tx SN') {
 										array.push('');					
 									}
@@ -798,6 +801,9 @@ $(document).ready(async function() {
             else if (process == 'DEV01') {
                 operation = 'DEV01';
             }
+            else if (process == 'CFG') {
+                operation = '3800';
+            }
 
             if (
                 process == 'FCAL' ||
@@ -807,7 +813,8 @@ $(document).ready(async function() {
                 process == 'EXP' ||
                 process == 'LCT1' ||
                 process == 'LCT2' ||
-                process == 'LCTT'
+                process == 'LCTT' ||
+                process == 'CFG'
                 ) 
                 {
                 model = 'All Module';
@@ -826,11 +833,13 @@ $(document).ready(async function() {
 
             parameter_FITS_array = [];
             for (let i = 0; i < data['data'].length; i++) {
-                if (data['data'][i]['PARAMETER'] != 'Lid RT & SN') {
-                    parameter_FITS_array.push(data['data'][i]['PARAMETER']);
-                }
-                else {
-                    parameter_FITS_array.push('Lid RT _SN');
+                if (data['data'][i]['PARAMETER'] != 'Test Param 1' && data['data'][i]['PARAMETER'] != 'Test Param 2' && data['data'][i]['PARAMETER'] != 'Test Param 3') {
+                    if (data['data'][i]['PARAMETER'] != 'Lid RT & SN') {
+                        parameter_FITS_array.push(data['data'][i]['PARAMETER']);
+                    }
+                    else {
+                        parameter_FITS_array.push('Lid RT _SN');
+                    }
                 }
             }
 
@@ -883,14 +892,13 @@ $(document).ready(async function() {
     $('.menu-1').click(async function() {
         setTimeout(function() {
             document.getElementById('container-table-parameter-fits').style.top = '100px';
-            document.getElementById('container-table-parameter-fits').style.left = '520px';
+            document.getElementById('container-table-parameter-fits').style.left = '560px';
             document.getElementById('container-table-parameter-fits').style.width = 'auto';
             document.getElementById('container-table-parameter-fits').style.height = '600px';
         }, 200);
     })
     
     $('.menu-2').click(async function() {
-        
         document.getElementById('container-LC-fits').style.opacity = '1';
     });
 
@@ -1106,7 +1114,7 @@ $(document).ready(async function() {
         
         if (!table.is(e.target) && table.has(e.target).length == 0 && !menu_process.is(e.target)) {
             document.getElementById('container-table-parameter-fits').style.top = '260px';
-            document.getElementById('container-table-parameter-fits').style.left = '370px';
+            document.getElementById('container-table-parameter-fits').style.left = '410px';
             document.getElementById('container-table-parameter-fits').style.width = '0';
             document.getElementById('container-table-parameter-fits').style.height = '0';
             document.getElementById('container-table-parameter-fits').style.transition = '0.5s ease';

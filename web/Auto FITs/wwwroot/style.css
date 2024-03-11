@@ -329,7 +329,7 @@ body {
   margin-bottom: 40px;
   margin-left: 15px;
   flex-wrap: wrap;
-  width: 18em;
+  width: 22em;
   align-items: center;
   justify-content: center;
   user-select: none;
@@ -361,16 +361,16 @@ body {
 
 .card-process:nth-child(4) {
   border-radius: 0px;
-  border-top-right-radius: 10px;
 }
 
 .card-process:nth-child(5) {
-  border-bottom-left-radius: 12px;
   border-top-left-radius: 0px;
+  border-top-right-radius: 10px;
 }
 
 .card-process:nth-child(6) {
   border-radius: 0px;
+  border-bottom-left-radius: 10px;
 }
 
 .card-process:nth-child(7) {
@@ -379,11 +379,19 @@ body {
 
 .card-process:nth-child(8) {
   border-radius: 0px;
+}
+
+.card-process:nth-child(9) {
+  border-radius: 0px;
+}
+
+.card-process:nth-child(10) {
+  border-radius: 0px;
   border-bottom-right-radius: 10px;
 }
 
 .main-process:hover {
-  width: 18em;
+  width: 22em;
   cursor: pointer;
 }
 
@@ -438,6 +446,16 @@ body {
 }
 
 .card-process:nth-child(8):hover {
+  transition: .2s;
+  background-color: rgb(3, 141, 93);
+}
+
+.card-process:nth-child(9):hover {
+  transition: .2s;
+  background-color: rgb(3, 141, 93);
+}
+
+.card-process:nth-child(10):hover {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
@@ -1487,11 +1505,12 @@ body {
   background-color: #fff1cd;
   padding: 5px;
   top: 260px;
-  left: 370px;
+  left: 410px;
   width: 0;
   height: 0;
   padding-top: 0;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  z-index: 10;
 }
 
 #table-parameter-fits {
@@ -1530,7 +1549,7 @@ body {
   width: 12em;
   height: 12em;
   top: 60px;
-  left: 320px;
+  left: 360px;
   font-size: 14px;
   z-index: 2;
 }
@@ -1871,12 +1890,13 @@ body {
 /* ================================== Menu Setting ================================== */
 .card-menu-setting {
   position: absolute;
-  left: 340px;
+  left: 380px;
   top: 230px;
   display: flex;
   height: 70px;
   width: 270px;
   user-select: none;
+  z-index: 11;
 }
 
 .card-menu-setting svg {
@@ -2015,7 +2035,7 @@ body {
 /* ================================== Container Lincard FITs ================================== */
 #container-LC-fits {
   position: absolute;
-  left: 500px;
+  left: 540px;
   top: 240px;
   display: flex;
   border-radius: 10px;
