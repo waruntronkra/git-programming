@@ -7,6 +7,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter_sliding_up_panel/flutter_sliding_up_panel.dart';
+// import 'package:flutter/foundation.dart';
+// import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:YMs/MainWindow/Window-FBN-ACACIA-YIELD/Page-Summary/utility/show_more_filter.dart';
 import 'package:YMs/MainWindow/Window-FBN-ACACIA-YIELD/Page-Summary/utility/multiLineChart.dart';
@@ -91,7 +93,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
   Map<String, dynamic> dataQtyLineChart = {};
 
   List<dynamic> groupDataToBarChart = [];
-  List<List<dynamic>> groupDataToTable = [];
+  List<List<dynamic>> groupDataToTablePareto = [];
 
   DateTime selectedDate = DateTime.now();
   Future<void> _selectDateFrom(BuildContext context) async {
@@ -361,7 +363,24 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                     ]
                   )
                 )
-              )
+              ),
+              // floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+              // floatingActionButton: SpeedDial(
+              //   backgroundColor: const Color.fromARGB(255, 3, 141, 93),
+              //   activeBackgroundColor: Colors.red,
+              //   foregroundColor: Colors.white,
+              //   childrenButtonSize: const Size(20, 30),
+              //   buttonSize: const Size(35, 35),
+              //   childMargin: const EdgeInsets.only(left: 5),
+              //   icon: Icons.menu,
+              //   activeIcon: Icons.close,
+              //   spaceBetweenChildren: 1,
+              //   switchLabelPosition: true,
+              //   closeManually: true,
+              //   children: [
+              //     ..._buildSubListLevel(dataLevelObject),
+              //   ],
+              // ),
             ),
             SlidingUpPanelWidget(
               panelController: panelController,
@@ -429,6 +448,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                     ),
                     Container(
                       margin: const EdgeInsets.all(10),
+                      padding: const EdgeInsets.only(top: 5),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(5)
@@ -448,12 +468,6 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
         )
       )
     );
-  }
-
-  @override
-  void dispose() {
-    userGuidanceController.dispose();
-    super.dispose();
   }
 
   String defaultAdMoreFilterString = '{No FIlter}';
@@ -902,7 +916,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                     ]
                   ),
                   child: filterBox(),
-                )            
+                )  
               ]        
             )
           ),
@@ -1039,7 +1053,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                   child: Column(
                     children: [
                       TableFBNYIELD(
-                        dataTable: groupDataToTable,
+                        dataTable: groupDataToTablePareto,
                         columnName: const ['Defect', 'Fail', '% Fail'],
                       )
                     ]
@@ -1271,14 +1285,14 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
             groupDataToBarChart.add([data['defect'], double.parse(((data['fail'] / data['count']) * 100).toStringAsFixed(2))]);
           } 
 
-          groupDataToTable = [];
+          groupDataToTablePareto = [];
           for (var data in decodedData) {
-            groupDataToTable.add([data['defect'], data['fail'], ((data['fail'] / data['count']) * 100).toStringAsFixed(2)]);
+            groupDataToTablePareto.add([data['defect'], data['fail'], ((data['fail'] / data['count']) * 100).toStringAsFixed(2)]);
           }
           
           setState(() {
             groupDataToBarChart = groupDataToBarChart;
-            groupDataToTable = groupDataToTable;
+            groupDataToTablePareto = groupDataToTablePareto;
           });
         }
       }
@@ -1344,6 +1358,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
     }
   }
 
+  
   // ========================= Create drop list by [LEVEL] =========================
   List<Widget> _buildSubListLevel(Map<String, dynamic> dataLevel) {
     List<Widget> subListsLevel = [];
@@ -1383,6 +1398,21 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
             ),
             children: [..._buildSubListModel(dataModelArr)],
           ),
+          
+          // SpeedDialChild(
+          //   child: const Icon(Icons.check, size: 12),
+          //   backgroundColor: const Color.fromARGB(255, 3, 141, 93),
+          //   foregroundColor: Colors.white,
+          //   label: dict.key,
+          //   labelStyle: GoogleFonts.nunito(
+          //     fontSize: 10
+          //   ),
+          //   shape: const StadiumBorder(),
+          //   onTap: () {
+          //     setState(() {
+          //       _left = 50;
+          //     });
+          //   }
         );
       }
     }
@@ -1433,6 +1463,12 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
       }
     }
     return subListsModel;
+  }
+
+  @override
+  void dispose() {
+    userGuidanceController.dispose();
+    super.dispose();
   }
 
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! [Encrypt] Data !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'dart:convert';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:flutter_sliding_up_panel/flutter_sliding_up_panel.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:YMs/MainWindow/Window-EP-YIELD/Pages-Summary/utility/multiLineChart.dart';
+import 'package:YMs/MainWindow/Window-EP-YIELD/Pages-Summary/utility/barchart.dart';
 import 'package:YMs/MainWindow/Window-EP-YIELD/Pages-Summary/utility/table.dart';
 import 'package:YMs/MainWindow/Window-EP-YIELD/Pages-Summary/utility/show_more_filter.dart';
 
@@ -90,6 +92,9 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
 
   bool isLoading = false;
   bool expandMoreFilter = false;
+
+  List<dynamic> groupDataToBarChart = [];
+  List<List<dynamic>> groupDataToTablePareto = [];
 
   DateTime selectedDate = DateTime.now();
   Future<void> _selectDateFrom(BuildContext context) async {
@@ -321,7 +326,8 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
               color: Colors.white,
               backgroundColor: Colors.red,
               onRefresh: () async {
-                await queryDataForMixChart('Yield');
+                await queryDataForParetoChart('Pareto');
+                await queryDataForYieldChart('Yield');
               },
               child: Column(
                 children: [
@@ -332,7 +338,7 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                     child: TabBarView(
                       children: <Widget>[
                         _pageAverall(),
-                        const Text('PARETO'),
+                        _pagePareto(),
                       ]
                     )
                   )
@@ -826,20 +832,21 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
                 setState(() { 
                   if (levelSelected.isNotEmpty && modelSelected.isNotEmpty) {
                     mixChartVisible = false;
+                    
                     _refreshIndicatorKey.currentState?.show();
                   }
                 });
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 212, 210, 210),
-                side: const BorderSide(color: Colors.black),
+                backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0)
+                  borderRadius: BorderRadius.circular(5),
+                  side: const BorderSide(color: Colors.grey)
                 )
               ),
-              child: const Text(
+              child: Text(
                 'QUERY',
-                style: TextStyle(
+                style: GoogleFonts.nunito(
                   color: Colors.black,
                   fontSize: 13,
                   fontWeight: FontWeight.bold
@@ -888,6 +895,60 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
     );
   } 
 
+  // *************** [Page Pareto] ***************
+  Widget _pagePareto() {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // Container(
+          //   margin: const EdgeInsets.only(top: 5),
+          //   width: MediaQuery.of(context).size.width * 0.93,
+          //   height: MediaQuery.of(context).size.height * 0.5,
+          //   decoration: BoxDecoration(
+          //     color: Colors.white,
+          //     borderRadius: BorderRadius.circular(10),
+          //     boxShadow: const [
+          //       BoxShadow(
+          //         color: Color.fromARGB(255, 219, 219, 219),
+          //         offset: Offset(1, 1),
+          //         blurRadius: 5
+          //       )
+          //     ]
+          //   ),
+          //   child: BarChart(
+          //     paretoTitle: 'Top (%) Fail Defect',
+          //     dataBarChart: groupDataToBarChart
+          //   )
+          // ),
+          Visibility(
+            visible: mixChartVisible,
+            child: Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.only(top: 10),
+              width: MediaQuery.of(context).size.width * 0.95,
+              height: MediaQuery.of(context).size.height * 0.25,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TableFBNYIELD(
+                        dataTable: groupDataToTablePareto,
+                        columnName: const ['Defect', 'Fail', '% Fail'],
+                      )
+                    ]
+                  )
+                )
+              )
+            )
+          ),
+          const SizedBox(height: 50)  
+        ],
+      )
+    );
+  }
+
   Widget filterBox() {
     return WidgetsMoreFilter(
       levelSelected: levelSelected,
@@ -910,7 +971,7 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
     });
   }
 
-  Future<void> queryDataForMixChart(String drillOn) async {
+  Future<void> queryDataForYieldChart(String drillOn) async {
     try {
       if (stringFilterSelectedCode.isNotEmpty) {
         isLoading = true;
@@ -1054,6 +1115,65 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
             text:'Enable to connect Database ! ${dataQueried[0]}'
           );
         }
+      }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
+  }
+
+  Future<void> queryDataForParetoChart(String drillOn) async {
+    try {
+      if (stringFilterSelectedCode.isNotEmpty) {
+        stringEncryptedArray = await encryptData([
+          modelSelected,
+          startDate.toString(),
+          endDate.toString(),
+          filterSelected.replaceAll("' : '", "'' : ''"),
+          stringFilterSelectedCode,
+          defaultGroupBy,
+          drillOn,
+          '02'
+        ]);
+        var dataQueried = await getDataPOST(
+          'https://supply-api.fabrinet.co.th/api/YMA/EPYieldQueryDetail',
+          {
+            'Model': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+            'From': stringEncryptedArray['data'][1],
+            'To': stringEncryptedArray['data'][2],
+            'FilterSelected': stringEncryptedArray['data'][3],
+            'FilterCode': stringEncryptedArray['data'][4],
+            'Groupby': stringEncryptedArray['data'][5],
+            'Drillon': stringEncryptedArray['data'][6],
+            'Version': stringEncryptedArray['data'][7]
+          },
+        );
+        setState(() {
+          if (dataQueried[1] == 200) {
+            String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+
+            final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+            final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+
+            String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+            List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+
+            groupDataToBarChart = [];
+            for (var data in decodedData) {
+              groupDataToBarChart.add([data['Defect'], double.parse(data['% Fail'])]);
+            } 
+
+            groupDataToTablePareto = [];
+            for (var data in decodedData) {
+              groupDataToTablePareto.add([data['Defect'], data['Fail'], data['% Fail']]);
+            }
+          }
+        });
       }
     }
     catch (e) {

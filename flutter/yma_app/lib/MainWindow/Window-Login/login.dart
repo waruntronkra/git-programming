@@ -38,7 +38,23 @@ class _WindowLoginState extends State<WindowLogin> {
     var now = DateTime.now();
     var formatter = DateFormat('MM/dd/yyyy hh:mm:ss a');
     currentDate = formatter.format(now);
+    
     super.initState();
+  }
+
+  void _init() async {
+    await queryUserAppInfo();
+    await queryAppInfo();
+    if (currentRevision != currentRevisionLastest) {
+      print('Please Update');
+      print('currentRevision : $currentRevision');
+      print('currentRevisionLastest : $currentRevisionLastest');
+    }
+    else {
+      print('This is last verion already');
+      print('currentRevision : $currentRevision');
+      print('currentRevisionLastest : $currentRevisionLastest');
+    }
   }
 
   void checkUsername() async {
@@ -51,6 +67,7 @@ class _WindowLoginState extends State<WindowLogin> {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        key: scaffoldKey,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0),
           child: AppBar()
@@ -166,20 +183,7 @@ class _WindowLoginState extends State<WindowLogin> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    // await queryUserAppInfo();
-                    // await queryAppInfo();
-                    // if (username.isNotEmpty) {
-                    //   if (currentRevision != curRrentevisionLastest) {
-                    //     print('Please Update');
-                    //     print('currentRevision : $currentRevision');
-                    //     print('currentRevisionLastest : $currentRevisionLastest');
-                    //   }
-                    //   else {
-                    //     print('This is last verion already');
-                    //     print('currentRevision : $currentRevision');
-                    //     print('currentRevisionLastest : $currentRevisionLastest');
-                    //   }
-                    // }
+                    _init();
                     // checkUsername();
                     navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => const WindowSelectView()));
                   },
@@ -256,35 +260,33 @@ class _WindowLoginState extends State<WindowLogin> {
 
   Future<void> queryUserAppInfo() async {
     try {
-      if (username.isNotEmpty) {
-        Map<String, dynamic> stringEncryptedArray = await encryptData([
-          username
-        ]);
+      Map<String, dynamic> stringEncryptedArray = await encryptData([
+        username
+      ]);
 
-        var dataQueried = await getDataPOST(
-          'https://supply-api.fabrinet.co.th/api/YMA/QueryUserAppInfo',
-          {
-            'LoginName': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}'
-          },
-        );
+      var dataQueried = await getDataPOST(
+        'https://supply-api.fabrinet.co.th/api/YMA/QueryUserAppInfo',
+        {
+          'LoginName': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}'
+        },
+      );
 
-        if (dataQueried[1] == 200) {
-          String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
+      if (dataQueried[1] == 200) {
+        String jsonEncrypted = jsonDecode(jsonDecode(dataQueried[0]))['encryptedJson'];
 
-          final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
-          final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
+        final keyBytes = encrypt.Key.fromUtf8(stringEncryptedArray['key']);
+        final encrypter = encrypt.Encrypter(encrypt.AES(keyBytes, mode: encrypt.AESMode.cbc, padding: 'PKCS7'));
 
-          String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
-          List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
+        String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
+        List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
 
-          setState(() {
-            if (decodedData.isNotEmpty) {
-              currentVersion = decodedData[0]['CURRENT_VERSION'].toString();
-              currentRevision = decodedData[0]['CURRENT_REVISION'].toString();
-              currentSubRevision = decodedData[0]['CURRENT_SUB_REVISION'].toString();
-            }
-          });
-        }
+        setState(() {
+          if (decodedData.isNotEmpty) {
+            currentVersion = decodedData[0]['CURRENT_VERSION'].toString();
+            currentRevision = decodedData[0]['CURRENT_REVISION'].toString();
+            currentSubRevision = decodedData[0]['CURRENT_SUB_REVISION'].toString();
+          }
+        });
       }
     }
     catch (e) {
