@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Auto_Upload_SPC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be09ec06132f7f744340900114027ea65e80b1a4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5164f277d13cd4417a19cb85bf13dcaac4bbe5de")]
 [assembly: System.Reflection.AssemblyProductAttribute("Auto_Upload_SPC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Auto_Upload_SPC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
