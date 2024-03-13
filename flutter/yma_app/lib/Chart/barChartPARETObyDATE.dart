@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyBarChartParetoByDate extends StatelessWidget {
   const MyBarChartParetoByDate({
@@ -37,12 +38,25 @@ class MyBarChartParetoByDate extends StatelessWidget {
     );
     return SfCartesianChart(
       title: ChartTitle(
-          text: paretoTitle,
-          textStyle: const TextStyle(
-              color: Color.fromARGB(255, 0, 0, 0),
-              fontWeight: FontWeight.bold,
-              fontSize: 13)),
-      primaryXAxis: const CategoryAxis(labelRotation: 90, labelStyle: TextStyle(fontSize: 10)),
+        text: paretoTitle,
+        textStyle: GoogleFonts.nunito(
+          color: const Color.fromARGB(255, 0, 0, 0),
+          fontWeight: FontWeight.bold,
+          fontSize: 11
+        )
+      ),
+      primaryXAxis: CategoryAxis(
+        labelRotation: 90,
+        labelStyle: GoogleFonts.nunito(
+          fontSize: 10
+        ),
+      ),
+      primaryYAxis: NumericAxis(
+        labelRotation: 0,
+        labelStyle: GoogleFonts.nunito(
+          fontSize: 10
+        ),
+      ),
       series: <CartesianSeries>[
         StackedColumnSeries<ChartData, String>(
           dataSource: generateData(),

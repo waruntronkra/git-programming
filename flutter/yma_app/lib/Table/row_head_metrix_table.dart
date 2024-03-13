@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class RowHeadMetrixTable extends StatefulWidget {
   const RowHeadMetrixTable({
@@ -45,9 +46,9 @@ class _RowHeadMetrixTableState extends State<RowHeadMetrixTable> {
         child: Text(
           col,
           textAlign: TextAlign.center,
-          style: const TextStyle(
+          style: GoogleFonts.nunito(
             fontSize: 11,
-            color: Color.fromARGB(255, 0, 0, 0),
+            color: const Color.fromARGB(255, 0, 0, 0),
             fontWeight: FontWeight.bold
           ),
         ),
@@ -64,8 +65,8 @@ class _RowHeadMetrixTableState extends State<RowHeadMetrixTable> {
             color: widget.dataColor,
             child: Text(
               data,
-              style: const TextStyle(
-                fontSize: 12,
+              style: GoogleFonts.nunito(
+                fontSize: 11,
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),

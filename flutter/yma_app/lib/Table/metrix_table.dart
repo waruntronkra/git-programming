@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MetrixTable extends StatefulWidget {
   const MetrixTable({
@@ -44,9 +45,9 @@ class _MetrixTableState extends State<MetrixTable> {
         child: Text(
           col,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 11,
-            color: Color.fromARGB(255, 0, 0, 0),
+          style: GoogleFonts.nunito(
+            fontSize: 10.5,
+            color: const Color.fromARGB(255, 0, 0, 0),
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -67,8 +68,8 @@ class _MetrixTableState extends State<MetrixTable> {
                 padding: const EdgeInsets.all(5),
                 child: Text(
                   '$cell',
-                  style: TextStyle(
-                    fontSize: 12,
+                  style: GoogleFonts.nunito(
+                    fontSize: 10.9,
                     color: widget.customizeFontColor == true ?
                     cell == 'PASS' ? const Color.fromARGB(255, 3, 141, 93) : Colors.red
                     :
@@ -103,7 +104,7 @@ class _MetrixTableState extends State<MetrixTable> {
                 child: Text(
                   fullText,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: GoogleFonts.nunito(
                     color: widget.customizeFontColor == true ?
                     fullText == 'PASS' ? const Color.fromARGB(255, 3, 141, 93) : Colors.red
                     :

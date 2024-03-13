@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
@@ -100,15 +101,10 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
   @override
   void initState() {
     super.initState();
-    fetchDataLevel(); 
-    _tabController = MotionTabBarController(length: 4, vsync: this); // Create for click to switch page
-  }
-
-  // Clear memory
-  @override 
-  void dispose() { 
-    _tabController.dispose(); 
-    super.dispose(); 
+    _tabController = MotionTabBarController(length: 4, vsync: this);
+    fetchDataLevel().then((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _openEndDrawer());
+    });
   }
  
   String textText = '';
@@ -118,6 +114,30 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
         dataParetoCallBack = value; // process
       });
     }
+  }
+
+  void _openEndDrawer() {
+    if (_scaffoldKey.currentState != null) {
+      _scaffoldKey.currentState!.openEndDrawer();
+    }
+  }
+
+  void _closeEndDrawer() {
+    if (_scaffoldKey.currentState != null) {
+      _scaffoldKey.currentState!.closeEndDrawer();
+    }
+  }
+
+
+  int _selectedIndex = -1;
+  void _onItemTapped(int index) {
+    setState(() {
+      if (_selectedIndex == index) {
+        _selectedIndex = -1; // Collapse the selected item
+      } else {
+        _selectedIndex = index; // Expand the selected item
+      }
+    });
   }
 
   // Main Second Page
@@ -130,7 +150,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
         appBar: AppBar(
           title: Text(
             "$levelSelected : $modelSelected ($daySelected)",
-            style: const TextStyle(
+            style: GoogleFonts.nunito(
               fontSize: 13,
               fontWeight: FontWeight.bold
             ),
@@ -145,7 +165,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
           tabSize: 50,
           tabBarHeight: 53,
           tabBarColor: Colors.orange,
-          textStyle: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          textStyle: GoogleFonts.nunito(fontWeight: FontWeight.bold, color: Colors.white),
           onTabItemSelected: (int value) {
             setState(() {
               _tabController.index = value;
@@ -153,38 +173,99 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
           },
         ),
         endDrawer: Drawer(
-          child: ListView(
+          width: 220,
+          child: ListView.builder(
             padding: EdgeInsets.zero,
-            children: [
-              const UserAccountsDrawerHeader(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.bottomLeft,
-                    colors: [
-                      Color.fromARGB(255, 255, 147, 88),
-                      Color.fromARGB(255, 255, 98, 0)
-                    ]
-                  )
-                ),
-                accountName: Text(''),
-                accountEmail: Text(
-                  'waruntronk.fabrinet.co.th',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    fontSize: 15
+            itemCount: dataLevelObject.keys.toList().length,
+            itemBuilder: (context, index) {
+              if (index == 0) {
+                return UserAccountsDrawerHeader(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Color.fromARGB(255, 255, 147, 88),
+                        Color.fromARGB(255, 255, 98, 0)
+                      ],
+                    ),
                   ),
-                ),
-                currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    "https://fits/emp_pic/511997.jpg"
+                  accountName: const Text(''),
+                  accountEmail: Text(
+                    'waruntronk.fabrinet.co.th',
+                    style: GoogleFonts.nunito(
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      fontSize: 14,
+                    ),
                   ),
-                ),
-                currentAccountPictureSize: Size(100, 100),
-              ),
-              ..._buildSubListLevel(dataLevelObject),
-            ],
+                  currentAccountPicture: const CircleAvatar(
+                    backgroundImage: NetworkImage(
+                      "https://www.cisco.com/c/en/us/about/corporate-strategy-office/acquisitions/acacia/jcr:content/Grid/category_atl/layout-category-atl/widenarrow/WN-Wide-1/hero_panel.img.png/1614609116519.png",
+                    ),
+                  ),
+                  currentAccountPictureSize: const Size(100, 100),
+                );
+              }
+              return Column(
+                children: [
+                  Container (
+                    width: 200,
+                    height: 25,
+                    margin: const EdgeInsets.all(5),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: _selectedIndex == index ? Colors.orange : const Color.fromARGB(255, 255, 241, 221),
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)
+                        )
+                      ),
+                      onPressed: () async {
+                        _onItemTapped(index);
+                        setState(() {
+                          levelSelected = dataLevelObject.keys.toList()[index];
+                        });
+                      },
+                      child: Text(
+                        dataLevelObject.keys.toList()[index],
+                        style: GoogleFonts.nunito(
+                          fontSize: 11.0,
+                          fontWeight: FontWeight.bold
+                        )
+                      )
+                    )
+                  ),
+                  AnimatedContainer(
+                    duration: const Duration(milliseconds: 500),
+                    padding: const EdgeInsets.all(5),
+                    curve: Curves.easeInOut,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 193, 193, 193),
+                          offset: Offset(1, 1),
+                          blurRadius: 5
+                        )
+                      ]
+                    ),
+                    height: _selectedIndex == index ? dataLevelObject[levelSelected].length * 30.0 : 0.0,
+                    width: _selectedIndex == index ? 200.0 : 0.0,
+                    child: SingleChildScrollView(
+                      child: _selectedIndex == index ? 
+                      Column(
+                        children: [
+                          ...createListWidgetModel(dataLevelObject[levelSelected])
+                        ],
+                      )
+                      : null,
+                    ),
+                  ),
+                ]
+              );
+            }
           ),
         ),
         body: TabBarView(
@@ -198,6 +279,43 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
         ),
       )
     );
+  }
+
+  List<Widget> createListWidgetModel(List<dynamic> data) {
+    List<Widget> subLists = [];
+    if (data.isNotEmpty) {
+      // =============== Create sub menu Level ===============
+      for (var i in data) {
+        subLists.add(Container(
+          width: 180,
+          height: 20,
+          margin: const EdgeInsets.only(bottom: 5),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5)
+              )
+            ),
+            onPressed: () {
+              setState(() {
+                modelSelected = i;
+                _closeEndDrawer();
+              });
+            },
+            child: Text(
+              i,
+              style: GoogleFonts.nunito(
+                fontSize: 11.0,
+                fontWeight: FontWeight.bold,
+              )
+            ),
+          ),
+        ));
+      } 
+    }
+    return subLists;
   }
 
   final MaterialStateProperty<Icon?> thumbIcon =
@@ -219,10 +337,10 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
             preferredSize: const Size.fromHeight(50),
             child: AppBar(
             automaticallyImplyLeading: false,
-            bottom: const TabBar(
+            bottom: TabBar(
               labelColor: Colors.orange,
               indicatorColor: Colors.orange,
-              tabs: <Widget>[
+              tabs: const <Widget>[
                 Tab(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -251,7 +369,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                   )
                 )
               ],
-              labelStyle: TextStyle(
+              labelStyle: GoogleFonts.nunito(
                 fontSize: 11,
                 fontWeight: FontWeight.bold
               ),
@@ -284,7 +402,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                 Expanded(
                   child: TabBarView(
                     children: <Widget>[
-                      // +++++++++++++++++++++ [Tab Chart] +++++++++++++++++++++
+                      // ++++++++++++++++++++++++++++++++++++++++++ [Tab Chart] ++++++++++++++++++++++++++++++++++++++++++
                       // Line and Mix chart =================================
                       Visibility(
                         child: dataLineChart.isNotEmpty ?
@@ -318,7 +436,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                             ),
                           ),
                       ),
-                      // +++++++++++++++++++++ [Tab Pareto] +++++++++++++++++++++
+                      // ++++++++++++++++++++++++++++++++++++++++++ [Tab Pareto] ++++++++++++++++++++++++++++++++++++++++++
                       // Pareto List =================================
                       SingleChildScrollView(
                         child: Column(
@@ -384,10 +502,11 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                     margin: const EdgeInsets.only(top: 140, left: 7),
                                     child: Transform.rotate(
                                       angle: 1.6,
-                                      child: const Text(
+                                      child: Text(
                                         'QTY',
-                                        style: TextStyle(
+                                        style: GoogleFonts.nunito(
                                           fontWeight: FontWeight.bold,
+                                          fontSize: 12
                                         ),
                                       )
                                     )
@@ -397,15 +516,16 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                 Visibility(
                                   visible: paretoChartVisible,
                                   child: Container(
-                                    margin: const EdgeInsets.only(top: 140),
+                                    margin: const EdgeInsets.only(top: 140, right: 2),
                                     width: MediaQuery.of(context).size.width,
                                     alignment: Alignment.topRight,
                                     child: Transform.rotate(
                                       angle: 1.6,
-                                      child: const Text(
+                                      child: Text(
                                         '% FAIL',
-                                        style: TextStyle(
+                                        style: GoogleFonts.nunito(
                                           fontWeight: FontWeight.bold,
+                                          fontSize: 12
                                         ),
                                       )
                                     )
@@ -444,7 +564,13 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                   child: Container(
                                     alignment: Alignment.topLeft,
                                     margin: const EdgeInsets.only(left: 10, top: 50),
-                                    child: Text('From : $fromDATE'),
+                                    child: Text(
+                                      'From : $fromDATE',
+                                      style: GoogleFonts.nunito(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
                                   )
                                 ),
                                 // To : label =================================
@@ -454,7 +580,13 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                     margin: const EdgeInsets.only(top: 50),
                                     alignment: Alignment.topRight,
                                     width: MediaQuery.of(context).size.width * 0.98,
-                                    child: Text('To : $toDATE'),
+                                    child: Text(
+                                      'To : $toDATE',
+                                      style: GoogleFonts.nunito(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                    ),
                                   )
                                 )
                               ]
@@ -465,7 +597,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                 Visibility(
                                   visible: paretoByDateChartVisible,
                                   child: Container(
-                                    margin: const EdgeInsets.only(top: 20),
+                                    margin: const EdgeInsets.only(top: 30),
                                     height: 500,
                                     child: MyBarChartParetoByDate(
                                       dataBarChart: dataBarChartByDate,
@@ -504,9 +636,9 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                   visible: sliderVisible,
                                   child: Container(
                                     margin: const EdgeInsets.only(top: 19, left: 75),
-                                    child: const Text(
+                                    child: Text(
                                       'Top 5',
-                                      style: TextStyle(
+                                      style: GoogleFonts.nunito(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.orange
                                       ),
@@ -520,7 +652,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                           ]
                         )
                       ),
-                      // +++++++++++++++++++++ [Tab Metrix Table] +++++++++++++++++++++
+                      // ++++++++++++++++++++++++++++++++++++++++++ [Tab Metrix Table] ++++++++++++++++++++++++++++++++++++++++++
                       SingleChildScrollView(
                         child: Column(
                           children: [
@@ -543,7 +675,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                 children: [
                                   RowHeadMetrixTable(
                                     dataTable: arrProcessForMixChart,
-                                    columnName: const ['<QTY>'],
+                                    columnName: const ['- QTY -'],
                                     dataColor: const Color.fromARGB(255, 255, 218, 176),
                                     colHeadColor: Colors.white,
                                   ),
@@ -593,7 +725,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                 children: [
                                   RowHeadMetrixTable(
                                     dataTable: arrProcessForMixChart,
-                                    columnName: const ['<FPY>'],
+                                    columnName: const ['- FPY -'],
                                     dataColor: const Color.fromARGB(255, 255, 218, 176),
                                     colHeadColor: Colors.white,
                                   ),
@@ -643,7 +775,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                 children: [
                                   RowHeadMetrixTable(
                                     dataTable: arrProcessForMixChart,
-                                    columnName: const ['<RTY>'],
+                                    columnName: const ['- RTY -'],
                                     dataColor: const Color.fromARGB(255, 255, 218, 176),
                                     colHeadColor: Colors.white,
                                   ),
@@ -1345,87 +1477,121 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
   }
 
   // ========================= Create drop list by [LEVEL] =========================
-  List<Widget> _buildSubListLevel(Map<String, dynamic> dataLevel) {
-    List<Widget> subListsLevel = [];
-    if (dataLevel.isNotEmpty) {
-      // =============== Create sub menu Level ===============
-      for (var dict in dataLevel.entries) {
-        subListsLevel.add(
-          ExpansionTile(
-            iconColor: Colors.white,
-            textColor: Colors.white,
-            backgroundColor: const Color.fromARGB(255, 255, 152, 97),
-            onExpansionChanged: (bool isExpanded) async {
-              if (isExpanded) {
-                for (var itemData in tableProductName) {
-                  if (itemData == dict.key) {
-                    dataModelArr = List<String>.from(dict.value);
-                  }
-                }
-                setState(() {
-                  levelSelected = dict.key;
-                });
-                await fetchDataModel(dict.value.cast<String>());
-              }
-            },
-            title: Row(
-              children: [
-                const Icon(Icons.folder_copy), // Replace 'your_icon_here' with the desired icon
-                const SizedBox(width: 8), // Add some space between icon and text
-                Text(dict.key),
-              ],
-            ),
-            children: [..._buildSubListModel(dataModelArr)],
-          ),
-        );
-      }
-    }
-    return subListsLevel;
-  }
+  // List<Widget> _buildSubListLevel(Map<String, dynamic> dataLevel) {
+  //   List<Widget> subListsLevel = [];
+  //   if (dataLevel.isNotEmpty) {
+  //     // =============== Create sub menu Level ===============
+  //     for (var dict in dataLevel.entries) {
+  //       subListsLevel.add(
+  //         ExpansionTile(
+  //           iconColor: Colors.white,
+  //           textColor: Colors.white,
+  //           backgroundColor: const Color.fromARGB(255, 255, 152, 97),
+  //           onExpansionChanged: (bool isExpanded) async {
+  //             if (isExpanded) {
+  //               for (var itemData in tableProductName) {
+  //                 if (itemData == dict.key) {
+  //                   dataModelArr = List<String>.from(dict.value);
+  //                 }
+  //               }
+  //               setState(() {
+  //                 levelSelected = dict.key;
+  //               });
+  //               await fetchDataModel(dict.value.cast<String>());
+  //             }
+  //           },
+  //           title: Row(
+  //             children: [
+  //               const Icon(Icons.folder_copy), // Replace 'your_icon_here' with the desired icon
+  //               const SizedBox(width: 8), // Add some space between icon and text
+  //               Text(
+  //                 dict.key,
+  //                 style: GoogleFonts.nunito(
+  //                   fontSize: 12
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //           children: [..._buildSubListModel(dataModelArr)],
+  //         ),
+  //       );
+  //     }
+  //   }
+  //   return subListsLevel;
+  // }
+
+  // Widget _buildSubListLevel(Map<String, dynamic> dataLevel) {
+  //   return ListView.builder(
+  //     itemCount: dataLevel.length,
+  //     itemBuilder: (context, index) {
+  //       return Column(
+  //         children: [
+
+  //         ],
+  //       );
+  //     }
+  //   );
+  // }
+
+  
+  
 
   // ========================= Query [MODEL] =========================
-  Future<void> fetchDataModel(List<String> model) async {
-    // Case array input
-    setState(() {
-      dataModelArr = model;
-    });
-  }
+  // Future<void> fetchDataModel(List<String> model) async {
+  //   // Case array input
+  //   setState(() {
+  //     dataModelArr = model;
+  //   });
+  // }
   // ========================= Create drop list by [MODEL] =========================
-  List<Widget> _buildSubListModel(List<String>? dataModel) {
-    List<Widget> subListsModel = [];
-    // =============== Create sub menu Model ===============
-    if (dataModel != null) {
-      for (String item in dataModel) {
-        subListsModel.add(
-          ExpansionTile(
-            iconColor: Colors.white,
-            textColor: Colors.white,
-            backgroundColor: const Color.fromARGB(255, 255, 128, 59),
-            onExpansionChanged: (bool isExpanded) async {
-              if (isExpanded) {
-                setState(() {
-                  modelSelected = item;
-                  mixChartVisible = false;
-                  dataLineChart = {};
-                  arrProcessForMixChart = [];
-                  paretoChartVisible = false;
-                  failuresPareto = [];
-                });
-              }
-            },
-            title: Row(
-              children: [
-                const SizedBox(width: 30),
-                const Icon(Icons.drive_folder_upload_sharp),
-                const SizedBox(width: 8),
-                Text(item),
-              ],
-            ),
-          ),
-        );
-      }
-    }
-    return subListsModel;
+  // List<Widget> _buildSubListModel(List<String>? dataModel) {
+  //   List<Widget> subListsModel = [];
+  //   // =============== Create sub menu Model ===============
+  //   if (dataModel != null) {
+  //     for (String item in dataModel) {
+  //       subListsModel.add(
+  //         ExpansionTile(
+  //           iconColor: Colors.white,
+  //           textColor: Colors.white,
+  //           backgroundColor: const Color.fromARGB(255, 255, 128, 59),
+  //           onExpansionChanged: (bool isExpanded) async {
+  //             if (isExpanded) {
+  //               setState(() {
+  //                 modelSelected = item;
+  //                 mixChartVisible = false;
+  //                 dataLineChart = {};
+  //                 arrProcessForMixChart = [];
+  //                 paretoChartVisible = false;
+  //                 failuresPareto = [];
+  //               });
+  //             }
+  //           },
+  //           title: Row(
+  //             children: [
+  //               const SizedBox(width: 30),
+  //               const Icon(Icons.drive_folder_upload_sharp),
+  //               const SizedBox(width: 8),
+  //               Text(
+  //                 item,
+  //                 style: GoogleFonts.nunito(
+  //                   fontSize: 12
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       );
+  //     }
+  //   }
+  //   return subListsModel;
+  // }
+
+  // Clear memory
+  @override 
+  void dispose() { 
+    _tabController.dispose(); 
+    _openEndDrawer();
+    super.dispose(); 
   }
 
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! [Encrypt] Data !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

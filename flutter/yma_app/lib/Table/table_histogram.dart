@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TableHistogram extends StatefulWidget {
   const TableHistogram({
@@ -39,7 +40,7 @@ class _TableHistogramState extends State<TableHistogram> {
           width: 85.0,
           child: Text(
             key,
-            style: const TextStyle(
+            style: GoogleFonts.nunito(
               fontSize: 12,
               color: Color.fromARGB(255, 3, 141, 93),
             ),
@@ -57,7 +58,7 @@ class _TableHistogramState extends State<TableHistogram> {
         return DataCell(
           Text(
             entry.value[i].toString(),
-            style: const TextStyle(
+            style: GoogleFonts.nunito(
                 fontSize: 12
             ),
           ),

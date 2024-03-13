@@ -170,7 +170,20 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
    
     fetchDataLevel();
 
+    WidgetsBinding.instance.addPostFrameCallback((_) => _openEndDrawer());
     super.initState();
+  }
+
+  void _openEndDrawer() {
+    if (scaffoldKey.currentState != null) {
+      scaffoldKey.currentState!.openEndDrawer();
+    }
+  }
+
+  void _closeEndDrawer() {
+    if (scaffoldKey.currentState != null) {
+      scaffoldKey.currentState!.closeEndDrawer();
+    }
   }
 
   // DATE for [THIS]
@@ -233,6 +246,17 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
   
   bool checkBox = false;
 
+  int _selectedIndex = -1;
+  void _onItemTapped(int index) {
+    setState(() {
+      if (_selectedIndex == index) {
+        _selectedIndex = -1; // Collapse the selected item
+      } else {
+        _selectedIndex = index; // Expand the selected item
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return UserGuidance(
@@ -260,7 +284,13 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                         userGuidanceController.show();
                       },
                       icon: const Icon(Icons.help),
-                    )
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        _openEndDrawer();
+                      },
+                      icon: const Icon(Icons.menu),
+                    ),
                   ],
                   bottom: TabBar(
                     labelColor:const Color.fromARGB(255, 3, 141, 93),
@@ -301,41 +331,101 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
               //     child: const Icon(Icons.menu, color: Colors.white),
               //   )
               // ),
-              // endDrawer: Drawer(
-              //   child: ListView(
-              //     padding: EdgeInsets.zero,
-              //     children: [
-              //       const UserAccountsDrawerHeader(
-              //         decoration: BoxDecoration(
-              //           gradient: LinearGradient(
-              //             begin: Alignment.topRight,
-              //             end: Alignment.bottomLeft,
-              //             colors: [
-              //               Color.fromARGB(255, 3, 141, 93),
-              //               Color.fromARGB(255, 114, 249, 202)
-              //             ]
-              //           )
-              //         ),
-              //         accountName: Text(''),
-              //         accountEmail: Text(
-              //           'waruntronk.fabrinet.co.th',
-              //           style: GoogleFonts.nunito(
-              //             fontWeight: FontWeight.bold,
-              //             color: Color.fromARGB(255, 255, 255, 255),
-              //             fontSize: 15
-              //           ),
-              //         ),
-              //         currentAccountPicture: CircleAvatar(
-              //           backgroundImage: NetworkImage(
-              //             "https://fits/emp_pic/511997.jpg"
-              //           ),
-              //         ),
-              //         currentAccountPictureSize: Size(100, 100),
-              //       ),
-              //       ..._buildSubListLevel(dataLevelObject),
-              //     ],
-              //   ),
-              // ),
+              endDrawer: Drawer(
+                width: 220,
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: dataLevelObject.keys.toList().length,
+                  itemBuilder: (context, index) {
+                    if (index == 0) {
+                      return UserAccountsDrawerHeader(
+                        decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [
+                              Color.fromARGB(255, 42, 221, 159),
+                              Color.fromARGB(255, 3, 141, 93)
+                            ],
+                          ),
+                        ),
+                        accountName: const Text(''),
+                        accountEmail: Text(
+                          'waruntronk.fabrinet.co.th',
+                          style: GoogleFonts.nunito(
+                            fontWeight: FontWeight.bold,
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            fontSize: 14,
+                          ),
+                        ),
+                        currentAccountPicture: const CircleAvatar(
+                          backgroundImage: NetworkImage("https://companiesmarketcap.com/img/company-logos/256/FN.png"),
+                        ),
+                        currentAccountPictureSize: const Size(100, 100),
+                      );
+                    }
+                    return Column(
+                      children: [
+                        Container (
+                          width: 200,
+                          height: 25,
+                          margin: const EdgeInsets.all(5),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: _selectedIndex == index ? const Color.fromARGB(255, 3, 141, 93) : const Color.fromARGB(255, 220, 239, 233),
+                              foregroundColor: Colors.black,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)
+                              )
+                            ),
+                            onPressed: () async {
+                              _onItemTapped(index);
+                              setState(() {
+                                levelSelected = dataLevelObject.keys.toList()[index];
+                              });
+                            },
+                            child: Text(
+                              dataLevelObject.keys.toList()[index],
+                              style: GoogleFonts.nunito(
+                                fontSize: 11.0,
+                                fontWeight: FontWeight.bold,
+                                color: _selectedIndex == index ? Colors.white : Colors.black
+                              )
+                            )
+                          )
+                        ),
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 500),
+                          padding: const EdgeInsets.all(5),
+                          curve: Curves.easeInOut,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromARGB(255, 193, 193, 193),
+                                offset: Offset(1, 1),
+                                blurRadius: 5
+                              )
+                            ]
+                          ),
+                          height: _selectedIndex == index ? dataLevelObject[levelSelected].length * 30.0 : 0.0,
+                          width: _selectedIndex == index ? 200.0 : 0.0,
+                          child: SingleChildScrollView(
+                            child: _selectedIndex == index ? 
+                            Column(
+                              children: [
+                                ...createListWidgetModel(dataLevelObject[levelSelected])
+                              ],
+                            )
+                            : null,
+                          ),
+                        ),
+                      ]
+                    );
+                  }
+                ),
+              ),
               body: RefreshIndicator(
                 key: _refreshIndicatorKey,
                 displacement: 50,
@@ -382,92 +472,129 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
               //   ],
               // ),
             ),
-            SlidingUpPanelWidget(
-              panelController: panelController,
-              controlHeight: 50.0,
-              anchor: 0.4,
-              onTap: () {
-                if (SlidingUpPanelStatus.expanded == panelController.status) {
-                  panelController.collapse();
-                } else {
-                  panelController.expand();
-                }
-              },
-              enableOnTap: false,
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 15.0),
-                decoration: const ShapeDecoration(
-                  color: Color.fromARGB(255, 3, 141, 93),
-                  shadows: [
-                    BoxShadow(
-                      blurRadius: 5.0,
-                      spreadRadius: 2.0,
-                      color: Color(0x11000000)
-                    )
-                  ],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10.0),
-                      topRight: Radius.circular(10.0),
-                    ),
-                  ),
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      alignment: Alignment.center,
-                      height: 50.0,
-                      child: UserGuildanceAnchor(
-                        step: 1,
-                        tag: "Step 1: Choose product",
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.menu,
-                              size: 28,
-                              color: Colors.white,
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(
-                                left: 8.0,
-                              ),
-                            ),
-                            Text(
-                              'Choose Product to View',
-                              style: GoogleFonts.nunito(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14
-                              ),
-                            )
-                          ],
-                        )
-                      )
-                    ),
-                    Container(
-                      margin: const EdgeInsets.all(10),
-                      padding: const EdgeInsets.only(top: 5),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5)
-                      ),
-                      height: MediaQuery.of(context).size.height * 0.83,
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: _buildSubListLevel(dataLevelObject),
-                        )
-                      )
-                    )
-                  ]
-                )
-              )
-            )
+            // SlidingUpPanelWidget(
+            //   panelController: panelController,
+            //   controlHeight: 50.0,
+            //   anchor: 0.4,
+            //   onTap: () {
+            //     if (SlidingUpPanelStatus.expanded == panelController.status) {
+            //       panelController.collapse();
+            //     } else {
+            //       panelController.expand();
+            //     }
+            //   },
+            //   enableOnTap: false,
+            //   child: Container(
+            //     margin: const EdgeInsets.symmetric(horizontal: 15.0),
+            //     decoration: const ShapeDecoration(
+            //       color: Color.fromARGB(255, 3, 141, 93),
+            //       shadows: [
+            //         BoxShadow(
+            //           blurRadius: 5.0,
+            //           spreadRadius: 2.0,
+            //           color: Color(0x11000000)
+            //         )
+            //       ],
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.only(
+            //           topLeft: Radius.circular(10.0),
+            //           topRight: Radius.circular(10.0),
+            //         ),
+            //       ),
+            //     ),
+            //     child: Column(
+            //       mainAxisSize: MainAxisSize.min,
+            //       children: <Widget>[
+            //         Container(
+            //           alignment: Alignment.center,
+            //           height: 50.0,
+            //           child: UserGuildanceAnchor(
+            //             step: 1,
+            //             tag: "Step 1: Choose product",
+            //             child: Row(
+            //               mainAxisAlignment: MainAxisAlignment.center,
+            //               children: [
+            //                 const Icon(
+            //                   Icons.menu,
+            //                   size: 28,
+            //                   color: Colors.white,
+            //                 ),
+            //                 const Padding(
+            //                   padding: EdgeInsets.only(
+            //                     left: 8.0,
+            //                   ),
+            //                 ),
+            //                 Text(
+            //                   'Choose Product to View',
+            //                   style: GoogleFonts.nunito(
+            //                     color: Colors.white,
+            //                     fontWeight: FontWeight.bold,
+            //                     fontSize: 14
+            //                   ),
+            //                 )
+            //               ],
+            //             )
+            //           )
+            //         ),
+            //         Container(
+            //           margin: const EdgeInsets.all(10),
+            //           padding: const EdgeInsets.only(top: 5),
+            //           decoration: BoxDecoration(
+            //             color: Colors.white,
+            //             borderRadius: BorderRadius.circular(5)
+            //           ),
+            //           height: MediaQuery.of(context).size.height * 0.83,
+            //           child: SingleChildScrollView(
+            //             child: Column(
+            //               children: _buildSubListLevel(dataLevelObject),
+            //             )
+            //           )
+            //         )
+            //       ]
+            //     )
+            //   )
+            // )
           ]
         )
       )
     );
+  }
+
+  List<Widget> createListWidgetModel(List<dynamic> data) {
+    List<Widget> subLists = [];
+    if (data.isNotEmpty) {
+      // =============== Create sub menu Level ===============
+      for (var i in data) {
+        subLists.add(Container(
+          width: 180,
+          height: 20,
+          margin: const EdgeInsets.only(bottom: 5),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5)
+              )
+            ),
+            onPressed: () {
+              setState(() {
+                modelSelected = i;
+                _closeEndDrawer();
+              });
+            },
+            child: Text(
+              i,
+              style: GoogleFonts.nunito(
+                fontSize: 11.0,
+                fontWeight: FontWeight.bold,
+              )
+            ),
+          ),
+        ));
+      } 
+    }
+    return subLists;
   }
 
   String defaultAdMoreFilterString = '{No FIlter}';

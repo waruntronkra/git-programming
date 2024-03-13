@@ -1,3 +1,4 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 // import 'table_pareto.dart';
@@ -74,7 +75,7 @@ class _PageParetoState extends State<PagePareto> {
           onPressed: () {
             widget.plotPareto(item);
           },
-          child: Text(item, style: const TextStyle(fontSize: 12)),
+          child: Text(item, style: GoogleFonts.nunito(fontSize: 12)),
         )
       )
       );

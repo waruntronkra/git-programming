@@ -714,7 +714,14 @@ $(document).ready(async function() {
 							document.getElementById(listSN_ID[i]).querySelector('p').textContent = '';
 							setTimeout(function() {
 								document.getElementById(listSN_ID[i]).remove();
+                                try {
+                                    document.querySelectorAll('.sn-indicator')[document.querySelectorAll('.sn-indicator').length - 1].id;
+                                }
+                                catch (e) {
+                                    document.getElementById('container-delete-sn-indicator').style.display = 'none';
+                                }
 							}, 350);
+                            
 						}
 					}
 				}

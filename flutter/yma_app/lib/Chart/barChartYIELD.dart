@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyBarChart extends StatelessWidget {
   const MyBarChart({
@@ -32,7 +33,11 @@ class MyBarChart extends StatelessWidget {
   Widget build(BuildContext context) {
     final TrackballBehavior trackballBehavior = TrackballBehavior(
       enable: true,
-      tooltipSettings: const InteractiveTooltip(enable: true),
+      tooltipSettings: InteractiveTooltip(
+        textStyle: GoogleFonts.nunito(
+          fontSize: 10
+        )
+      ),
       tooltipAlignment: ChartAlignment.near,
       tooltipDisplayMode: TrackballDisplayMode.groupAllPoints
     );
@@ -46,7 +51,21 @@ class MyBarChart extends StatelessWidget {
           fontSize: 13
         )
       ),
-      primaryXAxis: const CategoryAxis(),
+      primaryXAxis: CategoryAxis(
+        labelRotation: 0,
+        labelStyle: GoogleFonts.nunito(
+          fontSize: 10
+        ),
+      ),
+      primaryYAxis: NumericAxis(
+        labelRotation: 0,
+        labelStyle: GoogleFonts.nunito(
+          fontSize: 10
+        ),
+      ),
+      legend: const Legend(
+        isVisible: false,
+      ),
       series: <CartesianSeries>[
         StackedColumnSeries<ChartData, String>(
           dataSource: generateData(),
@@ -72,10 +91,13 @@ class MyBarChart extends StatelessWidget {
           markerSettings: const MarkerSettings(isVisible: true),
         )
       ],
-      axes: const <ChartAxis>[
+      axes: <ChartAxis>[
         NumericAxis(
           opposedPosition: true,
           name: '% YIELD', // Second axis has been set code above
+          labelStyle: GoogleFonts.nunito(
+            fontSize: 10
+          ),
         ),
       ],
       trackballBehavior: trackballBehavior,

@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class MyBarChartPareto extends StatelessWidget {
@@ -33,7 +34,11 @@ class MyBarChartPareto extends StatelessWidget {
   Widget build(BuildContext context) {
     final TrackballBehavior trackballBehavior = TrackballBehavior(
       enable: true,
-      tooltipSettings: const InteractiveTooltip(enable: true),
+      tooltipSettings: InteractiveTooltip(
+        textStyle: GoogleFonts.nunito(
+          fontSize: 10
+        )
+      ),
       tooltipAlignment: ChartAlignment.near,
       tooltipDisplayMode: TrackballDisplayMode.groupAllPoints
     );
@@ -41,13 +46,27 @@ class MyBarChartPareto extends StatelessWidget {
       backgroundColor: Colors.transparent,
       title: ChartTitle(
         text: paretoTitle,
-        textStyle: const TextStyle(
-          color: Color.fromARGB(255, 0, 0, 0),
+        textStyle: GoogleFonts.nunito(
+          color: const Color.fromARGB(255, 0, 0, 0), 
           fontWeight: FontWeight.bold,
-          fontSize: 13
+          fontSize: 10
         )
       ),
-      primaryXAxis: const CategoryAxis(),
+      primaryXAxis: CategoryAxis(
+        labelRotation: 0,
+        labelStyle: GoogleFonts.nunito(
+          fontSize: 10
+        ),
+      ),
+      primaryYAxis: NumericAxis(
+        labelRotation: 0,
+        labelStyle: GoogleFonts.nunito(
+          fontSize: 10
+        ),
+      ),
+      legend: const Legend(
+        isVisible: false,
+      ),
       series: <CartesianSeries>[
         StackedColumnSeries<ChartData, String>(
             dataSource: generateData(),

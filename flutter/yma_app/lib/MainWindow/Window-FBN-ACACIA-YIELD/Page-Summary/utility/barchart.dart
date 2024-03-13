@@ -35,11 +35,13 @@ class BarChart extends StatelessWidget {
     );
     return SfCartesianChart(
       title: ChartTitle(
-          text: paretoTitle,
-          textStyle: const TextStyle(
-              color: Color.fromARGB(255, 0, 0, 0),
-              fontWeight: FontWeight.bold,
-              fontSize: 13)),
+        text: paretoTitle,
+        textStyle: const TextStyle(
+          color: Color.fromARGB(255, 0, 0, 0),
+          fontWeight: FontWeight.bold,
+          fontSize: 13
+        )
+      ),
       primaryXAxis: const CategoryAxis(labelRotation: 90, labelStyle: TextStyle(fontSize: 10)),
       series: <CartesianSeries>[
         StackedColumnSeries<ChartData, String>(

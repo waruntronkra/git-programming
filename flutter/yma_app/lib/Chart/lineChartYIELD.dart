@@ -1,7 +1,8 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyLineChart extends StatelessWidget {
   const MyLineChart({
@@ -25,82 +26,37 @@ class MyLineChart extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    final List<Color> seriesColors = [
+      Colors.red,
+      const Color.fromARGB(255, 0, 8, 255),
+      const Color.fromARGB(255, 255, 230, 0),
+      Colors.orange,
+      Colors.green,
+      const Color.fromARGB(255, 255, 113, 160),
+      Colors.purple,
+      Colors.black,
+      Colors.grey,
+      const Color.fromARGB(255, 0, 221, 255),
+    ];
     List<String> legend = [];
     for (var item in dataLineChart.entries) {
       legend.add(item.key);
     }
-    // List<Widget> tooltipArr = [];
+
     final TrackballBehavior trackballBehavior = TrackballBehavior(
       enable: true,
-      // tooltipSettings: const InteractiveTooltip(enable: true, color: Colors.transparent, borderColor: Colors.transparent),
-      tooltipSettings: const InteractiveTooltip(enable: true),
       tooltipAlignment: ChartAlignment.near,
+      tooltipSettings: InteractiveTooltip(
+        format: 'series.name : point.y %',
+        textStyle: GoogleFonts.nunito(
+          fontSize: 10
+        )
+      ),
       tooltipDisplayMode: TrackballDisplayMode.groupAllPoints,
-      // builder: (context, trackballDetails) {
-      //   List<String> dataAllIndex = [];
-      //   for (var process in legend) {
-      //     if (dataLineChart[process][trackballDetails.pointIndex] != null) {
-      //       dataAllIndex.add((dataLineChart[process][trackballDetails.pointIndex]).toString());
-      //     }
-      //     else {
-      //       dataAllIndex.add('');
-      //     }
-      //   }
-      //   print(dataAllIndex);
-      //   print(legend);
-      //   tooltipArr = [];
-      //   for (var i = 0; i < dataAllIndex.length; i++) {
-      //     if (dataAllIndex[i].isNotEmpty) {
-      //       print('${legend[i]} : ${dataAllIndex[i]}');
-      //       tooltipArr.add(Row(
-      //         mainAxisSize: MainAxisSize.min,
-      //         children: [
-      //           Icon(Icons.circle, size: 11, color: lineColors[i]),
-      //           const SizedBox(width: 5),
-      //           Text(
-      //             '${legend[i]} : ${dataAllIndex[i]}',
-      //             style: const TextStyle(
-      //               fontSize: 11
-      //             ),
-      //           )
-      //         ]
-      //       ));
-      //     }
-      //   }
-      //   return Container(
-      //     decoration: BoxDecoration(
-      //       color: const Color.fromARGB(255, 255, 255, 255),
-      //       borderRadius: BorderRadius.circular(5),
-      //       boxShadow: const[
-      //         BoxShadow(
-      //           color: Colors.grey,
-      //           offset: Offset(0, 2),
-      //           blurRadius: 4,
-      //           spreadRadius: 1
-      //         )
-      //       ]
-      //     ),
-      //     padding: const EdgeInsets.all(10),
-      //     child: Column(
-      //       crossAxisAlignment: CrossAxisAlignment.start,
-      //       mainAxisSize: MainAxisSize.min, 
-      //       children: [
-      //         Text(
-      //           xAxis[trackballDetails.pointIndex!], 
-      //           style: const TextStyle(
-      //             fontSize: 12,
-      //             fontWeight: FontWeight.bold
-      //           ),
-      //         ),
-      //         ...tooltipArr
-      //       ]
-      //     ),
-      //   );
-      // },
     );
 
     List<LineSeries<PackData, String>> seriesList = dataLineChart.keys.toList().asMap().entries.map((entry) {
-      // int index = entry.key
+      int index = entry.key;
       String key = entry.value;
       return LineSeries<PackData, String>(
         dataSource: generateData(key),
@@ -108,26 +64,38 @@ class MyLineChart extends StatelessWidget {
         yValueMapper: (PackData val, _) => val.value,
         name: key,
         markerSettings: const MarkerSettings(isVisible: true),
+        color: seriesColors[index]
       );
     }).toList();
 
     return SfCartesianChart(
       backgroundColor: Colors.transparent,
-      title: const ChartTitle(
+      title: ChartTitle(
         text: '% YIELD',
-        textStyle: TextStyle(
-          color: Color.fromARGB(255, 0, 0, 0), 
+        textStyle: GoogleFonts.nunito(
+          color: const Color.fromARGB(255, 0, 0, 0), 
           fontWeight: FontWeight.bold,
-          fontSize: 13
+          fontSize: 10
         )
       ),
-      primaryXAxis: const CategoryAxis(
+      primaryXAxis: CategoryAxis(
         labelRotation: 0,
+        labelStyle: GoogleFonts.nunito(
+          fontSize: 10
+        ),
       ),
-      legend: const Legend(
+      primaryYAxis: NumericAxis(
+        labelRotation: 0,
+        labelStyle: GoogleFonts.nunito(
+          fontSize: 10
+        ),
+      ),
+      legend: Legend(
         isVisible: true,
         position: LegendPosition.right,
-        textStyle: TextStyle(fontSize: 10)
+        textStyle: GoogleFonts.nunito(
+          fontSize: 10
+        )
       ),
       trackballBehavior: trackballBehavior,
       series: seriesList,

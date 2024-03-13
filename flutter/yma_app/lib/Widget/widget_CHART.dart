@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import '../Chart/lineChartYIELD.dart';
 import '../Chart/barChartYIELD.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 
 typedef UpdateMixChart = void Function(String process);
@@ -70,7 +71,7 @@ class _WidgetChartState extends State<WidgetChart> {
               margin: const EdgeInsets.only(left: 5, top: 5),
               padding: const EdgeInsets.all(5),
               width: MediaQuery.of(context).size.width * 0.975,
-              height: MediaQuery.of(context).size.height * 0.28,
+              height: MediaQuery.of(context).size.height * 0.35,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: const [
@@ -82,8 +83,8 @@ class _WidgetChartState extends State<WidgetChart> {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.white
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white
                 ),
                 child: MyLineChart(
                   dataLineChart: widget.dataLineChart,
@@ -145,10 +146,11 @@ class _WidgetChartState extends State<WidgetChart> {
                   margin: const EdgeInsets.only(top: 150, left: 10),
                   child: Transform.rotate(
                     angle: 1.6,
-                    child: const Text(
+                    child: Text(
                       'QTY',
-                      style: TextStyle(
+                      style: GoogleFonts.nunito(
                         fontWeight: FontWeight.bold,
+                        fontSize: 12
                       ),
                     )
                   )
@@ -157,15 +159,16 @@ class _WidgetChartState extends State<WidgetChart> {
               Visibility(
                 visible: widget.mixChartVisible,
                   child: Container(
-                  margin: const EdgeInsets.only(top: 150),
+                  margin: const EdgeInsets.only(top: 150, right: 3),
                   width: MediaQuery.of(context).size.width,
                   alignment: Alignment.topRight,
                   child: Transform.rotate(
                     angle: 1.6,
-                    child: const Text(
+                    child: Text(
                       '% FAIL',
-                      style: TextStyle(
+                      style: GoogleFonts.nunito(
                         fontWeight: FontWeight.bold,
+                        fontSize: 12
                       ),
                     )
                   )
@@ -204,7 +207,13 @@ class _WidgetChartState extends State<WidgetChart> {
                 borderRadius: BorderRadius.circular(5),
               ),
             ),
-            child: Text(item),
+            child: Text(
+              item,
+              style: GoogleFonts.nunito(
+                fontSize: 12,
+                fontWeight: FontWeight.bold
+              ),
+            ),
             onPressed: () {
               widget.updateChart(item);
             },
