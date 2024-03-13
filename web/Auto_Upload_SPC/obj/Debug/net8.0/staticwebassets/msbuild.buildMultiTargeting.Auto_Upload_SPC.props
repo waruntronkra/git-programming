@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Auto_Upload_SPC.props" />
+</Project>

@@ -17,6 +17,14 @@ $(document).ready(async function() {
     var data_handshake = [];
 	var data_handshake_all = [];
 
+    $(document).ready(function() {
+        $("#input-PI-LCT").keydown(function(event) {
+            if (event.which === 13) { // 13 is the key code for Enter
+                event.preventDefault();
+            }
+        });
+    });
+
     $(`#input-dev-effective-date`).text('-');
     $(`#input-dev-end-date`).text('-');
     $(`#input-dev-model`).text('-');
@@ -63,7 +71,11 @@ $(document).ready(async function() {
                 process == 'LCT1' ||
                 process == 'LCT2' ||
                 process == 'LCTT' ||
-                process == 'CFG'
+                process == 'CFG' ||
+                process == 'Endface Inspection (FCAL)' ||
+                process == 'Endface Inspection (OPM)' ||
+                process == 'Endface Inspection (ORL3)' ||
+                process == 'Endface Inspection (CFG)'
                 ) 
                 {
                 model = 'All Module';
@@ -85,6 +97,9 @@ $(document).ready(async function() {
                         parameter_FITS_array.push('Lid RT _SN');
                     }
                 }
+            }
+            if (process == 'Endface Inspection (FCAL)' || process == 'Endface Inspection (OPM)' || process == 'Endface Inspection (CFG)') {
+                parameter_FITS_array.push('EN');
             }
 
             parameter_FITS_text = '';
@@ -155,6 +170,7 @@ $(document).ready(async function() {
                             }, 100);
                         }
                         else if (process == 'LCT1' || process == 'LCT2') {
+                            document.querySelector('.user-container').style.top = '-900px';
                             document.getElementById('container-detail-LCT').style.scale = '1';
                             setTimeout(function() {
                                 var style = document.createElement('style');
@@ -166,6 +182,7 @@ $(document).ready(async function() {
                             }, 100);
                         }
                         else {
+                            document.querySelector('.user-container').style.top = '-900px';
                             document.getElementById('container-detail-LCT').style.scale = '0';
                             setTimeout(function() {
                                 var style = document.createElement('style');
@@ -405,7 +422,7 @@ $(document).ready(async function() {
 
                 if (process == 'DEV01') {
                     setTimeout(function() {
-                        document.querySelector('.user-container').style.top = '50px';
+                        document.querySelector('.user-container').style.top = '-900px';
                     }, 100);
                 }
                 else if (process == 'LCT1' || process == 'LCT2') {
@@ -577,14 +594,38 @@ $(document).ready(async function() {
 									else if (process == 'EXS' && parameter_FITS_array[j] == 'Tester Fiber Rx SN') {
 										array.push('');	
 									}
-                                    else if (process == 'LCT1' || process == 'LCT2') {
-                                        if (parameter_FITS_array[j] == 'EN') {
-										    array.push($('#input-EN-LCT').val());	
-                                        }
-                                        else if (parameter_FITS_array[j] == 'PI Location') {
-                                            array.push($('#input-PI-LCT').val());
-                                        }
+                                    else if (process == 'Endface Inspection (FCAL)' && parameter_FITS_array[j] == 'Endface Result') {
+										array.push('PASS');	
 									}
+                                    else if (process == 'Endface Inspection (OPM)' && parameter_FITS_array[j] == 'Endface Result') {
+										array.push('PASS');	
+									}
+                                    else if (process == 'Endface Inspection (CFG)' && parameter_FITS_array[j] == 'Endface Result') {
+										array.push('PASS');	
+									}
+                                    else if (process == 'Endface Inspection (FCAL)' && parameter_FITS_array[j] == 'Water Mark on End Face') {
+										array.push('NO');	
+									}
+                                    else if (process == 'Endface Inspection (OPM)' && parameter_FITS_array[j] == 'Water Mark on End Face') {
+										array.push('NO');	
+									}
+                                    else if (process == 'Endface Inspection (CFG)' && parameter_FITS_array[j] == 'Water Mark on End Face') {
+										array.push('NO');	
+									}
+                                    else if (process == 'LCT1' && parameter_FITS_array[j] == 'EN') {
+										array.push($('#input-EN-LCT').val());	
+									}
+                                    else if (process == 'LCT1' && parameter_FITS_array[j] == 'PI Location') {
+										array.push($('#input-PI-LCT').val());	
+									}
+                                    // else if (process == 'LCT1' || process == 'LCT2' || process == 'LCT1' || process == 'Endface Inspection (FCAL)' || process == 'Endface Inspection (OPM)' || process == 'Endface Inspection (CFG)') {
+                                    //     if (parameter_FITS_array[j] == 'EN') {
+									// 	    array.push($('#input-EN-LCT').val());	
+                                    //     }
+                                    //     else if (parameter_FITS_array[j] == 'PI Location') {
+                                    //         array.push($('#input-PI-LCT').val());
+                                    //     }
+									// }
 									else {
 										array.push((await getLastTest(parameter_FITS_array[j], listSN[i]))['data'][0]['OUTPUT']);
 									}
@@ -597,7 +638,8 @@ $(document).ready(async function() {
                         }
                         value_FITS_array.push(array);
                     }
-					
+                    console.log(parameter_FITS_array)
+                    console.log(value_FITS_array)
 					
                     // Insert data to Table >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                     const history_data_table = document.getElementById('history_data_table');
@@ -811,6 +853,18 @@ $(document).ready(async function() {
             else if (process == 'CFG') {
                 operation = '3800';
             }
+            else if (process == 'Endface Inspection (FCAL)') {
+                operation = '3797';
+            }
+            else if (process == 'Endface Inspection (OPM)') {
+                operation = '3796';
+            }
+            else if (process == 'Endface Inspection (ORL3)') {
+                operation = 'EORL3';
+            }
+            else if (process == 'Endface Inspection (CFG)') {
+                operation = '3770';
+            }
 
             if (
                 process == 'FCAL' ||
@@ -821,7 +875,11 @@ $(document).ready(async function() {
                 process == 'LCT1' ||
                 process == 'LCT2' ||
                 process == 'LCTT' ||
-                process == 'CFG'
+                process == 'CFG' ||
+                process == 'Endface FCAL' ||
+                process == 'Endface OPM' ||
+                process == 'Endface ORL3' ||
+                process == 'Endface CFG'
                 ) 
                 {
                 model = 'All Module';
@@ -848,6 +906,9 @@ $(document).ready(async function() {
                         parameter_FITS_array.push('Lid RT _SN');
                     }
                 }
+            }
+            if (process == 'Endface Inspection (FCAL)' || process == 'Endface Inspection (OPM)' || process == 'Endface Inspection (CFG)') {
+                parameter_FITS_array.push('EN');
             }
 
             parameter_FITS_text = '';
@@ -1087,7 +1148,6 @@ $(document).ready(async function() {
         setTimeout(function() {
             document.getElementById('check-in-LC-1-time').style.scale = '1';
         }, 250);
-        
     });
 
     $(document).on('click', '#bt-LC-3-times', function() {

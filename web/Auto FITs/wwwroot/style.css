@@ -1,5 +1,10 @@
+@font-face {
+  font-family: 'nunito';
+  src: url(./fonts/Nunito/Nunito-VariableFont_wght.ttf);
+}
+
 body {
-  font-family: 'Century Gothic';
+  font-family: 'nunito';
 }
 
 #keyfram-picture {
@@ -326,19 +331,19 @@ body {
 .main-process {
   display: flex;
   margin-top: 150px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   margin-left: 15px;
   flex-wrap: wrap;
   width: 22em;
   align-items: center;
   justify-content: center;
   user-select: none;
-  z-index: -1;
+  z-index: -1;  
 }
 
 .card-process {
   width: 60px;
-  height: 60px;
+  height: 2.6em;
   border-top-left-radius: 10px;
   background: #7ae8ad;
   transition: .4s ease-in-out, .2s background-color ease-in-out, .2s background-image ease-in-out;
@@ -349,45 +354,58 @@ body {
   align-items: center;
   justify-content: center;
   color: transparent;
+  font-weight: bold;
 }
 
 .card-process:nth-child(2) {
   border-radius: 0px;
 }
-
 .card-process:nth-child(3) {
   border-top-left-radius: 0px;
 }
-
 .card-process:nth-child(4) {
   border-radius: 0px;
 }
-
 .card-process:nth-child(5) {
   border-top-left-radius: 0px;
   border-top-right-radius: 10px;
 }
-
 .card-process:nth-child(6) {
   border-radius: 0px;
-  border-bottom-left-radius: 10px;
 }
-
 .card-process:nth-child(7) {
   border-radius: 0px;
 }
-
 .card-process:nth-child(8) {
   border-radius: 0px;
 }
-
 .card-process:nth-child(9) {
   border-radius: 0px;
 }
-
 .card-process:nth-child(10) {
   border-radius: 0px;
+}
+.card-process:nth-child(11) {
+  width: 153px;
+  border-radius: 0px;
+  text-align: center;
+}
+.card-process:nth-child(12) {
+  width: 153px;
+  border-radius: 0px;
+  text-align: center;
+}
+.card-process:nth-child(13) {
+  width: 153px;
+  border-radius: 0px;
+  border-bottom-left-radius: 10px;
+  text-align: center;
+}
+.card-process:nth-child(14) {
+  width: 153px;
+  border-radius: 0px;
   border-bottom-right-radius: 10px;
+  text-align: center;
 }
 
 .main-process:hover {
@@ -414,48 +432,55 @@ body {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
-
 .card-process:nth-child(2):hover {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
-
 .card-process:nth-child(3):hover {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
-
 .card-process:nth-child(4):hover {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
-
 .card-process:nth-child(5):hover {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
-
 .card-process:nth-child(6):hover {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
-
 .card-process:nth-child(7):hover {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
-
 .card-process:nth-child(8):hover {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
-
 .card-process:nth-child(9):hover {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
-
 .card-process:nth-child(10):hover {
+  transition: .2s;
+  background-color: rgb(3, 141, 93);
+}
+.card-process:nth-child(11):hover {
+  transition: .2s;
+  background-color: rgb(3, 141, 93);
+}
+.card-process:nth-child(12):hover {
+  transition: .2s;
+  background-color: rgb(3, 141, 93);
+}
+.card-process:nth-child(13):hover {
+  transition: .2s;
+  background-color: rgb(3, 141, 93);
+}
+.card-process:nth-child(14):hover {
   transition: .2s;
   background-color: rgb(3, 141, 93);
 }
@@ -468,6 +493,8 @@ body {
   text-align: center;
   font-weight: bold;
   z-index: 3;
+  font-size: 18px;
+  
 }
 
 /* ================================== [container-input-sn] ================================== */
@@ -481,7 +508,7 @@ body {
 #container-input-sn #label-sn {
   user-select: none;
   width: 160px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   color: rgb(3, 141, 93);
   margin-left: 30px;
@@ -635,7 +662,7 @@ body {
   --bg-color: #eee;
   --main-color: #323232;
   position: relative;
-  width: 420px;
+  width: 430px;
   height: 40px;
   cursor: pointer;
   display: flex;
@@ -663,9 +690,9 @@ body {
 
 #container-initial-button #initial-button #initial-button__icon {
   position: absolute;
-  transform: translateX(365px);
+  transform: translateX(385px);
   height: 100%;
-  width: 45px;
+  width: 40px;
   background-color: var(--bg-color-sub);
   display: flex;
   align-items: center;
@@ -754,7 +781,7 @@ body {
   flex-wrap: wrap;
   display: none;
   width: 425px;
-  max-height: 310px;
+  max-height: 380px;
   user-select: none;
   overflow-y: auto;
 }
@@ -921,7 +948,7 @@ body {
   position: absolute;
   margin-top: 50px;
   width: 280px;
-  height: 660px;
+  height: 690px;
   background: transparent;
   position: relative;
   top: -900px;
@@ -931,7 +958,7 @@ body {
 
 .user-container #effective-date_bt {
   position: absolute;
-  top: 283px;
+  top: 296px;
   left: 190px;
   width: 30px;
   height: 30px;
@@ -943,7 +970,7 @@ body {
 
 .user-container #end-date_bt {
   position: absolute;
-  top: 342px;
+  top: 358px;
   left: 190px;
   width: 30px;
   height: 30px;
@@ -955,7 +982,7 @@ body {
 
 .user-container #model_bt {
   position: absolute;
-  top: 401px;
+  top: 421px;
   left: 190px;
   width: 30px;
   height: 30px;
@@ -967,7 +994,7 @@ body {
 
 .user-container #pn_bt {
   position: absolute;
-  top: 460px;
+  top: 485px;
   left: 190px;
   width: 30px;
   height: 30px;
@@ -997,7 +1024,7 @@ body {
   padding: 5px;
   position: absolute;
   display: grid;
-  top: 440px;
+  top: 457px;
   left: 190px;
   height: 0;
   justify-content: center;
@@ -1023,7 +1050,7 @@ body {
   padding: 5px;
   position: absolute;
   display: grid;
-  top: 500px;
+  top: 522px;
   left: 190px;
   height: 0;
   justify-content: center;
@@ -1048,7 +1075,7 @@ body {
 .user-container .log-card {
   margin-left: 20px;
   width: 200px;
-  height: 580px;
+  height: 620px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -1074,7 +1101,7 @@ body {
   background-color: #f37e10;
   position: absolute;
   right: 0;
-  bottom: 10px;
+  bottom: 0;
 }
 
 .user-container .log-card #heading {
@@ -1141,7 +1168,6 @@ body {
   border-radius: 10px;
   overflow: hidden;
   padding: 10px 20px 0px 20px;
-  font-family: consolas;
   transition: 0.5s ease;
 }
 
@@ -1521,7 +1547,7 @@ body {
 #table-parameter-fits th {
   background-color: rgb(3, 141, 93);
   padding: 5px;
-  font-size: 12px;
+  font-size: 13px;
   border: 1px solid #464646;
   text-align: center;
 }
@@ -2006,7 +2032,7 @@ body {
   height: auto;
   border: 1px solid black;
   color: red;
-  font-size: 14px;
+  font-size: 13px;
   padding: 5px;
   background-color: yellow;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
