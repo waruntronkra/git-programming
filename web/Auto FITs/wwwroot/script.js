@@ -618,6 +618,12 @@ $(document).ready(async function() {
                                     else if (process == 'LCT1' && parameter_FITS_array[j] == 'PI Location') {
 										array.push($('#input-PI-LCT').val());	
 									}
+                                    else if (process == 'LCT2' && parameter_FITS_array[j] == 'EN') {
+										array.push($('#input-EN-LCT').val());	
+									}
+                                    else if (process == 'LCT2' && parameter_FITS_array[j] == 'PI Location') {
+										array.push($('#input-PI-LCT').val());	
+									}
                                     // else if (process == 'LCT1' || process == 'LCT2' || process == 'LCT1' || process == 'Endface Inspection (FCAL)' || process == 'Endface Inspection (OPM)' || process == 'Endface Inspection (CFG)') {
                                     //     if (parameter_FITS_array[j] == 'EN') {
 									// 	    array.push($('#input-EN-LCT').val());	

@@ -160,12 +160,16 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
           controller: _tabController,
           initialSelectedTab: "SUMMARY",
           useSafeArea: true,
-          labels: const ["SUMMARY", "TABLE", "ANALYSIS", "RESULT TEST"],
+          labels: const ["SUMMARY", "NA", "ANALYSIS", "RESULT TEST"],
           icons: const [Icons.dashboard, Icons.analytics, Icons.list, Icons.data_array],
           tabSize: 50,
           tabBarHeight: 53,
           tabBarColor: Colors.orange,
-          textStyle: GoogleFonts.nunito(fontWeight: FontWeight.bold, color: Colors.white),
+          textStyle: GoogleFonts.nunito(
+            fontWeight: FontWeight.bold, 
+            color: Colors.white,
+            fontSize: 12
+          ),
           onTabItemSelected: (int value) {
             setState(() {
               _tabController.index = value;
@@ -1421,7 +1425,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
   Future<void> fetchDataLevel() async {
     try {
       stringEncryptedArray = await encryptData([
-        '71'
+        '72'
       ]);
 
       var productName = await getDataPOST(

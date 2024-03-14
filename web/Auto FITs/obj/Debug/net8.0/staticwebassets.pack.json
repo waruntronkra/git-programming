@@ -5,6 +5,74 @@
       "PackagePath": "staticwebassets\\background-1.png"
     },
     {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\Nunito-VariableFont_wght.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\Nunito-VariableFont_wght.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-Black.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-Black.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-BlackItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-BlackItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-Bold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-Bold.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-BoldItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-BoldItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-ExtraBold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-ExtraBold.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-ExtraBoldItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-ExtraBoldItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-ExtraLight.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-ExtraLight.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-ExtraLightItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-ExtraLightItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-Italic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-Italic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-Light.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-Light.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-LightItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-LightItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-Medium.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-Medium.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-MediumItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-MediumItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-Regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-Regular.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-SemiBold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-SemiBold.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\fonts\\Nunito\\static\\Nunito-SemiBoldItalic.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Nunito\\static\\Nunito-SemiBoldItalic.ttf"
+    },
+    {
       "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\images\\Logo.png",
       "PackagePath": "staticwebassets\\images\\Logo.png"
     },

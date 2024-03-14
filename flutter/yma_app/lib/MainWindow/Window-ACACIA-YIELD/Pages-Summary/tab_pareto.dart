@@ -75,10 +75,15 @@ class _PageParetoState extends State<PagePareto> {
           onPressed: () {
             widget.plotPareto(item);
           },
-          child: Text(item, style: GoogleFonts.nunito(fontSize: 12)),
+          child: Text(
+            item, style: 
+            GoogleFonts.nunito(
+              fontSize: 10,
+              fontWeight: FontWeight.bold
+            )
+          )
         )
-      )
-      );
+      ));
     }
     return failure;
   }

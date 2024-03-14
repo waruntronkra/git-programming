@@ -62,12 +62,15 @@ class MyBarChartParetoByDate extends StatelessWidget {
           dataSource: generateData(),
           xValueMapper: (ChartData data, _) => data.x,
           yValueMapper: (ChartData data, _) => data.y1,
-          color: const Color.fromARGB(255, 255, 0, 0),
+          color: Color.fromARGB(255, 255, 161, 161),
           name: 'QTY',
-          dataLabelSettings: const DataLabelSettings(
+          dataLabelSettings: DataLabelSettings(
             alignment: ChartAlignment.near,
             isVisible: true, angle: -90, 
-            textStyle: TextStyle(color: Colors.black)
+            textStyle: GoogleFonts.nunito(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            )
           ),
         ),
       ],

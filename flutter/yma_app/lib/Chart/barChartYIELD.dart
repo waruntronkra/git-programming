@@ -45,8 +45,7 @@ class MyBarChart extends StatelessWidget {
     return SfCartesianChart(
       title: ChartTitle(
         text: chartTitle,
-        textStyle: const TextStyle(
-          color: Color.fromARGB(255, 0, 0, 0), 
+        textStyle: GoogleFonts.nunito(
           fontWeight: FontWeight.bold,
           fontSize: 13
         )
