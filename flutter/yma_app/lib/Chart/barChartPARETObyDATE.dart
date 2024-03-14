@@ -40,7 +40,6 @@ class MyBarChartParetoByDate extends StatelessWidget {
       title: ChartTitle(
         text: paretoTitle,
         textStyle: GoogleFonts.nunito(
-          color: const Color.fromARGB(255, 0, 0, 0),
           fontWeight: FontWeight.bold,
           fontSize: 11
         )
@@ -62,13 +61,13 @@ class MyBarChartParetoByDate extends StatelessWidget {
           dataSource: generateData(),
           xValueMapper: (ChartData data, _) => data.x,
           yValueMapper: (ChartData data, _) => data.y1,
-          color: Color.fromARGB(255, 255, 161, 161),
+          color: const Color.fromARGB(255, 255, 0, 0),
           name: 'QTY',
           dataLabelSettings: DataLabelSettings(
             alignment: ChartAlignment.near,
             isVisible: true, angle: -90, 
             textStyle: GoogleFonts.nunito(
-              color: Colors.black,
+              color: Colors.white,
               fontWeight: FontWeight.bold,
             )
           ),

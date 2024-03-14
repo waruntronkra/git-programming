@@ -71,7 +71,7 @@ class _WidgetChartState extends State<WidgetChart> {
               margin: const EdgeInsets.only(left: 5, top: 5),
               padding: const EdgeInsets.all(5),
               width: MediaQuery.of(context).size.width * 0.975,
-              height: MediaQuery.of(context).size.height * 0.35,
+              height: MediaQuery.of(context).size.height * 0.25,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: const [
@@ -115,8 +115,8 @@ class _WidgetChartState extends State<WidgetChart> {
                 child: Container(
                   margin: const EdgeInsets.only(left: 5),
                   padding: const EdgeInsets.all(5),
-                  width: MediaQuery.of(context).size.width * 0.97,
-                  height: MediaQuery.of(context).size.height * 0.32,
+                  width: MediaQuery.of(context).size.width * 0.975,
+                  height: MediaQuery.of(context).size.height * 0.25,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: const [
@@ -127,7 +127,6 @@ class _WidgetChartState extends State<WidgetChart> {
                     ]
                   ),
                   child: Container(
-                    padding: const EdgeInsets.only(top: 5, bottom: 5, left: 10, right: 10),
                     decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.white
@@ -136,40 +135,6 @@ class _WidgetChartState extends State<WidgetChart> {
                       dataBarChart: widget.dataBarChart,
                       dataLineChartMix: widget.dataLineChartMix,
                       chartTitle: widget.processSelected,
-                    )
-                  )
-                )
-              ),
-              Visibility(
-                visible: widget.mixChartVisible,
-                child: Container(
-                  margin: const EdgeInsets.only(top: 150, left: 10),
-                  child: Transform.rotate(
-                    angle: 1.6,
-                    child: Text(
-                      'QTY',
-                      style: GoogleFonts.nunito(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12
-                      ),
-                    )
-                  )
-                )
-              ),
-              Visibility(
-                visible: widget.mixChartVisible,
-                  child: Container(
-                  margin: const EdgeInsets.only(top: 150, right: 3),
-                  width: MediaQuery.of(context).size.width,
-                  alignment: Alignment.topRight,
-                  child: Transform.rotate(
-                    angle: 1.6,
-                    child: Text(
-                      '% FAIL',
-                      style: GoogleFonts.nunito(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12
-                      ),
                     )
                   )
                 )

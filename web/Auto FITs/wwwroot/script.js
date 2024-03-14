@@ -74,7 +74,7 @@ $(document).ready(async function() {
                 process == 'CFG' ||
                 process == 'Endface Inspection (FCAL)' ||
                 process == 'Endface Inspection (OPM)' ||
-                process == 'Endface Inspection (ORL3)' ||
+                process == 'Fiber Endface Inspection (ORL3)' ||
                 process == 'Endface Inspection (CFG)'
                 ) 
                 {
@@ -624,14 +624,7 @@ $(document).ready(async function() {
                                     else if (process == 'LCT2' && parameter_FITS_array[j] == 'PI Location') {
 										array.push($('#input-PI-LCT').val());	
 									}
-                                    // else if (process == 'LCT1' || process == 'LCT2' || process == 'LCT1' || process == 'Endface Inspection (FCAL)' || process == 'Endface Inspection (OPM)' || process == 'Endface Inspection (CFG)') {
-                                    //     if (parameter_FITS_array[j] == 'EN') {
-									// 	    array.push($('#input-EN-LCT').val());	
-                                    //     }
-                                    //     else if (parameter_FITS_array[j] == 'PI Location') {
-                                    //         array.push($('#input-PI-LCT').val());
-                                    //     }
-									// }
+                              
 									else {
 										array.push((await getLastTest(parameter_FITS_array[j], listSN[i]))['data'][0]['OUTPUT']);
 									}
@@ -865,7 +858,7 @@ $(document).ready(async function() {
             else if (process == 'Endface Inspection (OPM)') {
                 operation = '3796';
             }
-            else if (process == 'Endface Inspection (ORL3)') {
+            else if (process == 'Fiber Endface Inspection (ORL3)') {
                 operation = 'EORL3';
             }
             else if (process == 'Endface Inspection (CFG)') {
@@ -882,10 +875,10 @@ $(document).ready(async function() {
                 process == 'LCT2' ||
                 process == 'LCTT' ||
                 process == 'CFG' ||
-                process == 'Endface FCAL' ||
-                process == 'Endface OPM' ||
-                process == 'Endface ORL3' ||
-                process == 'Endface CFG'
+                process == 'Endface Inspection (FCAL)' ||
+                process == 'Endface Inspection (OPM)' ||
+                process == 'Fiber Endface Inspection (ORL3)' ||
+                process == 'Endface Inspection (CFG)'
                 ) 
                 {
                 model = 'All Module';

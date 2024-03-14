@@ -487,7 +487,6 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                       ]
                                     ),
                                     child: Container(
-                                      padding: const EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 20),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
                                         color: Colors.white
@@ -499,42 +498,6 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                     )
                                   )
                                 ),
-                                // QTY label =================================
-                                Visibility(
-                                  visible: paretoChartVisible,
-                                  child: Container(
-                                    margin: const EdgeInsets.only(top: 140, left: 7),
-                                    child: Transform.rotate(
-                                      angle: 1.6,
-                                      child: Text(
-                                        'QTY',
-                                        style: GoogleFonts.nunito(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12
-                                        ),
-                                      )
-                                    )
-                                  )
-                                ),
-                                // % FAIL label =================================
-                                Visibility(
-                                  visible: paretoChartVisible,
-                                  child: Container(
-                                    margin: const EdgeInsets.only(top: 140, right: 2),
-                                    width: MediaQuery.of(context).size.width,
-                                    alignment: Alignment.topRight,
-                                    child: Transform.rotate(
-                                      angle: 1.6,
-                                      child: Text(
-                                        '% FAIL',
-                                        style: GoogleFonts.nunito(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12
-                                        ),
-                                      )
-                                    )
-                                  )
-                                )
                               ]
                             ),
                             Stack(

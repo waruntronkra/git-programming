@@ -992,7 +992,7 @@ class _WindowEPYIELDStateNew extends State<WindowEPYIELD> {
           '02'
         ]);
         var dataQueried = await getDataPOST(
-          'https://localhost:44342/api/YMA/EPYieldQueryDetail',
+          'https://supply-api.fabrinet.co.th/api/YMA/EPYieldQueryDetail',
           {
             'Model': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
             'From': stringEncryptedArray['data'][1],

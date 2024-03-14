@@ -61,6 +61,13 @@ class MyBarChart extends StatelessWidget {
         labelStyle: GoogleFonts.nunito(
           fontSize: 10
         ),
+        title: AxisTitle(
+          text: 'QTY',
+          textStyle: GoogleFonts.nunito(
+            fontSize: 12,
+            fontWeight: FontWeight.bold
+          )
+        ),
       ),
       legend: const Legend(
         isVisible: false,
@@ -96,6 +103,13 @@ class MyBarChart extends StatelessWidget {
           name: '% YIELD', // Second axis has been set code above
           labelStyle: GoogleFonts.nunito(
             fontSize: 10
+          ),
+          title: AxisTitle(
+            text: '% YIELD',
+            textStyle: GoogleFonts.nunito(
+              fontSize: 12,
+              fontWeight: FontWeight.bold
+            )
           ),
         ),
       ],
