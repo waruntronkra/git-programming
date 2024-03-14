@@ -1,12 +1,17 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'dart:convert';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
+// ignore: depend_on_referenced_packages
+import 'package:path_provider/path_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:YMs/MainWindow/Window-Switching-Window/selection_view.dart';
+
 // import 'package:device_imei/device_imei.dart';
 
 class WindowLogin extends StatefulWidget {
@@ -42,18 +47,28 @@ class _WindowLoginState extends State<WindowLogin> {
     super.initState();
   }
 
-  void _init() async {
+  void checkVersion() async {
     await queryUserAppInfo();
     await queryAppInfo();
-    if (currentRevision != currentRevisionLastest) {
-      print('Please Update');
-      print('currentRevision : $currentRevision');
-      print('currentRevisionLastest : $currentRevisionLastest');
+    if (currentRevision.isNotEmpty) {
+      if (currentRevision != currentRevisionLastest) {
+        print('Please Update');
+        print('currentRevision : $currentRevision');
+        print('currentRevisionLastest : $currentRevisionLastest');
+
+        // Download and open the file
+        await downloadAndOpenFile('https://supply-api.fabrinet.co.th/api/YMA/FileAppDownload');
+          
+        print('Downloaded!');
+      }
+      else {
+        print('This is last verion already');
+        print('currentRevision : $currentRevision');
+        print('currentRevisionLastest : $currentRevisionLastest');
+      }
     }
     else {
-      print('This is last verion already');
-      print('currentRevision : $currentRevision');
-      print('currentRevisionLastest : $currentRevisionLastest');
+      print('Invalid username!');
     }
   }
 
@@ -183,9 +198,9 @@ class _WindowLoginState extends State<WindowLogin> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    _init();
+                    checkVersion();
                     // checkUsername();
-                    navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => const WindowSelectView()));
+                    // navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => const WindowSelectView()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
@@ -336,6 +351,42 @@ class _WindowLoginState extends State<WindowLogin> {
         type: CoolAlertType.error,
         text:'Error : $e'
       );
+    }
+  }
+
+  Future<void> downloadFile() async {
+    try {
+      var dataQueried = await getDataPOST(
+        'https://supply-api.fabrinet.co.th/api/YMA/FileAppDownload',
+        {}
+      );
+      print(dataQueried);
+      if (dataQueried[1] == 200) {
+        print(dataQueried);
+
+      }
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
+  }
+
+  Future<void> downloadAndOpenFile(String url) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final filePath = '${directory.path}/downloaded_file';
+    final response = await http.get(Uri.parse(url));
+    final file = File(filePath);
+    await file.writeAsBytes(response.bodyBytes);
+
+    if (await canLaunch(filePath)) {
+      await launch(filePath);
+    } else {
+      throw 'Could not launch $filePath';
     }
   }
 
