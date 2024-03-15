@@ -1,8 +1,32 @@
 [Build APK]
-(If ot add yet) Add => <uses-permission android:name="android.permission.INTERNET"/>
-Before build 
-Path: /android/app/src/main/AndroidManifest.xml
-flutter build apk --release
+    1. (If case this app use inthernet) add "<uses-permission android:name="android.permission.INTERNET" />" to file => "\android\app\src\main\AndroidManifest.xml"
+    2. Input CMD "flutter build apk --release"
+        2.1 If buid fail use CMD below Before
+            - flutter clean
+            - flutter pub get
+
+[Update app without using Goolgle Play Stor/App Store]
+{Android}
+    1. Open powershell terminal on your project flutter
+    2. Input CMD "Set-ExecutionPolicy RemoteSigned -scope CurrentUser"
+    3. Input CMD "iwr -UseBasicParsing 'https://raw.githubusercontent.com/shorebirdtech/install/main/install.ps1'|iex"
+    4. Input CMD "shorebird login"
+        - There is link showing, click that link to login.
+    5. Input CMD "shorebird init"
+        - Don't for get to add "<uses-permission android:name="android.permission.INTERNET" />" to file => "\android\app\src\main\AndroidManifest.xml"
+        <manifest ...>
+            <uses-permission android:name="android.permission.INTERNET" />
+        ...
+        </manifest>
+    6. Input CMD "shorebird release android"
+        - In case don't want to confirm ("y") => "shorebird release android --force"
+        - There is sentence to ask about path name, input the name (not relate with app name)
+        Option 1: Input CMD "shorebird preview" (For emulator)
+            - Selecte device Android you want to emulate first
+        Option 2: Input CMD "shorebird build apk" (For buid APK file)
+    8. Input CMD "shorebird patch android"
+        - In case update new path
+        - After finished, restart app again
 
 [In case move folder] 
 flutter clean
