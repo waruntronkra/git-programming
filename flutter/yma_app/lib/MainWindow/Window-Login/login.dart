@@ -37,6 +37,11 @@ class _WindowLoginState extends State<WindowLogin> {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   final TextEditingController usernameController = TextEditingController();
 
+  // ************************** Important! => Update this version **************************
+  String appVersion = 'v1.0';
+  // ***************************************************************************************
+  String appVersionFromGit = '';
+
   String savedUsername = '';
 
   String currentDate = '';
@@ -58,66 +63,66 @@ class _WindowLoginState extends State<WindowLogin> {
     var now = DateTime.now();
     var formatter = DateFormat('MM/dd/yyyy hh:mm:ss a');
     currentDate = formatter.format(now);
-    _getGitFiles();
-    loadUsername();
+
+    loadUsername(true);
     super.initState();
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Update Notification'),
-            content: const Text('There is an update'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Update'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Update Later'),
-              ),
-            ],
-          );
-        },
-      );
-    });
-  }
-  List<String> files = [];
-  Future<void> _getGitFiles() async {
-    var apiUrl = 'https://api.github.com/repos/waruntronkra/git-programming/contents/APK';
-
-    try {
-      var response = await http.get(Uri.parse(apiUrl));
-      if (response.statusCode == 200) {
-        List<dynamic> fileList = jsonDecode(response.body);
-          print(fileList[0]['name']);
-      
-      } else {
-        print('Failed to load files: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error: $e');
-    }
   }
 
-  Future<void> loadUsername() async {
+  Future<void> loadUsername(bool checkUpdate) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       savedUsername = prefs.getString('username') ?? '';
       usernameController.text = savedUsername;
     });
+
+    if (checkUpdate == true) {
+      await _getGitFiles();
+    }
+  }
+
+  Future<void> _getGitFiles() async {
+    var response = await http.get(Uri.parse('https://api.github.com/repos/waruntronkra/git-programming/contents/APK'));
+    if (response.statusCode == 200) {
+      setState(() {
+        appVersionFromGit = (jsonDecode(response.body))[0]['name'];
+      });
+    } 
+    if (appVersionFromGit.isNotEmpty) {
+      if (appVersionFromGit.split('-')[1].split('.apk')[0] != appVersion) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Update Notification'),
+                content: Text('There is new version => ${appVersionFromGit.split('-')[1].split('.apk')[0]}.'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      _launchURL();
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Update'),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Update Later'),
+                  ),
+                ],
+              );
+            },
+          );
+        });
+      }
+    }
   }
 
   Future<void> saveUsername(String username) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('username', username);
-    loadUsername();
+    loadUsername(false);
   }
 
   @override
