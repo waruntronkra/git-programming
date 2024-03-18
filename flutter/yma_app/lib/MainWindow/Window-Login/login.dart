@@ -56,7 +56,7 @@ class _WindowLoginState extends State<WindowLogin> {
     var now = DateTime.now();
     var formatter = DateFormat('MM/dd/yyyy hh:mm:ss a');
     currentDate = formatter.format(now);
-
+    _getGitFiles();
     loadUsername();
     super.initState();
 
@@ -85,6 +85,25 @@ class _WindowLoginState extends State<WindowLogin> {
         },
       );
     });
+  }
+  List<String> files = [];
+  Future<void> _getGitFiles() async {
+    var apiUrl = 'https://api.github.com/repos/waruntronkra/git-programming/contents/APK';
+
+    try {
+      var response = await http.get(Uri.parse(apiUrl));
+      if (response.statusCode == 200) {
+        List<dynamic> fileList = jsonDecode(response.body);
+        for (var item in fileList) {
+          print(item['name']);
+        }
+      
+      } else {
+        print('Failed to load files: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 
   Future<void> loadUsername() async {

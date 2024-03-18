@@ -65,6 +65,7 @@ dependencies:
   url_launcher: ^6.2.5
   flutter_downloader: ^1.11.6
   ota_update: ^6.0.0
+  git: ^2.2.1
 
 dev_dependencies:
   flutter_test:
