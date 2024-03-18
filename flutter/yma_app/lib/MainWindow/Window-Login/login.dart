@@ -8,6 +8,9 @@ import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:YMs/MainWindow/Window-Switching-Window/selection_view.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:google_fonts/google_fonts.dart';
+// ignore: depend_on_referenced_packages
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:device_imei/device_imei.dart';
 
 class WindowLogin extends StatefulWidget {
@@ -20,6 +23,10 @@ class WindowLogin extends StatefulWidget {
 class _WindowLoginState extends State<WindowLogin> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  final TextEditingController usernameController = TextEditingController();
+
+  String savedUsername = '';
+
   String currentDate = '';
   String username = '';
   String password = '';
@@ -39,11 +46,24 @@ class _WindowLoginState extends State<WindowLogin> {
     var now = DateTime.now();
     var formatter = DateFormat('MM/dd/yyyy hh:mm:ss a');
     currentDate = formatter.format(now);
-
+    // checkVersion();
     super.initState();
   }
 
-  
+  Future<void> loadUsername() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      savedUsername = prefs.getString('username') ?? '';
+      usernameController.text = savedUsername;
+    });
+  }
+
+  Future<void> saveUsername(String username) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', username);
+    loadUsername();
+  }
+
   // void checkVersion() async {
   //   await queryUserAppInfo();
   //   await queryAppInfo();
@@ -52,7 +72,6 @@ class _WindowLoginState extends State<WindowLogin> {
   //       print('Please Update');
   //       print('currentRevision : $currentRevision');
   //       print('currentRevisionLastest : $currentRevisionLastest');
-  //       await downloadFile();
   //       print('Downloade');
   //     }
   //     else {
@@ -116,6 +135,7 @@ class _WindowLoginState extends State<WindowLogin> {
                   margin: const EdgeInsets.only(top: 5),
                   width: MediaQuery.of(context).size.width * 0.9,
                   child: TextField(
+                    controller: usernameController,
                     onChanged: (String? value) {
                       setState(() {
                         username = value!;
@@ -141,9 +161,9 @@ class _WindowLoginState extends State<WindowLogin> {
                 alignment: Alignment.topLeft,
                 width: MediaQuery.of(context).size.width * 0.9,
                 margin: const EdgeInsets.only(top: 20),
-                child: const Text(
-                  'Two-Factor PIN',
-                  style: TextStyle(
+                child: Text(
+                  savedUsername,
+                  style: GoogleFonts.nunito(
                     fontWeight: FontWeight.bold
                   ),
                 ),
@@ -194,6 +214,7 @@ class _WindowLoginState extends State<WindowLogin> {
                   onPressed: () {
                     // checkVersion();
                     // checkUsername();
+                    saveUsername(usernameController.text);
                     navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => const WindowSelectView()));
                   },
                   style: ElevatedButton.styleFrom(
