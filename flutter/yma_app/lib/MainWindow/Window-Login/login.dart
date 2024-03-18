@@ -213,7 +213,7 @@ class _WindowLoginState extends State<WindowLogin> {
               ), 
               ElevatedButton(
                 onPressed: _launchURL,
-                child: const Text('Download File!'),
+                child: const Text('Check for update'),
               ),
             ],
           ),
