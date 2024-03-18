@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
-import 'package:YMs/MainWindow/Window-Switching-Window/selection_view.dart';
+import 'package:YMM/MainWindow/Window-Switching-Window/selection_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_fonts/google_fonts.dart';
 // ignore: depend_on_referenced_packages
@@ -19,10 +19,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: WindowLogin(),
     );
   }
 }
+
 class WindowLogin extends StatefulWidget {
   const WindowLogin({super.key});
 
@@ -94,9 +96,7 @@ class _WindowLoginState extends State<WindowLogin> {
       var response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
         List<dynamic> fileList = jsonDecode(response.body);
-        for (var item in fileList) {
-          print(item['name']);
-        }
+          print(fileList[0]['name']);
       
       } else {
         print('Failed to load files: ${response.statusCode}');
@@ -122,151 +122,150 @@ class _WindowLoginState extends State<WindowLogin> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: navigatorKey,
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        key: scaffoldKey,
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(0),
-          child: AppBar()
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              // Image Fabrinet
-              Center(
-                child: SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Image.asset('assets/images/fabrinet_image.png')
+    return Scaffold(
+      key: scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(0),
+        child: AppBar()
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Image Fabrinet
+            Center(
+              child: SizedBox(
+                width: 100,
+                height: 100,
+                child: Image.asset('assets/images/fabrinet_image.png')
+              ),
+            ),
+            // Image Login
+            Center(
+              child: SizedBox(
+                width: 250,
+                height: 250,
+                child: Image.asset('assets/images/login_image.png')
+              ),
+            ),
+            // Username Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            Container(
+              alignment: Alignment.topLeft,
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: const Text(
+                'Username',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold
                 ),
               ),
-              // Image Login
-              Center(
-                child: SizedBox(
-                  width: 250,
-                  height: 250,
-                  child: Image.asset('assets/images/login_image.png')
-                ),
-              ),
-              // Username Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-              Container(
-                alignment: Alignment.topLeft,
+            ),
+            Center(
+              child: Container(
+                margin: const EdgeInsets.only(top: 5),
                 width: MediaQuery.of(context).size.width * 0.9,
-                child: const Text(
-                  'Username',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-              ),
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.only(top: 5),
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  child: TextField(
-                    controller: usernameController,
-                    onChanged: (String? value) {
-                      setState(() {
-                        username = value!;
-                      });
-                    },
-                    cursorColor: const Color.fromARGB(255, 3, 141, 93),
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.person),
-                      prefixIconColor: Color.fromARGB(255, 3, 141, 93),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 3, 141, 93),
-                          width: 2
-                        )
-                      )
-                    ),
-                  )
-                )
-              ),
-              // Password Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-              Container(
-                alignment: Alignment.topLeft,
-                width: MediaQuery.of(context).size.width * 0.9,
-                margin: const EdgeInsets.only(top: 20),
-                child: Text(
-                  'Two-Factor PIN',
-                  style: GoogleFonts.nunito(
-                    fontWeight: FontWeight.bold
-                  ),
-                ),
-              ),
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.only(top: 5),
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  child: TextField(
-                    onChanged: (String? val) {
-                      setState(() {
-                        password = val!;
-                      });
-                    },
-                    cursorColor: const Color.fromARGB(255, 3, 141, 93),
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(Icons.lock),
-                      prefixIconColor: Color.fromARGB(255, 3, 141, 93),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 3, 141, 93),
-                          width: 2
-                        )
-                      )
-                    ),
-                  )
-                )
-              ),
-              // Login Button >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-              Container(
-                decoration:  BoxDecoration(
-                  color: const Color.fromARGB(255, 3, 141, 93),
-                  boxShadow: const [
-                    BoxShadow(
-                      blurRadius: 5,
-                      offset: Offset(1, 1),
-                      color: Colors.grey
-                    )
-                  ],
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                margin: const EdgeInsets.only(top: 20),
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {
-                    saveUsername(usernameController.text);
-                    navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => const WindowSelectView()));
+                child: TextField(
+                  controller: usernameController,
+                  onChanged: (String? value) {
+                    setState(() {
+                      username = value!;
+                    });
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)
+                  cursorColor: const Color.fromARGB(255, 3, 141, 93),
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.person),
+                    prefixIconColor: Color.fromARGB(255, 3, 141, 93),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 3, 141, 93),
+                        width: 2
+                      )
                     )
                   ),
-                  child: const Text(
-                    'Submit', 
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20
-                    )
-                  ),
-                ) 
-              ), 
-              ElevatedButton(
-                onPressed: _launchURL,
-                child: const Text('Check for update'),
+                )
+              )
+            ),
+            // Password Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            Container(
+              alignment: Alignment.topLeft,
+              width: MediaQuery.of(context).size.width * 0.9,
+              margin: const EdgeInsets.only(top: 20),
+              child: Text(
+                'Two-Factor PIN',
+                style: GoogleFonts.nunito(
+                  fontWeight: FontWeight.bold
+                ),
               ),
-            ],
-          ),
+            ),
+            Center(
+              child: Container(
+                margin: const EdgeInsets.only(top: 5),
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: TextField(
+                  onChanged: (String? val) {
+                    setState(() {
+                      password = val!;
+                    });
+                  },
+                  cursorColor: const Color.fromARGB(255, 3, 141, 93),
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.lock),
+                    prefixIconColor: Color.fromARGB(255, 3, 141, 93),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 3, 141, 93),
+                        width: 2
+                      )
+                    )
+                  ),
+                )
+              )
+            ),
+            // Login Button >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            Container(
+              decoration:  BoxDecoration(
+                color: const Color.fromARGB(255, 3, 141, 93),
+                boxShadow: const [
+                  BoxShadow(
+                    blurRadius: 5,
+                    offset: Offset(1, 1),
+                    color: Colors.grey
+                  )
+                ],
+                borderRadius: BorderRadius.circular(10)
+              ),
+              margin: const EdgeInsets.only(top: 20),
+              width: MediaQuery.of(context).size.width * 0.5,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  saveUsername(usernameController.text);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const WindowSelectView())
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)
+                  )
+                ),
+                child: const Text(
+                  'Submit', 
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20
+                  )
+                ),
+              ) 
+            ), 
+            // ElevatedButton(
+            //   onPressed: _launchURL,
+            //   child: const Text('Check for update'),
+            // ),
+          ],
         ),
       ),
     );
