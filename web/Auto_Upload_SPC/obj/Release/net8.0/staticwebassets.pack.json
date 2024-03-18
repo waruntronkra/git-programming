@@ -1,0 +1,109 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\Nunito-VariableFont_wght.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\Nunito-VariableFont_wght.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-Black.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-Black.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-BlackItalic.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-BlackItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-Bold.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-Bold.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-BoldItalic.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-BoldItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-ExtraBold.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-ExtraBold.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-ExtraBoldItalic.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-ExtraBoldItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-ExtraLight.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-ExtraLight.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-ExtraLightItalic.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-ExtraLightItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-Italic.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-Italic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-Light.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-Light.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-LightItalic.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-LightItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-Medium.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-Medium.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-MediumItalic.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-MediumItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-Regular.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-Regular.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-SemiBold.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-SemiBold.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\font\\Nunito\\static\\Nunito-SemiBoldItalic.ttf",
+      "PackagePath": "staticwebassets\\font\\Nunito\\static\\Nunito-SemiBoldItalic.ttf"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\gif\\auto_SPC_upload.gif",
+      "PackagePath": "staticwebassets\\gif\\auto_SPC_upload.gif"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\icon\\icon.ico",
+      "PackagePath": "staticwebassets\\icon\\icon.ico"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto_Upload_SPC\\wwwroot\\js\\script.js",
+      "PackagePath": "staticwebassets\\js\\script.js"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.Auto_Upload_SPC.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.Auto_Upload_SPC.props",
+      "PackagePath": "build\\Auto_Upload_SPC.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Auto_Upload_SPC.props",
+      "PackagePath": "buildMultiTargeting\\Auto_Upload_SPC.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.Auto_Upload_SPC.props",
+      "PackagePath": "buildTransitive\\Auto_Upload_SPC.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
