@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:encrypt/encrypt.dart' as encrypt;
 import 'package:YMs/MainWindow/Window-Switching-Window/selection_view.dart';
+import 'package:ota_update/ota_update.dart';
 // import 'package:device_imei/device_imei.dart';
 
 class WindowLogin extends StatefulWidget {
@@ -33,15 +34,36 @@ class _WindowLoginState extends State<WindowLogin> {
   String currentRevisionLastest = '';
   String currentSubRevisionLastest = '';
 
+  OtaEvent? currentEvent;
+
   @override
   void initState() {
     var now = DateTime.now();
     var formatter = DateFormat('MM/dd/yyyy hh:mm:ss a');
     currentDate = formatter.format(now);
-    
+
     super.initState();
   }
 
+  void _downloadFile() async {
+    // RUN OTA UPDATE 
+    // START LISTENING FOR DOWNLOAD PROGRESS REPORTING EVENTS
+    try {
+        //LINK CONTAINS APK OF FLUTTER HELLO WORLD FROM FLUTTER SDK EXAMPLES
+        OtaUpdate()
+            .execute(
+          'https://github.com/waruntronkra/git-programming/raw/main/app-release.apk',
+          // OPTIONAL
+          destinationFilename: 'YMs.apk',
+        ).listen(
+          (OtaEvent event) {
+            setState(() => currentEvent = event);
+          },
+        );
+    } catch (e) {
+        print('Failed to make OTA update. Details: $e');
+    }
+  }
   // void checkVersion() async {
   //   await queryUserAppInfo();
   //   await queryAppInfo();
@@ -91,13 +113,13 @@ class _WindowLoginState extends State<WindowLogin> {
                 ),
               ),
               // Image Login
-              Center(
-                child: SizedBox(
-                  width: 250,
-                  height: 250,
-                  child: Image.asset('assets/images/login_image.png')
-                ),
-              ),
+              // Center(
+              //   child: SizedBox(
+              //     width: 250,
+              //     height: 250,
+              //     child: Image.asset('assets/images/login_image.png')
+              //   ),
+              // ),
               // Username Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
               Container(
                 alignment: Alignment.topLeft,
@@ -209,7 +231,10 @@ class _WindowLoginState extends State<WindowLogin> {
                   ),
                 ) 
               ), 
-              Text(phonNo),
+              ElevatedButton(
+                onPressed: _downloadFile,
+                child: const Text('Download File!'),
+              ),
             ],
           ),
         ),

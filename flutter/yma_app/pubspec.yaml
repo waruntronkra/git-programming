@@ -63,6 +63,8 @@ dependencies:
   flutter_speed_dial: ^7.0.0
   fl_chart: ^0.66.2
   url_launcher: ^6.2.5
+  flutter_downloader: ^1.11.6
+  ota_update: ^6.0.0
 
 dev_dependencies:
   flutter_test:
