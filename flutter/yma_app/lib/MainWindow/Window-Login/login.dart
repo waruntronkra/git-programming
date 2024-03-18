@@ -13,6 +13,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:device_imei/device_imei.dart';
 
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: WindowLogin(),
+    );
+  }
+}
 class WindowLogin extends StatefulWidget {
   const WindowLogin({super.key});
 
@@ -30,7 +40,7 @@ class _WindowLoginState extends State<WindowLogin> {
   String currentDate = '';
   String username = '';
   String password = '';
-  bool statusQueried = false;
+  bool statusLogin = false;
   String phonNo = '';
 
   String currentVersion = '';
@@ -46,8 +56,35 @@ class _WindowLoginState extends State<WindowLogin> {
     var now = DateTime.now();
     var formatter = DateFormat('MM/dd/yyyy hh:mm:ss a');
     currentDate = formatter.format(now);
-    // checkVersion();
+
+    loadUsername();
     super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Update Notification'),
+            content: const Text('There is an update'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Update'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Update Later'),
+              ),
+            ],
+          );
+        },
+      );
+    });
   }
 
   Future<void> loadUsername() async {
@@ -63,31 +100,6 @@ class _WindowLoginState extends State<WindowLogin> {
     await prefs.setString('username', username);
     loadUsername();
   }
-
-  // void checkVersion() async {
-  //   await queryUserAppInfo();
-  //   await queryAppInfo();
-  //   if (currentRevision.isNotEmpty) {
-  //     if (currentRevision != currentRevisionLastest) {
-  //       print('Please Update');
-  //       print('currentRevision : $currentRevision');
-  //       print('currentRevisionLastest : $currentRevisionLastest');
-  //       print('Downloade');
-  //     }
-  //     else {
-  //       print('This is last verion already');
-  //       print('currentRevision : $currentRevision');
-  //       print('currentRevisionLastest : $currentRevisionLastest');
-  //     }
-  //   }
-  //   else {
-  //     print('Invalid username!');
-  //   }
-  // }
-
-  // void checkUsername() async {
-  //   await queryUser();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +174,7 @@ class _WindowLoginState extends State<WindowLogin> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 margin: const EdgeInsets.only(top: 20),
                 child: Text(
-                  savedUsername,
+                  'Two-Factor PIN',
                   style: GoogleFonts.nunito(
                     fontWeight: FontWeight.bold
                   ),
@@ -212,8 +224,6 @@ class _WindowLoginState extends State<WindowLogin> {
                 height: 50,
                 child: ElevatedButton(
                   onPressed: () {
-                    // checkVersion();
-                    // checkUsername();
                     saveUsername(usernameController.text);
                     navigatorKey.currentState!.push(MaterialPageRoute(builder: (context) => const WindowSelectView()));
                   },
@@ -243,6 +253,22 @@ class _WindowLoginState extends State<WindowLogin> {
     );
   }
 
+  void showFullTextDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Please update')
+            ]
+          )
+        );
+      },
+    );
+  }
+
   void _launchURL() async {
     final Uri url = Uri.parse('https://github.com/waruntronkra/git-programming/raw/main/app-release.apk');
     if (!await launchUrl(url)) {
@@ -254,7 +280,7 @@ class _WindowLoginState extends State<WindowLogin> {
   Future<void> queryUser() async {
     try {
       Map<String, dynamic> stringEncryptedArray = await encryptData([
-        username,
+        usernameController.text,
       ]);
 
       var dataQueried = await getDataPOST(
@@ -272,19 +298,18 @@ class _WindowLoginState extends State<WindowLogin> {
 
         String decryptJson = encrypter.decrypt64(jsonEncrypted, iv: stringEncryptedArray['iv']);
         List<Map<String, dynamic>> decodedData = List<Map<String, dynamic>>.from(json.decode(decryptJson));
-
         setState(() {
           if (decodedData.isNotEmpty) {
-            statusQueried = true;
+            statusLogin = true;
           }
           else {
-            statusQueried = false;
+            statusLogin = false;
           }
         });
       }
       else {
         setState(() {
-          statusQueried = false;
+          statusLogin = false;
         });
       }
     }
@@ -301,7 +326,7 @@ class _WindowLoginState extends State<WindowLogin> {
   Future<void> queryUserAppInfo() async {
     try {
       Map<String, dynamic> stringEncryptedArray = await encryptData([
-        username
+        savedUsername
       ]);
 
       var dataQueried = await getDataPOST(

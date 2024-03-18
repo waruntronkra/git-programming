@@ -10,11 +10,22 @@
 <body>
     <!-- ================================ [Button Start] ================================ -->
     <button id="bt-start" onclick="startRun()">START</button>
+    <!-- ================================ [Button Stop] ================================ -->
+    <button id="bt-stop" onclick="stopRun()">STOP</button>
+    <!-- ================================ [Label Running] ================================ -->
+    <p id="text-runnig">Stopped</p>
+    <!-- ================================ [Label Date Refresh] ================================ -->
+    <p id="text-date-refresh"></p>
+    <!-- ================================ [Input EN] ================================ -->
+    <input placeholder="EN" id="input-en" maxlength="6" oninput="this.value = this.value.replace(/[^0-6]/g, '')">
     <!-- ================================ [GIF] ================================ -->
     <img id="gif-file" src="./gif/auto_SPC_upload.gif" alt="">
     <!-- ================================ [Table] ================================ -->
     <div id="container-table-data">
         <table border="1" id="table-data"></table>
+    </div>
+    <div id="container-table-result-fits">
+        <table border="1" id="table-result-fits"></table>
     </div>
     <!-- ================================ [Loader Widget] ================================ -->
     <div id="loader" aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster"

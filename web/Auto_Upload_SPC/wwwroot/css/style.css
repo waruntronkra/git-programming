@@ -8,10 +8,46 @@
     font-family: 'nunito';
 }
 
+/* ================================ [Label Running] ================================ */
+#text-runnig {
+    position: absolute;
+    left: 370px;
+    top: 25px;
+    color: #FF0303;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+/* ================================ [Label Date Refresh] ================================ */
+#text-date-refresh {
+    position: absolute;
+    left: 30px;
+    top: 2px;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+}
+/* ================================ [Input EN] ================================ */
+#input-en {
+    position: absolute;
+    left: 30px;
+    top: 100px;
+    height: 35px;
+    width: 230px;
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid black;
+    background-color: #fffad4;
+    font-weight: bold;
+    font-size: 12px;
+    font-size: 15px;
+}
+
 /* ================================ [GIF] ================================ */
 #gif-file {
     position: absolute;
-    left: 170px;
+    left: 270px;
     top: 35px;
     width: 60px;
     height: 60px;
@@ -48,12 +84,43 @@
     box-shadow: none;
 }
 
-/* ================================ [Table] ================================ */
+/* ================================ [Button Stop] ================================ */
+#bt-stop {
+    position: absolute;
+    left: 160px;
+    top: 40px;
+    --bg: rgb(0 0 0);
+    --hover-bg: rgb(255, 0, 0);
+    --hover-text: white;
+    font-weight: bold;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    border: 1px solid var(--bg);
+    border-radius: 10px;
+    padding: 0.8em 2em;
+    background: var(--bg);
+    transition: 0.2s;
+}
+
+#bt-stop:hover {
+    color: var(--hover-text);
+    transform: translate(-0.25rem, -0.25rem);
+    background: var(--hover-bg);
+    box-shadow: 0.25rem 0.25rem var(--bg);
+}
+
+#bt-stop:active {
+    transform: translate(0);
+    box-shadow: none;
+}
+
+/* ================================ [Table Data] ================================ */
 #container-table-data {
     position: absolute;
     top: -900px;
     left: 30px;
-    height: 350px;
+    height: 200px;
     overflow: auto;
     transition: 0.5s ease;
     background-color: rgb(20, 40, 60);
@@ -91,6 +158,48 @@
     color: white;
 }
 
+/* ================================ [Table Result FITs] ================================ */
+#container-table-result-fits {
+    position: absolute;
+    top: -900px;
+    left: 30px;
+    height: 200px;
+    overflow: auto;
+    transition: 0.5s ease;
+    background-color: rgb(20, 40, 60);
+    transition: 0.8s linear;
+}
+
+#table-result-fits {
+    border-collapse: collapse;
+    border: 1px solid #4f4f4f;
+}
+
+#table-result-fits th {
+    background-color: #008047;
+    padding: 5px;
+    font-size: 12px;
+    text-align: center;
+    color: white;
+}
+
+#table-result-fits thead {
+    position: sticky;
+    top: 0;
+    z-index: 7;
+}
+
+#table-result-fits tr {
+    font-size: 11px;
+    height: 15px;
+}
+
+#table-result-fits td {
+    padding: 5px;
+    border: 1px solid #3f3f3f;
+    white-space: nowrap;
+    color: white;
+}
 /* ================================ [Loader] ================================ */
 .wheel-and-hamster {
     --dur: 1s;
