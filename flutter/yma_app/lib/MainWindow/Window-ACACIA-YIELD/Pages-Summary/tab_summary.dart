@@ -101,7 +101,8 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
   @override
   void initState() {
     super.initState();
-    _tabController = MotionTabBarController(length: 4, vsync: this);
+    // _tabController = MotionTabBarController(length: 3, vsync: this);
+    _tabController = MotionTabBarController(length: 2, vsync: this);
     fetchDataLevel().then((_) {
       WidgetsBinding.instance.addPostFrameCallback((_) => _openEndDrawer());
     });
@@ -144,7 +145,8 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      // length: 3, **************************************************************
+      length: 2,
       child: Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
@@ -160,8 +162,9 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
           controller: _tabController,
           initialSelectedTab: "SUMMARY",
           useSafeArea: true,
-          labels: const ["SUMMARY", "NA", "ANALYSIS", "RESULT TEST"],
-          icons: const [Icons.dashboard, Icons.analytics, Icons.list, Icons.data_array],
+          // labels: const ["SUMMARY", "ANALYSIS", "RESULT TEST"], *******************************
+          labels: const ["SUMMARY", "ANALYSIS"],
+          icons: const [Icons.dashboard, Icons.list],
           tabSize: 50,
           tabBarHeight: 53,
           tabBarColor: Colors.orange,
@@ -177,7 +180,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
           },
         ),
         endDrawer: Drawer(
-          width: 220,
+          width: 230,
           child: ListView.builder(
             padding: EdgeInsets.zero,
             itemCount: dataLevelObject.keys.toList().length,
@@ -196,11 +199,11 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                   ),
                   accountName: const Text(''),
                   accountEmail: Text(
-                    'waruntronk.fabrinet.co.th',
+                    '...',
                     style: GoogleFonts.nunito(
                       fontWeight: FontWeight.bold,
                       color: const Color.fromARGB(255, 255, 255, 255),
-                      fontSize: 14,
+                      fontSize: 15,
                     ),
                   ),
                   currentAccountPicture: const CircleAvatar(
@@ -234,7 +237,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                       child: Text(
                         dataLevelObject.keys.toList()[index],
                         style: GoogleFonts.nunito(
-                          fontSize: 11.0,
+                          fontSize: 12.0,
                           fontWeight: FontWeight.bold
                         )
                       )
@@ -276,9 +279,8 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
           controller: _tabController,
           children: [
             _buildTabSummary(),
-            _buildTabTable(),
             _buildTabAnalysis(),
-            _buildTabResultTest(),
+            // _buildTabResultTest(),
           ],
         ),
       )
@@ -291,7 +293,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
       // =============== Create sub menu Level ===============
       for (var i in data) {
         subLists.add(Container(
-          width: 180,
+          width: 190,
           height: 20,
           margin: const EdgeInsets.only(bottom: 5),
           child: ElevatedButton(
@@ -311,7 +313,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
             child: Text(
               i,
               style: GoogleFonts.nunito(
-                fontSize: 11.0,
+                fontSize: 12.0,
                 fontWeight: FontWeight.bold,
               )
             ),
@@ -1350,22 +1352,6 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
 
       mixChartVisible = true;
     });
-  }
-  
-  // oooooooooooooooooooooooooooooooooo This is Tab [TABLE] oooooooooooooooooooooooooooooooooo
-  Widget _buildTabTable() {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(left: 36, top: 16),
-            width: 90,
-            height: 50,
-            child: const Text('wrfaqw')
-          )
-        ],
-      )
-    );
   }
 
   // oooooooooooooooooooooooooooooooooo This is Tab [ANALYSIS] oooooooooooooooooooooooooooooooooo

@@ -1,51 +1,49 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./icon/icon.ico">
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/script.js"></script>
-    <title>SPC Auto Upload</title>
-</head>
-<body>
-    <!-- ================================ [Button Start] ================================ -->
-    <button id="bt-start" onclick="startRun()">START</button>
-    <!-- ================================ [Button Stop] ================================ -->
-    <button id="bt-stop" onclick="stopRun()">STOP</button>
-    <!-- ================================ [Label Running] ================================ -->
-    <p id="text-runnig">Stopped</p>
-    <!-- ================================ [Label Date Refresh] ================================ -->
-    <p id="text-date-refresh"></p>
-    <!-- ================================ [Input EN] ================================ -->
-    <input placeholder="EN" id="input-en" maxlength="6" oninput="this.value = this.value.replace(/[^0-6]/g, '')">
-    <!-- ================================ [GIF] ================================ -->
-    <img id="gif-file" src="./gif/auto_SPC_upload.gif" alt="">
-    <!-- ================================ [Table] ================================ -->
-    <div id="container-table-data">
-        <table border="1" id="table-data"></table>
-    </div>
-    <div id="container-table-result-fits">
-        <table border="1" id="table-result-fits"></table>
-    </div>
-    <!-- ================================ [Loader Widget] ================================ -->
-    <div id="loader" aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster"
-        style="display: none;">
-        <div class="wheel"></div>
-        <div class="hamster">
-            <div class="hamster__body">
-                <div class="hamster__head">
-                    <div class="hamster__ear"></div>
-                    <div class="hamster__eye"></div>
-                    <div class="hamster__nose"></div>
-                </div>
-                <div class="hamster__limb hamster__limb--fr"></div>
-                <div class="hamster__limb hamster__limb--fl"></div>
-                <div class="hamster__limb hamster__limb--br"></div>
-                <div class="hamster__limb hamster__limb--bl"></div>
-                <div class="hamster__tail"></div>
-            </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="./icon/icon.ico">
+        <link rel="stylesheet" href="./css/style.css">
+        <script src="./js/script.js"></script>
+        <title>SPC Auto Upload</title>
+    </head>
+    <body>
+        <!-- ================================ [Button Start] ================================ -->
+        <button id="bt-start" onclick="startRun()">START</button>
+        <!-- ================================ [Button Stop] ================================ -->
+        <button id="bt-stop" onclick="stopRun()">STOP</button>
+        <!-- ================================ [Label Date Refresh] ================================ -->
+        <p id="text-date-refresh"></p>
+        <!-- ================================ [Input EN] ================================ -->
+        <input placeholder="EN" id="input-en" maxlength="6" oninput="this.value = this.value.replace(/[^0-6]/g, '')">
+        <!-- ================================ [GIF] ================================ -->
+        <img id="gif-file" src="./gif/auto_SPC_upload.gif" alt="">
+        <!-- ================================ [Table] ================================ -->
+        <div id="container-table-data">
+            <table border="1" id="table-data"></table>
         </div>
-        <div class="spoke"></div>
-    </div>
-</body>
+        <div id="container-table-result-fits">
+            <table border="1" id="table-result-fits"></table>
+        </div>
+        <!-- ================================ [Loader Widget] ================================ -->
+        <div id="loader" aria-label="Orange and tan hamster running in a metal wheel" role="img" class="wheel-and-hamster"
+            style="display: none;">
+            <div class="wheel"></div>
+            <div class="hamster">
+                <div class="hamster__body">
+                    <div class="hamster__head">
+                        <div class="hamster__ear"></div>
+                        <div class="hamster__eye"></div>
+                        <div class="hamster__nose"></div>
+                    </div>
+                    <div class="hamster__limb hamster__limb--fr"></div>
+                    <div class="hamster__limb hamster__limb--fl"></div>
+                    <div class="hamster__limb hamster__limb--br"></div>
+                    <div class="hamster__limb hamster__limb--bl"></div>
+                    <div class="hamster__tail"></div>
+                </div>
+            </div>
+            <div class="spoke"></div>
+        </div>
+    </body>
 </html>

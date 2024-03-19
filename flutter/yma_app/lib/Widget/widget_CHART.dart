@@ -71,7 +71,7 @@ class _WidgetChartState extends State<WidgetChart> {
               margin: const EdgeInsets.only(left: 5, top: 5),
               padding: const EdgeInsets.all(5),
               width: MediaQuery.of(context).size.width * 0.975,
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.3,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: const [
@@ -116,7 +116,7 @@ class _WidgetChartState extends State<WidgetChart> {
                   margin: const EdgeInsets.only(left: 5),
                   padding: const EdgeInsets.all(5),
                   width: MediaQuery.of(context).size.width * 0.975,
-                  height: MediaQuery.of(context).size.height * 0.25,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     boxShadow: const [
@@ -175,7 +175,7 @@ class _WidgetChartState extends State<WidgetChart> {
             child: Text(
               item,
               style: GoogleFonts.nunito(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.bold
               ),
             ),

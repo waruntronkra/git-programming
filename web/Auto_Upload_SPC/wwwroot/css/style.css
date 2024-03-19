@@ -8,16 +8,6 @@
     font-family: 'nunito';
 }
 
-/* ================================ [Label Running] ================================ */
-#text-runnig {
-    position: absolute;
-    left: 370px;
-    top: 25px;
-    color: #FF0303;
-    font-weight: bold;
-    font-size: 25px;
-}
-
 /* ================================ [Label Date Refresh] ================================ */
 #text-date-refresh {
     position: absolute;

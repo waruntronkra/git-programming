@@ -1,225 +1,227 @@
 async function startRun() {
     try {
-        document.getElementById('loader').style.display = 'block';
-        document.getElementById('text-runnig').innerText = 'Running...';
-        document.getElementById('text-runnig').style.color = '#03FF1A';
-
-        var data_last =  await queryDataLast();
-
-        var date_today = (new Date()).toLocaleString('en-US', { month: '2-digit', day: '2-digit', year: '2-digit', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-
-        document.getElementById('text-date-refresh').innerText = `Last refreshed : ${date_today}`;
-
-        var data_table = [];
-        var result_fits = [];
-        for (let i = 0; i < data_last['data'].length; i++) {
-            if (data_last['data'][i]['UUT_SERIAL_NUMBER'] != '2135540068') {
-                var date_latest = await queryDateLatest(data_last['data'][i]['UUT_SERIAL_NUMBER']);
-                data_table.push([
-                    data_last['data'][i]['UUT_SERIAL_NUMBER'],
-                    data_last['data'][i]['START_DATE_TIME'],
-                    data_last['data'][i]['HW_PART_NUMBER'],
-                    data_last['data'][i]['MC_Slot'],
-                    data_last['data'][i]['ACR1_Avg'],
-                    data_last['data'][i]['Max_ACR1_Dev'],
-                ]);
-                if (date_today.split(',')[0] != date_latest['data'][0]['Local_Date_Time'].split(' ')[0]) {
-                    // result_fits.push(await WebServiceFIts('', 'fn_Log', parameter_FITS_text, value_FITS_text_array[i], '1', operation));
-                    result_fits.push([data_last['data'][i]['UUT_SERIAL_NUMBER'], await WebServiceFIts(
-                        data_last['data'][i]['UUT_SERIAL_NUMBER'], 
-                        'fn_Handshake', 
-                        'TOSA',
-                        'SPC270', 
-                        '1', 
-                        'EN,TOSA SN,Part Number,Machine ID,ACR1_Avg,Max_ACR1_Dev', 
-                        `${document.getElementById('input-en').value},${data_last['data'][i]['UUT_SERIAL_NUMBER']},${data_last['data'][i]['HW_PART_NUMBER']},${data_last['data'][i]['MC_Slot']},${data_last['data'][i]['ACR1_Avg']},${data_last['data'][i]['Max_ACR1_Dev']}`
-                    )]);
-                }
-                else {
-                    result_fits.push([data_last['data'][i]['UUT_SERIAL_NUMBER'], 'Added']);
-                }
-            }
-        }
-
-        // Insert data to Table >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        for (let i = 0; i < 2; i++) {
-            if (i == 0) {
-                const table = document.getElementById('table-data');
-                table.innerHTML = '';
-
-                const theader = document.createElement('thead');
-                const headerRow = document.createElement('tr');
-                var column_head = ['UUT_SERIAL_NUMBER', 'START_DATE_TIME', 'HW_PART_NUMBER', 'MC_Slot', 'ACR1_Avg', 'Max_ACR1_Dev']
-                for (let i = 0; i < column_head.length; i++) {
-                    const th = document.createElement('th');
-                    th.textContent = column_head[i];
-                    headerRow.appendChild(th);
-                }
-                theader.appendChild(headerRow);
-                table.appendChild(theader);
-
-                const tbody = document.createElement('tbody');
-                data_table.forEach(rowData => {
-                    const row = document.createElement('tr');
-                    rowData.forEach(cellData => {
-                        const cell = document.createElement('td');
-                        cell.textContent = cellData;
-                        row.appendChild(cell);
-                    });
-                    tbody.appendChild(row);
-                });
-                table.appendChild(tbody);
-
-                const tableContainer = document.getElementById('container-table-data');
-                tableContainer.appendChild(table);
-
-                tableContainer.style.top = '150px';
-
-                document.getElementById('loader').style.display = 'none';
-            }
-            else {
-                const table = document.getElementById('table-result-fits');
-                table.innerHTML = '';
-
-                const theader = document.createElement('thead');
-                const headerRow = document.createElement('tr');
-                var column_head = ['UUT_SERIAL_NUMBER', 'Result']
-                for (let i = 0; i < column_head.length; i++) {
-                    const th = document.createElement('th');
-                    th.textContent = column_head[i];
-                    headerRow.appendChild(th);
-                }
-                theader.appendChild(headerRow);
-                table.appendChild(theader);
-
-                const tbody = document.createElement('tbody');
-                result_fits.forEach(rowData => {
-                    const row = document.createElement('tr');
-                    rowData.forEach(cellData => {
-                        const cell = document.createElement('td');
-                        cell.textContent = cellData;
-                        row.appendChild(cell);
-                    });
-                    tbody.appendChild(row);
-                });
-                table.appendChild(tbody);
-
-                const tableContainer = document.getElementById('container-table-result-fits');
-                tableContainer.appendChild(table);
-
-                tableContainer.style.top = '370px';
-
-                document.getElementById('loader').style.display = 'none';
-            }
-        }
         intervalId = setInterval(async function() {
-            document.getElementById('loader').style.display = 'block';
-
-            var data_last =  await queryDataLast();
-
             var date_today = (new Date()).toLocaleString('en-US', { month: '2-digit', day: '2-digit', year: '2-digit', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
-
-            document.getElementById('text-date-refresh').innerText = `Last refreshed : ${date_today}`;
-
-            var data_table = [];
-            var result_fits = [];
-            for (let i = 0; i < data_last['data'].length; i++) {
-                if (data_last['data'][i]['UUT_SERIAL_NUMBER'] != '2135540068') {
-                    var date_latest = await queryDateLatest(data_last['data'][i]['UUT_SERIAL_NUMBER']);
-                    data_table.push([
-                        data_last['data'][i]['UUT_SERIAL_NUMBER'],
-                        data_last['data'][i]['START_DATE_TIME'],
-                        data_last['data'][i]['HW_PART_NUMBER'],
-                        data_last['data'][i]['MC_Slot'],
-                        data_last['data'][i]['ACR1_Avg'],
-                        data_last['data'][i]['Max_ACR1_Dev'],
-                    ]);
-                    if (date_today.split(',')[0] != date_latest['data'][0]['Local_Date_Time'].split(' ')[0]) {
-                        // result_fits.push(await WebServiceFIts('', 'fn_Log', parameter_FITS_text, value_FITS_text_array[i], '1', operation));
-                        result_fits.push([data_last['data'][i]['UUT_SERIAL_NUMBER'], await WebServiceFIts(
-                            data_last['data'][i]['UUT_SERIAL_NUMBER'], 
-                            'fn_Handshake', 
-                            'TOSA',
-                            'SPC270', 
-                            '1', 
-                            'EN,TOSA SN,Part Number,Machine ID,ACR1_Avg,Max_ACR1_Dev', 
-                            `${document.getElementById('input-en').value},${data_last['data'][i]['UUT_SERIAL_NUMBER']},${data_last['data'][i]['HW_PART_NUMBER']},${data_last['data'][i]['MC_Slot']},${data_last['data'][i]['ACR1_Avg']},${data_last['data'][i]['Max_ACR1_Dev']}`
-                        )]);
+            document.getElementById('text-date-refresh').innerText = `Date Time : ${date_today}`;
+            if (date_today.split(' ')[1] == '8:01:05') {
+                document.getElementById('loader').style.display = 'block';
+    
+                var data_last = await queryDataLast();
+    
+                var data_table = [];
+                var result_fits = [];
+                for (let i = 0; i < data_last['data'].length; i++) {
+                    if (data_last['data'][i]['UUT_SERIAL_NUMBER'] != '2135540068') {
+                        var date_latest = await queryDateLatest(data_last['data'][i]['UUT_SERIAL_NUMBER']);
+                        data_table.push([
+                            data_last['data'][i]['UUT_SERIAL_NUMBER'],
+                            data_last['data'][i]['START_DATE_TIME'],
+                            data_last['data'][i]['HW_PART_NUMBER'],
+                            data_last['data'][i]['MC_Slot'],
+                            data_last['data'][i]['ACR1_Avg'],
+                            data_last['data'][i]['Max_ACR1_Dev'],
+                        ]);
+                        if (date_today.split(',')[0] != date_latest['data'][0]['Local_Date_Time'].split(' ')[0]) {
+                            // result_fits.push(await WebServiceFIts('', 'fn_Log', parameter_FITS_text, value_FITS_text_array[i], '1', operation));
+                            result_fits.push([data_last['data'][i]['UUT_SERIAL_NUMBER'], await WebServiceFIts(
+                                data_last['data'][i]['UUT_SERIAL_NUMBER'], 
+                                'fn_Handshake', 
+                                'TOSA',
+                                'SPC270', 
+                                '1', 
+                                'EN,TOSA SN,Part Number,Machine ID,ACR1_Avg,Max_ACR1_Dev', 
+                                `${document.getElementById('input-en').value},${data_last['data'][i]['UUT_SERIAL_NUMBER']},${data_last['data'][i]['HW_PART_NUMBER']},${data_last['data'][i]['MC_Slot']},${data_last['data'][i]['ACR1_Avg']},${data_last['data'][i]['Max_ACR1_Dev']}`
+                            )]);
+                        }
+                        else {
+                            result_fits.push([data_last['data'][i]['UUT_SERIAL_NUMBER'], 'Added']);
+                        }
+                    }
+                }
+    
+                // Insert data to Table >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                for (let i = 0; i < 2; i++) {
+                    if (i == 0) {
+                        const table = document.getElementById('table-data');
+                        table.innerHTML = '';
+    
+                        const theader = document.createElement('thead');
+                        const headerRow = document.createElement('tr');
+                        var column_head = ['UUT_SERIAL_NUMBER', 'START_DATE_TIME', 'HW_PART_NUMBER', 'MC_Slot', 'ACR1_Avg', 'Max_ACR1_Dev']
+                        for (let i = 0; i < column_head.length; i++) {
+                            const th = document.createElement('th');
+                            th.textContent = column_head[i];
+                            headerRow.appendChild(th);
+                        }
+                        theader.appendChild(headerRow);
+                        table.appendChild(theader);
+    
+                        const tbody = document.createElement('tbody');
+                        data_table.forEach(rowData => {
+                            const row = document.createElement('tr');
+                            rowData.forEach(cellData => {
+                                const cell = document.createElement('td');
+                                cell.textContent = cellData;
+                                row.appendChild(cell);
+                            });
+                            tbody.appendChild(row);
+                        });
+                        table.appendChild(tbody);
+    
+                        const tableContainer = document.getElementById('container-table-data');
+                        tableContainer.appendChild(table);
+    
+                        tableContainer.style.top = '150px';
+    
+                        document.getElementById('loader').style.display = 'none';
                     }
                     else {
-                        result_fits.push([data_last['data'][i]['UUT_SERIAL_NUMBER'], 'Added']);
+                        const table = document.getElementById('table-result-fits');
+                        table.innerHTML = '';
+    
+                        const theader = document.createElement('thead');
+                        const headerRow = document.createElement('tr');
+                        var column_head = ['UUT_SERIAL_NUMBER', 'Result']
+                        for (let i = 0; i < column_head.length; i++) {
+                            const th = document.createElement('th');
+                            th.textContent = column_head[i];
+                            headerRow.appendChild(th);
+                        }
+                        theader.appendChild(headerRow);
+                        table.appendChild(theader);
+    
+                        const tbody = document.createElement('tbody');
+                        result_fits.forEach(rowData => {
+                            const row = document.createElement('tr');
+                            rowData.forEach(cellData => {
+                                const cell = document.createElement('td');
+                                cell.textContent = cellData;
+                                row.appendChild(cell);
+                            });
+                            tbody.appendChild(row);
+                        });
+                        table.appendChild(tbody);
+    
+                        const tableContainer = document.getElementById('container-table-result-fits');
+                        tableContainer.appendChild(table);
+    
+                        tableContainer.style.top = '370px';
+    
+                        document.getElementById('loader').style.display = 'none';
                     }
                 }
             }
+        }, 1000);
 
-            // Insert data to Table >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-            for (let i = 0; i < 2; i++) {
-                if (i == 0) {
-                    const table = document.getElementById('table-data');
-                    table.innerHTML = '';
+        
+        // intervalId = setInterval(async function() {
+        //     document.getElementById('loader').style.display = 'block';
 
-                    const theader = document.createElement('thead');
-                    const headerRow = document.createElement('tr');
-                    var column_head = ['UUT_SERIAL_NUMBER', 'START_DATE_TIME', 'HW_PART_NUMBER', 'MC_Slot', 'ACR1_Avg', 'Max_ACR1_Dev']
-                    for (let i = 0; i < column_head.length; i++) {
-                        const th = document.createElement('th');
-                        th.textContent = column_head[i];
-                        headerRow.appendChild(th);
-                    }
-                    theader.appendChild(headerRow);
-                    table.appendChild(theader);
+        //     var data_last =  await queryDataLast();
 
-                    const tbody = document.createElement('tbody');
-                    data_table.forEach(rowData => {
-                        const row = document.createElement('tr');
-                        rowData.forEach(cellData => {
-                            const cell = document.createElement('td');
-                            cell.textContent = cellData;
-                            row.appendChild(cell);
-                        });
-                        tbody.appendChild(row);
-                    });
-                    table.appendChild(tbody);
+        //     var date_today = (new Date()).toLocaleString('en-US', { month: '2-digit', day: '2-digit', year: '2-digit', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
 
-                    const tableContainer = document.getElementById('container-table-data');
-                    tableContainer.appendChild(table);
+        //     document.getElementById('text-date-refresh').innerText = `Last refreshed : ${date_today}`;
 
-                    document.getElementById('loader').style.display = 'none';
-                }
-                else {
-                    const table = document.getElementById('table-result-fits');
-                    table.innerHTML = '';
+        //     var data_table = [];
+        //     var result_fits = [];
+        //     for (let i = 0; i < data_last['data'].length; i++) {
+        //         if (data_last['data'][i]['UUT_SERIAL_NUMBER'] != '2135540068') {
+        //             var date_latest = await queryDateLatest(data_last['data'][i]['UUT_SERIAL_NUMBER']);
+        //             data_table.push([
+        //                 data_last['data'][i]['UUT_SERIAL_NUMBER'],
+        //                 data_last['data'][i]['START_DATE_TIME'],
+        //                 data_last['data'][i]['HW_PART_NUMBER'],
+        //                 data_last['data'][i]['MC_Slot'],
+        //                 data_last['data'][i]['ACR1_Avg'],
+        //                 data_last['data'][i]['Max_ACR1_Dev'],
+        //             ]);
+        //             if (date_today.split(',')[0] != date_latest['data'][0]['Local_Date_Time'].split(' ')[0]) {
+        //                 // result_fits.push(await WebServiceFIts('', 'fn_Log', parameter_FITS_text, value_FITS_text_array[i], '1', operation));
+        //                 result_fits.push([data_last['data'][i]['UUT_SERIAL_NUMBER'], await WebServiceFIts(
+        //                     data_last['data'][i]['UUT_SERIAL_NUMBER'], 
+        //                     'fn_Handshake', 
+        //                     'TOSA',
+        //                     'SPC270', 
+        //                     '1', 
+        //                     'EN,TOSA SN,Part Number,Machine ID,ACR1_Avg,Max_ACR1_Dev', 
+        //                     `${document.getElementById('input-en').value},${data_last['data'][i]['UUT_SERIAL_NUMBER']},${data_last['data'][i]['HW_PART_NUMBER']},${data_last['data'][i]['MC_Slot']},${data_last['data'][i]['ACR1_Avg']},${data_last['data'][i]['Max_ACR1_Dev']}`
+        //                 )]);
+        //             }
+        //             else {
+        //                 result_fits.push([data_last['data'][i]['UUT_SERIAL_NUMBER'], 'Added']);
+        //             }
+        //         }
+        //     }
 
-                    const theader = document.createElement('thead');
-                    const headerRow = document.createElement('tr');
-                    var column_head = ['UUT_SERIAL_NUMBER', 'Result']
-                    for (let i = 0; i < column_head.length; i++) {
-                        const th = document.createElement('th');
-                        th.textContent = column_head[i];
-                        headerRow.appendChild(th);
-                    }
-                    theader.appendChild(headerRow);
-                    table.appendChild(theader);
+        //     // Insert data to Table >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        //     for (let i = 0; i < 2; i++) {
+        //         if (i == 0) {
+        //             const table = document.getElementById('table-data');
+        //             table.innerHTML = '';
 
-                    const tbody = document.createElement('tbody');
-                    result_fits.forEach(rowData => {
-                        const row = document.createElement('tr');
-                        rowData.forEach(cellData => {
-                            const cell = document.createElement('td');
-                            cell.textContent = cellData;
-                            row.appendChild(cell);
-                        });
-                        tbody.appendChild(row);
-                    });
-                    table.appendChild(tbody);
+        //             const theader = document.createElement('thead');
+        //             const headerRow = document.createElement('tr');
+        //             var column_head = ['UUT_SERIAL_NUMBER', 'START_DATE_TIME', 'HW_PART_NUMBER', 'MC_Slot', 'ACR1_Avg', 'Max_ACR1_Dev']
+        //             for (let i = 0; i < column_head.length; i++) {
+        //                 const th = document.createElement('th');
+        //                 th.textContent = column_head[i];
+        //                 headerRow.appendChild(th);
+        //             }
+        //             theader.appendChild(headerRow);
+        //             table.appendChild(theader);
 
-                    const tableContainer = document.getElementById('container-table-result-fits');
-                    tableContainer.appendChild(table);
+        //             const tbody = document.createElement('tbody');
+        //             data_table.forEach(rowData => {
+        //                 const row = document.createElement('tr');
+        //                 rowData.forEach(cellData => {
+        //                     const cell = document.createElement('td');
+        //                     cell.textContent = cellData;
+        //                     row.appendChild(cell);
+        //                 });
+        //                 tbody.appendChild(row);
+        //             });
+        //             table.appendChild(tbody);
 
-                    document.getElementById('loader').style.display = 'none';
-                }
-            }
-        }, 180000);
+        //             const tableContainer = document.getElementById('container-table-data');
+        //             tableContainer.appendChild(table);
+
+        //             document.getElementById('loader').style.display = 'none';
+        //         }
+        //         else {
+        //             const table = document.getElementById('table-result-fits');
+        //             table.innerHTML = '';
+
+        //             const theader = document.createElement('thead');
+        //             const headerRow = document.createElement('tr');
+        //             var column_head = ['UUT_SERIAL_NUMBER', 'Result']
+        //             for (let i = 0; i < column_head.length; i++) {
+        //                 const th = document.createElement('th');
+        //                 th.textContent = column_head[i];
+        //                 headerRow.appendChild(th);
+        //             }
+        //             theader.appendChild(headerRow);
+        //             table.appendChild(theader);
+
+        //             const tbody = document.createElement('tbody');
+        //             result_fits.forEach(rowData => {
+        //                 const row = document.createElement('tr');
+        //                 rowData.forEach(cellData => {
+        //                     const cell = document.createElement('td');
+        //                     cell.textContent = cellData;
+        //                     row.appendChild(cell);
+        //                 });
+        //                 tbody.appendChild(row);
+        //             });
+        //             table.appendChild(tbody);
+
+        //             const tableContainer = document.getElementById('container-table-result-fits');
+        //             tableContainer.appendChild(table);
+
+        //             document.getElementById('loader').style.display = 'none';
+        //         }
+        //     }
+        // }, 180000);
     }
     catch (e) {
         console.warn(e);
@@ -229,8 +231,6 @@ async function startRun() {
 
 function stopRun() {
     clearInterval(intervalId);
-    document.getElementById('text-runnig').innerText = 'Stopped';
-    document.getElementById('text-runnig').style.color = '#FF0303';
 }
 
 async function queryDataLast() {

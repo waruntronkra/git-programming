@@ -78,7 +78,7 @@ class _PageParetoState extends State<PagePareto> {
           child: Text(
             item, style: 
             GoogleFonts.nunito(
-              fontSize: 10,
+              fontSize: 12,
               fontWeight: FontWeight.bold
             )
           )

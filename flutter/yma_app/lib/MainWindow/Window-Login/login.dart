@@ -38,7 +38,7 @@ class _WindowLoginState extends State<WindowLogin> {
   final TextEditingController usernameController = TextEditingController();
 
   // ************************** Important! => Update this version **************************
-  String appVersion = 'v1.0';
+  String appVersion = 'v1.1';
   // ***************************************************************************************
   String appVersionFromGit = '';
 
