@@ -293,7 +293,7 @@ class _WindowLoginState extends State<WindowLogin> {
   }
 
   void _launchURL() async {
-    final Uri url = Uri.parse('https://github.com/waruntronkra/git-programming/raw/main/app-release.apk');
+    final Uri url = Uri.parse('https://github.com/waruntronkra/git-programming/raw/main/APK/$appVersionFromGit');
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }
