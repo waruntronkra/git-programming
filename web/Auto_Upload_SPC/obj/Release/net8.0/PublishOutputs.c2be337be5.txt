@@ -1,0 +1,13 @@
+\\10.3.2.120\d$\web_sites\auto-upload-spc\Auto_Upload_SPC.exe
+\\10.3.2.120\d$\web_sites\auto-upload-spc\appsettings.Development.json
+\\10.3.2.120\d$\web_sites\auto-upload-spc\appsettings.json
+\\10.3.2.120\d$\web_sites\auto-upload-spc\Auto_Upload_SPC.dll
+\\10.3.2.120\d$\web_sites\auto-upload-spc\Auto_Upload_SPC.deps.json
+\\10.3.2.120\d$\web_sites\auto-upload-spc\Auto_Upload_SPC.runtimeconfig.json
+\\10.3.2.120\d$\web_sites\auto-upload-spc\Auto_Upload_SPC.pdb
+\\10.3.2.120\d$\web_sites\auto-upload-spc\System.Data.SqlClient.dll
+\\10.3.2.120\d$\web_sites\auto-upload-spc\runtimes\win-arm64\native\sni.dll
+\\10.3.2.120\d$\web_sites\auto-upload-spc\runtimes\win-x64\native\sni.dll
+\\10.3.2.120\d$\web_sites\auto-upload-spc\runtimes\win-x86\native\sni.dll
+\\10.3.2.120\d$\web_sites\auto-upload-spc\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+\\10.3.2.120\d$\web_sites\auto-upload-spc\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
