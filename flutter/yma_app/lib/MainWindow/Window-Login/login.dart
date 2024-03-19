@@ -38,9 +38,10 @@ class _WindowLoginState extends State<WindowLogin> {
   final TextEditingController usernameController = TextEditingController();
 
   // ************************** Important! => Update this version **************************
-  String appVersion = 'v1.1';
+  String appVersion = 'v1.2';
   // ***************************************************************************************
   String appVersionFromGit = '';
+  String textVersionShow = '';
 
   String savedUsername = '';
 
@@ -71,6 +72,7 @@ class _WindowLoginState extends State<WindowLogin> {
   Future<void> loadUsername(bool checkUpdate) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
+      textVersionShow = 'Checking version update...';
       savedUsername = prefs.getString('username') ?? '';
       usernameController.text = savedUsername;
     });
@@ -85,6 +87,7 @@ class _WindowLoginState extends State<WindowLogin> {
     if (response.statusCode == 200) {
       setState(() {
         appVersionFromGit = (jsonDecode(response.body))[0]['name'];
+        textVersionShow = 'Version : $appVersion';
       });
     } 
     if (appVersionFromGit.isNotEmpty) {
@@ -266,6 +269,13 @@ class _WindowLoginState extends State<WindowLogin> {
                 ),
               ) 
             ), 
+            Container(
+              margin: const EdgeInsets.only(top: 50),
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: 180,
+              alignment: Alignment.center,
+              child: Text(textVersionShow),
+            )
             // ElevatedButton(
             //   onPressed: _launchURL,
             //   child: const Text('Check for update'),

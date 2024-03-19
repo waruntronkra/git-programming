@@ -69,7 +69,7 @@ class _MetrixTableState extends State<MetrixTable> {
                 child: Text(
                   '$cell',
                   style: GoogleFonts.nunito(
-                    fontSize: 10.9,
+                    fontSize: 11,
                     color: widget.customizeFontColor == true ?
                     cell == 'PASS' ? const Color.fromARGB(255, 3, 141, 93) : Colors.red
                     :

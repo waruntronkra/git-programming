@@ -180,7 +180,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
           },
         ),
         endDrawer: Drawer(
-          width: 230,
+          width: 250,
           child: ListView.builder(
             padding: EdgeInsets.zero,
             itemCount: dataLevelObject.keys.toList().length,
@@ -217,7 +217,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
               return Column(
                 children: [
                   Container (
-                    width: 200,
+                    width: 220,
                     height: 25,
                     margin: const EdgeInsets.all(5),
                     child: ElevatedButton(
@@ -237,7 +237,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                       child: Text(
                         dataLevelObject.keys.toList()[index],
                         style: GoogleFonts.nunito(
-                          fontSize: 12.0,
+                          fontSize: 14.0,
                           fontWeight: FontWeight.bold
                         )
                       )
@@ -259,7 +259,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                       ]
                     ),
                     height: _selectedIndex == index ? dataLevelObject[levelSelected].length * 30.0 : 0.0,
-                    width: _selectedIndex == index ? 200.0 : 0.0,
+                    width: _selectedIndex == index ? 220.0 : 0.0,
                     child: SingleChildScrollView(
                       child: _selectedIndex == index ? 
                       Column(
@@ -293,7 +293,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
       // =============== Create sub menu Level ===============
       for (var i in data) {
         subLists.add(Container(
-          width: 190,
+          width: 210,
           height: 20,
           margin: const EdgeInsets.only(bottom: 5),
           child: ElevatedButton(
@@ -313,7 +313,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
             child: Text(
               i,
               style: GoogleFonts.nunito(
-                fontSize: 12.0,
+                fontSize: 14.0,
                 fontWeight: FontWeight.bold,
               )
             ),
