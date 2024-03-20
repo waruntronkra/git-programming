@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'dart:convert';
@@ -114,233 +115,227 @@ class _WidgetsMoreFilterState extends State<WidgetsMoreFilter> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Center(
-              child:SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Container(
-                  margin: const EdgeInsets.only(left: 10),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [                 
-                          // Label Group By ==================
-                          Container(
-                            height: 20,
-                            padding: const EdgeInsets.only(top: 3),
-                            alignment: Alignment.topLeft,
-                            width: 75,
-                            child: Text(
-                              'Group By :', 
-                              style: GoogleFonts.nunito(
-                                fontSize: 12, 
-                                fontWeight: FontWeight.bold
-                              )
-                            )
-                          ),
-                          // Group By ==================   
-                          Container(
-                            margin: const EdgeInsets.only(top: 10, bottom: 5),
-                            width: 140,
-                            height: 30,
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton2<String>(
-                                isExpanded: true,
-                                hint: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        defaultGroupBy,
-                                        style: GoogleFonts.nunito(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: const Color.fromARGB(255, 3, 141, 93)
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                items: itemGroupBy.map((String item) => DropdownMenuItem<String>(
-                                  value: item,
+            Container(
+              margin: const EdgeInsets.only(bottom: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [                 
+                      // Label Group By ==================
+                      Container(
+                        height: 20,
+                        padding: const EdgeInsets.only(top: 3),
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          'Group By', 
+                          style: GoogleFonts.nunito(
+                            fontSize: 12, 
+                            fontWeight: FontWeight.bold
+                          )
+                        )
+                      ),
+                      // Group By ==================   
+                      Container(
+                        margin: const EdgeInsets.only(top: 10, bottom: 5),
+                        width: 140,
+                        height: 30,
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton2<String>(
+                            isExpanded: true,
+                            hint: Row(
+                              children: [
+                                Expanded(
                                   child: Text(
-                                    item,
+                                    defaultGroupBy,
                                     style: GoogleFonts.nunito(
                                       fontSize: 11,
+                                      fontWeight: FontWeight.bold,
                                       color: const Color.fromARGB(255, 3, 141, 93)
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   ),
-                                )).toList(),
-                                onChanged: (String? newVal) {
-                                  setState(() {
-                                    defaultGroupBy = newVal!;
-                                    widget.sendMergedFilterCode('AND $filterSelected IN ($stringFilterSelectedCode)$allCMDFilter', defaultGroupBy);
-                                  });
-                                },
-                                buttonStyleData: ButtonStyleData(
-                                  height: 50,
-                                  width: 160,
-                                  padding: const EdgeInsets.only(left: 14, right: 14),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(
-                                      color: Colors.transparent,
-                                    ),
-                                    color: const Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  elevation: 2,
-                                ),
-                                dropdownStyleData: DropdownStyleData(
-                                  maxHeight: 200,
-                                  width: 138,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(0),
-                                    color: const Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  offset: const Offset(1, 0),
-                                  scrollbarTheme: ScrollbarThemeData(
-                                    radius: const Radius.circular(40),
-                                    thickness: MaterialStateProperty.all<double>(6),
-                                    thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                  ),
-                                ),
-                                menuItemStyleData: const MenuItemStyleData(
-                                  height: 40,
-                                  padding: EdgeInsets.only(left: 14, right: 14),
                                 )
-                              )
+                              ],
+                            ),
+                            items: itemGroupBy.map((String item) => DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: GoogleFonts.nunito(
+                                  fontSize: 11,
+                                  color: const Color.fromARGB(255, 3, 141, 93)
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            )).toList(),
+                            onChanged: (String? newVal) {
+                              setState(() {
+                                defaultGroupBy = newVal!;
+                                widget.sendMergedFilterCode('AND $filterSelected IN ($stringFilterSelectedCode)$allCMDFilter', defaultGroupBy);
+                              });
+                            },
+                            buttonStyleData: ButtonStyleData(
+                              height: 50,
+                              width: 160,
+                              padding: const EdgeInsets.only(left: 14, right: 14),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: Colors.transparent,
+                                ),
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                              ),
+                              elevation: 2,
+                            ),
+                            dropdownStyleData: DropdownStyleData(
+                              maxHeight: 200,
+                              width: 138,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(0),
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                              ),
+                              offset: const Offset(1, 0),
+                              scrollbarTheme: ScrollbarThemeData(
+                                radius: const Radius.circular(40),
+                                thickness: MaterialStateProperty.all<double>(6),
+                                thumbVisibility: MaterialStateProperty.all<bool>(true),
+                              ),
+                            ),
+                            menuItemStyleData: const MenuItemStyleData(
+                              height: 40,
+                              padding: EdgeInsets.only(left: 14, right: 14),
                             )
                           )
-                        ]
+                        )
+                      )
+                    ]
+                  ),
+                  Column(
+                    children: [  
+                      // Label Filter ==================
+                      Container(
+                        height: 20,
+                        padding: const EdgeInsets.only(top: 3, left: 10),
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          'Filter', 
+                          style: GoogleFonts.nunito(
+                            fontSize: 12, 
+                            fontWeight: FontWeight.bold
+                          )
+                        )
                       ),
-                      Row(
-                        children: [  
-                          // Label Filter ==================
-                          Container(
-                            height: 20,
-                            width: 50,
-                            padding: const EdgeInsets.only(top: 3),
-                            alignment: Alignment.topRight,
-                            child: Text(
-                              'Filter :', 
-                              style: GoogleFonts.nunito(
-                                fontSize: 12, 
-                                fontWeight: FontWeight.bold
-                              )
-                            )
-                          ),
-                          // Filter ==================   
-                          Container(
-                            margin: const EdgeInsets.only(left: 7, top: 10, bottom: 5),
-                            width: 140,
-                            height: 30,
-                            child: DropdownButtonHideUnderline(
-                              child: DropdownButton2<String>(
-                                isExpanded: true,
-                                hint: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        defaultFilter,
-                                        style: GoogleFonts.nunito(
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.bold,
-                                          color: const Color.fromARGB(255, 3, 141, 93)
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                      )
-                                    )
-                                  ],
-                                ),
-                                items: itemFilter.map((String item) => DropdownMenuItem<String>(
-                                  value: item,
+                      // Filter ==================   
+                      Container(
+                        margin: const EdgeInsets.only(top: 10, bottom: 5, left: 10),
+                        width: 140,
+                        height: 30,
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton2<String>(
+                            isExpanded: true,
+                            hint: Row(
+                              children: [
+                                Expanded(
                                   child: Text(
-                                    item,
+                                    defaultFilter,
                                     style: GoogleFonts.nunito(
                                       fontSize: 11,
+                                      fontWeight: FontWeight.bold,
                                       color: const Color.fromARGB(255, 3, 141, 93)
                                     ),
                                     overflow: TextOverflow.ellipsis,
                                   )
-                                )).toList(),
-                                onChanged: (String? newVal) {
-                                  setState(() {
-                                    defaultFilter = newVal!;
-                                    if (defaultFilter == itemFilter[0]) {
-                                      filterSelected = 'buildtype';
-                                    }
-                                    else if (defaultFilter == itemFilter[1]) {
-                                      filterSelected = 'is_rework';
-                                    }
-                                    else if (defaultFilter == itemFilter[2]) {
-                                      filterSelected = 'equip_id';
-                                    }
-                                    else if (defaultFilter == itemFilter[3]) {
-                                      filterSelected = 'opn_des';
-                                    }
-                                    else if (defaultFilter == itemFilter[4]) {
-                                      filterSelected = 'emp_no';
-                                    }
-                                    else if (defaultFilter == itemFilter[5]) {
-                                      filterSelected = 'part_no';
-                                    }
-                                    else if (defaultFilter == itemFilter[6]) {
-                                      filterSelected = 'runtype';
-                                    }
-                                    else if (defaultFilter == itemFilter[7]) {
-                                      filterSelected = 'workorder';
-                                    }
-                                    else if (defaultFilter == itemFilter[8]) {
-                                      filterSelected = 'pic_wf';
-                                    }
-                                    else if (defaultFilter == itemFilter[9]) {
-                                      filterSelected = 'driver_lot';
-                                    }
-                                    else if (defaultFilter == itemFilter[10]) {
-                                      filterSelected = 'tia_lot';
-                                    }
-                                    _refreshIndicatorKey.currentState?.show();
-                                  });
-                                },
-                                buttonStyleData: ButtonStyleData(
-                                  height: 50,
-                                  width: 160,
-                                  padding: const EdgeInsets.only(left: 14, right: 14),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(
-                                      color: Colors.transparent,
-                                    ),
-                                    color: const Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  elevation: 2,
-                                ),
-                                dropdownStyleData: DropdownStyleData(
-                                  maxHeight: 200,
-                                  width: 128,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(0),
-                                    color: const Color.fromARGB(255, 255, 255, 255),
-                                  ),
-                                  offset: const Offset(1, 0),
-                                  scrollbarTheme: ScrollbarThemeData(
-                                    radius: const Radius.circular(40),
-                                    thickness: MaterialStateProperty.all<double>(6),
-                                    thumbVisibility: MaterialStateProperty.all<bool>(true),
-                                  ),
-                                ),
-                                menuItemStyleData: const MenuItemStyleData(
-                                  height: 40,
-                                  padding: EdgeInsets.only(left: 14, right: 14),
                                 )
+                              ],
+                            ),
+                            items: itemFilter.map((String item) => DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: GoogleFonts.nunito(
+                                  fontSize: 11,
+                                  color: const Color.fromARGB(255, 3, 141, 93)
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               )
+                            )).toList(),
+                            onChanged: (String? newVal) {
+                              setState(() {
+                                defaultFilter = newVal!;
+                                if (defaultFilter == itemFilter[0]) {
+                                  filterSelected = 'buildtype';
+                                }
+                                else if (defaultFilter == itemFilter[1]) {
+                                  filterSelected = 'is_rework';
+                                }
+                                else if (defaultFilter == itemFilter[2]) {
+                                  filterSelected = 'equip_id';
+                                }
+                                else if (defaultFilter == itemFilter[3]) {
+                                  filterSelected = 'opn_des';
+                                }
+                                else if (defaultFilter == itemFilter[4]) {
+                                  filterSelected = 'emp_no';
+                                }
+                                else if (defaultFilter == itemFilter[5]) {
+                                  filterSelected = 'part_no';
+                                }
+                                else if (defaultFilter == itemFilter[6]) {
+                                  filterSelected = 'runtype';
+                                }
+                                else if (defaultFilter == itemFilter[7]) {
+                                  filterSelected = 'workorder';
+                                }
+                                else if (defaultFilter == itemFilter[8]) {
+                                  filterSelected = 'pic_wf';
+                                }
+                                else if (defaultFilter == itemFilter[9]) {
+                                  filterSelected = 'driver_lot';
+                                }
+                                else if (defaultFilter == itemFilter[10]) {
+                                  filterSelected = 'tia_lot';
+                                }
+                                _refreshIndicatorKey.currentState?.show();
+                              });
+                            },
+                            buttonStyleData: ButtonStyleData(
+                              height: 50,
+                              width: 160,
+                              padding: const EdgeInsets.only(left: 14, right: 14),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: Colors.transparent,
+                                ),
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                              ),
+                              elevation: 2,
+                            ),
+                            dropdownStyleData: DropdownStyleData(
+                              maxHeight: 200,
+                              width: 128,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(0),
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                              ),
+                              offset: const Offset(1, 0),
+                              scrollbarTheme: ScrollbarThemeData(
+                                radius: const Radius.circular(40),
+                                thickness: MaterialStateProperty.all<double>(6),
+                                thumbVisibility: MaterialStateProperty.all<bool>(true),
+                              ),
+                            ),
+                            menuItemStyleData: const MenuItemStyleData(
+                              height: 40,
+                              padding: EdgeInsets.only(left: 14, right: 14),
                             )
                           )
-                        ]
+                        )
                       )
                     ]
                   )
-                )
+                ]
               )
             ),
             SingleChildScrollView(

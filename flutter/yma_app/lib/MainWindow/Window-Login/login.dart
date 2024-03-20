@@ -38,7 +38,7 @@ class _WindowLoginState extends State<WindowLogin> {
   final TextEditingController usernameController = TextEditingController();
 
   // ************************** Important! => Update this version **************************
-  String appVersion = 'v1.3';
+  String appVersion = 'v1.4';
   // ***************************************************************************************
   String appVersionFromGit = '';
   String textVersionShow = '';
@@ -261,7 +261,7 @@ class _WindowLoginState extends State<WindowLogin> {
                   )
                 ),
                 child: const Text(
-                  'Submit', 
+                  'GO', 
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20
