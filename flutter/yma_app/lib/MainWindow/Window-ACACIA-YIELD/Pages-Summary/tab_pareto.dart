@@ -42,7 +42,7 @@ class _PageParetoState extends State<PagePareto> {
               boxShadow: const [
                 BoxShadow(
                   blurRadius: 5,
-                  color: Color.fromARGB(255, 233, 233, 233)
+                  color: Color.fromARGB(255, 215, 215, 215)
                 )
               ]
             ),
@@ -61,7 +61,7 @@ class _PageParetoState extends State<PagePareto> {
     List<Widget> failure = [];
     for (String item in widget.failures) {
       failure.add(Container(
-        height: 20,
+        height: 25,
         width: MediaQuery.of(context).size.width * 0.9,
         margin: const EdgeInsets.only(top: 5),
         child: ElevatedButton(

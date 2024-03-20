@@ -38,7 +38,7 @@ class _WindowLoginState extends State<WindowLogin> {
   final TextEditingController usernameController = TextEditingController();
 
   // ************************** Important! => Update this version **************************
-  String appVersion = 'v1.2';
+  String appVersion = 'v1.3';
   // ***************************************************************************************
   String appVersionFromGit = '';
   String textVersionShow = '';
@@ -148,13 +148,13 @@ class _WindowLoginState extends State<WindowLogin> {
               ),
             ),
             // Image Login
-            Center(
-              child: SizedBox(
-                width: 250,
-                height: 250,
-                child: Image.asset('assets/images/login_image.png')
-              ),
-            ),
+            // Center(
+            //   child: SizedBox(
+            //     width: 250,
+            //     height: 250,
+            //     child: Image.asset('assets/images/login_image.png')
+            //   ),
+            // ),
             // Username Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             Container(
               alignment: Alignment.topLeft,

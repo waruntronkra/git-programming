@@ -70,6 +70,11 @@ class _PageAnalysisState extends State<PageAnalysis> {
   String stateRun = '';
 
   @override
+  void initState() {
+    super.initState();
+  }
+  
+  @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
       key: _refreshIndicatorKey,
@@ -688,6 +693,11 @@ class _PageAnalysisState extends State<PageAnalysis> {
       ));
     }
     return subHistogramChart;
+  }
+
+  @override 
+  void dispose() { 
+    super.dispose(); 
   }
 
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! [Encrypt] Data !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

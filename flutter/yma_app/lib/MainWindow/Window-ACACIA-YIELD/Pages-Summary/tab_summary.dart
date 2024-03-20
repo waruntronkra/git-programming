@@ -218,7 +218,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                 children: [
                   Container (
                     width: 220,
-                    height: 25,
+                    height: 30,
                     margin: const EdgeInsets.all(5),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -258,7 +258,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                         )
                       ]
                     ),
-                    height: _selectedIndex == index ? dataLevelObject[levelSelected].length * 30.0 : 0.0,
+                    height: _selectedIndex == index ? (dataLevelObject[levelSelected].length + 0.3) * 35.0 : 0.0,
                     width: _selectedIndex == index ? 220.0 : 0.0,
                     child: SingleChildScrollView(
                       child: _selectedIndex == index ? 
@@ -294,7 +294,7 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
       for (var i in data) {
         subLists.add(Container(
           width: 210,
-          height: 20,
+          height: 30,
           margin: const EdgeInsets.only(bottom: 5),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(

@@ -78,7 +78,7 @@ class _WidgetDateState extends State<WidgetDate> {
           // Day DropDown =================================
           Container(
             margin: const EdgeInsets.only(left: 13, top: 10, bottom: 5),
-            width: 75,
+            width: 80,
             height: 40,
             child: DropdownButtonHideUnderline(
               child: DropdownButton2<String>(
@@ -89,7 +89,7 @@ class _WidgetDateState extends State<WidgetDate> {
                       child: Text(
                         'DAY',
                         style: GoogleFonts.nunito(
-                          fontSize: 10,
+                          fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: widget.colorBase
                         ),
@@ -103,7 +103,7 @@ class _WidgetDateState extends State<WidgetDate> {
                   child: Text(
                     item,
                     style: GoogleFonts.nunito(
-                      fontSize: 10,
+                      fontSize: 12,
                       color: widget.colorBase
                     ),
                     overflow: TextOverflow.ellipsis,
@@ -131,7 +131,7 @@ class _WidgetDateState extends State<WidgetDate> {
                 ),
                 dropdownStyleData: DropdownStyleData(
                   maxHeight: 200,
-                  width: 73,
+                  width: 78,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(0),
                     color: const Color.fromARGB(255, 255, 255, 255),
@@ -153,7 +153,7 @@ class _WidgetDateState extends State<WidgetDate> {
           // Week DropDown =================================
           Container(
             margin: const EdgeInsets.only(left: 10, top: 10, bottom: 5),
-            width: 85,
+            width: 95,
             height: 40,
             child: DropdownButtonHideUnderline(
               child: DropdownButton2<String>(
@@ -164,7 +164,7 @@ class _WidgetDateState extends State<WidgetDate> {
                       child: Text(
                         'WEEK',
                         style: GoogleFonts.nunito(
-                          fontSize: 10,
+                          fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: widget.colorBase
                         ),
@@ -178,82 +178,7 @@ class _WidgetDateState extends State<WidgetDate> {
                   child: Text(
                     item,
                     style: GoogleFonts.nunito(
-                      fontSize: 10,
-                      color: widget.colorBase
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                )).toList(),
-                onChanged: (String? newVal) {
-                  setState(() {
-                    if (widget.levelSelected != '' && widget.modelSelected != '') {
-                      widget.fetchData(newVal.toString());
-                    }
-                  });
-                },
-                buttonStyleData: ButtonStyleData(
-                  height: 50,
-                  width: 160,
-                  padding: const EdgeInsets.only(left: 14, right: 14),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: Colors.transparent,
-                    ),
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  elevation: 2,
-                ),
-                dropdownStyleData: DropdownStyleData(
-                  maxHeight: 200,
-                  width: 83,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(0),
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  offset: const Offset(1, 0),
-                  scrollbarTheme: ScrollbarThemeData(
-                    radius: const Radius.circular(40),
-                    thickness: MaterialStateProperty.all<double>(6),
-                    thumbVisibility: MaterialStateProperty.all<bool>(true),
-                  ),
-                ),
-                menuItemStyleData: const MenuItemStyleData(
-                  height: 40,
-                  padding: EdgeInsets.only(left: 14, right: 14),
-                ),
-              ),
-            ),
-          ),
-          // Month DropDown =================================
-          Container(
-            margin: const EdgeInsets.only(left: 10, top: 10, bottom: 5),
-            width: 95,
-            height: 40,
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton2<String>(
-                isExpanded: true,
-                hint: Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        'MONTH',
-                        style: GoogleFonts.nunito(
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          color: widget.colorBase
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    )
-                  ],
-                ),
-                items: itemsMonth.map((String item) => DropdownMenuItem<String>(
-                  value: item,
-                  child: Text(
-                    item,
-                    style: GoogleFonts.nunito(
-                      fontSize: 10,
+                      fontSize: 12,
                       color: widget.colorBase
                     ),
                     overflow: TextOverflow.ellipsis,
@@ -300,7 +225,7 @@ class _WidgetDateState extends State<WidgetDate> {
               ),
             ),
           ),
-          // Quarter DropDown =================================
+          // Month DropDown =================================
           Container(
             margin: const EdgeInsets.only(left: 10, top: 10, bottom: 5),
             width: 105,
@@ -312,9 +237,9 @@ class _WidgetDateState extends State<WidgetDate> {
                   children: [
                     Expanded(
                       child: Text(
-                        'QUARTER',
+                        'MONTH',
                         style: GoogleFonts.nunito(
-                          fontSize: 10,
+                          fontSize: 12,
                           fontWeight: FontWeight.bold,
                           color: widget.colorBase
                         ),
@@ -323,12 +248,12 @@ class _WidgetDateState extends State<WidgetDate> {
                     )
                   ],
                 ),
-                items: itemsQuarter.map((String item) => DropdownMenuItem<String>(
+                items: itemsMonth.map((String item) => DropdownMenuItem<String>(
                   value: item,
                   child: Text(
                     item,
                     style: GoogleFonts.nunito(
-                      fontSize: 10,
+                      fontSize: 12,
                       color: widget.colorBase
                     ),
                     overflow: TextOverflow.ellipsis,
@@ -357,6 +282,81 @@ class _WidgetDateState extends State<WidgetDate> {
                 dropdownStyleData: DropdownStyleData(
                   maxHeight: 200,
                   width: 103,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(0),
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  offset: const Offset(1, 0),
+                  scrollbarTheme: ScrollbarThemeData(
+                    radius: const Radius.circular(40),
+                    thickness: MaterialStateProperty.all<double>(6),
+                    thumbVisibility: MaterialStateProperty.all<bool>(true),
+                  ),
+                ),
+                menuItemStyleData: const MenuItemStyleData(
+                  height: 40,
+                  padding: EdgeInsets.only(left: 14, right: 14),
+                ),
+              ),
+            ),
+          ),
+          // Quarter DropDown =================================
+          Container(
+            margin: const EdgeInsets.only(left: 10, top: 10, bottom: 5),
+            width: 115,
+            height: 40,
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton2<String>(
+                isExpanded: true,
+                hint: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        'QUARTER',
+                        style: GoogleFonts.nunito(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: widget.colorBase
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    )
+                  ],
+                ),
+                items: itemsQuarter.map((String item) => DropdownMenuItem<String>(
+                  value: item,
+                  child: Text(
+                    item,
+                    style: GoogleFonts.nunito(
+                      fontSize: 12,
+                      color: widget.colorBase
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )).toList(),
+                onChanged: (String? newVal) {
+                  setState(() {
+                    if (widget.levelSelected != '' && widget.modelSelected != '') {
+                      widget.fetchData(newVal.toString());
+                    }
+                  });
+                },
+                buttonStyleData: ButtonStyleData(
+                  height: 50,
+                  width: 160,
+                  padding: const EdgeInsets.only(left: 14, right: 14),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.transparent,
+                    ),
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                  ),
+                  elevation: 2,
+                ),
+                dropdownStyleData: DropdownStyleData(
+                  maxHeight: 200,
+                  width: 113,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(0),
                     color: const Color.fromARGB(255, 255, 255, 255),
