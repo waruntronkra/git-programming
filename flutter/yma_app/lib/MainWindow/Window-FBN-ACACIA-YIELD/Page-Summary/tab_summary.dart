@@ -332,7 +332,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
               //   )
               // ),
               endDrawer: Drawer(
-                width: 220,
+                width: 250,
                 child: ListView.builder(
                   padding: EdgeInsets.zero,
                   itemCount: dataLevelObject.keys.toList().length,
@@ -367,8 +367,8 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                     return Column(
                       children: [
                         Container (
-                          width: 200,
-                          height: 25,
+                          width: 220,
+                          height: 30,
                           margin: const EdgeInsets.all(5),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
@@ -409,8 +409,8 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                               )
                             ]
                           ),
-                          height: _selectedIndex == index ? dataLevelObject[levelSelected].length * 30.0 : 0.0,
-                          width: _selectedIndex == index ? 200.0 : 0.0,
+                          height: _selectedIndex == index ? (dataLevelObject[levelSelected].length + 0.3) * 35.0 : 0.0,
+                          width: _selectedIndex == index ? 220.0 : 0.0,
                           child: SingleChildScrollView(
                             child: _selectedIndex == index ? 
                             Column(
@@ -472,88 +472,63 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
               //   ],
               // ),
             ),
-            // SlidingUpPanelWidget(
-            //   panelController: panelController,
-            //   controlHeight: 50.0,
-            //   anchor: 0.4,
-            //   onTap: () {
-            //     if (SlidingUpPanelStatus.expanded == panelController.status) {
-            //       panelController.collapse();
-            //     } else {
-            //       panelController.expand();
-            //     }
-            //   },
-            //   enableOnTap: false,
-            //   child: Container(
-            //     margin: const EdgeInsets.symmetric(horizontal: 15.0),
-            //     decoration: const ShapeDecoration(
-            //       color: Color.fromARGB(255, 3, 141, 93),
-            //       shadows: [
-            //         BoxShadow(
-            //           blurRadius: 5.0,
-            //           spreadRadius: 2.0,
-            //           color: Color(0x11000000)
-            //         )
-            //       ],
-            //       shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.only(
-            //           topLeft: Radius.circular(10.0),
-            //           topRight: Radius.circular(10.0),
-            //         ),
-            //       ),
-            //     ),
-            //     child: Column(
-            //       mainAxisSize: MainAxisSize.min,
-            //       children: <Widget>[
-            //         Container(
-            //           alignment: Alignment.center,
-            //           height: 50.0,
-            //           child: UserGuildanceAnchor(
-            //             step: 1,
-            //             tag: "Step 1: Choose product",
-            //             child: Row(
-            //               mainAxisAlignment: MainAxisAlignment.center,
-            //               children: [
-            //                 const Icon(
-            //                   Icons.menu,
-            //                   size: 28,
-            //                   color: Colors.white,
-            //                 ),
-            //                 const Padding(
-            //                   padding: EdgeInsets.only(
-            //                     left: 8.0,
-            //                   ),
-            //                 ),
-            //                 Text(
-            //                   'Choose Product to View',
-            //                   style: GoogleFonts.nunito(
-            //                     color: Colors.white,
-            //                     fontWeight: FontWeight.bold,
-            //                     fontSize: 14
-            //                   ),
-            //                 )
-            //               ],
-            //             )
-            //           )
-            //         ),
-            //         Container(
-            //           margin: const EdgeInsets.all(10),
-            //           padding: const EdgeInsets.only(top: 5),
-            //           decoration: BoxDecoration(
-            //             color: Colors.white,
-            //             borderRadius: BorderRadius.circular(5)
-            //           ),
-            //           height: MediaQuery.of(context).size.height * 0.83,
-            //           child: SingleChildScrollView(
-            //             child: Column(
-            //               children: _buildSubListLevel(dataLevelObject),
-            //             )
-            //           )
-            //         )
-            //       ]
-            //     )
-            //   )
-            // )
+            SlidingUpPanelWidget(
+              panelController: panelController,
+              controlHeight: 25.0,
+              anchor: 0.4,
+              onTap: () {
+                if (SlidingUpPanelStatus.expanded == panelController.status) {
+                  panelController.collapse();
+                } else {
+                  panelController.expand();
+                }
+              },
+              enableOnTap: false,
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 15.0),
+                decoration: const ShapeDecoration(
+                  color: Color.fromARGB(255, 3, 141, 93),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15.0),
+                      topRight: Radius.circular(15.0),
+                    ),
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.only(top: 10),
+                        width: 180,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5)
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 5, right: 5, top: 20),
+                        width: MediaQuery.of(context).size.width * 0.95,
+                        height: MediaQuery.of(context).size.height * 0.9,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 1),
+                              color: Colors.grey
+                            )
+                          ]
+                        ),
+                        child: filterBox(),
+                      ),
+                    ]
+                  )
+                )
+              )
+            )
           ]
         )
       )
@@ -566,8 +541,8 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
       // =============== Create sub menu Level ===============
       for (var i in data) {
         subLists.add(Container(
-          width: 180,
-          height: 20,
+          width: 210,
+          height: 30,
           margin: const EdgeInsets.only(bottom: 5),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -586,7 +561,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
             child: Text(
               i,
               style: GoogleFonts.nunito(
-                fontSize: 11.0,
+                fontSize: 12.0,
                 fontWeight: FontWeight.bold,
               )
             ),
@@ -987,63 +962,63 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
                   )            
                 ),            
                 // Button to see filter page
-                Container(
-                  margin: const EdgeInsets.only(top: 5, bottom: 5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 5,
-                        offset: Offset(1, 1),
-                        color: Colors.grey,
-                      )
-                    ]
-                  ),
-                  child: UserGuildanceAnchor(
-                    step: 13,
-                    tag: "Step 3: Click to see filter",
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: const Color.fromARGB(255, 3, 141, 93),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)
-                        )
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          expandMoreFilter = !expandMoreFilter;
-                        });
-                      },
-                      child: Text(
-                        'See More Filter',
-                        style: GoogleFonts.nunito(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    )
-                  )
-                ),
-                // More filter ==================
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 500),
-                  margin: const EdgeInsets.only(top: 5),
-                  width: expandMoreFilter ? MediaQuery.of(context).size.width * 0.95 : 0,
-                  height: expandMoreFilter ? MediaQuery.of(context).size.height * 0.3 : 0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 5,
-                        offset: Offset(1, 1),
-                        color: Colors.grey
-                      )
-                    ]
-                  ),
-                  child: filterBox(),
-                )  
+                // Container(
+                //   margin: const EdgeInsets.only(top: 5, bottom: 5),
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(15),
+                //     boxShadow: const [
+                //       BoxShadow(
+                //         blurRadius: 5,
+                //         offset: Offset(1, 1),
+                //         color: Colors.grey,
+                //       )
+                //     ]
+                //   ),
+                //   child: UserGuildanceAnchor(
+                //     step: 13,
+                //     tag: "Step 3: Click to see filter",
+                //     child: ElevatedButton(
+                //       style: ElevatedButton.styleFrom(
+                //         foregroundColor: Colors.white,
+                //         backgroundColor: const Color.fromARGB(255, 3, 141, 93),
+                //         shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(15)
+                //         )
+                //       ),
+                //       onPressed: () {
+                //         setState(() {
+                //           expandMoreFilter = !expandMoreFilter;
+                //         });
+                //       },
+                //       child: Text(
+                //         'See More Filter',
+                //         style: GoogleFonts.nunito(
+                //           color: Colors.white,
+                //           fontWeight: FontWeight.bold
+                //         ),
+                //       ),
+                //     )
+                //   )
+                // ),
+                // // More filter ==================
+                // AnimatedContainer(
+                //   duration: const Duration(milliseconds: 500),
+                //   margin: const EdgeInsets.only(top: 5),
+                //   width: expandMoreFilter ? MediaQuery.of(context).size.width * 0.95 : 0,
+                //   height: expandMoreFilter ? MediaQuery.of(context).size.height * 0.3 : 0,
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(10),
+                //     color: Colors.white,
+                //     boxShadow: const [
+                //       BoxShadow(
+                //         blurRadius: 5,
+                //         offset: Offset(1, 1),
+                //         color: Colors.grey
+                //       )
+                //     ]
+                //   ),
+                //   child: filterBox(),
+                // )  
               ]        
             )
           ),
