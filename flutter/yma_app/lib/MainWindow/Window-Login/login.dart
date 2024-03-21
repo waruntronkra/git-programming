@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'package:flutter/widgets.dart';
 import 'dart:convert';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
@@ -134,6 +135,11 @@ class _WindowLoginState extends State<WindowLogin> {
       body: SingleChildScrollView(
         child: Stack(
           children: [
+            Container(
+              color: const Color.fromARGB(255, 3, 141, 93),
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.8,
+            ),
             // Image Fabrinet
             Center(
               child: SizedBox(
@@ -167,14 +173,7 @@ class _WindowLoginState extends State<WindowLogin> {
               margin: const EdgeInsets.only(top: 230, left: 30),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 5,
-                    color: Colors.grey,
-                    offset: Offset(1, 1)
-                  )
-                ]
+                borderRadius: BorderRadius.circular(15)
               ),
               width: MediaQuery.of(context).size.width * 0.9,
               child: TextField(
@@ -191,6 +190,7 @@ class _WindowLoginState extends State<WindowLogin> {
                   ),
                   prefixIcon: const Icon(Icons.person),
                   prefixIconColor: const Color.fromARGB(255, 3, 141, 93),
+                  hoverColor: Colors.red,
                   focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       color: Color.fromARGB(255, 3, 141, 93),
@@ -217,14 +217,7 @@ class _WindowLoginState extends State<WindowLogin> {
               margin: const EdgeInsets.only(top: 330, left: 30),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: const [
-                  BoxShadow(
-                    blurRadius: 5,
-                    color: Colors.grey,
-                    offset: Offset(1, 1)
-                  )
-                ]
+                borderRadius: BorderRadius.circular(15)
               ),
               width: MediaQuery.of(context).size.width * 0.9,
               child: TextField(
@@ -237,7 +230,7 @@ class _WindowLoginState extends State<WindowLogin> {
                 obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(15)
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   prefixIcon: const Icon(Icons.lock),
                   prefixIconColor: const Color.fromARGB(255, 3, 141, 93),
@@ -332,7 +325,7 @@ class _WindowLoginState extends State<WindowLogin> {
         "'$currentDate'",
         "'${appVersionFromGit.split('v')[1].split('.')[0]}'", // Version
         "'${appVersionFromGit.split('v')[1].split('.')[1]}'", // Revision
-        "'0'", // Sub-revision
+        "'${appVersionFromGit.split('v')[1].split('.')[2]}'", // Sub revision
         "'Initialize'",
         'INSERT'
       ]);
