@@ -38,7 +38,7 @@ class _WindowLoginState extends State<WindowLogin> {
   final TextEditingController usernameController = TextEditingController();
 
   // ************************** Important! => Update this version **************************
-  String appVersion = 'v1.4';
+  String appVersion = 'v1.4.0';
   // ***************************************************************************************
   String appVersionFromGit = '';
   String textVersionShow = '';
@@ -61,10 +61,6 @@ class _WindowLoginState extends State<WindowLogin> {
 
   @override
   void initState() {
-    var now = DateTime.now();
-    var formatter = DateFormat('MM/dd/yyyy hh:mm:ss a');
-    currentDate = formatter.format(now);
-
     loadUsername(true);
     super.initState();
   }
@@ -78,6 +74,10 @@ class _WindowLoginState extends State<WindowLogin> {
     });
 
     if (checkUpdate == true) {
+      await queryAppInfo();
+      print(currentVersionLastest);
+      print(currentRevisionLastest);
+      print(currentSubRevisionLastest);
       await _getGitFiles();
     }
   }
@@ -102,7 +102,8 @@ class _WindowLoginState extends State<WindowLogin> {
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
-                      _launchURL();
+                      // _launchURL();
+                      insertVersionToDB();
                       Navigator.of(context).pop();
                     },
                     child: const Text('Update'),
@@ -137,7 +138,7 @@ class _WindowLoginState extends State<WindowLogin> {
         child: AppBar()
       ),
       body: SingleChildScrollView(
-        child: Column(
+        child: Stack(
           children: [
             // Image Fabrinet
             Center(
@@ -155,48 +156,61 @@ class _WindowLoginState extends State<WindowLogin> {
             //     child: Image.asset('assets/images/login_image.png')
             //   ),
             // ),
-            // Username Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            // Label Username Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             Container(
+              margin: const EdgeInsets.only(top: 200, left: 30),
               alignment: Alignment.topLeft,
               width: MediaQuery.of(context).size.width * 0.9,
-              child: const Text(
+              child: Text(
                 'Username',
-                style: TextStyle(
+                style: GoogleFonts.nunito(
                   fontWeight: FontWeight.bold
                 ),
               ),
             ),
-            Center(
-              child: Container(
-                margin: const EdgeInsets.only(top: 5),
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: TextField(
-                  controller: usernameController,
-                  onChanged: (String? value) {
-                    setState(() {
-                      username = value!;
-                    });
-                  },
-                  cursorColor: const Color.fromARGB(255, 3, 141, 93),
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.person),
-                    prefixIconColor: Color.fromARGB(255, 3, 141, 93),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(255, 3, 141, 93),
-                        width: 2
-                      )
-                    )
+            // Username Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            Container(
+              margin: const EdgeInsets.only(top: 230, left: 30),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: const [
+                  BoxShadow(
+                    blurRadius: 5,
+                    color: Colors.grey,
+                    offset: Offset(1, 1)
+                  )
+                ]
+              ),
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: TextField(
+                controller: usernameController,
+                onChanged: (String? value) {
+                  setState(() {
+                    username = value!;
+                  });
+                },
+                cursorColor: const Color.fromARGB(255, 3, 141, 93),
+                decoration:  InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                )
+                  prefixIcon: const Icon(Icons.person),
+                  prefixIconColor: const Color.fromARGB(255, 3, 141, 93),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 3, 141, 93),
+                      width: 2
+                    )
+                  )
+                ),
               )
             ),
-            // Password Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            // Label Password Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             Container(
               alignment: Alignment.topLeft,
               width: MediaQuery.of(context).size.width * 0.9,
-              margin: const EdgeInsets.only(top: 20),
+              margin: const EdgeInsets.only(top: 300, left: 30),
               child: Text(
                 'Two-Factor PIN',
                 style: GoogleFonts.nunito(
@@ -204,78 +218,106 @@ class _WindowLoginState extends State<WindowLogin> {
                 ),
               ),
             ),
-            Center(
-              child: Container(
-                margin: const EdgeInsets.only(top: 5),
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: TextField(
-                  onChanged: (String? val) {
-                    setState(() {
-                      password = val!;
-                    });
-                  },
-                  cursorColor: const Color.fromARGB(255, 3, 141, 93),
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.lock),
-                    prefixIconColor: Color.fromARGB(255, 3, 141, 93),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(255, 3, 141, 93),
-                        width: 2
-                      )
-                    )
-                  ),
-                )
-              )
-            ),
-            // Login Button >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            // Password Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             Container(
-              decoration:  BoxDecoration(
-                color: const Color.fromARGB(255, 3, 141, 93),
+              margin: const EdgeInsets.only(top: 330, left: 30),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
                 boxShadow: const [
                   BoxShadow(
                     blurRadius: 5,
-                    offset: Offset(1, 1),
-                    color: Colors.grey
+                    color: Colors.grey,
+                    offset: Offset(1, 1)
                   )
-                ],
-                borderRadius: BorderRadius.circular(10)
+                ]
               ),
-              margin: const EdgeInsets.only(top: 20),
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: () {
-                  saveUsername(usernameController.text);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const WindowSelectView())
-                  );
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: TextField(
+                onChanged: (String? val) {
+                  setState(() {
+                    password = val!;
+                  });
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)
+                cursorColor: const Color.fromARGB(255, 3, 141, 93),
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+                  prefixIcon: const Icon(Icons.lock),
+                  prefixIconColor: const Color.fromARGB(255, 3, 141, 93),
+                  focusedBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(255, 3, 141, 93),
+                      width: 2
+                    )
                   )
                 ),
-                child: const Text(
-                  'GO', 
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20
-                  )
+              )
+            ),
+            // Login Button >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            Center(
+              child: Container(
+                decoration:  BoxDecoration(
+                  color: const Color.fromARGB(255, 3, 141, 93),
+                  boxShadow: const [
+                    BoxShadow(
+                      blurRadius: 5,
+                      offset: Offset(1, 1),
+                      color: Colors.grey
+                    )
+                  ],
+                  borderRadius: BorderRadius.circular(15)
                 ),
-              ) 
-            ), 
-            Container(
-              margin: const EdgeInsets.only(top: 50),
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: 180,
-              alignment: Alignment.center,
-              child: Text(textVersionShow),
-            )
+                margin: const EdgeInsets.only(top: 420),
+                width: MediaQuery.of(context).size.width * 0.5,
+                height: 50,
+                child: MaterialButton(
+                  onPressed: () {
+                    saveUsername(usernameController.text);
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: const Duration(seconds: 1),
+                        pageBuilder: (context, animation, secondaryAnimation) {
+                          return const WindowSelectView();
+                        },
+                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                          var begin = const Offset(0.0, -1.0);
+                          var end = Offset.zero;
+                          var curve = Curves.ease;
+
+                          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                          return SlideTransition(
+                            position: animation.drive(tween),
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'GO', 
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20
+                    )
+                  )
+                ) 
+              )
+            ),
+            Center (
+              child: Container(
+                margin: const EdgeInsets.only(top: 500),
+                height: MediaQuery.of(context).size.height * 0.1,
+                width: 180,
+                alignment: Alignment.center,
+                child: Text(textVersionShow),
+              )
+            ),
+
             // ElevatedButton(
             //   onPressed: _launchURL,
             //   child: const Text('Check for update'),
@@ -285,6 +327,44 @@ class _WindowLoginState extends State<WindowLogin> {
       ),
     );
   }
+
+  Future<void> insertVersionToDB() async {
+    try {
+      var now = DateTime.now();
+      var formatter = DateFormat('MM/dd/yyyy hh:mm:ss a');
+      currentDate = formatter.format(now);
+      
+      Map<String, dynamic> stringEncryptedArray = await encryptData([
+        "'$currentDate'",
+        "'${appVersionFromGit.split('v')[1].split('.')[0]}'", // Version
+        "'${appVersionFromGit.split('v')[1].split('.')[1]}'", // Revision
+        "'0'", // Sub-revision
+        "'Initialize'",
+        'INSERT'
+      ]);
+
+      await getDataPOST(
+        'https://supply-api.fabrinet.co.th/api/YMA/UpdateAppInfo',
+        {
+          'UpdateDate': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+          'Version': stringEncryptedArray['data'][1],
+          'Revision': stringEncryptedArray['data'][2],
+          'SubRevision': stringEncryptedArray['data'][3],
+          'Description': stringEncryptedArray['data'][4],
+          'ModeSQL': stringEncryptedArray['data'][5]
+        },
+      );
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
+  }
+
 
   void showFullTextDialog(BuildContext context) {
     showDialog(

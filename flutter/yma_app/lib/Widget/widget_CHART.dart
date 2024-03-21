@@ -110,9 +110,8 @@ class _WidgetChartState extends State<WidgetChart> {
           Stack(
             children: [
               // Mix Chart =================================
-              Visibility(
-                visible: widget.mixChartVisible,
-                child: Container(
+                widget.mixChartVisible == true ?
+                Container(
                   margin: const EdgeInsets.only(left: 5),
                   padding: const EdgeInsets.all(5),
                   width: MediaQuery.of(context).size.width * 0.975,
@@ -138,7 +137,21 @@ class _WidgetChartState extends State<WidgetChart> {
                     )
                   )
                 )
-              ),
+                :
+                Container (
+                  margin: const EdgeInsets.only(left: 30, top: 20),
+                  child: const Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text('Step 1: '),
+                          Text('Choose the process you want to see.'),
+                        ],
+                      ),
+                    ],
+                  )
+                )
             ]
           ),
           const SizedBox(height: 50)

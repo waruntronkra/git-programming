@@ -1,6 +1,10 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 import '../Window-ACACIA-YIELD/Pages-Summary/tab_summary.dart';
 import '../Window-FBN-ACACIA-YIELD/Page-Summary/tab_summary.dart';
 // import '../Window-FBN-Cisco-OTBU/Pages-Summary/tab_summary.dart';
@@ -41,30 +45,47 @@ class _WindowSelectViewState extends State<WindowSelectView> {
                 )
               ),
               // Go to page ACACIA FBN Yield
-              Container(
-                margin: const EdgeInsets.only(top: 400, left: 50),
+             Container(
+                margin: const EdgeInsets.only(top: 450, left: 50),
                 alignment: Alignment.topLeft,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      SizedBox(
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 3, 141, 93),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 1),
+                              color: Colors.grey
+                            )
+                          ]
+                        ),
                         width: MediaQuery.of(context).size.width * 0.5,
                         height: 40,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromARGB(255, 3, 141, 93),
-                            side: const BorderSide(
-                              color: Colors.black,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
+                        child: MaterialButton(
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const WindowFBNYIELD())
+                              PageRouteBuilder(
+                                pageBuilder: (context, animation, secondaryAnimation) => const WindowFBNYIELD(),
+                                transitionDuration: const Duration(seconds: 1), // Set the duration here
+                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                  var begin = const Offset(1.0, 0.0);
+                                  var end = Offset.zero;
+                                  var curve = Curves.ease;
+
+                                  var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                                  return SlideTransition(
+                                    position: animation.drive(tween),
+                                    child: child,
+                                  );
+                                },
+                              ),
                             );
                           },
                           child: const Text(
@@ -174,29 +195,46 @@ class _WindowSelectViewState extends State<WindowSelectView> {
               // ),
               // Go to page ACACIA Yield
               Container(
-                margin: const EdgeInsets.only(top: 525, left: 50),
+                margin: const EdgeInsets.only(top: 490, left: 50),
                 alignment: Alignment.topLeft,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      SizedBox(
+                      Container(
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 3, 141, 93),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5,
+                              offset: Offset(1, 1),
+                              color: Colors.grey
+                            )
+                          ]
+                        ),
                         width: MediaQuery.of(context).size.width * 0.5,
                         height: 40,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromARGB(255, 3, 141, 93),
-                            side: const BorderSide(
-                              color: Colors.black,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                          ),
+                        child: MaterialButton(
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const WindowATSYield())
+                              PageRouteBuilder(
+                                pageBuilder: (context, animation, secondaryAnimation) => const WindowATSYield(),
+                                transitionDuration: const Duration(seconds: 1), // Set the duration here
+                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                  var begin = const Offset(1.0, 0.0);
+                                  var end = Offset.zero;
+                                  var curve = Curves.ease;
+
+                                  var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+                                  return SlideTransition(
+                                    position: animation.drive(tween),
+                                    child: child,
+                                  );
+                                },
+                              ),
                             );
                           },
                           child: const Text(
@@ -209,7 +247,7 @@ class _WindowSelectViewState extends State<WindowSelectView> {
                         )
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 4),
+                        margin: const EdgeInsets.only(left: 10),
                         width: 90,
                         height: 90,
                         child: Image.asset('assets/images/acacia.png')
@@ -218,10 +256,61 @@ class _WindowSelectViewState extends State<WindowSelectView> {
                   )
                 )
               ),
+              // Hero(
+              //   tag: 'tag-2',
+              //   child: SizedBox(
+              //     width: 50,
+              //     height: 50,
+              //     child: MaterialButton(
+              //       color: Colors.red,
+              //       onPressed: () {
+              //         Navigator.push(
+              //           context,
+              //           PageRouteBuilder(
+              //             pageBuilder: (context, animation, secondaryAnimation) => const HeroPage(),
+              //             transitionDuration: const Duration(seconds: 1), // Set the duration here
+              //             transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              //               var begin = const Offset(1.0, 0.0);
+              //               var end = Offset.zero;
+              //               var curve = Curves.ease;
+
+              //               var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+              //               return SlideTransition(
+              //                 position: animation.drive(tween),
+              //                 child: child,
+              //               );
+              //             },
+              //           ),
+              //         );
+              //       }
+              //     )
+              //   )
+              // )
             ],
           ),
         ),
       )
+    );
+  }
+}
+
+class HeroPage extends StatelessWidget {
+  const HeroPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          
+        ),
+        body: Hero(
+          tag: "tag-2",
+          child: Container(
+          
+            color: Colors.red,
+          ),
+        ),
     );
   }
 }

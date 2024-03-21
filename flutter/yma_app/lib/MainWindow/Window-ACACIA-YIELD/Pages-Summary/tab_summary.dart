@@ -118,9 +118,11 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
   }
 
   void _openEndDrawer() {
-    if (_scaffoldKey.currentState != null) {
-      _scaffoldKey.currentState!.openEndDrawer();
-    }
+    Future.delayed(const Duration(milliseconds: 200), () {
+      if (_scaffoldKey.currentState != null) {
+        _scaffoldKey.currentState!.openEndDrawer();
+      }
+    });
   }
 
   void _closeEndDrawer() {
@@ -427,20 +429,36 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                           )
                           :
                           // Image Fabrinet
-                          Center(
-                            child: connectionError == true ?
-                            SizedBox(
-                              width: 350,
-                              height: 350,
-                              child: Image.asset('assets/images/FBN_ACA_1.png')
+                          Container (
+                            margin: const EdgeInsets.only(left: 30, top: 50),
+                            child: const Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text('Step 1: '),
+                                    Text('Click on Icon '),
+                                    Icon(Icons.menu),
+                                    Text(' on the top right.')
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text('Step 2: '),
+                                    Text('Choose the product you want to see.'),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text('Step 3: '),
+                                    Text('Choose type DAY/WEEK/MONTH/QUARTER you want.'),
+                                  ],
+                                ),
+                              ],
                             )
-                            :
-                            SizedBox(
-                              width: 350,
-                              height: 350,
-                              child: Image.asset('assets/images/FBN_ACA_2.png')
-                            ),
-                          ),
+                          )
                       ),
                       // ++++++++++++++++++++++++++++++++++++++++++ [Tab Pareto] ++++++++++++++++++++++++++++++++++++++++++
                       // Pareto List =================================
@@ -450,11 +468,47 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                             // Image Fabrinet
                             Visibility(
                               visible: failuresPareto.isNotEmpty ? false : true,
-                              child: Center(
-                                child: SizedBox(
-                                  width: 350,
-                                  height: 350,
-                                  child: Image.asset('assets/images/FBN_ACA_1.png')
+                              child: Container (
+                                margin: const EdgeInsets.only(left: 30, top: 50),
+                                child: const Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Text('Step 1: '),
+                                        Text('Click on Icon '),
+                                        Icon(Icons.menu),
+                                        Text(' on the top right.')
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Text('Step 2: '),
+                                        Text('Choose the product you want to see.'),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Text('Step 3: '),
+                                        Text('Choose type DAY/WEEK/MONTH/QUARTER.'),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Text('Step 4: '),
+                                        Text('There are list of failure occured.'),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Text('            Then click failure you want to see.'),
+                                      ],
+                                    ),
+                                  ],
                                 )
                               )
                             ),
@@ -563,9 +617,8 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                             Stack(
                               children: [
                                 // Chart by DATE =================================
-                                Visibility(
-                                  visible: paretoByDateChartVisible,
-                                  child: Container(
+                                  paretoByDateChartVisible == true ?
+                                  Container(
                                     margin: const EdgeInsets.only(top: 30),
                                     height: 500,
                                     child: MyBarChartParetoByDate(
@@ -573,7 +626,26 @@ class _WindowATSYieldState extends State<WindowATSYield> with SingleTickerProvid
                                       paretoTitle: paretoByDateTitle,
                                     )
                                   )
-                                ),
+                                  :
+                                  Container (
+                                    margin: const EdgeInsets.only(left: 60, top: 60),
+                                    child: const Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text('Option 1: Slide range of date.'),
+                                          ],
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text('Option 2: Click on slider.'),
+                                          ],
+                                        ),
+                                      ],
+                                    )
+                                  ),
                                 // Switch Top 5 =================================
                                 Visibility(
                                   visible: sliderVisible,

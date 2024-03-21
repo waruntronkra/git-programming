@@ -175,9 +175,11 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
   }
 
   void _openEndDrawer() {
-    if (scaffoldKey.currentState != null) {
-      scaffoldKey.currentState!.openEndDrawer();
-    }
+    Future.delayed(const Duration(milliseconds: 500), () {
+      if (scaffoldKey.currentState != null) {
+        scaffoldKey.currentState!.openEndDrawer();
+      }
+    });
   }
 
   void _closeEndDrawer() {
@@ -474,7 +476,7 @@ class _WindowFBNYIELDStateNew extends State<WindowFBNYIELD> {
             ),
             SlidingUpPanelWidget(
               panelController: panelController,
-              controlHeight: 25.0,
+              controlHeight: 35.0,
               anchor: 0.4,
               onTap: () {
                 if (SlidingUpPanelStatus.expanded == panelController.status) {
