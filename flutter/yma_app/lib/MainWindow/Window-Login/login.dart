@@ -37,9 +37,6 @@ class _WindowLoginState extends State<WindowLogin> {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   final TextEditingController usernameController = TextEditingController();
 
-  // ************************** Important! => Update this version **************************
-  String appVersion = 'v1.4.0';
-  // ***************************************************************************************
   String appVersionFromGit = '';
   String textVersionShow = '';
 
@@ -75,9 +72,6 @@ class _WindowLoginState extends State<WindowLogin> {
 
     if (checkUpdate == true) {
       await queryAppInfo();
-      print(currentVersionLastest);
-      print(currentRevisionLastest);
-      print(currentSubRevisionLastest);
       await _getGitFiles();
     }
   }
@@ -87,11 +81,11 @@ class _WindowLoginState extends State<WindowLogin> {
     if (response.statusCode == 200) {
       setState(() {
         appVersionFromGit = (jsonDecode(response.body))[0]['name'];
-        textVersionShow = 'Version : $appVersion';
+        textVersionShow = 'Version : $currentVersionLastest.$currentRevisionLastest.$currentSubRevisionLastest';
       });
     } 
     if (appVersionFromGit.isNotEmpty) {
-      if (appVersionFromGit.split('-')[1].split('.apk')[0] != appVersion) {
+      if (appVersionFromGit.split('-')[1].split('.apk')[0] != 'v$currentVersionLastest.$currentRevisionLastest.$currentSubRevisionLastest') {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           showDialog(
             context: context,
@@ -102,8 +96,8 @@ class _WindowLoginState extends State<WindowLogin> {
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
-                      // _launchURL();
                       insertVersionToDB();
+                      _launchURL();
                       Navigator.of(context).pop();
                     },
                     child: const Text('Update'),
