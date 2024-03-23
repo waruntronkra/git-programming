@@ -1,0 +1,13 @@
+\\10.3.2.120\d$\web_sites\web-api\web-api.exe
+\\10.3.2.120\d$\web_sites\web-api\appsettings.Development.json
+\\10.3.2.120\d$\web_sites\web-api\appsettings.json
+\\10.3.2.120\d$\web_sites\web-api\web-api.dll
+\\10.3.2.120\d$\web_sites\web-api\web-api.deps.json
+\\10.3.2.120\d$\web_sites\web-api\web-api.runtimeconfig.json
+\\10.3.2.120\d$\web_sites\web-api\web-api.pdb
+\\10.3.2.120\d$\web_sites\web-api\System.Data.SqlClient.dll
+\\10.3.2.120\d$\web_sites\web-api\runtimes\win-arm64\native\sni.dll
+\\10.3.2.120\d$\web_sites\web-api\runtimes\win-x64\native\sni.dll
+\\10.3.2.120\d$\web_sites\web-api\runtimes\win-x86\native\sni.dll
+\\10.3.2.120\d$\web_sites\web-api\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+\\10.3.2.120\d$\web_sites\web-api\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

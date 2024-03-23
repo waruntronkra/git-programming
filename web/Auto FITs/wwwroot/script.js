@@ -151,6 +151,39 @@ $(document).ready(async function() {
         document.getElementById('text-process').innerHTML = 'Select<br>Process';
     }
 
+    $('#selection-rev').click(function () { 
+        if ($(this).text() == 'Check [Out]') {
+            $(this).text('Check [In]');
+            document.getElementById('selection-rev').style.backgroundColor = '#f8d8ff'
+            document.querySelectorAll('.card-process').forEach(item => {
+                item.style.backgroundColor ='#f8d8ff';
+
+                item.addEventListener('mouseenter', () => {
+                    item.style.backgroundColor = '#ea8aff';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.backgroundColor = '#f8d8ff';
+                });
+            })
+        }
+        else if ($(this).text() == 'Check [In]') {
+            $(this).text('Check [Out]');
+            document.getElementById('selection-rev').style.backgroundColor = '#7ae8ad'
+            document.querySelectorAll('.card-process').forEach(item => {
+                item.style.backgroundColor ='#7ae8ad';
+
+                item.addEventListener('mouseenter', () => {
+                    item.style.backgroundColor = 'rgb(3, 141, 93)';
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.style.backgroundColor = '#7ae8ad';
+                });
+
+                
+            })
+        }
+    });
+
     // Input Serial Number ****************************************************
     $('#input-sn').on('input', function() {
         try {

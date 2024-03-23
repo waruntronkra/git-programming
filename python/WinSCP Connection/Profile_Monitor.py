@@ -5,7 +5,7 @@ from PyQt5.QtGui import QPainter, QPen, QColor
 from PyQt5.QtChart import QLineSeries, QChartView, QChart
 import csv
 from Get_File_WinSCP import ConnectWinSCP_GET
-from Read_File_WinSCP import ConnectWinSCP_READ
+from Copy_Files_WinSCP import ConnectWinSCP_READ
 import time
 
 class MyGUI(QtWidgets.QMainWindow):

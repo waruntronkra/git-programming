@@ -1,1 +1,0 @@
-dotnet publish --configuration Release --output "\\10.3.2.120\d$\web_sites\auto_fits"

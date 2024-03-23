@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/widgets.dart';
@@ -136,18 +137,22 @@ class _WindowLoginState extends State<WindowLogin> {
         child: Stack(
           children: [
             Container(
-              color: const Color.fromARGB(255, 3, 141, 93),
+              margin: const EdgeInsets.only(top: 180),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.8,
-            ),
-            // Image Fabrinet
-            Center(
-              child: SizedBox(
-                width: 100,
-                height: 100,
-                child: Image.asset('assets/images/fabrinet_image.png')
+              height: MediaQuery.of(context).size.height,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 3, 141, 93),
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20))
               ),
             ),
+            // Image Fabrinet
+            // Center(
+            //   child: SizedBox(
+            //     width: 100,
+            //     height: 100,
+            //     child: Image.asset('assets/images/fabrinet_image.png')
+            //   ),
+            // ),
             // Image Login
             // Center(
             //   child: SizedBox(
@@ -157,6 +162,51 @@ class _WindowLoginState extends State<WindowLogin> {
             //   ),
             // ),
             // Label Username Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+            Center(
+              child: Container(
+                margin: const EdgeInsets.only(top: 10),
+                width: 200,
+                child:  Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Fabri',
+                      style:  TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                        color: Color.fromARGB(255, 71, 120, 73)
+                      ),
+                    ),
+                    const Text(
+                      'net',
+                      style:  TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                        color: Color.fromARGB(255, 53, 53, 53)
+                      ),
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(left: 2.5, top: 2.4),
+                          child: const Icon(
+                            Icons.r_mobiledata_rounded,
+                            size: 18,
+                          )
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(bottom: 20),
+                          child: const Icon(
+                            Icons.circle_outlined,
+                            size: 13,
+                          )
+                        )
+                      ]
+                    )
+                  ]
+                )
+              )
+            ),
             Container(
               margin: const EdgeInsets.only(top: 200, left: 30),
               alignment: Alignment.topLeft,
@@ -164,15 +214,16 @@ class _WindowLoginState extends State<WindowLogin> {
               child: Text(
                 'Username',
                 style: GoogleFonts.nunito(
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white
                 ),
               ),
             ),
             // Username Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             Container(
-              margin: const EdgeInsets.only(top: 230, left: 30),
+              margin: const EdgeInsets.only(top: 230, left: 30, right: 30),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color.fromARGB(255, 217, 255, 219),
                 borderRadius: BorderRadius.circular(15)
               ),
               width: MediaQuery.of(context).size.width * 0.9,
@@ -185,16 +236,17 @@ class _WindowLoginState extends State<WindowLogin> {
                 },
                 cursorColor: const Color.fromARGB(255, 3, 141, 93),
                 decoration:  InputDecoration(
-                  border: OutlineInputBorder(
+                  enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(
+                      color: Colors.transparent
+                    )
                   ),
                   prefixIcon: const Icon(Icons.person),
                   prefixIconColor: const Color.fromARGB(255, 3, 141, 93),
-                  hoverColor: Colors.red,
                   focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 3, 141, 93),
-                      width: 2
+                      color: Colors.transparent,
                     )
                   )
                 ),
@@ -208,15 +260,16 @@ class _WindowLoginState extends State<WindowLogin> {
               child: Text(
                 'Two-Factor PIN',
                 style: GoogleFonts.nunito(
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white
                 ),
               ),
             ),
             // Password Input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
             Container(
-              margin: const EdgeInsets.only(top: 330, left: 30),
+              margin: const EdgeInsets.only(top: 330, left: 30, right: 30),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: const Color.fromARGB(255, 217, 255, 219),
                 borderRadius: BorderRadius.circular(15)
               ),
               width: MediaQuery.of(context).size.width * 0.9,
@@ -229,15 +282,17 @@ class _WindowLoginState extends State<WindowLogin> {
                 cursorColor: const Color.fromARGB(255, 3, 141, 93),
                 obscureText: true,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(
+                  enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
+                    borderSide: const BorderSide(
+                      color: Colors.transparent
+                    )
                   ),
                   prefixIcon: const Icon(Icons.lock),
                   prefixIconColor: const Color.fromARGB(255, 3, 141, 93),
                   focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color.fromARGB(255, 3, 141, 93),
-                      width: 2
+                      color: Colors.transparent,
                     )
                   )
                 ),
@@ -247,14 +302,7 @@ class _WindowLoginState extends State<WindowLogin> {
             Center(
               child: Container(
                 decoration:  BoxDecoration(
-                  color: const Color.fromARGB(255, 3, 141, 93),
-                  boxShadow: const [
-                    BoxShadow(
-                      blurRadius: 5,
-                      offset: Offset(1, 1),
-                      color: Colors.grey
-                    )
-                  ],
+                  color: Color.fromARGB(255, 67, 69, 69),
                   borderRadius: BorderRadius.circular(15)
                 ),
                 margin: const EdgeInsets.only(top: 420),
@@ -285,11 +333,12 @@ class _WindowLoginState extends State<WindowLogin> {
                       ),
                     );
                   },
-                  child: const Text(
+                  child: Text(
                     'GO', 
-                    style: TextStyle(
+                    style: GoogleFonts.nunito(
                       color: Colors.white,
-                      fontSize: 20
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
                     )
                   )
                 ) 
@@ -301,7 +350,12 @@ class _WindowLoginState extends State<WindowLogin> {
                 height: MediaQuery.of(context).size.height * 0.1,
                 width: 180,
                 alignment: Alignment.center,
-                child: Text(textVersionShow),
+                child: Text(
+                  textVersionShow,
+                  style: GoogleFonts.nunito(
+                    color: Colors.white
+                  ),
+                ),
               )
             ),
 
