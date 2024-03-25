@@ -1,7 +1,7 @@
 import paramiko
 
-class ListFilesWinSCP:
-    def run(self, host, username, password, port, remote_path):
+class ReadFilesWinSCP:
+    def run(self, host, username, password, port, remote_path, file_name):
         try:
             # Create an SSH client
             client = paramiko.SSHClient()
@@ -15,16 +15,15 @@ class ListFilesWinSCP:
             # Open an SFTP session
             sftp = client.open_sftp()
 
-            # Set the remote folder path
-            remote_folder_path = '/data/FTP/'
-            remote_files = sftp.listdir(remote_path)
-            files = [file for file in remote_files]
-
+            # Put files to the remote folder
+            with sftp.open(remote_path + file_name, 'r') as f:
+                file_read = f.read()
+            
             # Close the SFTP session and SSH connection
             sftp.close()
             client.close()
 
-            return files
+            return f'{file_read}'
 
         except Exception as e:
             return e

@@ -1,7 +1,7 @@
 import paramiko
 
 class WriteFilesWinSCP:
-    def run(self, host, username, password, port, state):
+    def run(self, host, username, password, port, state, remote_path, file_name):
         try:
             # Create an SSH client
             client = paramiko.SSHClient()
@@ -15,11 +15,8 @@ class WriteFilesWinSCP:
             # Open an SFTP session
             sftp = client.open_sftp()
 
-            # Set the remote folder path
-            remote_folder_path = '/data/FTP/state.txt'
-
             # Put files to the remote folder
-            with sftp.open(remote_folder_path, 'w') as f:
+            with sftp.open(remote_path + file_name, 'w') as f:
                 f.write(state)
             
             # Close the SFTP session and SSH connection
