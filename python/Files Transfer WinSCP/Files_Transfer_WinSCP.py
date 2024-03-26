@@ -236,6 +236,7 @@ class GUI(QtWidgets.QMainWindow):
             self.input_password.setStyleSheet('background-color: #E0E0E0')
 
             self.visible_password.setVisible(False)
+            
             self.update_user_info.setIcon(QIcon('icons/edit_user_info.ico'))
             self.update_user_info.setText('  Edit user information')
 
