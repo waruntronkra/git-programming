@@ -36,6 +36,3 @@ class CopyFilesWinSCP:
         
         except Exception as e:
             return e
-
-print(CopyFilesWinSCP().run('/data/FTP/', 'temp', 'state.txt', '.txt'))
-

@@ -1,0 +1,1 @@
+pyinstaller --onefile --noconsole --distpath "D:\Folder Data\EXE\Files Transfer WinSCP" --icon="\\fbn-fs-bu5\acacia$\Test Module\F\icon\cheese.ico" "Files_Transfer_WinSCP.py"
