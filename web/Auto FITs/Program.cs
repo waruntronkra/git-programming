@@ -282,4 +282,19 @@ app.MapGet("/webservice-fits", async (HttpContext context) => {
     await context.Response.WriteAsync(data);
 });
 
+app.MapGet("/copy-files-viavi", (HttpContext context) => {
+    string path = Directory.GetCurrentDirectory();
+    string sourceFilePath = Path.Combine(path, "test.txt");
+    string destFilePath = Path.Combine(path, "temp");
+
+    if (File.Exists(destFilePath))
+    {
+        // Handle the case when the destination file already exists
+        // For example, you can delete the existing file or rename it
+        File.Delete(destFilePath);
+    }
+
+    File.Move(sourceFilePath, destFilePath);
+});
+
 app.Run();

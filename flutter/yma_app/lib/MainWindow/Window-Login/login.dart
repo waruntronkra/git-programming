@@ -58,6 +58,8 @@ class _WindowLoginState extends State<WindowLogin> {
   String currentRevisionLastest = '';
   String currentSubRevisionLastest = '';
 
+  bool windowAuthen = false;
+
   @override
   void initState() {
     loadUsername(true);
@@ -67,12 +69,12 @@ class _WindowLoginState extends State<WindowLogin> {
   Future<void> loadUsername(bool checkUpdate) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      textVersionShow = 'Checking version update...';
       savedUsername = prefs.getString('username') ?? '';
       usernameController.text = savedUsername;
     });
 
     if (checkUpdate == true) {
+      textVersionShow = 'Checking version update...';
       await queryAppInfo();
       await _getGitFiles();
     }
@@ -258,7 +260,7 @@ class _WindowLoginState extends State<WindowLogin> {
               width: MediaQuery.of(context).size.width * 0.9,
               margin: const EdgeInsets.only(top: 300, left: 30),
               child: Text(
-                'Two-Factor PIN',
+                'Password',
                 style: GoogleFonts.nunito(
                   fontWeight: FontWeight.bold,
                   color: Colors.white
@@ -302,36 +304,47 @@ class _WindowLoginState extends State<WindowLogin> {
             Center(
               child: Container(
                 decoration:  BoxDecoration(
-                  color: Color.fromARGB(255, 67, 69, 69),
+                  color: const Color.fromARGB(255, 67, 69, 69),
                   borderRadius: BorderRadius.circular(15)
                 ),
                 margin: const EdgeInsets.only(top: 420),
                 width: MediaQuery.of(context).size.width * 0.5,
                 height: 50,
                 child: MaterialButton(
-                  onPressed: () {
+                  onPressed: () async {
                     saveUsername(usernameController.text);
-                    Navigator.push(
-                      context,
-                      PageRouteBuilder(
-                        transitionDuration: const Duration(seconds: 1),
-                        pageBuilder: (context, animation, secondaryAnimation) {
-                          return const WindowSelectView();
-                        },
-                        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                          var begin = const Offset(0.0, -1.0);
-                          var end = Offset.zero;
-                          var curve = Curves.ease;
+                    await windowAuthenAPI();
+                    if (windowAuthen == true) {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(seconds: 1),
+                          pageBuilder: (context, animation, secondaryAnimation) {
+                            return const WindowSelectView();
+                          },
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                            var begin = const Offset(0.0, -1.0);
+                            var end = Offset.zero;
+                            var curve = Curves.ease;
 
-                          var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                            var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-                          return SlideTransition(
-                            position: animation.drive(tween),
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
+                            return SlideTransition(
+                              position: animation.drive(tween),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    }
+                    else {
+                      CoolAlert.show(
+                        width: 1,
+                        context: scaffoldKey.currentContext!,
+                        type: CoolAlertType.error,
+                        text:'Invalid Username or Password!'
+                      );
+                    }
                   },
                   child: Text(
                     'GO', 
@@ -367,6 +380,40 @@ class _WindowLoginState extends State<WindowLogin> {
         ),
       ),
     );
+  }
+
+  Future<void> windowAuthenAPI() async {
+    try {
+      Map<String, dynamic> stringEncryptedArray = await encryptData([
+        usernameController.text,
+        password
+      ]);
+
+      var dataQueried = await getDataPOST('https://localhost:44342/api/YMA/WindowAuthen',
+        {
+          'Username': '${stringEncryptedArray['iv'].base16}${stringEncryptedArray['data'][0]}',
+          'Password': stringEncryptedArray['data'][1]
+        },
+      );
+      
+      if (jsonDecode(dataQueried[0]) == 'Found!') {
+        windowAuthen = true;
+      }
+      else {
+        windowAuthen = false;
+      }
+      setState(() {
+        windowAuthen = windowAuthen;
+      });
+    }
+    catch (e) {
+      CoolAlert.show(
+        width: 1,
+        context: scaffoldKey.currentContext!,
+        type: CoolAlertType.error,
+        text:'Error : $e'
+      );
+    }
   }
 
   Future<void> insertVersionToDB() async {
