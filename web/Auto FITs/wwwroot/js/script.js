@@ -99,7 +99,7 @@ $(document).ready(async function() {
                     }
                 }
             }
-            if (process == 'Endface Inspection (FCAL)' || process == 'Endface Inspection (OPM)' || process == 'Endface Inspection (CFG)') {
+            if (process == 'Endface Inspection (FCAL)' || process == 'Endface Inspection (OPM)' || process == 'Endface Inspection (CFG)' || process == 'Fiber Endface Inspection (ORL3)') {
                 parameter_FITS_array.push('EN');
                 parameter_FITS_array.push('UUT file');
             }
@@ -664,6 +664,9 @@ $(document).ready(async function() {
                             else if (process == 'Endface Inspection (CFG)' && parameter_FITS_array[j] == 'UUT file') {
                                 array.push(`\\\\fbn-fs-bu5\\acacia$\\Test\\Endface inspect CFG\\${listSN[i]}.pdf`);
                             }
+                            else if (process == 'Fiber Endface Inspection (ORL3)' && parameter_FITS_array[j] == 'UUT file') {
+                                array.push(`\\\\fbn-fs-bu5\\acacia$\\Test\\Endface inspect ORL3\\${listSN[i]}.pdf`);
+                            }
                             else {
                                 try {
 									if (process == 'EXP' && parameter_FITS_array[j] == 'Tester Fiber Tx SN') {
@@ -737,6 +740,9 @@ $(document).ready(async function() {
 									}
                                     else if (process == 'Fiber Endface Inspection (ORL3)' && parameter_FITS_array[j] == 'Fiber SN') {
 										array.push($('#input-fiber-sn').val());	
+									}
+                                    else if (process == 'Fiber Endface Inspection (ORL3)' && parameter_FITS_array[j] == 'EN') {
+										array.push($('#input-EN-ORL3').val());	
 									}
 									else {
 										array.push((await getLastTest(parameter_FITS_array[j], listSN[i]))['data'][0]['OUTPUT']);

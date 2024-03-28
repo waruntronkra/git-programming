@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "iebprrZsW3V9XCJdxgJw5LWDbupXUR073InFZW6yg1E=",
+  "Hash": "1dbCujx8nYS95qBHsHvnrlYEo0TxMnJHMNFD6evWg6k=",
   "Source": "YMA",
   "BasePath": "_content/YMA",
   "Mode": "Default",
@@ -40770,6 +40770,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\fontawesome-free-6.5.1-web\\webfonts\\fa-v4compatibility.woff2"
+    },
+    {
+      "Identity": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\images\\burger.ico",
+      "SourceId": "YMA",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\",
+      "BasePath": "_content/YMA",
+      "RelativePath": "images/burger.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\burger.ico"
     },
     {
       "Identity": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\images\\Logo.png",

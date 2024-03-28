@@ -8585,6 +8585,10 @@
       "PackagePath": "staticwebassets\\images\\Logo.png"
     },
     {
+      "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\images\\burger.ico",
+      "PackagePath": "staticwebassets\\images\\burger.ico"
+    },
+    {
       "Id": "D:\\GIT\\git-programming\\web\\Auto FITs\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
