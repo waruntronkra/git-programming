@@ -23,12 +23,16 @@
     <link rel="stylesheet" href="./fontawesome-free-6.5.1-web/css/all.min.css">
     
     <title>Auto FITs</title>
-    <link rel="icon" href="./images/burger.png" type="image/x-icon">
+    <link rel="icon" href="./images/burger.ico" type="image/x-icon">
 
 </head>
 
 <body>
-    <button style="display: absolute; background-color: red; width: 50px; height: 50px;" id="test">test</button>
+    <!-- ================================ [Logo] ================================ -->
+    <img src="./images/Logo.png" alt="Image description" width="320px" height="90px"
+        style="position: absolute; top: 30px; left: 40px;">
+
+    <!-- <button style="display: absolute; background-color: red; width: 50px; height: 50px;" id="test">test</button> -->
     <div id="keyfram-picture">
         <!-- ================================ [Gear Spining] ================================ -->
         <!-- <div class="gears" id="two-gears">
@@ -45,10 +49,6 @@
         <img id="background-1" src="background-1.png" alt="Image description"> -->
     </div>
 
-    <!-- ================================ [Logo] ================================ -->
-    <img src="./images/Logo.png" alt="Image description" width="320px" height="90px"
-        style="position: absolute; top: 30px; left: 40px;">
-
     <!-- ================================ [Body Widget] ================================ -->
     <div id="body-widget">
         <div id="sub-body-widget">
@@ -59,7 +59,7 @@
                 <div class="card-process">OPM</div>
                 <div class="card-process">OPMP</div>
                 <div class="card-process">OPMT</div>
-                <div class="card-process">...</div>
+                <div class="card-process">EXP</div>
                 <!-- <div class="card-process">EXP</div> -->
                 <div class="card-process">LCT1</div>
                 <div class="card-process">LCT2</div>
@@ -70,7 +70,7 @@
                 <div class="card-process">Endface Inspection (FCAL)</div>
                 <div class="card-process">Endface Inspection (OPM)</div>
                 <div class="card-process">Endface Inspection (CFG)</div>
-                <div class="card-process">DEV01</div>
+                <div class="card-process">Fiber Endface Inspection (ORL3)</div>
 
                 <p id="text-process"></p>
             </div>
@@ -445,6 +445,10 @@
             <input placeholder="PI Location" type="text" id="input-PI-LCT">
         </form>
     </div>
-
+    <!-- ================================ [Input detail for process LCT] ================================ -->
+    <div id="container-input-fiber-sn">
+        <p>Fiber SN</p>
+        <input id="input-fiber-sn" type="text" maxlength="15">
+    </div>
 </body>
 </html>

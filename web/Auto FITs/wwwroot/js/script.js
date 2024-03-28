@@ -71,6 +71,7 @@ $(document).ready(async function() {
                 process == 'LCT1' ||
                 process == 'LCT2' ||
                 process == 'LCTT' ||
+                process == 'EXP' ||
                 process == 'CFG' ||
                 process == 'Endface Inspection (FCAL)' ||
                 process == 'Endface Inspection (OPM)' ||
@@ -203,6 +204,9 @@ $(document).ready(async function() {
                         last_button_id = document.querySelectorAll('.sn-indicator')[document.querySelectorAll('.sn-indicator').length - 1].id;
                         last_button_id = `sn-indicator-${(parseInt(last_button_id.split('-')[2]) + 1)}`
                         if (process == 'DEV01') {
+                            document.getElementById('container-input-fiber-sn').style.top = '-500px';
+                            document.getElementById('container-detail-LCT').style.scale = '0';
+
                             setTimeout(function() {
                                 document.querySelector('.user-container').style.top = '50px';
                             }, 100);
@@ -210,6 +214,8 @@ $(document).ready(async function() {
                         else if (process == 'LCT1' || process == 'LCT2' || process == 'Endface Inspection (FCAL)' || process == 'Endface Inspection (OPM)' || process == 'Endface Inspection (CFG)') {
                             document.querySelector('.user-container').style.top = '-900px';
                             document.getElementById('container-detail-LCT').style.scale = '1';
+                            document.getElementById('container-input-fiber-sn').style.top = '-500px';
+
                             setTimeout(function() {
                                 var style = document.createElement('style');
                                 style.innerHTML = `
@@ -219,9 +225,15 @@ $(document).ready(async function() {
                                 document.head.appendChild(style);
                             }, 100);
                         }
+                        else if (process == 'Fiber Endface Inspection (ORL3)') {
+                            document.querySelector('.user-container').style.top = '-900px';
+                            document.getElementById('container-detail-LCT').style.scale = '0';
+                            document.getElementById('container-input-fiber-sn').style.top = '447px';
+                        }
                         else {
                             document.querySelector('.user-container').style.top = '-900px';
                             document.getElementById('container-detail-LCT').style.scale = '0';
+                            document.getElementById('container-input-fiber-sn').style.top = '-500px';
                             setTimeout(function() {
                                 var style = document.createElement('style');
                                 style.innerHTML = `
@@ -240,12 +252,18 @@ $(document).ready(async function() {
                         document.getElementById('button-save').style.display = 'flex';
                         
                         if (process == 'DEV01') {
+                            document.getElementById('container-input-fiber-sn').style.top = '-500px';
+                            document.getElementById('container-detail-LCT').style.scale = '0';
+
                             setTimeout(function() {
                                 document.querySelector('.user-container').style.top = '50px';
                             }, 100);
                         }
                         else if (process == 'LCT1' || process == 'LCT2' || process == 'Endface Inspection (FCAL)' || process == 'Endface Inspection (OPM)' || process == 'Endface Inspection (CFG)') {
+                            document.querySelector('.user-container').style.top = '-900px';
                             document.getElementById('container-detail-LCT').style.scale = '1';
+                            document.getElementById('container-input-fiber-sn').style.top = '-500px';
+
                             setTimeout(function() {
                                 var style = document.createElement('style');
                                 style.innerHTML = `
@@ -255,8 +273,23 @@ $(document).ready(async function() {
                                 document.head.appendChild(style);
                             }, 100);
                         }
-                        else {
+                        else if (process == 'Fiber Endface Inspection (ORL3)') {
+                            document.querySelector('.user-container').style.top = '-900px';
                             document.getElementById('container-detail-LCT').style.scale = '0';
+                            document.getElementById('container-input-fiber-sn').style.top = '447px';
+                        }
+                        else {
+                            document.querySelector('.user-container').style.top = '-900px';
+                            document.getElementById('container-detail-LCT').style.scale = '0';
+                            document.getElementById('container-input-fiber-sn').style.top = '-500px';
+                            setTimeout(function() {
+                                var style = document.createElement('style');
+                                style.innerHTML = `
+                                        .form-EN:before { display: none; }
+                                        .form-PI:before { display: none; }
+                                `;
+                                document.head.appendChild(style);
+                            }, 100)
                         }
                     }
 
@@ -474,6 +507,7 @@ $(document).ready(async function() {
                         document.head.appendChild(style);
                     }, 100)
                 }
+                document.getElementById('container-input-fiber-sn').style.top = '-500px';
             }
 
             // Check duplicate SN input >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -701,6 +735,9 @@ $(document).ready(async function() {
                                     else if (process == 'LCT2' && parameter_FITS_array[j] == 'PI Location') {
 										array.push($('#input-PI-LCT').val());	
 									}
+                                    else if (process == 'Fiber Endface Inspection (ORL3)' && parameter_FITS_array[j] == 'Fiber SN') {
+										array.push($('#input-fiber-sn').val());	
+									}
 									else {
 										array.push((await getLastTest(parameter_FITS_array[j], listSN[i]))['data'][0]['OUTPUT']);
 									}
@@ -786,7 +823,6 @@ $(document).ready(async function() {
                             initial_check.push(false);
                         }	
                     }
-					
                 }
             }
             document.getElementById('loader').style.display = 'none';
@@ -919,11 +955,14 @@ $(document).ready(async function() {
             else if (process == 'LCTT') {
                 operation = '2257';
             }
-            else if (process == 'DEV01') {
-                operation = 'DEV01';
+            else if (process == 'EXP') {
+                operation = '3500';
             }
             else if (process == 'CFG') {
                 operation = '3800';
+            }
+            else if (process == 'DEV01') {
+                operation = 'DEV01';
             }
             else if (process == 'Endface Inspection (FCAL)') {
                 operation = '3797';
@@ -947,6 +986,7 @@ $(document).ready(async function() {
                 process == 'LCT1' ||
                 process == 'LCT2' ||
                 process == 'LCTT' ||
+                process == 'EXP' ||
                 process == 'CFG' ||
                 process == 'Endface Inspection (FCAL)' ||
                 process == 'Endface Inspection (OPM)' ||

@@ -605,28 +605,6 @@ class _WindowLoginState extends State<WindowLogin> {
     }
   }
 
-  // Future<void> downloadFile() async {
-  //   try {
-  //     var dataQueried = await getDataGET(
-  //       'https://localhost:44342/api/YMA/FileAppDownload'
-  //     );
-  //     print(dataQueried);
-
-  //     if (dataQueried[1] == 200) {
-  //      print(dataQueried);
-
-  //     }
-  //   }
-  //   catch (e) {
-  //     CoolAlert.show(
-  //       width: 1,
-  //       context: scaffoldKey.currentContext!,
-  //       type: CoolAlertType.error,
-  //       text:'Error : $e'
-  //     );
-  //   }
-  // }
-
   // <<<<<<<<<<<<<<<<<<<<<<<<< [Encrypt] Data >>>>>>>>>>>>>>>>>>>>>>>>>
   Future<Map<String, dynamic>> encryptData(List<dynamic> data) async {
     String keyValue = 'yieldeachproduct'; // *** important, same as flutter sent ***
